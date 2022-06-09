@@ -1,0 +1,47 @@
+name: Build & test
+
+on:
+  push:
+    branches:
+      - main
+      - snapshot
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Copy CI gradle.properties
+        run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
+
+      - name: Setup JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - uses: burrunan/gradle-cache-action@v1
+        name: Build
+        with:
+          job-id: linux
+          gradle-dependencies-cache-key: |
+            gradle/libs.versions.toml
+          arguments: |
+            assemble
+            testDebug
+            lintDebug
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: |
+            **/build/test-results/*
+            **/build/reports/*
