@@ -1,0 +1,9 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm'
+}
+dependencies {
+    api libs.ktlint.core
+    testImplementation libs.ktlint.test
+}
+
+apply plugin: "com.vanniktech.maven.publish"

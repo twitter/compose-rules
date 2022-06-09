@@ -1,0 +1,40 @@
+root = true
+
+[*]
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+max_line_length = 120
+tab_width = 8
+ij_continuation_indent_size = 8
+
+[*.{kt,kts}]
+ij_continuation_indent_size = 4
+ij_kotlin_name_count_to_use_star_import = 2147483647
+ij_kotlin_name_count_to_use_star_import_for_members = 2147483647
+ij_kotlin_code_style_defaults = KOTLIN_OFFICIAL
+
+[{*.gant,*.gradle,*.groovy,*.gy}]
+ij_groovy_keep_control_statement_in_one_line = false
+ij_groovy_align_multiline_for = false
+ij_groovy_align_multiline_parameters = false
+ij_groovy_call_parameters_wrap = normal
+ij_groovy_method_parameters_wrap = normal
+ij_groovy_extends_list_wrap = normal
+ij_groovy_throws_list_wrap = normal
+ij_groovy_extends_keyword_wrap = normal
+ij_groovy_throws_keyword_wrap = normal
+ij_groovy_method_call_chain_wrap = normal
+ij_groovy_binary_operation_wrap = normal
+ij_groovy_ternary_operation_wrap = normal
+ij_groovy_for_statement_wrap = normal
+ij_groovy_array_initializer_wrap = normal
+ij_groovy_assignment_wrap = normal
+ij_groovy_if_brace_force = always
+ij_groovy_do_while_brace_force = always
+ij_groovy_while_brace_force = always
+ij_groovy_for_brace_force = always
+
+[{*.ant,*.fxml,*.jhm,*.jnlp,*.jrxml,*.rng,*.tld,*.wsdl,*.xml,*.xsd,*.xsl,*.xslt,*.xul}]
+ij_continuation_indent_size = 4
