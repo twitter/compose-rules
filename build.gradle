@@ -1,0 +1,33 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath libs.kotlin.gradlePlugin
+        classpath libs.gradleMavenPublishPlugin
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+subprojects {
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach { compile ->
+        kotlinOptions {
+            // Treat all Kotlin warnings as errors
+            allWarningsAsErrors = true
+            // Set JVM target to 1.8
+            jvmTarget = "1.8"
+            // Allow use of @OptIn
+            freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
+            // Enable default methods in interfaces
+            freeCompilerArgs += "-Xjvm-default=all"
+        }
+    }
+}
