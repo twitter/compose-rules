@@ -35,8 +35,7 @@ jobs:
             gradle/libs.versions.toml
           arguments: |
             assemble
-            testDebug
-            lintDebug
+            test
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v3
