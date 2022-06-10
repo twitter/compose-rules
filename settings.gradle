@@ -9,8 +9,10 @@ gradleEnterprise {
     }
 }
 
-rootProject.name = "com.twitter.ktlint.rules.compose"
-include ':rules'
+rootProject.name = "com.twitter.rules.compose"
+include ':core:common'
+include ':core:ktlint'
+include ':rules:ktlint'
 
 // https://docs.gradle.org/current/userguide/platforms.html
 enableFeaturePreview("VERSION_CATALOGS")

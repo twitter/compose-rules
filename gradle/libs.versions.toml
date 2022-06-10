@@ -5,8 +5,13 @@ ktlint = "0.45.2"
 [libraries]
 ktlint-core = { module = "com.pinterest.ktlint:ktlint-core", version.ref = "ktlint" }
 ktlint-test = { module = "com.pinterest.ktlint:ktlint-test", version.ref = "ktlint" }
+ktlint-gradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:10.3.0"
 
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-compiler = { module = "org.jetbrains.kotlin:kotlin-compiler-embeddable", version.ref = "kotlin" }
 
 gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.20.0"
+
+junit5 = "org.junit.jupiter:junit-jupiter:5.8.2"
+assertj = "org.assertj:assertj-core:3.22.0"

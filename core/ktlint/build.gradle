@@ -3,7 +3,5 @@ plugins {
 }
 dependencies {
     api libs.ktlint.core
-    testImplementation libs.ktlint.test
+    implementation project(':core:common')
 }
-
-apply plugin: "com.vanniktech.maven.publish"

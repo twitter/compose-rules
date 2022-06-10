@@ -34,6 +34,7 @@ jobs:
           gradle-dependencies-cache-key: |
             gradle/libs.versions.toml
           arguments: |
+            spotlessCheck
             assemble
             test
       - name: Upload test results
