@@ -17,4 +17,5 @@ For example, to disable `compose-naming-check`, the tag you'll need to disable i
 ```kotlin
     /* ktlint-disable twitter-compose:compose-naming-check */
     ... your code here
+    /* ktlint-enable twitter-compose:compose-naming-check */
 ```
