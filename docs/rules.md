@@ -18,7 +18,7 @@ Related rule: TBD
 
 Be careful when using `mutableStateOf` (or any of the other state builders) to make sure that you `remember` the instance. If you don't `remember` the state instance, a new state instance will be created when the function is recomposed.
 
-Related rule: TBD
+Related rule: [compose-remember-missing-check](https://github.com/twitter/compose-ktlint-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeRememberMissingCheck.kt)
 
 ### Use Immutable annotation whenever possible
 
