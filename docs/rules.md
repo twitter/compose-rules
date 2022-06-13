@@ -149,7 +149,7 @@ They are especially important for your public components, as they allow callers 
 
 More info: [Always provide a Modifier parameter](https://chris.banes.dev/always-provide-a-modifier/)
 
-Related rule: TBD
+Related rule: [compose-modifier-check](https://github.com/twitter/compose-ktlint-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeModifierMissingCheck.kt)
 
 ### Don't re-use modifiers
 
