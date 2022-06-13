@@ -6,6 +6,7 @@ import com.pinterest.ktlint.core.RuleSetProvider
 class TwitterComposeRuleSetProvider : RuleSetProvider {
     override fun get(): RuleSet = RuleSet(
         "twitter-compose",
-        ComposeNamingCheck()
+        ComposeNamingCheck(),
+        ComposeRememberMissingCheck(),
     )
 }
