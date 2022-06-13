@@ -2,6 +2,7 @@ package com.twitter.rules.core
 
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtFunction
+import org.jetbrains.kotlin.psi.KtParameter
 
 val KtFunction.emitsContent: Boolean
     get() = if (isComposable) findChildrenByClass<KtCallExpression>().any { it.emitsContent } else false
@@ -120,3 +121,6 @@ val ComposableEmittersListRegex by lazy {
         )
     )
 }
+
+val KtFunction.modifierParameter: KtParameter?
+    get() = valueParameters.firstOrNull { it.typeReference?.text == "Modifier" }
