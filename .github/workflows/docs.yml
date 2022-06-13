@@ -1,0 +1,21 @@
+name: Publish docs
+
+on:
+  push:
+    paths:
+      - 'docs/**'
+
+jobs:
+  deploy_docs:
+    runs-on: ubuntu-latest
+    env:
+      TERM: dumb
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
