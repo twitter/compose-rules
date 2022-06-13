@@ -4,7 +4,7 @@ import com.pinterest.ktlint.core.ast.lastChildLeafOrSelf
 import com.twitter.rules.core.emitsContent
 import com.twitter.rules.core.findChildrenByClass
 import com.twitter.rules.core.isComposable
-import com.twitter.rules.core.isOverridden
+import com.twitter.rules.core.isOverride
 import com.twitter.rules.core.ktlint.Emitter
 import com.twitter.rules.core.ktlint.TwitterKtRule
 import com.twitter.rules.core.ktlint.report
@@ -27,7 +27,7 @@ class ComposeModifierMissingCheck : TwitterKtRule("compose-modifier-check") {
                 //  - are public
                 //  - emit content
                 //  - are not overriden or part of an interface
-                it.isPublic && !it.returnsValue && !it.isOverridden && !it.definedInInterface
+                it.isPublic && !it.returnsValue && !it.isOverride && !it.definedInInterface
             }
             .forEach { visitComposable(it, autoCorrect, emitter) }
     }

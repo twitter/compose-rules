@@ -16,5 +16,5 @@ val KtFunction.isProtected: Boolean
 val KtFunction.isInternal: Boolean
     get() = visibilityModifierType() == KtTokens.INTERNAL_KEYWORD
 
-val KtFunction.isOverridden: Boolean
+val KtFunction.isOverride: Boolean
     get() = hasModifier(KtTokens.OVERRIDE_KEYWORD)
