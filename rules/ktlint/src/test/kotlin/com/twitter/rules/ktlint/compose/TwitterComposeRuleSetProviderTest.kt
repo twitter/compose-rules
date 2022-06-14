@@ -4,5 +4,5 @@ import com.pinterest.ktlint.test.RuleSetProviderTest
 
 class TwitterComposeRuleSetProviderTest : RuleSetProviderTest(
     rulesetClass = TwitterComposeRuleSetProvider::class.java,
-    "com.twitter.rules.ktlint.compose"
+    packageName = "com.twitter.rules.ktlint.compose"
 )
