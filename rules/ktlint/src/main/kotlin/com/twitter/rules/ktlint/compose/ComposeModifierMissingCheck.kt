@@ -8,13 +8,13 @@ import com.twitter.rules.core.isOverride
 import com.twitter.rules.core.ktlint.Emitter
 import com.twitter.rules.core.ktlint.TwitterKtRule
 import com.twitter.rules.core.ktlint.report
+import com.twitter.rules.core.modifierParameter
 import com.twitter.rules.core.returnsValue
 import org.jetbrains.kotlin.com.intellij.psi.impl.source.tree.LeafPsiElement
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtClassBody
 import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtFunction
-import org.jetbrains.kotlin.psi.KtParameter
 import org.jetbrains.kotlin.psi.psiUtil.isPublic
 
 class ComposeModifierMissingCheck : TwitterKtRule("compose-modifier-check") {
@@ -60,9 +60,6 @@ class ComposeModifierMissingCheck : TwitterKtRule("compose-modifier-check") {
 
     private val KtFunction.definedInInterface: Boolean
         get() = ((parent as? KtClassBody)?.parent as? KtClass)?.isInterface() ?: false
-
-    private val KtFunction.modifierParameter: KtParameter?
-        get() = valueParameters.firstOrNull { it.typeReference?.text == "Modifier" }
 
     companion object {
         val MissingModifierDefaultParam = """
