@@ -8,6 +8,7 @@ class TwitterComposeRuleSetProvider : RuleSetProvider {
         "twitter-compose",
         ComposeModifierMissingCheck(),
         ComposeModifierUsedOnceCheck(),
+        ComposeMultipleContentEmittersCheck(),
         ComposeMutableParametersCheck(),
         ComposeNamingCheck(),
         ComposeRememberMissingCheck(),
