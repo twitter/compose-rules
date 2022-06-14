@@ -96,7 +96,7 @@ private fun ColumnScope.InnerContent() {
 ```
 This effectively ties the function to be called from a Column, but is still not recommended (although permitted).
 
-Related rule: TBD
+Related rule: [compose-multiple-emitters-check](https://github.com/twitter/compose-ktlint-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeMultipleContentEmittersCheck.kt)
 
 ### Naming @Composable functions properly
 

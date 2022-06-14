@@ -7,6 +7,9 @@ import org.jetbrains.kotlin.psi.psiUtil.visibilityModifierType
 val KtFunction.returnsValue: Boolean
     get() = typeReference != null && typeReference!!.text != "Unit"
 
+val KtFunction.hasReceiverType: Boolean
+    get() = receiverTypeReference != null
+
 val KtFunction.isPrivate: Boolean
     get() = visibilityModifierType() == KtTokens.PRIVATE_KEYWORD
 
