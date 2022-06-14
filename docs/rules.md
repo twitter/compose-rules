@@ -40,7 +40,7 @@ There are a few reasons for this, but the main one is that it is very easy to us
 
 Passing `ArrayList<T>`, `MutableState<T>`, `ViewModel` are common examples of this (but not limited to those types).
 
-Related rule: TBD
+Related rule: [compose-mutable-params-check](https://github.com/twitter/compose-ktlint-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeMutableParametersCheck.kt)
 
 ### Do not emit content and return a result
 
@@ -180,4 +180,4 @@ private fun InnerContent(modifier: Modifier = Modifier) {
 }
 ```
 
-Related rule: TBD
+Related rule: [compose-modifier-used-once-check](https://github.com/twitter/compose-ktlint-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeModifierUsedOnceCheck.kt)
