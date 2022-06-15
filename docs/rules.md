@@ -50,7 +50,7 @@ If a composable should offer additional control surfaces to its caller, those co
 
 More info: [Compose API guidelines](https://github.com/androidx/androidx/blob/androidx-main/compose/docs/compose-api-guidelines.md#emit-xor-return-a-value)
 
-Related rule: TBD
+Related rule: [compose-multiple-emitters-check](https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeMultipleContentEmittersCheck.kt)
 
 ### Do not emit multiple pieces of content
 
@@ -137,7 +137,7 @@ private fun MyComposable(
 
 ```
 
-Related rule: TBD
+Related rule: [compose-vm-injection-check](https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeViewModelInjectionCheck.kt)
 
 ## Modifiers
 
