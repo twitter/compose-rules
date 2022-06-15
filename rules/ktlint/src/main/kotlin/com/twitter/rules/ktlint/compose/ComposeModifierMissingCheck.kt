@@ -1,6 +1,7 @@
 package com.twitter.rules.ktlint.compose
 
 import com.pinterest.ktlint.core.ast.lastChildLeafOrSelf
+import com.twitter.rules.core.definedInInterface
 import com.twitter.rules.core.emitsContent
 import com.twitter.rules.core.findChildrenByClass
 import com.twitter.rules.core.isComposable
@@ -58,20 +59,17 @@ class ComposeModifierMissingCheck : TwitterKtRule("compose-modifier-check") {
         }
     }
 
-    private val KtFunction.definedInInterface: Boolean
-        get() = ((parent as? KtClassBody)?.parent as? KtClass)?.isInterface() ?: false
-
     companion object {
         val MissingModifierDefaultParam = """
             This @Composable function has a modifier parameter but it doesn't have a default value.
 
-            See https://github.com/twitter/compose-ktlint-rules/blob/main/docs/rules.md#when-should-i-expose-modifier-parameters for more information.
+            See https://github.com/twitter/compose-rules/blob/main/docs/rules.md#when-should-i-expose-modifier-parameters for more information.
         """.trimIndent()
 
         val MissingModifierContentComposable = """
             This @Composable function emits content but doesn't have a modifier parameter.
 
-            See https://github.com/twitter/compose-ktlint-rules/blob/main/docs/rules.md#when-should-i-expose-modifier-parameters for more information.
+            See https://github.com/twitter/compose-rules/blob/main/docs/rules.md#when-should-i-expose-modifier-parameters for more information.
         """.trimIndent()
     }
 }

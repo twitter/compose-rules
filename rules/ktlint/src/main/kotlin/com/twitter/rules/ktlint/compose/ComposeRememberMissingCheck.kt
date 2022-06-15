@@ -52,7 +52,7 @@ class ComposeRememberMissingCheck : TwitterKtRule("compose-remember-missing-chec
             Using `$name` in a @Composable function without it being inside of a remember function.
             If you don't remember the state instance, a new state instance will be created when the function is recomposed.
 
-            For more information: https://github.com/twitter/compose-ktlint-rules/blob/main/docs/rules.md#state-should-be-remembered-in-composables
+            For more information: https://github.com/twitter/compose-rules/blob/main/docs/rules.md#state-should-be-remembered-in-composables
         """.trimIndent()
     }
 }
