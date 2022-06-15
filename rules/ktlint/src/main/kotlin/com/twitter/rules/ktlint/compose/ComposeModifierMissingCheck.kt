@@ -12,8 +12,6 @@ import com.twitter.rules.core.ktlint.report
 import com.twitter.rules.core.modifierParameter
 import com.twitter.rules.core.returnsValue
 import org.jetbrains.kotlin.com.intellij.psi.impl.source.tree.LeafPsiElement
-import org.jetbrains.kotlin.psi.KtClass
-import org.jetbrains.kotlin.psi.KtClassBody
 import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.psiUtil.isPublic
