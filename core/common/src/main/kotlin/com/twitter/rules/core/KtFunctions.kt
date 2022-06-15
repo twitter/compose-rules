@@ -1,6 +1,8 @@
 package com.twitter.rules.core
 
 import org.jetbrains.kotlin.lexer.KtTokens
+import org.jetbrains.kotlin.psi.KtClass
+import org.jetbrains.kotlin.psi.KtClassBody
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.psiUtil.visibilityModifierType
 
@@ -21,3 +23,6 @@ val KtFunction.isInternal: Boolean
 
 val KtFunction.isOverride: Boolean
     get() = hasModifier(KtTokens.OVERRIDE_KEYWORD)
+
+val KtFunction.definedInInterface: Boolean
+    get() = ((parent as? KtClassBody)?.parent as? KtClass)?.isInterface() ?: false
