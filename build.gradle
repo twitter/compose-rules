@@ -28,6 +28,10 @@ subprojects {
             target "**/*.kt"
             ktlint(libs.versions.ktlint.get())
         }
+        groovyGradle {
+            target '**/*.gradle'
+            greclipse().configFile(rootProject.file('spotless/greclipse.properties'))
+        }
     }
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach { compile ->
         kotlinOptions {
