@@ -7,7 +7,7 @@ import com.twitter.rules.core.ktlint.TwitterKtRule
 import com.twitter.rules.core.ktlint.report
 import org.jetbrains.kotlin.psi.KtFunction
 
-class ComposeMutableParametersCheck : TwitterKtRule("compose-mutable-params-check") {
+class ComposeMutableParametersCheck : TwitterKtRule("twitter-compose:mutable-params-check") {
 
     override fun visitFunction(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
         if (!function.isComposable) return

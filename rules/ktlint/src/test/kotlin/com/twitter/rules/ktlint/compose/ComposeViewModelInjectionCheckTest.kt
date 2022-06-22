@@ -1,22 +1,20 @@
 package com.twitter.rules.ktlint.compose
 
-import com.pinterest.ktlint.core.LintError
-import com.pinterest.ktlint.test.format
-import com.pinterest.ktlint.test.lint
-import org.assertj.core.api.Assertions.assertThat
+import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThat
+import com.pinterest.ktlint.test.LintViolation
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class ComposeViewModelInjectionCheckTest {
 
-    private val rule = ComposeViewModelInjectionCheck()
+    private val injectionRuleAssertThat = ComposeViewModelInjectionCheck().assertThat()
 
     @ParameterizedTest
     @ValueSource(strings = ["viewModel", "weaverViewModel"])
     fun `passes when a weaverViewModel is used as a default param`(viewModel: String) {
         @Language("kotlin")
-        val errors = rule.lint(
+        val code =
             """
             @Composable
             fun MyComposable(
@@ -25,30 +23,28 @@ class ComposeViewModelInjectionCheckTest {
                 viewModel2: MyVM = $viewModel(),
             ) { }
             """.trimIndent()
-        )
-        assertThat(errors).isEmpty()
+        injectionRuleAssertThat(code).hasNoLintViolations()
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["viewModel", "weaverViewModel"])
     fun `overridden functions are ignored`(viewModel: String) {
         @Language("kotlin")
-        val errors = rule.lint(
+        val code =
             """
             @Composable
             override fun Content() {
                 val viewModel = $viewModel<MyVM>()
             }
             """.trimIndent()
-        )
-        assertThat(errors).isEmpty()
+        injectionRuleAssertThat(code).hasNoLintViolations()
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["viewModel", "weaverViewModel"])
     fun `errors when a weaverViewModel is used at the beginning of a Composable`(viewModel: String) {
         @Language("kotlin")
-        val errors = rule.lint(
+        val code =
             """
             @Composable
             fun MyComposable(modifier: Modifier) {
@@ -63,38 +59,30 @@ class ComposeViewModelInjectionCheckTest {
                 val viewModel: MyVM = $viewModel()
             }
             """.trimIndent()
-        )
-        val expectedErrors = listOf(
-            LintError(
+        injectionRuleAssertThat(code).hasLintViolations(
+            LintViolation(
                 line = 3,
                 col = 9,
-                ruleId = "compose-vm-injection-check",
                 detail = ComposeViewModelInjectionCheck.errorMessage(viewModel),
-                canBeAutoCorrected = true
             ),
-            LintError(
+            LintViolation(
                 line = 7,
                 col = 9,
-                ruleId = "compose-vm-injection-check",
                 detail = ComposeViewModelInjectionCheck.errorMessage(viewModel),
-                canBeAutoCorrected = true
             ),
-            LintError(
+            LintViolation(
                 line = 11,
                 col = 9,
-                ruleId = "compose-vm-injection-check",
                 detail = ComposeViewModelInjectionCheck.errorMessage(viewModel),
-                canBeAutoCorrected = true
             )
         )
-        assertThat(errors).isEqualTo(expectedErrors)
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["viewModel", "weaverViewModel"])
     fun `errors when a weaverViewModel is used in different branches`(viewModel: String) {
         @Language("kotlin")
-        val errors = rule.lint(
+        val code =
             """
             @Composable
             fun MyComposable(modifier: Modifier) {
@@ -105,24 +93,18 @@ class ComposeViewModelInjectionCheckTest {
                 }
             }
             """.trimIndent()
-        )
-        val expectedErrors = listOf(
-            LintError(
+        injectionRuleAssertThat(code).hasLintViolations(
+            LintViolation(
                 line = 4,
                 col = 13,
-                ruleId = "compose-vm-injection-check",
                 detail = ComposeViewModelInjectionCheck.errorMessage(viewModel),
-                canBeAutoCorrected = true
             ),
-            LintError(
+            LintViolation(
                 line = 6,
                 col = 13,
-                ruleId = "compose-vm-injection-check",
                 detail = ComposeViewModelInjectionCheck.errorMessage(viewModel),
-                canBeAutoCorrected = true
             )
         )
-        assertThat(errors).isEqualTo(expectedErrors)
     }
 
     @ParameterizedTest
@@ -149,8 +131,8 @@ class ComposeViewModelInjectionCheckTest {
             fun MyComposableNoParams(viewModel: MyVM = $viewModel(named = "meh")) {
             }
         """.trimIndent()
-        val fixedCode = rule.format(badCode)
-        assertThat(fixedCode).isEqualTo(expectedCode)
+
+        injectionRuleAssertThat(badCode).isFormattedAs(expectedCode)
     }
 
     @ParameterizedTest
@@ -177,8 +159,7 @@ class ComposeViewModelInjectionCheckTest {
             fun MyComposable(modifier: Modifier = Modifier,viewModel: MyVM = $viewModel(),) {
             }
         """.trimIndent()
-        val fixedCode = rule.format(badCode)
-        assertThat(fixedCode).isEqualTo(expectedCode)
+        injectionRuleAssertThat(badCode).isFormattedAs(expectedCode)
     }
 
     @ParameterizedTest
@@ -218,7 +199,6 @@ class ComposeViewModelInjectionCheckTest {
             ) {
             }
         """.trimIndent()
-        val fixedCode = rule.format(badCode)
-        assertThat(fixedCode).isEqualTo(expectedCode)
+        injectionRuleAssertThat(badCode).isFormattedAs(expectedCode)
     }
 }

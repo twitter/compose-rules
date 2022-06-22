@@ -1,6 +1,6 @@
 [versions]
-kotlin = "1.6.21"
-ktlint = "0.45.2"
+kotlin = "1.7.0"
+ktlint = "0.46.1"
 junit = "5.8.2"
 
 [libraries]

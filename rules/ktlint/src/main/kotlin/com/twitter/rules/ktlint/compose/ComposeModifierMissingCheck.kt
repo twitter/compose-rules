@@ -16,7 +16,7 @@ import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.psiUtil.isPublic
 
-class ComposeModifierMissingCheck : TwitterKtRule("compose-modifier-check") {
+class ComposeModifierMissingCheck : TwitterKtRule("twitter-compose:modifier-check") {
 
     override fun visitFile(file: KtFile, autoCorrect: Boolean, emitter: Emitter) {
         file.findChildrenByClass<KtFunction>()
