@@ -108,6 +108,16 @@ More information: [Naming Unit @Composable functions as entities](https://github
 
 Related rule: [twitter-compose:naming-check](https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeNamingCheck.kt)
 
+### Ordering @Composable parameters properly
+
+When writing Kotlin, it's a good practice to write the parameters for your methods by putting the mandatory parameters first, followed by the optional ones (aka the ones with default values). By doing so, [we minimize the number times we will need to write the name for arguments explicitly](https://kotlinlang.org/docs/functions.html#default-arguments).
+
+Modifiers occupy the first optional parameter slot to set a consistent expectation for developers that they can always provide a modifier as the final positional parameter to an element call for any given element's common case.
+
+More information: [Kotlin default arguments](https://kotlinlang.org/docs/functions.html#default-arguments) and [Elements accept and respect a Modifier parameter](https://github.com/androidx/androidx/blob/androidx-main/compose/docs/compose-api-guidelines.md#why-8).
+
+Related rule: [twitter-compose:param-order-check](https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeParameterOrderCheck.kt)
+
 ### Make dependencies explicit
 
 When designing our composables, we should always try to be explicit about the dependencies they take in. If you acquire a ViewModel or an instance from DI in the body of the composable, you are making this dependency implicit, which has the downsides of making it hard to test and harder to reuse.

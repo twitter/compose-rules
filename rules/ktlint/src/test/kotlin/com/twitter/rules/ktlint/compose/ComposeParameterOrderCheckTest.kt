@@ -1,0 +1,80 @@
+package com.twitter.rules.ktlint.compose
+
+import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThat
+import com.pinterest.ktlint.test.LintViolation
+import com.twitter.rules.ktlint.compose.ComposeParameterOrderCheck.Companion.createErrorMessage
+import org.intellij.lang.annotations.Language
+import org.junit.jupiter.api.Test
+
+class ComposeParameterOrderCheckTest {
+
+    private val orderingRuleAssertThat = ComposeParameterOrderCheck().assertThat()
+
+    @Test
+    fun `no errors when ordering is correct`() {
+        @Language("kotlin")
+        val code = """
+            @Composable
+            fun MyComposable(text1: String, modifier: Modifier = Modifier, other: String = "1", other2: String = "2") { }
+
+            @Composable
+            fun MyComposable(text1: String, modifier: Modifier = Modifier, other2: String = "2", other : String = "1") { }
+
+            @Composable
+            fun MyComposable(text1: String, modifier: Modifier = Modifier, trailing: () -> Unit) { }
+        """.trimIndent()
+        orderingRuleAssertThat(code).hasNoLintViolations()
+    }
+
+    @Test
+    fun `errors found when ordering is wrong`() {
+        @Language("kotlin")
+        val code = """
+            @Composable
+            fun MyComposable(modifier: Modifier = Modifier, other: String, other2: String) { }
+
+            @Composable
+            fun MyComposable(text: String = "deffo", modifier: Modifier = Modifier) { }
+
+            @Composable
+            fun MyComposable(modifier: Modifier = Modifier, text: String = "123", modifier2: Modifier = Modifier) { }
+
+            @Composable
+            fun MyComposable(text: String = "123", modifier: Modifier = Modifier, lambda: () -> Unit) { }
+        """.trimIndent()
+        orderingRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(
+                line = 2,
+                col = 5,
+                detail = createErrorMessage(
+                    currentOrder = "modifier: Modifier = Modifier, other: String, other2: String",
+                    properOrder = "other: String, other2: String, modifier: Modifier = Modifier"
+                ),
+            ),
+            LintViolation(
+                line = 5,
+                col = 5,
+                detail = createErrorMessage(
+                    currentOrder = "text: String = \"deffo\", modifier: Modifier = Modifier",
+                    properOrder = "modifier: Modifier = Modifier, text: String = \"deffo\""
+                ),
+            ),
+            LintViolation(
+                line = 8,
+                col = 5,
+                detail = createErrorMessage(
+                    currentOrder = "modifier: Modifier = Modifier, text: String = \"123\", modifier2: Modifier = Modifier",
+                    properOrder = "modifier: Modifier = Modifier, modifier2: Modifier = Modifier, text: String = \"123\""
+                ),
+            ),
+            LintViolation(
+                line = 11,
+                col = 5,
+                detail = createErrorMessage(
+                    currentOrder = "text: String = \"123\", modifier: Modifier = Modifier, lambda: () -> Unit",
+                    properOrder = "modifier: Modifier = Modifier, text: String = \"123\", lambda: () -> Unit"
+                ),
+            ),
+        )
+    }
+}

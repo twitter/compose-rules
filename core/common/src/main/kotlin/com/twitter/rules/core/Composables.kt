@@ -124,6 +124,6 @@ val ComposableEmittersListRegex by lazy {
 
 val KtFunction.modifierParameter: KtParameter?
     get() {
-        val modifiers = valueParameters.filter { it.typeReference?.text == "Modifier" }
+        val modifiers = valueParameters.filter { it.isModifier }
         return modifiers.firstOrNull { it.name == "modifier" } ?: modifiers.firstOrNull()
     }
