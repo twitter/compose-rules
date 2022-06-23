@@ -24,10 +24,11 @@ allprojects {
 subprojects {
     apply plugin: "com.diffplug.spotless"
     spotless {
-        kotlin {
-            target "**/*.kt"
-            ktlint(libs.versions.ktlint.get())
-        }
+        // Reenable when https://github.com/diffplug/spotless/issues/1239 is addressed
+//        kotlin {
+//            target "**/*.kt"
+//            ktlint(libs.versions.ktlint.get())
+//        }
         groovyGradle {
             target "**/*.gradle"
             greclipse().configFile(rootProject.file("spotless/greclipse.properties"))
