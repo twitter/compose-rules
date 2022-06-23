@@ -9,7 +9,7 @@ import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.psiUtil.startOffset
 
-class ComposeRememberMissingCheck : TwitterKtRule("compose-remember-missing-check") {
+class ComposeRememberMissingCheck : TwitterKtRule("twitter-compose:remember-missing-check") {
 
     override fun visitFunction(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
         if (!function.isComposable) return

@@ -13,7 +13,7 @@ import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.KtReferenceExpression
 import org.jetbrains.kotlin.psi.psiUtil.startOffset
 
-class ComposeViewModelForwardingCheck : TwitterKtRule("compose-vm-forwarding-check") {
+class ComposeViewModelForwardingCheck : TwitterKtRule("twitter-compose:vm-forwarding-check") {
 
     override fun visitFile(file: KtFile, autoCorrect: Boolean, emitter: Emitter) {
         file.findChildrenByClass<KtFunction>()

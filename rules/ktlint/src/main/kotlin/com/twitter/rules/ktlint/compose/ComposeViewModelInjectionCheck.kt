@@ -21,7 +21,7 @@ import org.jetbrains.kotlin.psi.KtFunctionType
 import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.psi.KtPsiFactory
 
-class ComposeViewModelInjectionCheck : TwitterKtRule("compose-vm-injection-check") {
+class ComposeViewModelInjectionCheck : TwitterKtRule("twitter-compose:vm-injection-check") {
 
     override fun visitFile(file: KtFile, autoCorrect: Boolean, emitter: Emitter) {
         file.findChildrenByClass<KtFunction>()

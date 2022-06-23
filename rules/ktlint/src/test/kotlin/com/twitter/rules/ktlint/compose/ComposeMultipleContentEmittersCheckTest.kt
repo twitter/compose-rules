@@ -1,19 +1,19 @@
 package com.twitter.rules.ktlint.compose
 
-import com.pinterest.ktlint.core.LintError
-import com.pinterest.ktlint.test.lint
-import org.assertj.core.api.Assertions.assertThat
+
+import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThat
+import com.pinterest.ktlint.test.LintViolation
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
 class ComposeMultipleContentEmittersCheckTest {
 
-    private val rule = ComposeMultipleContentEmittersCheck()
+    private val emittersRuleAssertThat = ComposeMultipleContentEmittersCheck().assertThat()
 
     @Test
     fun `passes when only one item emits up at the top level`() {
         @Language("kotlin")
-        val errors = rule.lint(
+        val code =
             """
                 @Composable
                 fun Something() {
@@ -26,14 +26,13 @@ class ComposeMultipleContentEmittersCheckTest {
                     }
                 }
             """.trimIndent()
-        )
-        assertThat(errors).isEmpty()
+        emittersRuleAssertThat(code).hasNoLintViolations()
     }
 
     @Test
     fun `passes when the composable is an extension function`() {
         @Language("kotlin")
-        val errors = rule.lint(
+        val code =
             """
                 @Composable
                 fun ColumnScope.Something() {
@@ -46,14 +45,13 @@ class ComposeMultipleContentEmittersCheckTest {
                     Text("Hola")
                 }
             """.trimIndent()
-        )
-        assertThat(errors).isEmpty()
+        emittersRuleAssertThat(code).hasNoLintViolations()
     }
 
     @Test
     fun `errors when a Composable function has more than one UI emitter at the top level`() {
         @Language("kotlin")
-        val errors = rule.lint(
+        val code =
             """
                 @Composable
                 fun Something() {
@@ -66,30 +64,24 @@ class ComposeMultipleContentEmittersCheckTest {
                     Text("Hola")
                 }
             """.trimIndent()
-        )
-        val expectedErrors = listOf(
-            LintError(
+        emittersRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(
                 line = 2,
                 col = 5,
-                ruleId = "compose-multiple-emitters-check",
                 detail = ComposeMultipleContentEmittersCheck.MultipleContentEmittersDetected,
-                canBeAutoCorrected = false
             ),
-            LintError(
+            LintViolation(
                 line = 7,
                 col = 5,
-                ruleId = "compose-multiple-emitters-check",
                 detail = ComposeMultipleContentEmittersCheck.MultipleContentEmittersDetected,
-                canBeAutoCorrected = false
             ),
         )
-        assertThat(errors).isEqualTo(expectedErrors)
     }
 
     @Test
     fun `errors when a Composable function has more than one indirect UI emitter at the top level`() {
         @Language("kotlin")
-        val errors = rule.lint(
+        val code =
             """
                 @Composable
                 fun Something1() {
@@ -114,30 +106,24 @@ class ComposeMultipleContentEmittersCheckTest {
                     Something4()
                 }
             """.trimIndent()
-        )
-        val expectedErrors = listOf(
-            LintError(
+        emittersRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(
                 line = 6,
                 col = 5,
-                ruleId = "compose-multiple-emitters-check",
                 detail = ComposeMultipleContentEmittersCheck.MultipleContentEmittersDetected,
-                canBeAutoCorrected = false
             ),
-            LintError(
+            LintViolation(
                 line = 19,
                 col = 5,
-                ruleId = "compose-multiple-emitters-check",
                 detail = ComposeMultipleContentEmittersCheck.MultipleContentEmittersDetected,
-                canBeAutoCorrected = false
             ),
         )
-        assertThat(errors).isEqualTo(expectedErrors)
     }
 
     @Test
     fun `make sure to not report twice the same composable`() {
         @Language("kotlin")
-        val errors = rule.lint(
+        val code =
             """
                 @Composable
                 fun Something() {
@@ -150,23 +136,19 @@ class ComposeMultipleContentEmittersCheckTest {
                     Text("Alo")
                 }
             """.trimIndent()
-        )
-        val expectedErrors = listOf(
-            LintError(
+        emittersRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(
                 line = 2,
                 col = 5,
-                ruleId = "compose-multiple-emitters-check",
                 detail = ComposeMultipleContentEmittersCheck.MultipleContentEmittersDetected,
-                canBeAutoCorrected = false
             ),
         )
-        assertThat(errors).isEqualTo(expectedErrors)
     }
 
     @Test
     fun `error out when detecting a content emitting composable that returns something other than unit`() {
         @Language("kotlin")
-        val errors = rule.lint(
+        val code =
             """
                 @Composable
                 fun Something(): String { // This one emits content directly and should fail
@@ -183,23 +165,17 @@ class ComposeMultipleContentEmittersCheckTest {
                     HorizonIcon(icon = HorizonIcon.Arrow)
                 }
             """.trimIndent()
-        )
-        val expectedErrors = listOf(
-            LintError(
+        emittersRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(
                 line = 2,
                 col = 5,
-                ruleId = "compose-multiple-emitters-check",
                 detail = ComposeMultipleContentEmittersCheck.ContentEmitterReturningValuesToo,
-                canBeAutoCorrected = false
             ),
-            LintError(
+            LintViolation(
                 line = 7,
                 col = 5,
-                ruleId = "compose-multiple-emitters-check",
                 detail = ComposeMultipleContentEmittersCheck.ContentEmitterReturningValuesToo,
-                canBeAutoCorrected = false
             ),
         )
-        assertThat(errors).isEqualTo(expectedErrors)
     }
 }

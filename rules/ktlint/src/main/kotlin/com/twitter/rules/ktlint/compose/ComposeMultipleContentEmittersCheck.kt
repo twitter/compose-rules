@@ -12,7 +12,7 @@ import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtFunction
 
-class ComposeMultipleContentEmittersCheck : TwitterKtRule("compose-multiple-emitters-check") {
+class ComposeMultipleContentEmittersCheck : TwitterKtRule("twitter-compose:multiple-emitters-check") {
 
     override fun visitFile(file: KtFile, autoCorrect: Boolean, emitter: Emitter) {
         // CHECK #1 : We want to find the composables first that are at risk of emitting content from multiple sources.

@@ -7,7 +7,7 @@ import com.twitter.rules.core.ktlint.report
 import com.twitter.rules.core.returnsValue
 import org.jetbrains.kotlin.psi.KtFunction
 
-class ComposeNamingCheck : TwitterKtRule("compose-naming-check") {
+class ComposeNamingCheck : TwitterKtRule("twitter-compose:naming-check") {
 
     override fun visitFunction(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
         if (!function.isComposable) return

@@ -1,30 +1,28 @@
 package com.twitter.rules.ktlint.compose
 
-import com.pinterest.ktlint.core.LintError
-import com.pinterest.ktlint.test.lint
-import org.assertj.core.api.Assertions.assertThat
+import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThat
+import com.pinterest.ktlint.test.LintViolation
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
 class ComposeRememberMissingCheckTest {
 
-    private val rule = ComposeRememberMissingCheck()
+    private val rememberRuleAssertThat = ComposeRememberMissingCheck().assertThat()
 
     @Test
     fun `passes when a non-remembered mutableStateOf is used outside of a Composable`() {
         @Language("kotlin")
-        val errors = rule.lint(
+        val code =
             """
                 val msof = mutableStateOf("X")
             """.trimIndent()
-        )
-        assertThat(errors).isEmpty()
+        rememberRuleAssertThat(code).hasNoLintViolations()
     }
 
     @Test
     fun `errors when a non-remembered mutableStateOf is used in a Composable`() {
         @Language("kotlin")
-        val errors = rule.lint(
+        val code =
             """
                 @Composable
                 fun MyComposable() {
@@ -34,30 +32,24 @@ class ComposeRememberMissingCheckTest {
                 fun MyComposable(something: State<String> = mutableStateOf("X")) {
                 }
             """.trimIndent()
-        )
-        val expectedErrors = listOf(
-            LintError(
+        rememberRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(
                 line = 3,
                 col = 21,
-                ruleId = "compose-remember-missing-check",
                 detail = ComposeRememberMissingCheck.MutableStateOfNotRemembered,
-                canBeAutoCorrected = false
             ),
-            LintError(
+            LintViolation(
                 line = 6,
                 col = 45,
-                ruleId = "compose-remember-missing-check",
                 detail = ComposeRememberMissingCheck.MutableStateOfNotRemembered,
-                canBeAutoCorrected = false
             ),
         )
-        assertThat(errors).isEqualTo(expectedErrors)
     }
 
     @Test
     fun `passes when a remembered mutableStateOf is used in a Composable`() {
         @Language("kotlin")
-        val errors = rule.lint(
+        val code =
             """
                 @Composable
                 fun MyComposable(
@@ -67,14 +59,13 @@ class ComposeRememberMissingCheckTest {
                     val something2 by remember { mutableStateOf("Y") }
                 }
             """.trimIndent()
-        )
-        assertThat(errors).isEmpty()
+        rememberRuleAssertThat(code).hasNoLintViolations()
     }
 
     @Test
     fun `passes when a rememberSaveable mutableStateOf is used in a Composable`() {
         @Language("kotlin")
-        val errors = rule.lint(
+        val code =
             """
                 @Composable
                 fun MyComposable(
@@ -84,25 +75,23 @@ class ComposeRememberMissingCheckTest {
                     val something2 by rememberSaveable { mutableStateOf("Y") }
                 }
             """.trimIndent()
-        )
-        assertThat(errors).isEmpty()
+        rememberRuleAssertThat(code).hasNoLintViolations()
     }
 
     @Test
     fun `passes when a non-remembered derivedStateOf is used outside of a Composable`() {
         @Language("kotlin")
-        val errors = rule.lint(
+        val code =
             """
                 val dsof = derivedStateOf("X")
             """.trimIndent()
-        )
-        assertThat(errors).isEmpty()
+        rememberRuleAssertThat(code).hasNoLintViolations()
     }
 
     @Test
     fun `errors when a non-remembered derivedStateOf is used in a Composable`() {
         @Language("kotlin")
-        val errors = rule.lint(
+        val code =
             """
                 @Composable
                 fun MyComposable() {
@@ -112,30 +101,24 @@ class ComposeRememberMissingCheckTest {
                 fun MyComposable(something: State<String> = derivedStateOf { "X" }) {
                 }
             """.trimIndent()
-        )
-        val expectedErrors = listOf(
-            LintError(
+        rememberRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(
                 line = 3,
                 col = 21,
-                ruleId = "compose-remember-missing-check",
                 detail = ComposeRememberMissingCheck.DerivedStateOfNotRemembered,
-                canBeAutoCorrected = false
             ),
-            LintError(
+            LintViolation(
                 line = 6,
                 col = 45,
-                ruleId = "compose-remember-missing-check",
                 detail = ComposeRememberMissingCheck.DerivedStateOfNotRemembered,
-                canBeAutoCorrected = false
             ),
         )
-        assertThat(errors).isEqualTo(expectedErrors)
     }
 
     @Test
     fun `passes when a remembered derivedStateOf is used in a Composable`() {
         @Language("kotlin")
-        val errors = rule.lint(
+        val code =
             """
                 @Composable
                 fun MyComposable(
@@ -145,7 +128,6 @@ class ComposeRememberMissingCheckTest {
                     val something2 by remember { derivedStateOf { "Y" } }
                 }
             """.trimIndent()
-        )
-        assertThat(errors).isEmpty()
+        rememberRuleAssertThat(code).hasNoLintViolations()
     }
 }

@@ -17,7 +17,7 @@ import org.jetbrains.kotlin.psi.KtValueArgumentName
 import org.jetbrains.kotlin.psi.psiUtil.siblings
 import org.jetbrains.kotlin.psi.psiUtil.startOffset
 
-class ComposeModifierUsedOnceCheck : TwitterKtRule("compose-modifier-used-once-check") {
+class ComposeModifierUsedOnceCheck : TwitterKtRule("twitter-compose:modifier-used-once-check") {
 
     override fun visitFunction(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
         if (!function.isComposable) return
