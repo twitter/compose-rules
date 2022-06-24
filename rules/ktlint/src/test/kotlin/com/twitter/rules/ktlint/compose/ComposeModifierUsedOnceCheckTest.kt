@@ -2,8 +2,6 @@ package com.twitter.rules.ktlint.compose
 
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThat
 import com.pinterest.ktlint.test.LintViolation
-import com.pinterest.ktlint.test.lint
-import org.assertj.core.api.Assertions.assertThat
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 

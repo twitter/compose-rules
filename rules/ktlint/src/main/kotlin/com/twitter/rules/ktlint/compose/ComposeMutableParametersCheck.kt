@@ -1,17 +1,14 @@
 package com.twitter.rules.ktlint.compose
 
-import com.twitter.rules.core.isComposable
-import com.twitter.rules.core.isTypeMutable
-import com.twitter.rules.core.ktlint.Emitter
-import com.twitter.rules.core.ktlint.TwitterKtRule
-import com.twitter.rules.core.ktlint.report
+import com.twitter.rules.core.Emitter
+import com.twitter.rules.core.util.isTypeMutable
+import com.twitter.rules.core.ktlint.TwitterKtlintRule
+import com.twitter.rules.core.report
 import org.jetbrains.kotlin.psi.KtFunction
 
-class ComposeMutableParametersCheck : TwitterKtRule("twitter-compose:mutable-params-check") {
+class ComposeMutableParametersCheck : TwitterKtlintRule("twitter-compose:mutable-params-check") {
 
-    override fun visitFunction(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
-        if (!function.isComposable) return
-
+    override fun visitComposable(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
         function.valueParameters
             .filter { it.isTypeMutable }
             .forEach { emitter.report(it, MutableParameterInCompose) }

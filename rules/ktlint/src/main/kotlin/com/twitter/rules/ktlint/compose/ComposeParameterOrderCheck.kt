@@ -1,20 +1,17 @@
 package com.twitter.rules.ktlint.compose
 
-import com.twitter.rules.core.isComposable
-import com.twitter.rules.core.isModifier
-import com.twitter.rules.core.ktlint.Emitter
-import com.twitter.rules.core.ktlint.TwitterKtRule
-import com.twitter.rules.core.ktlint.report
-import com.twitter.rules.core.runIf
+import com.twitter.rules.core.Emitter
+import com.twitter.rules.core.util.isModifier
+import com.twitter.rules.core.ktlint.TwitterKtlintRule
+import com.twitter.rules.core.report
+import com.twitter.rules.core.util.runIf
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.KtFunctionType
 import org.jetbrains.kotlin.psi.KtParameter
 
-class ComposeParameterOrderCheck : TwitterKtRule("twitter-compose:param-order-check") {
+class ComposeParameterOrderCheck : TwitterKtlintRule("twitter-compose:param-order-check") {
 
-    override fun visitFunction(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
-        if (!function.isComposable) return
-
+    override fun visitComposable(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
         // We need to make sure the proper order is respected. It should be:
         // 1. params without defaults
         // 2. modifiers

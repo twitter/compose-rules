@@ -3,34 +3,28 @@ package com.twitter.rules.ktlint.compose
 import com.pinterest.ktlint.core.ast.firstChildLeafOrSelf
 import com.pinterest.ktlint.core.ast.lastChildLeafOrSelf
 import com.pinterest.ktlint.core.ast.nextCodeSibling
-import com.twitter.rules.core.definedInInterface
-import com.twitter.rules.core.findChildrenByClass
-import com.twitter.rules.core.findDirectChildrenByClass
-import com.twitter.rules.core.findDirectFirstChildByClass
-import com.twitter.rules.core.isComposable
-import com.twitter.rules.core.isOverride
-import com.twitter.rules.core.ktlint.Emitter
-import com.twitter.rules.core.ktlint.TwitterKtRule
-import com.twitter.rules.core.ktlint.report
+import com.twitter.rules.core.Emitter
+import com.twitter.rules.core.util.definedInInterface
+import com.twitter.rules.core.util.findChildrenByClass
+import com.twitter.rules.core.util.findDirectChildrenByClass
+import com.twitter.rules.core.util.findDirectFirstChildByClass
+import com.twitter.rules.core.util.isOverride
+import com.twitter.rules.core.ktlint.TwitterKtlintRule
+import com.twitter.rules.core.report
 import org.jetbrains.kotlin.com.intellij.psi.impl.source.tree.ElementType
 import org.jetbrains.kotlin.com.intellij.psi.impl.source.tree.LeafPsiElement
 import org.jetbrains.kotlin.psi.KtCallExpression
-import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.KtFunctionType
 import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.psi.KtPsiFactory
 
-class ComposeViewModelInjectionCheck : TwitterKtRule("twitter-compose:vm-injection-check") {
+class ComposeViewModelInjectionCheck : TwitterKtlintRule("twitter-compose:vm-injection-check") {
 
-    override fun visitFile(file: KtFile, autoCorrect: Boolean, emitter: Emitter) {
-        file.findChildrenByClass<KtFunction>()
-            .filter { it.isComposable && !it.isOverride && !it.definedInInterface }
-            .forEach { visitComposable(it, autoCorrect, emitter) }
-    }
+    override fun visitComposable(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
+        if (function.isOverride || function.definedInInterface) return
 
-    private fun visitComposable(composable: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
-        val bodyBlock = composable.bodyBlockExpression ?: return
+        val bodyBlock = function.bodyBlockExpression ?: return
 
         bodyBlock.findChildrenByClass<KtProperty>()
             .flatMap { property ->
@@ -41,7 +35,7 @@ class ComposeViewModelInjectionCheck : TwitterKtRule("twitter-compose:vm-injecti
             .forEach { (property, viewModelFactoryName) ->
                 emitter.report(property, errorMessage(viewModelFactoryName), true)
                 if (autoCorrect) {
-                    fix(composable, property, viewModelFactoryName)
+                    fix(function, property, viewModelFactoryName)
                 }
             }
     }
@@ -93,6 +87,7 @@ class ComposeViewModelInjectionCheck : TwitterKtRule("twitter-compose:vm-injecti
                     lastToken.rawReplaceWithText("${lastToken.text} $newCode,")
                 }
             }
+
             else -> {
                 parameterList.addParameter(newParam)
             }

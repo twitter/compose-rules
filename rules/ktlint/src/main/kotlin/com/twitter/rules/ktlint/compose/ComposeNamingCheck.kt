@@ -1,17 +1,14 @@
 package com.twitter.rules.ktlint.compose
 
-import com.twitter.rules.core.isComposable
-import com.twitter.rules.core.ktlint.Emitter
-import com.twitter.rules.core.ktlint.TwitterKtRule
-import com.twitter.rules.core.ktlint.report
-import com.twitter.rules.core.returnsValue
+import com.twitter.rules.core.Emitter
+import com.twitter.rules.core.ktlint.TwitterKtlintRule
+import com.twitter.rules.core.report
+import com.twitter.rules.core.util.returnsValue
 import org.jetbrains.kotlin.psi.KtFunction
 
-class ComposeNamingCheck : TwitterKtRule("twitter-compose:naming-check") {
+class ComposeNamingCheck : TwitterKtlintRule("twitter-compose:naming-check") {
 
-    override fun visitFunction(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
-        if (!function.isComposable) return
-
+    override fun visitComposable(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
         // If it's a block we can't know if there is a return type or not from ktlint
         if (!function.hasBlockBody()) return
         val firstLetter = function.name?.first() ?: return

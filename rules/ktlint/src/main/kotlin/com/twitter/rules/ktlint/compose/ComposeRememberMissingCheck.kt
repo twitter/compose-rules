@@ -1,19 +1,16 @@
 package com.twitter.rules.ktlint.compose
 
-import com.twitter.rules.core.findChildrenByClass
-import com.twitter.rules.core.isComposable
-import com.twitter.rules.core.ktlint.Emitter
-import com.twitter.rules.core.ktlint.TwitterKtRule
+import com.twitter.rules.core.Emitter
+import com.twitter.rules.core.util.findChildrenByClass
+import com.twitter.rules.core.ktlint.TwitterKtlintRule
 import org.jetbrains.kotlin.com.intellij.psi.PsiElement
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.psiUtil.startOffset
 
-class ComposeRememberMissingCheck : TwitterKtRule("twitter-compose:remember-missing-check") {
+class ComposeRememberMissingCheck : TwitterKtlintRule("twitter-compose:remember-missing-check") {
 
-    override fun visitFunction(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
-        if (!function.isComposable) return
-
+    override fun visitComposable(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
         // To keep memory consumption in check, we first traverse down until we see one of our known functions
         // that need remembering
         function.findChildrenByClass<KtCallExpression>()

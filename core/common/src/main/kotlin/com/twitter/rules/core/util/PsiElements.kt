@@ -1,4 +1,4 @@
-package com.twitter.rules.core
+package com.twitter.rules.core.util
 
 import org.jetbrains.kotlin.com.intellij.psi.PsiElement
 import org.jetbrains.kotlin.com.intellij.psi.PsiNameIdentifierOwner

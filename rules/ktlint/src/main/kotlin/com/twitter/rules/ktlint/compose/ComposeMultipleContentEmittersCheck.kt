@@ -1,25 +1,25 @@
 package com.twitter.rules.ktlint.compose
 
-import com.twitter.rules.core.emitsContent
-import com.twitter.rules.core.findChildrenByClass
-import com.twitter.rules.core.hasReceiverType
-import com.twitter.rules.core.isComposable
-import com.twitter.rules.core.ktlint.Emitter
-import com.twitter.rules.core.ktlint.TwitterKtRule
-import com.twitter.rules.core.ktlint.report
-import com.twitter.rules.core.returnsValue
+import com.twitter.rules.core.Emitter
+import com.twitter.rules.core.util.emitsContent
+import com.twitter.rules.core.util.findChildrenByClass
+import com.twitter.rules.core.util.hasReceiverType
+import com.twitter.rules.core.util.isComposable
+import com.twitter.rules.core.ktlint.TwitterKtlintRule
+import com.twitter.rules.core.report
+import com.twitter.rules.core.util.returnsValue
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtFunction
 
-class ComposeMultipleContentEmittersCheck : TwitterKtRule("twitter-compose:multiple-emitters-check") {
+class ComposeMultipleContentEmittersCheck : TwitterKtlintRule("twitter-compose:multiple-emitters-check") {
 
     override fun visitFile(file: KtFile, autoCorrect: Boolean, emitter: Emitter) {
         // CHECK #1 : We want to find the composables first that are at risk of emitting content from multiple sources.
         val composables = file.findChildrenByClass<KtFunction>()
             .filter { it.isComposable }
             // We don't want to analyze composables that are extension functions, as they might be things like
-            // BoxScope which are legit and we want to avoid false positives.
+            // BoxScope which are legit, and we want to avoid false positives.
             .filter { it.hasBlockBody() }
             // We want only methods with a body
             .filterNot { it.hasReceiverType }
