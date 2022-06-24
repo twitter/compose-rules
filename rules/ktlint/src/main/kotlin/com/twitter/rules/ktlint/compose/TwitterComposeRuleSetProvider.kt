@@ -11,6 +11,7 @@ class TwitterComposeRuleSetProvider : RuleSetProvider {
         ComposeMultipleContentEmittersCheck(),
         ComposeMutableParametersCheck(),
         ComposeNamingCheck(),
+        ComposeParameterOrderCheck(),
         ComposeRememberMissingCheck(),
         ComposeViewModelForwardingCheck(),
     )
