@@ -1,4 +1,4 @@
-package com.twitter.rules.core
+package com.twitter.rules.core.util
 
 import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.kotlin.psi.KtClass

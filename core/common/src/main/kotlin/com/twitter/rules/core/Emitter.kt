@@ -1,6 +1,6 @@
-package com.twitter.rules.core.ktlint
+package com.twitter.rules.core
 
-import com.twitter.rules.core.startOffsetFromName
+import com.twitter.rules.core.util.startOffsetFromName
 import org.jetbrains.kotlin.com.intellij.psi.PsiNameIdentifierOwner
 
 fun interface Emitter {

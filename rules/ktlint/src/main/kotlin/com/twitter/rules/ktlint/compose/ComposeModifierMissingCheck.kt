@@ -1,39 +1,31 @@
 package com.twitter.rules.ktlint.compose
 
 import com.pinterest.ktlint.core.ast.lastChildLeafOrSelf
-import com.twitter.rules.core.definedInInterface
-import com.twitter.rules.core.emitsContent
-import com.twitter.rules.core.findChildrenByClass
-import com.twitter.rules.core.isComposable
-import com.twitter.rules.core.isOverride
-import com.twitter.rules.core.ktlint.Emitter
-import com.twitter.rules.core.ktlint.TwitterKtRule
-import com.twitter.rules.core.ktlint.report
-import com.twitter.rules.core.modifierParameter
-import com.twitter.rules.core.returnsValue
+import com.twitter.rules.core.Emitter
+import com.twitter.rules.core.util.definedInInterface
+import com.twitter.rules.core.util.emitsContent
+import com.twitter.rules.core.util.isOverride
+import com.twitter.rules.core.ktlint.TwitterKtlintRule
+import com.twitter.rules.core.util.modifierParameter
+import com.twitter.rules.core.report
+import com.twitter.rules.core.util.returnsValue
 import org.jetbrains.kotlin.com.intellij.psi.impl.source.tree.LeafPsiElement
-import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.psiUtil.isPublic
 
-class ComposeModifierMissingCheck : TwitterKtRule("twitter-compose:modifier-check") {
+class ComposeModifierMissingCheck : TwitterKtlintRule("twitter-compose:modifier-check") {
 
-    override fun visitFile(file: KtFile, autoCorrect: Boolean, emitter: Emitter) {
-        file.findChildrenByClass<KtFunction>()
-            .filter { it.isComposable }
-            .filter {
-                // We want to find all composable functions that:
-                //  - are public
-                //  - emit content
-                //  - are not overriden or part of an interface
-                it.isPublic && !it.returnsValue && !it.isOverride && !it.definedInInterface
-            }
-            .forEach { visitComposable(it, autoCorrect, emitter) }
-    }
+    override fun visitComposable(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
+        // We want to find all composable functions that:
+        //  - are public
+        //  - emit content
+        //  - are not overriden or part of an interface
+        if (!function.isPublic || function.returnsValue || function.isOverride || function.definedInInterface) {
+            return
+        }
 
-    private fun visitComposable(composable: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
         // First we look for a modifier param.
-        composable.modifierParameter?.let { modifierParameter ->
+        function.modifierParameter?.let { modifierParameter ->
             // If found, we have to check if it has a default value, which should be `Modifier`
 
             if (!modifierParameter.hasDefaultValue()) {
@@ -52,8 +44,8 @@ class ComposeModifierMissingCheck : TwitterKtRule("twitter-compose:modifier-chec
         }
 
         // In case we didn't find any `modifier` parameters, we check if it emits content and report the error if so.
-        if (composable.emitsContent) {
-            emitter.report(composable, MissingModifierContentComposable)
+        if (function.emitsContent) {
+            emitter.report(function, MissingModifierContentComposable)
         }
     }
 

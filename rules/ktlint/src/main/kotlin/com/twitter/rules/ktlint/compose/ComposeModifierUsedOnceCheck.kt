@@ -1,11 +1,10 @@
 package com.twitter.rules.ktlint.compose
 
-import com.twitter.rules.core.emitsContent
-import com.twitter.rules.core.findChildrenByClass
-import com.twitter.rules.core.isComposable
-import com.twitter.rules.core.ktlint.Emitter
-import com.twitter.rules.core.ktlint.TwitterKtRule
-import com.twitter.rules.core.modifierParameter
+import com.twitter.rules.core.Emitter
+import com.twitter.rules.core.util.emitsContent
+import com.twitter.rules.core.util.findChildrenByClass
+import com.twitter.rules.core.ktlint.TwitterKtlintRule
+import com.twitter.rules.core.util.modifierParameter
 import org.jetbrains.kotlin.com.intellij.psi.PsiElement
 import org.jetbrains.kotlin.psi.KtBlockExpression
 import org.jetbrains.kotlin.psi.KtCallExpression
@@ -17,10 +16,9 @@ import org.jetbrains.kotlin.psi.KtValueArgumentName
 import org.jetbrains.kotlin.psi.psiUtil.siblings
 import org.jetbrains.kotlin.psi.psiUtil.startOffset
 
-class ComposeModifierUsedOnceCheck : TwitterKtRule("twitter-compose:modifier-used-once-check") {
+class ComposeModifierUsedOnceCheck : TwitterKtlintRule("twitter-compose:modifier-used-once-check") {
 
-    override fun visitFunction(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
-        if (!function.isComposable) return
+    override fun visitComposable(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
         if (!function.emitsContent) return
         val composableBlockExpression = function.bodyBlockExpression ?: return
         val modifier = function.modifierParameter ?: return

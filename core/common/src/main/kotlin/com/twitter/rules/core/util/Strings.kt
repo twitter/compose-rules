@@ -1,4 +1,4 @@
-package com.twitter.rules.core
+package com.twitter.rules.core.util
 
 fun String?.matchesAnyOf(patterns: Collection<Regex>): Boolean {
     if (!isNullOrEmpty()) {

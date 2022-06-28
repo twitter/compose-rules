@@ -1,4 +1,4 @@
-package com.twitter.rules.core
+package com.twitter.rules.core.util
 
 import org.jetbrains.kotlin.KtNodeTypes
 import org.jetbrains.kotlin.com.intellij.psi.impl.source.tree.CompositeElement

@@ -1,32 +1,23 @@
 package com.twitter.rules.ktlint.compose
 
-import com.twitter.rules.core.definedInInterface
-import com.twitter.rules.core.findChildrenByClass
-import com.twitter.rules.core.findDirectChildrenByClass
-import com.twitter.rules.core.isComposable
-import com.twitter.rules.core.isOverride
-import com.twitter.rules.core.ktlint.Emitter
-import com.twitter.rules.core.ktlint.TwitterKtRule
+import com.twitter.rules.core.Emitter
+import com.twitter.rules.core.util.definedInInterface
+import com.twitter.rules.core.util.findDirectChildrenByClass
+import com.twitter.rules.core.util.isOverride
+import com.twitter.rules.core.ktlint.TwitterKtlintRule
 import org.jetbrains.kotlin.psi.KtCallExpression
-import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.KtReferenceExpression
 import org.jetbrains.kotlin.psi.psiUtil.startOffset
 
-class ComposeViewModelForwardingCheck : TwitterKtRule("twitter-compose:vm-forwarding-check") {
+class ComposeViewModelForwardingCheck : TwitterKtlintRule("twitter-compose:vm-forwarding-check") {
 
-    override fun visitFile(file: KtFile, autoCorrect: Boolean, emitter: Emitter) {
-        file.findChildrenByClass<KtFunction>()
-            .filter { it.isComposable && !it.isOverride && !it.definedInInterface }
-            .forEach { visitComposable(it, emitter) }
-    }
+    override fun visitComposable(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
+        if (function.isOverride || function.definedInInterface) return
+        val bodyBlock = function.bodyBlockExpression ?: return
 
-    private fun visitComposable(composable: KtFunction, emitter: Emitter) {
-        if (!composable.isComposable) return
-        val bodyBlock = composable.bodyBlockExpression ?: return
-
-        // We get here a list of variable names that temptatively contain ViewModels
-        val parameters = composable.valueParameterList?.parameters ?: emptyList()
+        // We get here a list of variable names that tentatively contain ViewModels
+        val parameters = function.valueParameterList?.parameters ?: emptyList()
         val viewModelParameterNames = parameters.filter { parameter ->
             // We can't do much better than this. We could look for viewModel() / weaverViewModel() but that
             // would give us way less (and less useful) hits.
