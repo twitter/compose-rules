@@ -36,7 +36,9 @@ class ComposeParameterOrderCheck : TwitterKtlintRule("twitter-compose:param-orde
 
         // As ComposeModifierMissingCheck will catch modifiers without a Modifier default, we don't have to care
         // about that case. We will sort the params with defaults so that the modifier(s) go first.
-        val sortedWithDefaults = withDefaults.sortedByDescending { it.isModifier }
+        val sortedWithDefaults = withDefaults.sortedWith(
+            compareByDescending<KtParameter> { it.isModifier }.thenByDescending { it.name == "modifier" }
+        )
 
         // We create our ideal ordering of params for the ideal composable.
         val properOrder = withoutDefaults + sortedWithDefaults + trailingLambda

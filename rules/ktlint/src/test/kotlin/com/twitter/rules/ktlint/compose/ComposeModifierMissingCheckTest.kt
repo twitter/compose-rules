@@ -92,58 +92,6 @@ class ComposeModifierMissingCheckTest {
     }
 
     @Test
-    fun `errors when a Composable has modifiers but without default values, and is able to auto fixing it`() {
-        @Language("kotlin")
-        val composableCode = """
-                @Composable
-                fun Something(modifier: Modifier) {
-                    Row(modifier = modifier) {
-                    }
-                }
-        """.trimIndent()
-
-        modifierRuleAssertThat(composableCode)
-            .hasLintViolation(
-                line = 2,
-                col = 15,
-                detail = ComposeModifierMissingCheck.MissingModifierDefaultParam
-            )
-            .isFormattedAs(
-                """
-                @Composable
-                fun Something(modifier: Modifier = Modifier) {
-                    Row(modifier = modifier) {
-                    }
-                }
-                """.trimIndent()
-            )
-    }
-
-    @Test
-    fun `passes when a Composable has modifiers with defaults`() {
-        @Language("kotlin")
-        val code =
-            """
-                @Composable
-                fun Something(modifier: Modifier = Modifier) {
-                    Row(modifier = modifier) {
-                    }
-                }
-                @Composable
-                fun Something(modifier: Modifier = Modifier.fillMaxSize()) {
-                    Row(modifier = modifier) {
-                    }
-                }
-                @Composable
-                fun Something(modifier: Modifier = SomeOtherValueFromSomeConstant) {
-                    Row(modifier = modifier) {
-                    }
-                }
-            """.trimIndent()
-        modifierRuleAssertThat(code).hasNoLintViolations()
-    }
-
-    @Test
     fun `non-public visibility Composables are ignored`() {
         @Language("kotlin")
         val code =
