@@ -43,17 +43,17 @@ class ComposeModifierMissingCheckTest {
             LintViolation(
                 line = 2,
                 col = 5,
-                detail = ComposeModifierMissingCheck.MissingModifierContentComposable,
+                detail = ComposeModifierMissingCheck.MissingModifierContentComposable
             ),
             LintViolation(
                 line = 7,
                 col = 5,
-                detail = ComposeModifierMissingCheck.MissingModifierContentComposable,
+                detail = ComposeModifierMissingCheck.MissingModifierContentComposable
             ),
             LintViolation(
                 line = 12,
                 col = 5,
-                detail = ComposeModifierMissingCheck.MissingModifierContentComposable,
+                detail = ComposeModifierMissingCheck.MissingModifierContentComposable
             )
         )
     }
@@ -81,12 +81,12 @@ class ComposeModifierMissingCheckTest {
             LintViolation(
                 line = 2,
                 col = 5,
-                detail = ComposeModifierMissingCheck.MissingModifierContentComposable,
+                detail = ComposeModifierMissingCheck.MissingModifierContentComposable
             ),
             LintViolation(
                 line = 7,
                 col = 5,
-                detail = ComposeModifierMissingCheck.MissingModifierContentComposable,
+                detail = ComposeModifierMissingCheck.MissingModifierContentComposable
             )
         )
     }
@@ -106,7 +106,7 @@ class ComposeModifierMissingCheckTest {
             .hasLintViolation(
                 line = 2,
                 col = 15,
-                detail = ComposeModifierMissingCheck.MissingModifierDefaultParam,
+                detail = ComposeModifierMissingCheck.MissingModifierDefaultParam
             )
             .isFormattedAs(
                 """
@@ -115,7 +115,7 @@ class ComposeModifierMissingCheckTest {
                     Row(modifier = modifier) {
                     }
                 }
-            """.trimIndent()
+                """.trimIndent()
             )
     }
 

@@ -2,12 +2,12 @@ package com.twitter.rules.ktlint.compose
 
 import com.pinterest.ktlint.core.ast.lastChildLeafOrSelf
 import com.twitter.rules.core.Emitter
+import com.twitter.rules.core.ktlint.TwitterKtlintRule
+import com.twitter.rules.core.report
 import com.twitter.rules.core.util.definedInInterface
 import com.twitter.rules.core.util.emitsContent
 import com.twitter.rules.core.util.isOverride
-import com.twitter.rules.core.ktlint.TwitterKtlintRule
 import com.twitter.rules.core.util.modifierParameter
-import com.twitter.rules.core.report
 import com.twitter.rules.core.util.returnsValue
 import org.jetbrains.kotlin.com.intellij.psi.impl.source.tree.LeafPsiElement
 import org.jetbrains.kotlin.psi.KtFunction

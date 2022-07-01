@@ -1,12 +1,12 @@
 package com.twitter.rules.ktlint.compose
 
 import com.twitter.rules.core.Emitter
+import com.twitter.rules.core.ktlint.TwitterKtlintRule
+import com.twitter.rules.core.report
 import com.twitter.rules.core.util.emitsContent
 import com.twitter.rules.core.util.findChildrenByClass
 import com.twitter.rules.core.util.hasReceiverType
 import com.twitter.rules.core.util.isComposable
-import com.twitter.rules.core.ktlint.TwitterKtlintRule
-import com.twitter.rules.core.report
 import com.twitter.rules.core.util.returnsValue
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtFile

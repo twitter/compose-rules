@@ -11,7 +11,7 @@ buildscript {
 }
 
 plugins {
-    id "com.diffplug.spotless" version "6.7.2"
+    id "com.diffplug.spotless" version "6.8.0"
 }
 
 allprojects {
@@ -24,11 +24,10 @@ allprojects {
 subprojects {
     apply plugin: "com.diffplug.spotless"
     spotless {
-        // Reenable when https://github.com/diffplug/spotless/issues/1239 is addressed
-//        kotlin {
-//            target "**/*.kt"
-//            ktlint(libs.versions.ktlint.get())
-//        }
+        kotlin {
+            target "**/*.kt"
+            ktlint(libs.versions.ktlint.get())
+        }
         groovyGradle {
             target "**/*.gradle"
             greclipse().configFile(rootProject.file("spotless/greclipse.properties"))

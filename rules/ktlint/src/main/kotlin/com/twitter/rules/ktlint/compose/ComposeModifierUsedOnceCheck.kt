@@ -1,9 +1,9 @@
 package com.twitter.rules.ktlint.compose
 
 import com.twitter.rules.core.Emitter
+import com.twitter.rules.core.ktlint.TwitterKtlintRule
 import com.twitter.rules.core.util.emitsContent
 import com.twitter.rules.core.util.findChildrenByClass
-import com.twitter.rules.core.ktlint.TwitterKtlintRule
 import com.twitter.rules.core.util.modifierParameter
 import org.jetbrains.kotlin.com.intellij.psi.PsiElement
 import org.jetbrains.kotlin.psi.KtBlockExpression

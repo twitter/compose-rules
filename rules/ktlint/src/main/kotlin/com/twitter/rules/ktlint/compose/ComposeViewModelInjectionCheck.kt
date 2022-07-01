@@ -4,13 +4,13 @@ import com.pinterest.ktlint.core.ast.firstChildLeafOrSelf
 import com.pinterest.ktlint.core.ast.lastChildLeafOrSelf
 import com.pinterest.ktlint.core.ast.nextCodeSibling
 import com.twitter.rules.core.Emitter
+import com.twitter.rules.core.ktlint.TwitterKtlintRule
+import com.twitter.rules.core.report
 import com.twitter.rules.core.util.definedInInterface
 import com.twitter.rules.core.util.findChildrenByClass
 import com.twitter.rules.core.util.findDirectChildrenByClass
 import com.twitter.rules.core.util.findDirectFirstChildByClass
 import com.twitter.rules.core.util.isOverride
-import com.twitter.rules.core.ktlint.TwitterKtlintRule
-import com.twitter.rules.core.report
 import org.jetbrains.kotlin.com.intellij.psi.impl.source.tree.ElementType
 import org.jetbrains.kotlin.com.intellij.psi.impl.source.tree.LeafPsiElement
 import org.jetbrains.kotlin.psi.KtCallExpression

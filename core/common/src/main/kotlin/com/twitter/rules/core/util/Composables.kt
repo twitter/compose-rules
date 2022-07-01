@@ -106,7 +106,7 @@ private val ComposableEmittersList by lazy {
         "RichText",
         "SuccessHorizonInlineCallout",
         "TwitterFresco",
-        "UserImage",
+        "UserImage"
     )
 }
 

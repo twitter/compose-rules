@@ -1,9 +1,9 @@
 package com.twitter.rules.ktlint.compose
 
 import com.twitter.rules.core.Emitter
-import com.twitter.rules.core.util.isTypeMutable
 import com.twitter.rules.core.ktlint.TwitterKtlintRule
 import com.twitter.rules.core.report
+import com.twitter.rules.core.util.isTypeMutable
 import org.jetbrains.kotlin.psi.KtFunction
 
 class ComposeMutableParametersCheck : TwitterKtlintRule("twitter-compose:mutable-params-check") {

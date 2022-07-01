@@ -1,10 +1,10 @@
 package com.twitter.rules.ktlint.compose
 
 import com.twitter.rules.core.Emitter
+import com.twitter.rules.core.ktlint.TwitterKtlintRule
 import com.twitter.rules.core.util.definedInInterface
 import com.twitter.rules.core.util.findDirectChildrenByClass
 import com.twitter.rules.core.util.isOverride
-import com.twitter.rules.core.ktlint.TwitterKtlintRule
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.KtReferenceExpression

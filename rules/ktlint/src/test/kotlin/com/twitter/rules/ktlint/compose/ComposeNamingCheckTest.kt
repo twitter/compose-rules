@@ -64,8 +64,8 @@ class ComposeNamingCheckTest {
             LintViolation(
                 line = 2,
                 col = 5,
-                detail = ComposeNamingCheck.ComposablesThatReturnResultsShouldBeLowercase,
-            ),
+                detail = ComposeNamingCheck.ComposablesThatReturnResultsShouldBeLowercase
+            )
         )
     }
 
@@ -84,13 +84,13 @@ class ComposeNamingCheckTest {
             LintViolation(
                 line = 2,
                 col = 5,
-                detail = ComposeNamingCheck.ComposablesThatDoNotReturnResultsShouldBeCapitalized,
+                detail = ComposeNamingCheck.ComposablesThatDoNotReturnResultsShouldBeCapitalized
             ),
             LintViolation(
                 line = 5,
                 col = 5,
-                detail = ComposeNamingCheck.ComposablesThatDoNotReturnResultsShouldBeCapitalized,
-            ),
+                detail = ComposeNamingCheck.ComposablesThatDoNotReturnResultsShouldBeCapitalized
+            )
         )
     }
 }

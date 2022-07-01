@@ -63,17 +63,17 @@ class ComposeViewModelInjectionCheckTest {
             LintViolation(
                 line = 3,
                 col = 9,
-                detail = ComposeViewModelInjectionCheck.errorMessage(viewModel),
+                detail = ComposeViewModelInjectionCheck.errorMessage(viewModel)
             ),
             LintViolation(
                 line = 7,
                 col = 9,
-                detail = ComposeViewModelInjectionCheck.errorMessage(viewModel),
+                detail = ComposeViewModelInjectionCheck.errorMessage(viewModel)
             ),
             LintViolation(
                 line = 11,
                 col = 9,
-                detail = ComposeViewModelInjectionCheck.errorMessage(viewModel),
+                detail = ComposeViewModelInjectionCheck.errorMessage(viewModel)
             )
         )
     }
@@ -97,12 +97,12 @@ class ComposeViewModelInjectionCheckTest {
             LintViolation(
                 line = 4,
                 col = 13,
-                detail = ComposeViewModelInjectionCheck.errorMessage(viewModel),
+                detail = ComposeViewModelInjectionCheck.errorMessage(viewModel)
             ),
             LintViolation(
                 line = 6,
                 col = 13,
-                detail = ComposeViewModelInjectionCheck.errorMessage(viewModel),
+                detail = ComposeViewModelInjectionCheck.errorMessage(viewModel)
             )
         )
     }

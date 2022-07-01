@@ -1,9 +1,9 @@
 package com.twitter.rules.ktlint.compose
 
 import com.twitter.rules.core.Emitter
-import com.twitter.rules.core.util.isModifier
 import com.twitter.rules.core.ktlint.TwitterKtlintRule
 import com.twitter.rules.core.report
+import com.twitter.rules.core.util.isModifier
 import com.twitter.rules.core.util.runIf
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.KtFunctionType

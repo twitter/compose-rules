@@ -13,6 +13,6 @@ class TwitterComposeRuleSetProvider : RuleSetProvider {
         ComposeNamingCheck(),
         ComposeParameterOrderCheck(),
         ComposeRememberMissingCheck(),
-        ComposeViewModelForwardingCheck(),
+        ComposeViewModelForwardingCheck()
     )
 }

@@ -49,7 +49,7 @@ class ComposeParameterOrderCheckTest {
                 detail = createErrorMessage(
                     currentOrder = "modifier: Modifier = Modifier, other: String, other2: String",
                     properOrder = "other: String, other2: String, modifier: Modifier = Modifier"
-                ),
+                )
             ),
             LintViolation(
                 line = 5,
@@ -57,7 +57,7 @@ class ComposeParameterOrderCheckTest {
                 detail = createErrorMessage(
                     currentOrder = "text: String = \"deffo\", modifier: Modifier = Modifier",
                     properOrder = "modifier: Modifier = Modifier, text: String = \"deffo\""
-                ),
+                )
             ),
             LintViolation(
                 line = 8,
@@ -65,7 +65,7 @@ class ComposeParameterOrderCheckTest {
                 detail = createErrorMessage(
                     currentOrder = "modifier: Modifier = Modifier, text: String = \"123\", modifier2: Modifier = Modifier",
                     properOrder = "modifier: Modifier = Modifier, modifier2: Modifier = Modifier, text: String = \"123\""
-                ),
+                )
             ),
             LintViolation(
                 line = 11,
@@ -73,8 +73,8 @@ class ComposeParameterOrderCheckTest {
                 detail = createErrorMessage(
                     currentOrder = "text: String = \"123\", modifier: Modifier = Modifier, lambda: () -> Unit",
                     properOrder = "modifier: Modifier = Modifier, text: String = \"123\", lambda: () -> Unit"
-                ),
-            ),
+                )
+            )
         )
     }
 }

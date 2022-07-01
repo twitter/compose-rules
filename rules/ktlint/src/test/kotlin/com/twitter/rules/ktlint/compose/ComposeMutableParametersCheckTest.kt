@@ -27,22 +27,22 @@ class ComposeMutableParametersCheckTest {
             LintViolation(
                 line = 2,
                 col = 15,
-                detail = ComposeMutableParametersCheck.MutableParameterInCompose,
+                detail = ComposeMutableParametersCheck.MutableParameterInCompose
             ),
             LintViolation(
                 line = 4,
                 col = 15,
-                detail = ComposeMutableParametersCheck.MutableParameterInCompose,
+                detail = ComposeMutableParametersCheck.MutableParameterInCompose
             ),
             LintViolation(
                 line = 6,
                 col = 15,
-                detail = ComposeMutableParametersCheck.MutableParameterInCompose,
+                detail = ComposeMutableParametersCheck.MutableParameterInCompose
             ),
             LintViolation(
                 line = 8,
                 col = 15,
-                detail = ComposeMutableParametersCheck.MutableParameterInCompose,
+                detail = ComposeMutableParametersCheck.MutableParameterInCompose
             )
         )
     }
