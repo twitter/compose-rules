@@ -114,7 +114,7 @@ When writing Kotlin, it's a good practice to write the parameters for your metho
 
 Modifiers occupy the first optional parameter slot to set a consistent expectation for developers that they can always provide a modifier as the final positional parameter to an element call for any given element's common case.
 
-More information: [Kotlin default arguments](https://kotlinlang.org/docs/functions.html#default-arguments) and [Elements accept and respect a Modifier parameter](https://github.com/androidx/androidx/blob/androidx-main/compose/docs/compose-api-guidelines.md#why-8).
+More information: [Kotlin default arguments](https://kotlinlang.org/docs/functions.html#default-arguments), [Modifier docs](https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier) and [Elements accept and respect a Modifier parameter](https://github.com/androidx/androidx/blob/androidx-main/compose/docs/compose-api-guidelines.md#why-8).
 
 Related rule: [twitter-compose:param-order-check](https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeParameterOrderCheck.kt)
 
@@ -159,7 +159,7 @@ They are especially important for your public components, as they allow callers 
 
 More info: [Always provide a Modifier parameter](https://chris.banes.dev/always-provide-a-modifier/)
 
-Related rule: [twitter-compose:modifier-check](https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeModifierMissingCheck.kt)
+Related rule: [twitter-compose:modifier-missing-check](https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeModifierMissingCheck.kt)
 
 ### Don't re-use modifiers
 
@@ -190,4 +190,12 @@ private fun InnerContent(modifier: Modifier = Modifier) {
 }
 ```
 
-Related rule: [twitter-compose:modifier-used-once-check](https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeModifierUsedOnceCheck.kt)
+Related rule: [twitter-compose:modifier-reused-check](https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeModifierReusedCheck.kt)
+
+### Modifiers should have default parameters
+
+Composables that accept a Modifier as a parameter to be applied to the whole component represented by the composable function should name the parameter modifier and assign the parameter a default value of `Modifier`. It should appear as the first optional parameter in the parameter list; after all required parameters (except for trailing lambda parameters) but before any other parameters with default values. Any default modifiers desired by a composable function should come after the modifier parameter's value in the composable function's implementation, keeping Modifier as the default parameter value.
+
+Mode info: [Modifier documentation](https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier)
+
+Related rule: [twitter-compose:modifier-without-default-check](https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeModifierWithoutDefaultCheck.kt)

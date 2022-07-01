@@ -14,7 +14,6 @@ class ComposeParameterOrderCheckTest {
     fun `no errors when ordering is correct`() {
         @Language("kotlin")
         val code = """
-            @Composable
             fun MyComposable(text1: String, modifier: Modifier = Modifier, other: String = "1", other2: String = "2") { }
 
             @Composable
@@ -22,6 +21,9 @@ class ComposeParameterOrderCheckTest {
 
             @Composable
             fun MyComposable(text1: String, modifier: Modifier = Modifier, trailing: () -> Unit) { }
+
+            @Composable
+            fun MyComposable(text1: String, modifier: Modifier = Modifier, m2: Modifier = Modifier, trailing: () -> Unit) { }
         """.trimIndent()
         orderingRuleAssertThat(code).hasNoLintViolations()
     }
@@ -41,6 +43,9 @@ class ComposeParameterOrderCheckTest {
 
             @Composable
             fun MyComposable(text: String = "123", modifier: Modifier = Modifier, lambda: () -> Unit) { }
+
+            @Composable
+            fun MyComposable(text1: String, m2: Modifier = Modifier, modifier: Modifier = Modifier, trailing: () -> Unit) { }
         """.trimIndent()
         orderingRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
             LintViolation(
@@ -73,6 +78,14 @@ class ComposeParameterOrderCheckTest {
                 detail = createErrorMessage(
                     currentOrder = "text: String = \"123\", modifier: Modifier = Modifier, lambda: () -> Unit",
                     properOrder = "modifier: Modifier = Modifier, text: String = \"123\", lambda: () -> Unit"
+                )
+            ),
+            LintViolation(
+                line = 14,
+                col = 5,
+                detail = createErrorMessage(
+                    currentOrder = "text1: String, m2: Modifier = Modifier, modifier: Modifier = Modifier, trailing: () -> Unit",
+                    properOrder = "text1: String, modifier: Modifier = Modifier, m2: Modifier = Modifier, trailing: () -> Unit"
                 )
             )
         )

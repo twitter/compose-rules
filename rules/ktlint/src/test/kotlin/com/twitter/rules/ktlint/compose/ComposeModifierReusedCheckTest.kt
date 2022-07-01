@@ -5,9 +5,9 @@ import com.pinterest.ktlint.test.LintViolation
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
-class ComposeModifierUsedOnceCheckTest {
+class ComposeModifierReusedCheckTest {
 
-    private val modifierRuleAssertThat = ComposeModifierUsedOnceCheck().assertThat()
+    private val modifierRuleAssertThat = ComposeModifierReusedCheck().assertThat()
 
     @Test
     fun `errors when the modifier parameter of a Composable is used more than once by siblings or parent-children`() {
@@ -48,47 +48,47 @@ class ComposeModifierUsedOnceCheckTest {
             LintViolation(
                 line = 3,
                 col = 5,
-                detail = ComposeModifierUsedOnceCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 4,
                 col = 9,
-                detail = ComposeModifierUsedOnceCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 9,
                 col = 5,
-                detail = ComposeModifierUsedOnceCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 11,
                 col = 9,
-                detail = ComposeModifierUsedOnceCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 16,
                 col = 5,
-                detail = ComposeModifierUsedOnceCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 19,
                 col = 5,
-                detail = ComposeModifierUsedOnceCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 20,
                 col = 5,
-                detail = ComposeModifierUsedOnceCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 25,
                 col = 9,
-                detail = ComposeModifierUsedOnceCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 26,
                 col = 9,
-                detail = ComposeModifierUsedOnceCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
             )
         )
     }
@@ -123,32 +123,32 @@ class ComposeModifierUsedOnceCheckTest {
             LintViolation(
                 line = 3,
                 col = 5,
-                detail = ComposeModifierUsedOnceCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 4,
                 col = 9,
-                detail = ComposeModifierUsedOnceCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 9,
                 col = 5,
-                detail = ComposeModifierUsedOnceCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 11,
                 col = 9,
-                detail = ComposeModifierUsedOnceCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 17,
                 col = 5,
-                detail = ComposeModifierUsedOnceCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 18,
                 col = 9,
-                detail = ComposeModifierUsedOnceCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
             )
         )
     }
@@ -186,37 +186,37 @@ class ComposeModifierUsedOnceCheckTest {
             LintViolation(
                 line = 6,
                 col = 5,
-                detail = ComposeModifierUsedOnceCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 8,
                 col = 9,
-                detail = ComposeModifierUsedOnceCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 9,
                 col = 9,
-                detail = ComposeModifierUsedOnceCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 12,
                 col = 5,
-                detail = ComposeModifierUsedOnceCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 16,
                 col = 5,
-                detail = ComposeModifierUsedOnceCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 20,
                 col = 9,
-                detail = ComposeModifierUsedOnceCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 21,
                 col = 9,
-                detail = ComposeModifierUsedOnceCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
             )
         )
     }

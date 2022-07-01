@@ -7,7 +7,8 @@ class TwitterComposeRuleSetProvider : RuleSetProvider {
     override fun get(): RuleSet = RuleSet(
         "twitter-compose",
         ComposeModifierMissingCheck(),
-        ComposeModifierUsedOnceCheck(),
+        ComposeModifierReusedCheck(),
+        ComposeModifierWithoutDefaultCheck(),
         ComposeMultipleContentEmittersCheck(),
         ComposeMutableParametersCheck(),
         ComposeNamingCheck(),
