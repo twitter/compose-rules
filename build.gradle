@@ -11,7 +11,7 @@ buildscript {
 }
 
 plugins {
-    id "com.diffplug.spotless" version "6.8.0"
+    id "com.diffplug.spotless" version "6.9.1"
 }
 
 allprojects {
@@ -27,10 +27,12 @@ subprojects {
         kotlin {
             target "**/*.kt"
             ktlint(libs.versions.ktlint.get())
+            licenseHeaderFile rootProject.file('spotless/copyright.txt')
         }
         groovyGradle {
             target "**/*.gradle"
             greclipse().configFile(rootProject.file("spotless/greclipse.properties"))
+            licenseHeaderFile rootProject.file('spotless/copyright.txt'), '(buildscript|apply|import|plugins)'
         }
     }
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach { compile ->

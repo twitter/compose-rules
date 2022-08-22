@@ -1,3 +1,5 @@
+// Copyright 2022 Twitter, Inc.
+// SPDX-License-Identifier: Apache-2.0
 package com.twitter.rules.core.ktlint
 
 import com.pinterest.ktlint.core.Rule
