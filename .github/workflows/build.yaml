@@ -4,12 +4,13 @@ on:
   push:
     branches:
       - main
-      - snapshot
     paths-ignore:
       - '**.md'
+      - 'docs/**'
   pull_request:
     paths-ignore:
       - '**.md'
+      - 'docs/**'
 
 jobs:
   build:
@@ -17,26 +18,22 @@ jobs:
     timeout-minutes: 30
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+
+      - name: Setup JDK
+        uses: actions/setup-java@v3
+        with:
+            distribution: 'zulu'
+            java-version: 17
 
       - name: Copy CI gradle.properties
         run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
 
-      - name: Setup JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
+      - uses: gradle/gradle-build-action@v2
 
-      - uses: burrunan/gradle-cache-action@v1
-        name: Build
-        with:
-          job-id: linux
-          gradle-dependencies-cache-key: |
-            gradle/libs.versions.toml
-          arguments: |
-            spotlessCheck
-            assemble
-            test
+      - name: Build
+        run: ./gradlew spotlessCheck assemble test
+
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v3
@@ -55,26 +52,24 @@ jobs:
       TERM: dumb
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Copy CI gradle.properties
         run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
 
       - name: Setup JDK
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v3
         with:
-          java-version: 11
+          distribution: 'zulu'
+          java-version: 17
 
-      - uses: burrunan/gradle-cache-action@v1
-        name: Deploy to Sonatype
+      - uses: gradle/gradle-build-action@v2
+
+      - name: Deploy to Sonatype
+        run: ./gradlew publish --no-parallel
         env:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
           ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.GPG_KEY }}
           ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.GPG_KEY_ID }}
           ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.GPG_KEY_PASSWORD }}
-        with:
-          job-id: linux
-          gradle-dependencies-cache-key: |
-            gradle/libs.versions.toml
-          arguments: publish --no-parallel
