@@ -25,6 +25,8 @@ theme:
     font:
         text: 'Roboto'
         code: 'JetBrains Mono'
+    icon:
+        logo: material/twitter
 
 # Extensions
 markdown_extensions:
