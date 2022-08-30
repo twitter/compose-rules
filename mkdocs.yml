@@ -1,0 +1,41 @@
+site_name: 'Twitter Jetpack Compose Rules'
+site_description: 'Twitter Compose Rules is a set of custom ktlint rules to ensure that your composables do not fall into common pitfalls'
+site_author: 'Twitter'
+site_url: 'https://twitter.github.io/compose-rules/'
+edit_uri: 'tree/main/docs/'
+remote_branch: gh-pages
+
+docs_dir: docs
+
+repo_name: 'Compose Rules'
+repo_url: 'https://github.com/twitter/compose-rules'
+
+# Navigation
+nav:
+    - 'Overview': index.md
+    - 'Ruleset': rules.md
+
+# Configuration
+theme:
+    name: 'material'
+    language: 'en'
+    palette:
+        primary: 'light blue'
+        accent: 'indigo'
+    font:
+        text: 'Roboto'
+        code: 'JetBrains Mono'
+
+# Extensions
+markdown_extensions:
+    - admonition
+    - attr_list
+    - codehilite:
+          guess_lang: false
+    - footnotes
+    - toc:
+          permalink: true
+    - pymdownx.betterem
+    - pymdownx.superfences
+    - pymdownx.tabbed
+    - pymdownx.details
