@@ -12,7 +12,7 @@ import org.jetbrains.kotlin.utils.addToStdlib.cast
 
 abstract class TwitterKtlintRule(id: String) : Rule(id), KtElementVisitors {
 
-    final override fun visit(
+    final override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit

@@ -2,14 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 package com.twitter.rules.ktlint.compose
 
-import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThat
+import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
 class ComposeModifierReusedCheckTest {
 
-    private val modifierRuleAssertThat = ComposeModifierReusedCheck().assertThat()
+    private val modifierRuleAssertThat = assertThatRule { ComposeModifierReusedCheck() }
 
     @Test
     fun `errors when the modifier parameter of a Composable is used more than once by siblings or parent-children`() {
