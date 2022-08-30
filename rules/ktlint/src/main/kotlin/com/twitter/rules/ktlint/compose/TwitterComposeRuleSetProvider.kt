@@ -26,7 +26,7 @@ class TwitterComposeRuleSetProvider :
         ComposeNamingCheck(),
         ComposeParameterOrderCheck(),
         ComposeRememberMissingCheck(),
-        ComposeViewModelForwardingCheck(),
+        ComposeViewModelForwardingCheck()
     )
 
     // 0.47.0+ ruleset
@@ -40,7 +40,7 @@ class TwitterComposeRuleSetProvider :
         RuleProvider { ComposeNamingCheck() },
         RuleProvider { ComposeParameterOrderCheck() },
         RuleProvider { ComposeRememberMissingCheck() },
-        RuleProvider { ComposeViewModelForwardingCheck() },
+        RuleProvider { ComposeViewModelForwardingCheck() }
     )
 
     private companion object {
@@ -49,7 +49,7 @@ class TwitterComposeRuleSetProvider :
             description = "Static checks to aid with a healthy adoption of Jetpack Compose",
             license = "Apache License, Version 2.0",
             repositoryUrl = "https://github.com/twitter/compose-rules/",
-            issueTrackerUrl = "https://github.com/twitter/compose-rules/issues",
+            issueTrackerUrl = "https://github.com/twitter/compose-rules/issues"
         )
         const val CustomRuleSetId = "twitter-compose"
     }

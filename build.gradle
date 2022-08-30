@@ -27,7 +27,7 @@ subprojects {
         kotlin {
             target "**/*.kt"
             // ktlint 0.47.0 currently not supported - https://github.com/diffplug/spotless/pull/1303
-            // ktlint(libs.versions.ktlint.get())
+            ktlint("0.46.1")
             licenseHeaderFile rootProject.file('spotless/copyright.txt')
         }
         groovyGradle {

@@ -11,11 +11,11 @@ class ComposeMultipleContentEmittersCheckTest {
 
     private val emittersRuleAssertThat = assertThatRule { ComposeMultipleContentEmittersCheck() }
 
-        @Test
-        fun `passes when only one item emits up at the top level`() {
-            @Language("kotlin")
-            val code =
-                """
+    @Test
+    fun `passes when only one item emits up at the top level`() {
+        @Language("kotlin")
+        val code =
+            """
                 @Composable
                 fun Something() {
                     val something = rememberWhatever()
@@ -27,14 +27,14 @@ class ComposeMultipleContentEmittersCheckTest {
                     }
                 }
             """.trimIndent()
-            emittersRuleAssertThat(code).hasNoLintViolations()
-        }
+        emittersRuleAssertThat(code).hasNoLintViolations()
+    }
 
-        @Test
-        fun `passes when the composable is an extension function`() {
-            @Language("kotlin")
-            val code =
-                """
+    @Test
+    fun `passes when the composable is an extension function`() {
+        @Language("kotlin")
+        val code =
+            """
                 @Composable
                 fun ColumnScope.Something() {
                     Text("Hi")
@@ -46,14 +46,14 @@ class ComposeMultipleContentEmittersCheckTest {
                     Text("Hola")
                 }
             """.trimIndent()
-            emittersRuleAssertThat(code).hasNoLintViolations()
-        }
+        emittersRuleAssertThat(code).hasNoLintViolations()
+    }
 
-        @Test
-        fun `errors when a Composable function has more than one UI emitter at the top level`() {
-            @Language("kotlin")
-            val code =
-                """
+    @Test
+    fun `errors when a Composable function has more than one UI emitter at the top level`() {
+        @Language("kotlin")
+        val code =
+            """
                 @Composable
                 fun Something() {
                     Text("Hi")
@@ -65,25 +65,25 @@ class ComposeMultipleContentEmittersCheckTest {
                     Text("Hola")
                 }
             """.trimIndent()
-            emittersRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
-                LintViolation(
-                    line = 2,
-                    col = 5,
-                    detail = ComposeMultipleContentEmittersCheck.MultipleContentEmittersDetected
-                ),
-                LintViolation(
-                    line = 7,
-                    col = 5,
-                    detail = ComposeMultipleContentEmittersCheck.MultipleContentEmittersDetected
-                )
+        emittersRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(
+                line = 2,
+                col = 5,
+                detail = ComposeMultipleContentEmittersCheck.MultipleContentEmittersDetected
+            ),
+            LintViolation(
+                line = 7,
+                col = 5,
+                detail = ComposeMultipleContentEmittersCheck.MultipleContentEmittersDetected
             )
-        }
+        )
+    }
 
-        @Test
-        fun `errors when a Composable function has more than one indirect UI emitter at the top level`() {
-            @Language("kotlin")
-            val code =
-                """
+    @Test
+    fun `errors when a Composable function has more than one indirect UI emitter at the top level`() {
+        @Language("kotlin")
+        val code =
+            """
                 @Composable
                 fun Something1() {
                     Something2()
@@ -107,25 +107,25 @@ class ComposeMultipleContentEmittersCheckTest {
                     Something4()
                 }
             """.trimIndent()
-            emittersRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
-                LintViolation(
-                    line = 6,
-                    col = 5,
-                    detail = ComposeMultipleContentEmittersCheck.MultipleContentEmittersDetected
-                ),
-                LintViolation(
-                    line = 19,
-                    col = 5,
-                    detail = ComposeMultipleContentEmittersCheck.MultipleContentEmittersDetected
-                )
+        emittersRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(
+                line = 6,
+                col = 5,
+                detail = ComposeMultipleContentEmittersCheck.MultipleContentEmittersDetected
+            ),
+            LintViolation(
+                line = 19,
+                col = 5,
+                detail = ComposeMultipleContentEmittersCheck.MultipleContentEmittersDetected
             )
-        }
+        )
+    }
 
-        @Test
-        fun `make sure to not report twice the same composable`() {
-            @Language("kotlin")
-            val code =
-                """
+    @Test
+    fun `make sure to not report twice the same composable`() {
+        @Language("kotlin")
+        val code =
+            """
                 @Composable
                 fun Something() {
                     Text("Hi")
@@ -137,20 +137,20 @@ class ComposeMultipleContentEmittersCheckTest {
                     Text("Alo")
                 }
             """.trimIndent()
-            emittersRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
-                LintViolation(
-                    line = 2,
-                    col = 5,
-                    detail = ComposeMultipleContentEmittersCheck.MultipleContentEmittersDetected
-                )
+        emittersRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(
+                line = 2,
+                col = 5,
+                detail = ComposeMultipleContentEmittersCheck.MultipleContentEmittersDetected
             )
-        }
+        )
+    }
 
-        @Test
-        fun `error out when detecting a content emitting composable that returns something other than unit`() {
-            @Language("kotlin")
-            val code =
-                """
+    @Test
+    fun `error out when detecting a content emitting composable that returns something other than unit`() {
+        @Language("kotlin")
+        val code =
+            """
                 @Composable
                 fun Something(): String { // This one emits content directly and should fail
                     Text("Hi")
@@ -166,17 +166,17 @@ class ComposeMultipleContentEmittersCheckTest {
                     HorizonIcon(icon = HorizonIcon.Arrow)
                 }
             """.trimIndent()
-            emittersRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
-                LintViolation(
-                    line = 2,
-                    col = 5,
-                    detail = ComposeMultipleContentEmittersCheck.ContentEmitterReturningValuesToo
-                ),
-                LintViolation(
-                    line = 7,
-                    col = 5,
-                    detail = ComposeMultipleContentEmittersCheck.ContentEmitterReturningValuesToo
-                )
+        emittersRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(
+                line = 2,
+                col = 5,
+                detail = ComposeMultipleContentEmittersCheck.ContentEmitterReturningValuesToo
+            ),
+            LintViolation(
+                line = 7,
+                col = 5,
+                detail = ComposeMultipleContentEmittersCheck.ContentEmitterReturningValuesToo
             )
-        }
+        )
     }
+}
