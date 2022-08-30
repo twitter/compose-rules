@@ -6,6 +6,8 @@ Compose is 🔝, allows for amazing things, but has a bunch of footguns to be aw
 
 This is where these static checks come in. We want to detect all the potential issues even before they reach the code review state, and foster a healthy Compose adoption.
 
+Check out the project website for more information: https://twitter.github.io/compose-rules
+
 ## Static checks for Compose bundled in this repo
 
 The comprehensive list of what these rules will check for is in [the rules documentaton](https://github.com/twitter/compose-rules/blob/main/docs/rules.md). It contains both what we check for and why are we doing that, so giving it a good read is encouraged.
