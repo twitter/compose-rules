@@ -34,3 +34,6 @@ google-services.json
 
 # Banish DS_Store files 
 .DS_Store
+
+# MkDocs ste
+site/
