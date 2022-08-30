@@ -6,7 +6,24 @@ A big challenge to face when a big team with a large codebase starts adopting Co
 
 Compose is 🔝, allows for amazing things, but has a bunch of footguns to be aware of. [See the thread](https://twitter.com/mrmans0n/status/1507390768796909571).
 
-This is where these ktlint rules come in. We want to detect all the potential issues even before they reach the code review state, and foster a healthy Compose adoption.
+This is where these static checks come in. We want to detect all the potential issues even before they reach the code review state, and foster a healthy Compose adoption.
+
+## Using the custom ruleset with ktlint
+
+### With ktlint-gradle
+
+If using [ktlint-gradle](https://github.com/JLLeitschuh/ktlint-gradle), you can specify the dependency on this set of rules by using the `ktlintRuleset`.
+
+```groovy
+dependencies {
+    ktlintRuleset "com.twitter.rules.compose:ktlint:<VERSION>"
+}
+```
+
+### With spotless
+
+If using [Spotless](https://github.com/diffplug/spotless), there is currently a workaround on how to do that described [in this issue](https://github.com/diffplug/spotless/issues/1220).
+
 
 ## Disabling a specific rule
 
