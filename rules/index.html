@@ -1,0 +1,766 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Twitter Compose Rules is a set of custom ktlint rules to ensure that your composables do not fall into common pitfalls">
+      
+      
+        <meta name="author" content="Twitter">
+      
+      
+        <link rel="canonical" href="https://twitter.github.io/compose-rules/rules/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.2">
+    
+    
+      
+        <title>Ruleset - Twitter Jetpack Compose Rules</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.69437709.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#02a6f2">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="light-blue" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#state" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Twitter Jetpack Compose Rules" class="md-header__button md-logo" aria-label="Twitter Jetpack Compose Rules" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Twitter Jetpack Compose Rules
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ruleset
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/twitter/compose-rules" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Compose Rules
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Twitter Jetpack Compose Rules" class="md-nav__button md-logo" aria-label="Twitter Jetpack Compose Rules" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Twitter Jetpack Compose Rules
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/twitter/compose-rules" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Compose Rules
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Ruleset
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Ruleset
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#state" class="md-nav__link">
+    State
+  </a>
+  
+    <nav class="md-nav" aria-label="State">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hoist-all-the-things" class="md-nav__link">
+    Hoist all the things
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state-should-be-remembered-in-composables" class="md-nav__link">
+    State should be remembered in composables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-immutable-annotation-whenever-possible" class="md-nav__link">
+    Use Immutable annotation whenever possible
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#composables" class="md-nav__link">
+    Composables
+  </a>
+  
+    <nav class="md-nav" aria-label="Composables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#do-not-use-inherently-mutable-types-as-parameters" class="md-nav__link">
+    Do not use inherently mutable types as parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-not-emit-content-and-return-a-result" class="md-nav__link">
+    Do not emit content and return a result
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-not-emit-multiple-pieces-of-content" class="md-nav__link">
+    Do not emit multiple pieces of content
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#naming-composable-functions-properly" class="md-nav__link">
+    Naming @Composable functions properly
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordering-composable-parameters-properly" class="md-nav__link">
+    Ordering @Composable parameters properly
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-dependencies-explicit" class="md-nav__link">
+    Make dependencies explicit
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modifiers" class="md-nav__link">
+    Modifiers
+  </a>
+  
+    <nav class="md-nav" aria-label="Modifiers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-should-i-expose-modifier-parameters" class="md-nav__link">
+    When should I expose modifier parameters?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dont-re-use-modifiers" class="md-nav__link">
+    Don't re-use modifiers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modifiers-should-have-default-parameters" class="md-nav__link">
+    Modifiers should have default parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid-modifier-extension-factory-functions" class="md-nav__link">
+    Avoid Modifier extension factory functions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#state" class="md-nav__link">
+    State
+  </a>
+  
+    <nav class="md-nav" aria-label="State">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hoist-all-the-things" class="md-nav__link">
+    Hoist all the things
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state-should-be-remembered-in-composables" class="md-nav__link">
+    State should be remembered in composables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-immutable-annotation-whenever-possible" class="md-nav__link">
+    Use Immutable annotation whenever possible
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#composables" class="md-nav__link">
+    Composables
+  </a>
+  
+    <nav class="md-nav" aria-label="Composables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#do-not-use-inherently-mutable-types-as-parameters" class="md-nav__link">
+    Do not use inherently mutable types as parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-not-emit-content-and-return-a-result" class="md-nav__link">
+    Do not emit content and return a result
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-not-emit-multiple-pieces-of-content" class="md-nav__link">
+    Do not emit multiple pieces of content
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#naming-composable-functions-properly" class="md-nav__link">
+    Naming @Composable functions properly
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordering-composable-parameters-properly" class="md-nav__link">
+    Ordering @Composable parameters properly
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-dependencies-explicit" class="md-nav__link">
+    Make dependencies explicit
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modifiers" class="md-nav__link">
+    Modifiers
+  </a>
+  
+    <nav class="md-nav" aria-label="Modifiers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-should-i-expose-modifier-parameters" class="md-nav__link">
+    When should I expose modifier parameters?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dont-re-use-modifiers" class="md-nav__link">
+    Don't re-use modifiers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modifiers-should-have-default-parameters" class="md-nav__link">
+    Modifiers should have default parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid-modifier-extension-factory-functions" class="md-nav__link">
+    Avoid Modifier extension factory functions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/twitter/compose-rules/tree/main/docs/rules.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+  <h1>Ruleset</h1>
+
+<h2 id="state">State<a class="headerlink" href="#state" title="Permanent link">&para;</a></h2>
+<h3 id="hoist-all-the-things">Hoist all the things<a class="headerlink" href="#hoist-all-the-things" title="Permanent link">&para;</a></h3>
+<p>Compose is built upon the idea of a <a href="https://developer.android.com/jetpack/compose/state#state-hoisting">unidirectional data flow</a>, which can be summarised as: data/state flows down, and events fire up. To implement that, Compose advocates for the pattern of <a href="https://developer.android.com/jetpack/compose/state#state-hoisting">hoisting state</a> upwards, enabling the majority of your composable functions to be stateless. This has many benefits, including far easier testing.</p>
+<p>In practice, there are a few common things to look out for:
+- Do not pass ViewModels (or objects from DI) down.
+- Do not pass <code>State&lt;Foo&gt;</code> or <code>MutableState&lt;Bar&gt;</code> instances down.</p>
+<p>Instead pass down the relevant data to the function, and optional lambdas for callbacks.</p>
+<p>More information: <a href="https://developer.android.com/jetpack/compose/state">State and Jetpack Compose</a></p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeViewModelForwardingCheck.kt">twitter-compose:vm-forwarding-check</a></p>
+<h3 id="state-should-be-remembered-in-composables">State should be remembered in composables<a class="headerlink" href="#state-should-be-remembered-in-composables" title="Permanent link">&para;</a></h3>
+<p>Be careful when using <code>mutableStateOf</code> (or any of the other state builders) to make sure that you <code>remember</code> the instance. If you don't <code>remember</code> the state instance, a new state instance will be created when the function is recomposed.</p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeRememberMissingCheck.kt">twitter-compose:remember-missing-check</a></p>
+<h3 id="use-immutable-annotation-whenever-possible">Use Immutable annotation whenever possible<a class="headerlink" href="#use-immutable-annotation-whenever-possible" title="Permanent link">&para;</a></h3>
+<p>The Compose Compiler tries to infer immutability and stability on value classes, but sometimes it gets it wrong, which then means that your UI will be doing more work than it needs. To force the compiler to see a class as 'immutable' you can apply the <code>@Immutable</code> annotation to the class.</p>
+<p>More info: <a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Immutable">Immutable docs</a> and <a href="https://chris.banes.dev/composable-metrics/">Composable metrics blog post</a></p>
+<p>Related rule: TBD</p>
+<h2 id="composables">Composables<a class="headerlink" href="#composables" title="Permanent link">&para;</a></h2>
+<h3 id="do-not-use-inherently-mutable-types-as-parameters">Do not use inherently mutable types as parameters<a class="headerlink" href="#do-not-use-inherently-mutable-types-as-parameters" title="Permanent link">&para;</a></h3>
+<p>This practice follows on from the 'Hoist all the things' item above, where we said that state flows down. It might be tempting to pass mutable state down to a function to mutate the value.</p>
+<p>This is an anti-pattern though as it breaks the pattern of state flowing down, and events firing up. The mutation of the value is an event which should be modelled within the function API (a lambda callback).</p>
+<p>There are a few reasons for this, but the main one is that it is very easy to use a mutable object which does not trigger recomposition. Without triggering recomposition, your composables will not automatically update to reflect the updated value.</p>
+<p>Passing <code>ArrayList&lt;T&gt;</code>, <code>MutableState&lt;T&gt;</code>, <code>ViewModel</code> are common examples of this (but not limited to those types).</p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeMutableParametersCheck.kt">twitter-compose:mutable-params-check</a></p>
+<h3 id="do-not-emit-content-and-return-a-result">Do not emit content and return a result<a class="headerlink" href="#do-not-emit-content-and-return-a-result" title="Permanent link">&para;</a></h3>
+<p>Composable functions should either emit layout content, or return a value, but not both.</p>
+<p>If a composable should offer additional control surfaces to its caller, those control surfaces or callbacks should be provided as parameters to the composable function by the caller.</p>
+<p>More info: <a href="https://github.com/androidx/androidx/blob/androidx-main/compose/docs/compose-api-guidelines.md#emit-xor-return-a-value">Compose API guidelines</a></p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeMultipleContentEmittersCheck.kt">twitter-compose:multiple-emitters-check</a></p>
+<h3 id="do-not-emit-multiple-pieces-of-content">Do not emit multiple pieces of content<a class="headerlink" href="#do-not-emit-multiple-pieces-of-content" title="Permanent link">&para;</a></h3>
+<p>A composable function should emit either 0 or 1 pieces of layout, but no more. A composable function should be cohesive, and not rely on what function it is called from.</p>
+<p>You can see an example of what not to do below. <code>InnerContent()</code> emits a number of layout nodes and assumes that it will be called from a Column:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Column</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">InnerContent</span><span class="p">()</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">InnerContent</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Text</span><span class="p">(...)</span><span class="w"></span>
+<span class="w">    </span><span class="n">Image</span><span class="p">(...)</span><span class="w"></span>
+<span class="w">    </span><span class="n">Button</span><span class="p">(...)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>However InnerContent could just as easily be called from a Row which would break all assumptions. Instead, InnerContent should be cohesive and emit a single layout node itself:</p>
+<p><div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">InnerContent</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Column</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Text</span><span class="p">(...)</span><span class="w"></span>
+<span class="w">        </span><span class="n">Image</span><span class="p">(...)</span><span class="w"></span>
+<span class="w">        </span><span class="n">Button</span><span class="p">(...)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+Nesting of layouts has a drastically lower cost vs the view system, so developers should not try to minimize UI layers at the cost of correctness.</p>
+<p>There is a slight exception to this rule, which is when the function is defined as an extension function of an appropriate scope, like so:
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="n">ColumnScope</span><span class="p">.</span><span class="nf">InnerContent</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Text</span><span class="p">(...)</span><span class="w"></span>
+<span class="w">    </span><span class="n">Image</span><span class="p">(...)</span><span class="w"></span>
+<span class="w">    </span><span class="n">Button</span><span class="p">(...)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+This effectively ties the function to be called from a Column, but is still not recommended (although permitted).</p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeMultipleContentEmittersCheck.kt">twitter-compose:multiple-emitters-check</a></p>
+<h3 id="naming-composable-functions-properly">Naming @Composable functions properly<a class="headerlink" href="#naming-composable-functions-properly" title="Permanent link">&para;</a></h3>
+<p>Composable functions that return <code>Unit</code> should start with an uppercase letter. They are considered declarative entities that can be either present or absent in a composition and therefore follow the naming rules for classes.</p>
+<p>However, Composable functions that return a value should start with a lowercase letter instead. They should follow the standard <a href="https://kotlinlang.org/docs/reference/coding-conventions.html#function-names">Kotlin Coding Conventions</a> for the naming of functions for any function annotated <code>@Composable</code> that returns a value other than <code>Unit</code></p>
+<p>More information: <a href="https://github.com/androidx/androidx/blob/androidx-main/compose/docs/compose-api-guidelines.md#naming-unit-composable-functions-as-entities">Naming Unit @Composable functions as entities</a> and <a href="https://github.com/androidx/androidx/blob/androidx-main/compose/docs/compose-api-guidelines.md#naming-composable-functions-that-return-values">Naming @Composable functions that return values</a></p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeNamingCheck.kt">twitter-compose:naming-check</a></p>
+<h3 id="ordering-composable-parameters-properly">Ordering @Composable parameters properly<a class="headerlink" href="#ordering-composable-parameters-properly" title="Permanent link">&para;</a></h3>
+<p>When writing Kotlin, it's a good practice to write the parameters for your methods by putting the mandatory parameters first, followed by the optional ones (aka the ones with default values). By doing so, <a href="https://kotlinlang.org/docs/functions.html#default-arguments">we minimize the number times we will need to write the name for arguments explicitly</a>.</p>
+<p>Modifiers occupy the first optional parameter slot to set a consistent expectation for developers that they can always provide a modifier as the final positional parameter to an element call for any given element's common case.</p>
+<p>More information: <a href="https://kotlinlang.org/docs/functions.html#default-arguments">Kotlin default arguments</a>, <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier">Modifier docs</a> and <a href="https://github.com/androidx/androidx/blob/androidx-main/compose/docs/compose-api-guidelines.md#why-8">Elements accept and respect a Modifier parameter</a>.</p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeParameterOrderCheck.kt">twitter-compose:param-order-check</a></p>
+<h3 id="make-dependencies-explicit">Make dependencies explicit<a class="headerlink" href="#make-dependencies-explicit" title="Permanent link">&para;</a></h3>
+<p>When designing our composables, we should always try to be explicit about the dependencies they take in. If you acquire a ViewModel or an instance from DI in the body of the composable, you are making this dependency implicit, which has the downsides of making it hard to test and harder to reuse.</p>
+<p>To solve this problem, you should inject these dependencies as default values in the composable function.</p>
+<p>Let's see it with an example.</p>
+<p><div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">MyComposable</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">viewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weaverViewModel</span><span class="o">&lt;</span><span class="n">MyViewModel</span><span class="o">&gt;</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+In this composable, the dependencies are implicit. When testing it you would need to fake the internals of viewModel somehow to be able to acquire your intended ViewModel.</p>
+<p>But, if you change it to pass these instances via the composable function parameters, you could provide the instance you want directly in your tests without any extra effort. It would also have the upside of the function being explicit about its external dependencies in its signature.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">MyComposable</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">MyViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">(),</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeViewModelInjectionCheck.kt">twitter-compose:vm-injection-check</a></p>
+<h2 id="modifiers">Modifiers<a class="headerlink" href="#modifiers" title="Permanent link">&para;</a></h2>
+<h3 id="when-should-i-expose-modifier-parameters">When should I expose modifier parameters?<a class="headerlink" href="#when-should-i-expose-modifier-parameters" title="Permanent link">&para;</a></h3>
+<p>Modifiers are the beating heart of Compose UI. They encapsulate the idea of composition over inheritance, by allowing developers to attach logic and behavior to layouts.</p>
+<p>They are especially important for your public components, as they allow callers to customize the component to their wishes.</p>
+<p>More info: <a href="https://chris.banes.dev/always-provide-a-modifier/">Always provide a Modifier parameter</a></p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeModifierMissingCheck.kt">twitter-compose:modifier-missing-check</a></p>
+<h3 id="dont-re-use-modifiers">Don't re-use modifiers<a class="headerlink" href="#dont-re-use-modifiers" title="Permanent link">&para;</a></h3>
+<p>Modifiers which are passed in are designed so that they should be used by a single layout node in the composable function. If the provided modifier is used by multiple composables at different levels, unwanted behaviour can happen.</p>
+<p>In the following example we've exposed a public modifier parameter, and then passed it to the root Column, but we've also passed it to each of the descendant calls, with some extra modifiers on top:</p>
+<p><div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">InnerContent</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span><span class="n">modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Text</span><span class="p">(</span><span class="n">modifier</span><span class="p">.</span><span class="na">clickable</span><span class="p">(),</span><span class="w"> </span><span class="p">...)</span><span class="w"></span>
+<span class="w">        </span><span class="n">Image</span><span class="p">(</span><span class="n">modifier</span><span class="p">.</span><span class="na">size</span><span class="p">(),</span><span class="w"> </span><span class="p">...)</span><span class="w"></span>
+<span class="w">        </span><span class="n">Button</span><span class="p">(</span><span class="n">modifier</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+This is not recommended. Instead, the provided modifier should only be used on the Column. The descendant calls should use newly built modifiers, by using the empty Modifier object:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">InnerContent</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span><span class="n">modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Text</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">clickable</span><span class="p">(),</span><span class="w"> </span><span class="p">...)</span><span class="w"></span>
+<span class="w">        </span><span class="n">Image</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">size</span><span class="p">(),</span><span class="w"> </span><span class="p">...)</span><span class="w"></span>
+<span class="w">        </span><span class="n">Button</span><span class="p">(</span><span class="n">Modifier</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeModifierReusedCheck.kt">twitter-compose:modifier-reused-check</a></p>
+<h3 id="modifiers-should-have-default-parameters">Modifiers should have default parameters<a class="headerlink" href="#modifiers-should-have-default-parameters" title="Permanent link">&para;</a></h3>
+<p>Composables that accept a Modifier as a parameter to be applied to the whole component represented by the composable function should name the parameter modifier and assign the parameter a default value of <code>Modifier</code>. It should appear as the first optional parameter in the parameter list; after all required parameters (except for trailing lambda parameters) but before any other parameters with default values. Any default modifiers desired by a composable function should come after the modifier parameter's value in the composable function's implementation, keeping Modifier as the default parameter value.</p>
+<p>Mode info: <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier">Modifier documentation</a></p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeModifierWithoutDefaultCheck.kt">twitter-compose:modifier-without-default-check</a></p>
+<h3 id="avoid-modifier-extension-factory-functions">Avoid Modifier extension factory functions<a class="headerlink" href="#avoid-modifier-extension-factory-functions" title="Permanent link">&para;</a></h3>
+<p>Using <code>@Composable</code> builder functions for modifiers is not recommended, as they cause unnecessary recompositions. To avoid this, you should use <code>Modifier.composed</code> instead, as it limits recomposition to just the modifier instance, rather than the whole function tree.</p>
+<p>Composed modifiers may be created outside of composition, shared across elements, and declared as top-level constants, making them more flexible than modifiers that can only be created via a <code>@Composable</code> function call, and easier to avoid accidentally sharing state across elements.</p>
+<p>More info: <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/package-summary#extension-functions">Modifier extensions</a>, <a href="https://jorgecastillo.dev/composed-modifiers-in-jetpack-compose">Composed modifiers in Jetpack Compose by Jorge Castillo</a> and <a href="https://github.com/androidx/androidx/blob/androidx-main/compose/docs/compose-api-guidelines.md#composed-modifiers">Composed modifiers in API guidelines</a></p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeModifierComposableCheck.kt">twitter-compose:modifier-composable-check</a></p>
+
+
+
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Overview
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.9c69f0bc.min.js"></script>
+      
+    
+  </body>
+</html>
