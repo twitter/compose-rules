@@ -37,7 +37,7 @@ class ComposeModifierMissingCheck : TwitterKtlintRule("twitter-compose:modifier-
         val MissingModifierContentComposable = """
             This @Composable function emits content but doesn't have a modifier parameter.
 
-            See https://github.com/twitter/compose-rules/blob/main/docs/rules.md#when-should-i-expose-modifier-parameters for more information.
+            See https://twitter.github.io/compose-rules/rules/#when-should-i-expose-modifier-parameters for more information.
         """.trimIndent()
     }
 }

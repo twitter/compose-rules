@@ -23,7 +23,7 @@ class ComposeMutableParametersCheck : TwitterKtlintRule("twitter-compose:mutable
             Mutable objects that are not observable, such as ArrayList<T> or a mutable data class, cannot be observed by
             Compose to trigger recomposition when they change.
 
-            See https://github.com/twitter/compose-rules/blob/main/docs/rules.md#do-not-use-inherently-mutable-types-as-parameters for more information.
+            See https://twitter.github.io/compose-rules/rules/#do-not-use-inherently-mutable-types-as-parameters for more information.
         """.trimIndent()
     }
 }

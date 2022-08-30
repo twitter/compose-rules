@@ -34,14 +34,14 @@ class ComposeNamingCheck : TwitterKtlintRule("twitter-compose:naming-check") {
             Composable functions that return Unit should start with an uppercase letter.
             They are considered declarative entities that can be either present or absent in a composition and therefore follow the naming rules for classes.
 
-            For more information: https://github.com/twitter/compose-rules/blob/main/docs/rules.md#naming-composable-functions-properly
+            See https://twitter.github.io/compose-rules/rules/#naming-composable-functions-properly for more information.
         """.trimIndent()
 
         val ComposablesThatReturnResultsShouldBeLowercase = """
             Composable functions that return a value should start with a lowercase letter.
             While useful and accepted outside of @Composable functions, this factory function convention has drawbacks that set inappropriate expectations for callers when used with @Composable functions.
 
-            For more information: https://github.com/twitter/compose-rules/blob/main/docs/rules.md#naming-composable-functions-properly
+            See https://twitter.github.io/compose-rules/rules/#naming-composable-functions-properly for more information.
         """.trimIndent()
     }
 }

@@ -21,7 +21,7 @@ class ComposeModifierComposableCheck : TwitterKtlintRule("twitter-compose:modifi
             Using @Composable builder functions for modifiers is not recommended, as they cause unnecessary recompositions.
             You should use Modifier.composed { ... } instead, as it limits recomposition to just the modifier instance, rather than the whole function tree.
 
-            See https://github.com/twitter/compose-rules/blob/main/docs/rules.md#avoid-modifier-extension-factory-functions for more information.
+            See https://twitter.github.io/compose-rules/rules/#avoid-modifier-extension-factory-functions for more information.
         """.trimIndent()
     }
 }

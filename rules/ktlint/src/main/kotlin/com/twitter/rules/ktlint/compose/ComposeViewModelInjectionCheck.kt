@@ -111,7 +111,7 @@ class ComposeViewModelInjectionCheck : TwitterKtlintRule("twitter-compose:vm-inj
 
             Usages of $factoryName to acquire a ViewModel should be done in composable default parameters, so that it is more testable and flexible.
 
-            See https://github.com/twitter/compose-rules/blob/main/docs/rules.md#make-dependencies-explicit for more information.
+            See https://twitter.github.io/compose-rules/rules/#make-dependencies-explicit for more information.
         """.trimIndent()
     }
 }

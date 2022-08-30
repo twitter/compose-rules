@@ -49,7 +49,7 @@ class ComposeViewModelForwardingCheck : TwitterKtlintRule("twitter-compose:vm-fo
             Forwarding a ViewModel through multiple @Composable functions should be avoided. Consider using
             state hoisting.
 
-            See https://github.com/twitter/compose-rules/blob/main/docs/rules.md#hoist-all-the-things for more information.
+            See https://twitter.github.io/compose-rules/rules/#hoist-all-the-things for more information.
         """.trimIndent()
     }
 }
