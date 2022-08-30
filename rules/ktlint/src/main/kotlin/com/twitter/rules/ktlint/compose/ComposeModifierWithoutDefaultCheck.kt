@@ -35,7 +35,7 @@ class ComposeModifierWithoutDefaultCheck : TwitterKtlintRule("twitter-compose:mo
         val MissingModifierDefaultParam = """
             This @Composable function has a modifier parameter but it doesn't have a default value.
 
-            See https://github.com/twitter/compose-rules/blob/main/docs/rules.md#modifiers-should-have-default-parameters for more information.
+            See https://twitter.github.io/compose-rules/rules/#modifiers-should-have-default-parameters for more information.
         """.trimIndent()
     }
 }

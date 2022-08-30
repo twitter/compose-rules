@@ -123,7 +123,7 @@ class ComposeModifierReusedCheck : TwitterKtlintRule("twitter-compose:modifier-r
 
             Use Modifier (with a capital 'M') to construct a new Modifier that you can pass to other Composables.
 
-            See https://github.com/twitter/compose-rules/blob/main/docs/rules.md#dont-re-use-modifiers for more information.
+            See https://twitter.github.io/compose-rules/rules/#dont-re-use-modifiers for more information.
         """.trimIndent()
     }
 }

@@ -106,7 +106,7 @@ class ComposeMultipleContentEmittersCheck : TwitterKtlintRule("twitter-compose:m
         val MultipleContentEmittersDetected = """
             Composable functions should only be emitting content into the composition from one source at their top level.
 
-            See https://github.com/twitter/compose-rules/blob/main/docs/rules.md#do-not-emit-multiple-pieces-of-content for more information.
+            See https://twitter.github.io/compose-rules/rules/#do-not-emit-multiple-pieces-of-content for more information.
         """.trimIndent()
 
         val ContentEmitterReturningValuesToo = """
@@ -114,7 +114,7 @@ class ComposeMultipleContentEmittersCheck : TwitterKtlintRule("twitter-compose:m
             If a composable should offer additional control surfaces to its caller, those control surfaces or callbacks
             should be provided as parameters to the composable function by the caller.
 
-            See https://github.com/twitter/compose-rules/blob/main/docs/rules.md#do-not-emit-multiple-pieces-of-content for more information.
+            See https://twitter.github.io/compose-rules/rules/#do-not-emit-multiple-pieces-of-content for more information.
         """.trimIndent()
     }
 }

@@ -62,7 +62,7 @@ class ComposeParameterOrderCheck : TwitterKtlintRule("twitter-compose:param-orde
             Parameters in a composable function should be ordered following this pattern: params without defaults, modifiers, params with defaults and optionally, a trailing function that might not have a default param.
             Current params are: [$currentOrder] but should be [$properOrder].
 
-            For more information: https://github.com/twitter/compose-rules/blob/main/docs/rules.md#ordering-composable-parameters-properly
+            See https://twitter.github.io/compose-rules/rules/#ordering-composable-parameters-properly for more information.
         """.trimIndent()
     }
 }
