@@ -2,14 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 package com.twitter.rules.ktlint.compose
 
-import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThat
+import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
 class ComposeRememberMissingCheckTest {
 
-    private val rememberRuleAssertThat = ComposeRememberMissingCheck().assertThat()
+    private val rememberRuleAssertThat = assertThatRule { ComposeRememberMissingCheck() }
 
     @Test
     fun `passes when a non-remembered mutableStateOf is used outside of a Composable`() {

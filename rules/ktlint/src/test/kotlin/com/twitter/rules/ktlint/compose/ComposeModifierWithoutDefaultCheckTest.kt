@@ -2,14 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 package com.twitter.rules.ktlint.compose
 
-import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThat
+import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
 class ComposeModifierWithoutDefaultCheckTest {
 
-    private val modifierRuleAssertThat = ComposeModifierWithoutDefaultCheck().assertThat()
+    private val modifierRuleAssertThat = assertThatRule { ComposeModifierWithoutDefaultCheck() }
 
     @Test
     fun `errors when a Composable has modifiers but without default values, and is able to auto fix it`() {

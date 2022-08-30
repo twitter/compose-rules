@@ -2,20 +2,20 @@
 // SPDX-License-Identifier: Apache-2.0
 package com.twitter.rules.ktlint.compose
 
-import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThat
+import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
 class ComposeModifierReusedCheckTest {
 
-    private val modifierRuleAssertThat = ComposeModifierReusedCheck().assertThat()
+    private val modifierRuleAssertThat = assertThatRule { ComposeModifierReusedCheck() }
 
-    @Test
-    fun `errors when the modifier parameter of a Composable is used more than once by siblings or parent-children`() {
-        @Language("kotlin")
-        val code =
-            """
+        @Test
+        fun `errors when the modifier parameter of a Composable is used more than once by siblings or parent-children`() {
+            @Language("kotlin")
+            val code =
+                """
                 @Composable
                 fun Something(modifier: Modifier) {
                     Row(modifier) {
@@ -46,60 +46,60 @@ class ComposeModifierReusedCheckTest {
                 }
             """.trimIndent()
 
-        modifierRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(
-                line = 3,
-                col = 5,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
-            ),
-            LintViolation(
-                line = 4,
-                col = 9,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
-            ),
-            LintViolation(
-                line = 9,
-                col = 5,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
-            ),
-            LintViolation(
-                line = 11,
-                col = 9,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
-            ),
-            LintViolation(
-                line = 16,
-                col = 5,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
-            ),
-            LintViolation(
-                line = 19,
-                col = 5,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
-            ),
-            LintViolation(
-                line = 20,
-                col = 5,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
-            ),
-            LintViolation(
-                line = 25,
-                col = 9,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
-            ),
-            LintViolation(
-                line = 26,
-                col = 9,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+            modifierRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
+                LintViolation(
+                    line = 3,
+                    col = 5,
+                    detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                ),
+                LintViolation(
+                    line = 4,
+                    col = 9,
+                    detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                ),
+                LintViolation(
+                    line = 9,
+                    col = 5,
+                    detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                ),
+                LintViolation(
+                    line = 11,
+                    col = 9,
+                    detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                ),
+                LintViolation(
+                    line = 16,
+                    col = 5,
+                    detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                ),
+                LintViolation(
+                    line = 19,
+                    col = 5,
+                    detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                ),
+                LintViolation(
+                    line = 20,
+                    col = 5,
+                    detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                ),
+                LintViolation(
+                    line = 25,
+                    col = 9,
+                    detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                ),
+                LintViolation(
+                    line = 26,
+                    col = 9,
+                    detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                )
             )
-        )
-    }
+        }
 
-    @Test
-    fun `errors when the modifier parameter of a Composable is tweaked or reassigned and reused`() {
-        @Language("kotlin")
-        val code =
-            """
+        @Test
+        fun `errors when the modifier parameter of a Composable is tweaked or reassigned and reused`() {
+            @Language("kotlin")
+            val code =
+                """
                 @Composable
                 fun Something(modifier: Modifier) {
                     Column(modifier = modifier) {
@@ -121,45 +121,45 @@ class ComposeModifierReusedCheckTest {
                     }
                 }
             """.trimIndent()
-        modifierRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(
-                line = 3,
-                col = 5,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
-            ),
-            LintViolation(
-                line = 4,
-                col = 9,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
-            ),
-            LintViolation(
-                line = 9,
-                col = 5,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
-            ),
-            LintViolation(
-                line = 11,
-                col = 9,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
-            ),
-            LintViolation(
-                line = 17,
-                col = 5,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
-            ),
-            LintViolation(
-                line = 18,
-                col = 9,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+            modifierRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
+                LintViolation(
+                    line = 3,
+                    col = 5,
+                    detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                ),
+                LintViolation(
+                    line = 4,
+                    col = 9,
+                    detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                ),
+                LintViolation(
+                    line = 9,
+                    col = 5,
+                    detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                ),
+                LintViolation(
+                    line = 11,
+                    col = 9,
+                    detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                ),
+                LintViolation(
+                    line = 17,
+                    col = 5,
+                    detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                ),
+                LintViolation(
+                    line = 18,
+                    col = 9,
+                    detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                )
             )
-        )
-    }
+        }
 
-    @Test
-    fun `errors when multiple Composables use the modifier even when it's been assigned to a new val`() {
-        @Language("kotlin")
-        val code =
-            """
+        @Test
+        fun `errors when multiple Composables use the modifier even when it's been assigned to a new val`() {
+            @Language("kotlin")
+            val code =
+                """
                 @Composable
                 fun Something(modifier: Modifier) {
                     val tweakedModifier = Modifier.then(modifier).fillMaxWidth()
@@ -184,50 +184,50 @@ class ComposeModifierReusedCheckTest {
                     }
                 }
             """.trimIndent()
-        modifierRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(
-                line = 6,
-                col = 5,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
-            ),
-            LintViolation(
-                line = 8,
-                col = 9,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
-            ),
-            LintViolation(
-                line = 9,
-                col = 9,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
-            ),
-            LintViolation(
-                line = 12,
-                col = 5,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
-            ),
-            LintViolation(
-                line = 16,
-                col = 5,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
-            ),
-            LintViolation(
-                line = 20,
-                col = 9,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
-            ),
-            LintViolation(
-                line = 21,
-                col = 9,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+            modifierRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
+                LintViolation(
+                    line = 6,
+                    col = 5,
+                    detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                ),
+                LintViolation(
+                    line = 8,
+                    col = 9,
+                    detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                ),
+                LintViolation(
+                    line = 9,
+                    col = 9,
+                    detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                ),
+                LintViolation(
+                    line = 12,
+                    col = 5,
+                    detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                ),
+                LintViolation(
+                    line = 16,
+                    col = 5,
+                    detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                ),
+                LintViolation(
+                    line = 20,
+                    col = 9,
+                    detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                ),
+                LintViolation(
+                    line = 21,
+                    col = 9,
+                    detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                )
             )
-        )
-    }
+        }
 
-    @Test
-    fun `passes when a Composable only passes its modifier parameter to the root level layout`() {
-        @Language("kotlin")
-        val code =
-            """
+        @Test
+        fun `passes when a Composable only passes its modifier parameter to the root level layout`() {
+            @Language("kotlin")
+            val code =
+                """
                 @Composable
                 fun Something(modifier: Modifier) {
                     Column(modifier) {
@@ -262,14 +262,14 @@ class ComposeModifierReusedCheckTest {
                     }
                 }
             """.trimIndent()
-        modifierRuleAssertThat(code).hasNoLintViolations()
-    }
+            modifierRuleAssertThat(code).hasNoLintViolations()
+        }
 
-    @Test
-    fun `passes when modifiers are reused for mutually exclusive branches`() {
-        @Language("kotlin")
-        val code =
-            """
+        @Test
+        fun `passes when modifiers are reused for mutually exclusive branches`() {
+            @Language("kotlin")
+            val code =
+                """
                 @Composable
                 fun Something(modifier: Modifier = Modifier) {
                     if (someCondition) {
@@ -279,14 +279,14 @@ class ComposeModifierReusedCheckTest {
                     }
                 }
             """.trimIndent()
-        modifierRuleAssertThat(code).hasNoLintViolations()
-    }
+            modifierRuleAssertThat(code).hasNoLintViolations()
+        }
 
-    @Test
-    fun `passes when used on vals with lambdas`() {
-        @Language("kotlin")
-        val code =
-            """
+        @Test
+        fun `passes when used on vals with lambdas`() {
+            @Language("kotlin")
+            val code =
+                """
                 @Composable
                 fun Something(modifier: Modifier) {
                     Column(modifier = modifier) {
@@ -318,6 +318,6 @@ class ComposeModifierReusedCheckTest {
                     }
                 }
             """.trimIndent()
-        modifierRuleAssertThat(code).hasNoLintViolations()
+            modifierRuleAssertThat(code).hasNoLintViolations()
+        }
     }
-}

@@ -1,19 +1,19 @@
 [versions]
-kotlin = "1.7.0"
-ktlint = "0.46.1"
-junit = "5.8.2"
+kotlin = "1.7.10"
+ktlint = "0.47.0"
+junit = "5.9.0"
 
 [libraries]
 ktlint-core = { module = "com.pinterest.ktlint:ktlint-core", version.ref = "ktlint" }
 ktlint-test = { module = "com.pinterest.ktlint:ktlint-test", version.ref = "ktlint" }
-ktlint-gradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:10.3.0"
+ktlint-gradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:11.0.0"
 
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-compiler = { module = "org.jetbrains.kotlin:kotlin-compiler-embeddable", version.ref = "kotlin" }
 
-gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.20.0"
+gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.21.0"
 
 junit5 = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
 junit5-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit" }
-assertj = "org.assertj:assertj-core:3.22.0"
+assertj = "org.assertj:assertj-core:3.23.1"

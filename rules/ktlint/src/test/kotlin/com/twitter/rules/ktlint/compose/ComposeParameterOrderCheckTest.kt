@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 package com.twitter.rules.ktlint.compose
 
-import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThat
+import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import com.twitter.rules.ktlint.compose.ComposeParameterOrderCheck.Companion.createErrorMessage
 import org.intellij.lang.annotations.Language
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 
 class ComposeParameterOrderCheckTest {
 
-    private val orderingRuleAssertThat = ComposeParameterOrderCheck().assertThat()
+    private val orderingRuleAssertThat = assertThatRule { ComposeParameterOrderCheck() }
 
     @Test
     fun `no errors when ordering is correct`() {
