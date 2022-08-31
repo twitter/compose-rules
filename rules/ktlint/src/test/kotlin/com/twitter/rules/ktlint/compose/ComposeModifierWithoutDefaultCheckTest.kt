@@ -4,6 +4,7 @@ package com.twitter.rules.ktlint.compose
 
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
+import com.twitter.compose.rules.ComposeModifierWithoutDefault
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
@@ -26,12 +27,12 @@ class ComposeModifierWithoutDefaultCheckTest {
                 LintViolation(
                     line = 2,
                     col = 15,
-                    detail = ComposeModifierWithoutDefaultCheck.MissingModifierDefaultParam
+                    detail = ComposeModifierWithoutDefault.MissingModifierDefaultParam
                 ),
                 LintViolation(
                     line = 4,
                     col = 46,
-                    detail = ComposeModifierWithoutDefaultCheck.MissingModifierDefaultParam
+                    detail = ComposeModifierWithoutDefault.MissingModifierDefaultParam
                 )
             )
             .isFormattedAs(

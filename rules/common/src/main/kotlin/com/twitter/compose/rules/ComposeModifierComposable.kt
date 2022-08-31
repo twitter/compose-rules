@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 package com.twitter.compose.rules
 
-import com.twitter.rules.core.Emitter
 import com.twitter.rules.core.ComposeKtVisitor
+import com.twitter.rules.core.Emitter
 import com.twitter.rules.core.report
 import org.jetbrains.kotlin.psi.KtFunction
 

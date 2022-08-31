@@ -4,7 +4,7 @@ package com.twitter.rules.ktlint.compose
 
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
-import com.twitter.rules.ktlint.compose.ComposeParameterOrderCheck.Companion.createErrorMessage
+import com.twitter.compose.rules.ComposeParameterOrder
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
@@ -53,7 +53,7 @@ class ComposeParameterOrderCheckTest {
             LintViolation(
                 line = 2,
                 col = 5,
-                detail = createErrorMessage(
+                detail = ComposeParameterOrder.createErrorMessage(
                     currentOrder = "modifier: Modifier = Modifier, other: String, other2: String",
                     properOrder = "other: String, other2: String, modifier: Modifier = Modifier"
                 )
@@ -61,7 +61,7 @@ class ComposeParameterOrderCheckTest {
             LintViolation(
                 line = 5,
                 col = 5,
-                detail = createErrorMessage(
+                detail = ComposeParameterOrder.createErrorMessage(
                     currentOrder = "text: String = \"deffo\", modifier: Modifier = Modifier",
                     properOrder = "modifier: Modifier = Modifier, text: String = \"deffo\""
                 )
@@ -69,7 +69,7 @@ class ComposeParameterOrderCheckTest {
             LintViolation(
                 line = 8,
                 col = 5,
-                detail = createErrorMessage(
+                detail = ComposeParameterOrder.createErrorMessage(
                     currentOrder = "modifier: Modifier = Modifier, text: String = \"123\", modifier2: Modifier = Modifier",
                     properOrder = "modifier: Modifier = Modifier, modifier2: Modifier = Modifier, text: String = \"123\""
                 )
@@ -77,7 +77,7 @@ class ComposeParameterOrderCheckTest {
             LintViolation(
                 line = 11,
                 col = 5,
-                detail = createErrorMessage(
+                detail = ComposeParameterOrder.createErrorMessage(
                     currentOrder = "text: String = \"123\", modifier: Modifier = Modifier, lambda: () -> Unit",
                     properOrder = "modifier: Modifier = Modifier, text: String = \"123\", lambda: () -> Unit"
                 )
@@ -85,7 +85,7 @@ class ComposeParameterOrderCheckTest {
             LintViolation(
                 line = 14,
                 col = 5,
-                detail = createErrorMessage(
+                detail = ComposeParameterOrder.createErrorMessage(
                     currentOrder = "text1: String, m2: Modifier = Modifier, modifier: Modifier = Modifier, trailing: () -> Unit",
                     properOrder = "text1: String, modifier: Modifier = Modifier, m2: Modifier = Modifier, trailing: () -> Unit"
                 )

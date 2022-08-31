@@ -4,6 +4,7 @@ package com.twitter.rules.ktlint.compose
 
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
+import com.twitter.compose.rules.ComposeViewModelForwarding
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
@@ -69,7 +70,7 @@ class ComposeViewModelForwardingCheckTest {
             LintViolation(
                 line = 3,
                 col = 5,
-                detail = ComposeViewModelForwardingCheck.AvoidViewModelForwarding
+                detail = ComposeViewModelForwarding.AvoidViewModelForwarding
             )
         )
     }

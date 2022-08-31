@@ -4,6 +4,7 @@ package com.twitter.rules.ktlint.compose
 
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
+import com.twitter.compose.rules.ComposeMultipleContentEmitters
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
@@ -69,12 +70,12 @@ class ComposeMultipleContentEmittersCheckTest {
             LintViolation(
                 line = 2,
                 col = 5,
-                detail = ComposeMultipleContentEmittersCheck.MultipleContentEmittersDetected
+                detail = ComposeMultipleContentEmitters.MultipleContentEmittersDetected
             ),
             LintViolation(
                 line = 7,
                 col = 5,
-                detail = ComposeMultipleContentEmittersCheck.MultipleContentEmittersDetected
+                detail = ComposeMultipleContentEmitters.MultipleContentEmittersDetected
             )
         )
     }
@@ -111,12 +112,12 @@ class ComposeMultipleContentEmittersCheckTest {
             LintViolation(
                 line = 6,
                 col = 5,
-                detail = ComposeMultipleContentEmittersCheck.MultipleContentEmittersDetected
+                detail = ComposeMultipleContentEmitters.MultipleContentEmittersDetected
             ),
             LintViolation(
                 line = 19,
                 col = 5,
-                detail = ComposeMultipleContentEmittersCheck.MultipleContentEmittersDetected
+                detail = ComposeMultipleContentEmitters.MultipleContentEmittersDetected
             )
         )
     }
@@ -141,7 +142,7 @@ class ComposeMultipleContentEmittersCheckTest {
             LintViolation(
                 line = 2,
                 col = 5,
-                detail = ComposeMultipleContentEmittersCheck.MultipleContentEmittersDetected
+                detail = ComposeMultipleContentEmitters.MultipleContentEmittersDetected
             )
         )
     }
@@ -170,12 +171,12 @@ class ComposeMultipleContentEmittersCheckTest {
             LintViolation(
                 line = 2,
                 col = 5,
-                detail = ComposeMultipleContentEmittersCheck.ContentEmitterReturningValuesToo
+                detail = ComposeMultipleContentEmitters.ContentEmitterReturningValuesToo
             ),
             LintViolation(
                 line = 7,
                 col = 5,
-                detail = ComposeMultipleContentEmittersCheck.ContentEmitterReturningValuesToo
+                detail = ComposeMultipleContentEmitters.ContentEmitterReturningValuesToo
             )
         )
     }

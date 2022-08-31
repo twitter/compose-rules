@@ -4,6 +4,7 @@ package com.twitter.rules.ktlint.compose
 
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
+import com.twitter.compose.rules.ComposeRememberMissing
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
@@ -38,12 +39,12 @@ class ComposeRememberMissingCheckTest {
             LintViolation(
                 line = 3,
                 col = 21,
-                detail = ComposeRememberMissingCheck.MutableStateOfNotRemembered
+                detail = ComposeRememberMissing.MutableStateOfNotRemembered
             ),
             LintViolation(
                 line = 6,
                 col = 45,
-                detail = ComposeRememberMissingCheck.MutableStateOfNotRemembered
+                detail = ComposeRememberMissing.MutableStateOfNotRemembered
             )
         )
     }
@@ -107,12 +108,12 @@ class ComposeRememberMissingCheckTest {
             LintViolation(
                 line = 3,
                 col = 21,
-                detail = ComposeRememberMissingCheck.DerivedStateOfNotRemembered
+                detail = ComposeRememberMissing.DerivedStateOfNotRemembered
             ),
             LintViolation(
                 line = 6,
                 col = 45,
-                detail = ComposeRememberMissingCheck.DerivedStateOfNotRemembered
+                detail = ComposeRememberMissing.DerivedStateOfNotRemembered
             )
         )
     }

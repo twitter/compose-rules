@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 package com.twitter.rules.core.detekt
 
-import com.twitter.rules.core.Emitter
 import com.twitter.rules.core.ComposeKtVisitor
+import com.twitter.rules.core.Emitter
 import com.twitter.rules.core.util.isComposable
 import io.gitlab.arturbosch.detekt.api.CodeSmell
 import io.gitlab.arturbosch.detekt.api.Config

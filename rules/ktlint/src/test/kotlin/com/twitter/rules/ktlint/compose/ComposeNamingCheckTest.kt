@@ -4,6 +4,7 @@ package com.twitter.rules.ktlint.compose
 
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
+import com.twitter.compose.rules.ComposeNaming
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
@@ -66,7 +67,7 @@ class ComposeNamingCheckTest {
             LintViolation(
                 line = 2,
                 col = 5,
-                detail = ComposeNamingCheck.ComposablesThatReturnResultsShouldBeLowercase
+                detail = ComposeNaming.ComposablesThatReturnResultsShouldBeLowercase
             )
         )
     }
@@ -86,12 +87,12 @@ class ComposeNamingCheckTest {
             LintViolation(
                 line = 2,
                 col = 5,
-                detail = ComposeNamingCheck.ComposablesThatDoNotReturnResultsShouldBeCapitalized
+                detail = ComposeNaming.ComposablesThatDoNotReturnResultsShouldBeCapitalized
             ),
             LintViolation(
                 line = 5,
                 col = 5,
-                detail = ComposeNamingCheck.ComposablesThatDoNotReturnResultsShouldBeCapitalized
+                detail = ComposeNaming.ComposablesThatDoNotReturnResultsShouldBeCapitalized
             )
         )
     }

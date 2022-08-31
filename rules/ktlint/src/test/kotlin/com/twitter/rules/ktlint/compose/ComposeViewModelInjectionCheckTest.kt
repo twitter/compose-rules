@@ -4,6 +4,7 @@ package com.twitter.rules.ktlint.compose
 
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
+import com.twitter.compose.rules.ComposeViewModelInjection
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
@@ -65,17 +66,17 @@ class ComposeViewModelInjectionCheckTest {
             LintViolation(
                 line = 3,
                 col = 9,
-                detail = ComposeViewModelInjectionCheck.errorMessage(viewModel)
+                detail = ComposeViewModelInjection.errorMessage(viewModel)
             ),
             LintViolation(
                 line = 7,
                 col = 9,
-                detail = ComposeViewModelInjectionCheck.errorMessage(viewModel)
+                detail = ComposeViewModelInjection.errorMessage(viewModel)
             ),
             LintViolation(
                 line = 11,
                 col = 9,
-                detail = ComposeViewModelInjectionCheck.errorMessage(viewModel)
+                detail = ComposeViewModelInjection.errorMessage(viewModel)
             )
         )
     }
@@ -99,12 +100,12 @@ class ComposeViewModelInjectionCheckTest {
             LintViolation(
                 line = 4,
                 col = 13,
-                detail = ComposeViewModelInjectionCheck.errorMessage(viewModel)
+                detail = ComposeViewModelInjection.errorMessage(viewModel)
             ),
             LintViolation(
                 line = 6,
                 col = 13,
-                detail = ComposeViewModelInjectionCheck.errorMessage(viewModel)
+                detail = ComposeViewModelInjection.errorMessage(viewModel)
             )
         )
     }

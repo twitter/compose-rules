@@ -3,8 +3,8 @@
 package com.twitter.rules.core.ktlint
 
 import com.pinterest.ktlint.core.Rule
-import com.twitter.rules.core.Emitter
 import com.twitter.rules.core.ComposeKtVisitor
+import com.twitter.rules.core.Emitter
 import com.twitter.rules.core.util.isComposable
 import com.twitter.rules.core.util.startOffsetFromName
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
