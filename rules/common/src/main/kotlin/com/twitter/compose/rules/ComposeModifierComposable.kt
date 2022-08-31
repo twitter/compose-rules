@@ -3,11 +3,11 @@
 package com.twitter.compose.rules
 
 import com.twitter.rules.core.Emitter
-import com.twitter.rules.core.KtElementVisitors
+import com.twitter.rules.core.ComposeKtVisitor
 import com.twitter.rules.core.report
 import org.jetbrains.kotlin.psi.KtFunction
 
-class ComposeModifierComposable : KtElementVisitors {
+class ComposeModifierComposable : ComposeKtVisitor {
 
     override fun visitComposable(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
         val receiverTypeReference = function.receiverTypeReference

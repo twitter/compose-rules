@@ -6,7 +6,7 @@ import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtFunction
 
-interface KtElementVisitors {
+interface ComposeKtVisitor {
     fun visitFunction(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {}
 
     fun visitComposable(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {}

@@ -4,7 +4,7 @@ package com.twitter.rules.core.ktlint
 
 import com.pinterest.ktlint.core.Rule
 import com.twitter.rules.core.Emitter
-import com.twitter.rules.core.KtElementVisitors
+import com.twitter.rules.core.ComposeKtVisitor
 import com.twitter.rules.core.util.isComposable
 import com.twitter.rules.core.util.startOffsetFromName
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
@@ -14,7 +14,7 @@ import org.jetbrains.kotlin.psi.psiUtil.startOffset
 import org.jetbrains.kotlin.psi.stubs.elements.KtStubElementTypes
 import org.jetbrains.kotlin.utils.addToStdlib.cast
 
-abstract class TwitterKtlintRule(id: String) : Rule(id), KtElementVisitors {
+abstract class TwitterKtlintRule(id: String) : Rule(id), ComposeKtVisitor {
 
     final override fun beforeVisitChildNodes(
         node: ASTNode,

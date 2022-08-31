@@ -3,7 +3,7 @@
 package com.twitter.rules.core.detekt
 
 import com.twitter.rules.core.Emitter
-import com.twitter.rules.core.KtElementVisitors
+import com.twitter.rules.core.ComposeKtVisitor
 import com.twitter.rules.core.util.isComposable
 import io.gitlab.arturbosch.detekt.api.CodeSmell
 import io.gitlab.arturbosch.detekt.api.Config
@@ -18,7 +18,7 @@ import org.jetbrains.kotlin.utils.addToStdlib.cast
 
 abstract class TwitterDetektRule(
     config: Config = Config.empty
-) : Rule(config), KtElementVisitors {
+) : Rule(config), ComposeKtVisitor {
 
     private val emitter: Emitter = Emitter { element, message, canBeAutoCorrected ->
         val finding = when {

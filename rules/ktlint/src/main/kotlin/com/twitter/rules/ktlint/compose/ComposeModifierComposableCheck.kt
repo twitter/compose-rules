@@ -3,9 +3,9 @@
 package com.twitter.rules.ktlint.compose
 
 import com.twitter.compose.rules.ComposeModifierComposable
-import com.twitter.rules.core.KtElementVisitors
+import com.twitter.rules.core.ComposeKtVisitor
 import com.twitter.rules.core.ktlint.TwitterKtlintRule
 
 class ComposeModifierComposableCheck :
     TwitterKtlintRule("twitter-compose:modifier-composable-check"),
-    KtElementVisitors by ComposeModifierComposable()
+    ComposeKtVisitor by ComposeModifierComposable()

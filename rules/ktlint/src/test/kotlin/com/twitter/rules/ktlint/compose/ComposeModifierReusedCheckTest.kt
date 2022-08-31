@@ -4,6 +4,7 @@ package com.twitter.rules.ktlint.compose
 
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
+import com.twitter.compose.rules.ComposeModifierReused
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
@@ -50,47 +51,47 @@ class ComposeModifierReusedCheckTest {
             LintViolation(
                 line = 3,
                 col = 5,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 4,
                 col = 9,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 9,
                 col = 5,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 11,
                 col = 9,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 16,
                 col = 5,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 19,
                 col = 5,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 20,
                 col = 5,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 25,
                 col = 9,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 26,
                 col = 9,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
             )
         )
     }
@@ -125,32 +126,32 @@ class ComposeModifierReusedCheckTest {
             LintViolation(
                 line = 3,
                 col = 5,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 4,
                 col = 9,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 9,
                 col = 5,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 11,
                 col = 9,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 17,
                 col = 5,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 18,
                 col = 9,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
             )
         )
     }
@@ -188,37 +189,37 @@ class ComposeModifierReusedCheckTest {
             LintViolation(
                 line = 6,
                 col = 5,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 8,
                 col = 9,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 9,
                 col = 9,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 12,
                 col = 5,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 16,
                 col = 5,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 20,
                 col = 9,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
             ),
             LintViolation(
                 line = 21,
                 col = 9,
-                detail = ComposeModifierReusedCheck.ModifierShouldBeUsedOnceOnly
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
             )
         )
     }

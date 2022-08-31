@@ -4,6 +4,7 @@ package com.twitter.rules.ktlint.compose
 
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
+import com.twitter.compose.rules.ComposeModifierMissing
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
@@ -45,17 +46,17 @@ class ComposeModifierMissingCheckTest {
             LintViolation(
                 line = 2,
                 col = 5,
-                detail = ComposeModifierMissingCheck.MissingModifierContentComposable
+                detail = ComposeModifierMissing.MissingModifierContentComposable
             ),
             LintViolation(
                 line = 7,
                 col = 5,
-                detail = ComposeModifierMissingCheck.MissingModifierContentComposable
+                detail = ComposeModifierMissing.MissingModifierContentComposable
             ),
             LintViolation(
                 line = 12,
                 col = 5,
-                detail = ComposeModifierMissingCheck.MissingModifierContentComposable
+                detail = ComposeModifierMissing.MissingModifierContentComposable
             )
         )
     }
@@ -83,12 +84,12 @@ class ComposeModifierMissingCheckTest {
             LintViolation(
                 line = 2,
                 col = 5,
-                detail = ComposeModifierMissingCheck.MissingModifierContentComposable
+                detail = ComposeModifierMissing.MissingModifierContentComposable
             ),
             LintViolation(
                 line = 7,
                 col = 5,
-                detail = ComposeModifierMissingCheck.MissingModifierContentComposable
+                detail = ComposeModifierMissing.MissingModifierContentComposable
             )
         )
     }
