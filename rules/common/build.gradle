@@ -9,12 +9,8 @@ test {
 }
 
 dependencies {
-    implementation libs.ktlint.core
     implementation project(':core:common')
-    implementation project(':core:ktlint')
-    implementation project(':rules:common')
 
-    testImplementation libs.ktlint.test
     testImplementation libs.junit5
     testImplementation libs.junit5.params
     testImplementation libs.assertj

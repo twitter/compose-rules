@@ -16,7 +16,6 @@ import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.psi.KtReferenceExpression
 import org.jetbrains.kotlin.psi.KtValueArgumentName
 import org.jetbrains.kotlin.psi.psiUtil.siblings
-import org.jetbrains.kotlin.psi.psiUtil.startOffset
 
 class ComposeModifierReusedCheck : TwitterKtlintRule("twitter-compose:modifier-reused-check") {
 
@@ -63,7 +62,7 @@ class ComposeModifierReusedCheck : TwitterKtlintRule("twitter-compose:modifier-r
             // We don't want to double report
             .distinct()
             .forEach { callExpression ->
-                emitter.report(callExpression.startOffset, ModifierShouldBeUsedOnceOnly, false)
+                emitter.report(callExpression, ModifierShouldBeUsedOnceOnly, false)
             }
     }
 

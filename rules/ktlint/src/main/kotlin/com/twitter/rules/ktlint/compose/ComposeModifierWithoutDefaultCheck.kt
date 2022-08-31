@@ -5,7 +5,6 @@ package com.twitter.rules.ktlint.compose
 import com.pinterest.ktlint.core.ast.lastChildLeafOrSelf
 import com.twitter.rules.core.Emitter
 import com.twitter.rules.core.ktlint.TwitterKtlintRule
-import com.twitter.rules.core.report
 import com.twitter.rules.core.util.definedInInterface
 import com.twitter.rules.core.util.isModifier
 import org.jetbrains.kotlin.com.intellij.psi.impl.source.tree.LeafPsiElement

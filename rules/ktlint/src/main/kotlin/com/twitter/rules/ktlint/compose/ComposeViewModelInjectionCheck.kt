@@ -7,7 +7,6 @@ import com.pinterest.ktlint.core.ast.lastChildLeafOrSelf
 import com.pinterest.ktlint.core.ast.nextCodeSibling
 import com.twitter.rules.core.Emitter
 import com.twitter.rules.core.ktlint.TwitterKtlintRule
-import com.twitter.rules.core.report
 import com.twitter.rules.core.util.definedInInterface
 import com.twitter.rules.core.util.findChildrenByClass
 import com.twitter.rules.core.util.findDirectChildrenByClass
