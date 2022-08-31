@@ -1,0 +1,21 @@
+// Copyright 2022 Twitter, Inc.
+// SPDX-License-Identifier: Apache-2.0
+plugins {
+    id 'org.jetbrains.kotlin.jvm'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    implementation libs.detekt.core
+    implementation project(':core:common')
+    implementation project(':core:detekt')
+
+    testImplementation libs.junit5
+    testImplementation libs.junit5.params
+    testImplementation libs.assertj
+}
+
+apply plugin: "com.vanniktech.maven.publish"

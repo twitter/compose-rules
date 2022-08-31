@@ -11,8 +11,7 @@ gradleEnterprise {
 
 rootProject.name = "com.twitter.rules.compose"
 include ':core:common'
+include ':core:detekt'
 include ':core:ktlint'
+include ':rules:detekt'
 include ':rules:ktlint'
-
-// https://docs.gradle.org/current/userguide/platforms.html
-enableFeaturePreview("VERSION_CATALOGS")

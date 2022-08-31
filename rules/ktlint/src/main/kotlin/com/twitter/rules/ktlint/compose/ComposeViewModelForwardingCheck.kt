@@ -10,7 +10,6 @@ import com.twitter.rules.core.util.isOverride
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.KtReferenceExpression
-import org.jetbrains.kotlin.psi.psiUtil.startOffset
 
 class ComposeViewModelForwardingCheck : TwitterKtlintRule("twitter-compose:vm-forwarding-check") {
 
@@ -39,7 +38,7 @@ class ComposeViewModelForwardingCheck : TwitterKtlintRule("twitter-compose:vm-fo
                     .map { callExpression }
             }
             .forEach { callExpression ->
-                emitter.report(callExpression.startOffset, AvoidViewModelForwarding, false)
+                emitter.report(callExpression, AvoidViewModelForwarding, false)
             }
     }
 

@@ -8,7 +8,6 @@ import com.twitter.rules.core.util.findChildrenByClass
 import org.jetbrains.kotlin.com.intellij.psi.PsiElement
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtFunction
-import org.jetbrains.kotlin.psi.psiUtil.startOffset
 
 class ComposeRememberMissingCheck : TwitterKtlintRule("twitter-compose:remember-missing-check") {
 
@@ -22,8 +21,8 @@ class ComposeRememberMissingCheck : TwitterKtlintRule("twitter-compose:remember-
             // If it wasn't, we show the error
             .forEach { callExpression ->
                 when (callExpression.calleeExpression!!.text) {
-                    "mutableStateOf" -> emitter.report(callExpression.startOffset, MutableStateOfNotRemembered, false)
-                    "derivedStateOf" -> emitter.report(callExpression.startOffset, DerivedStateOfNotRemembered, false)
+                    "mutableStateOf" -> emitter.report(callExpression, MutableStateOfNotRemembered, false)
+                    "derivedStateOf" -> emitter.report(callExpression, DerivedStateOfNotRemembered, false)
                 }
             }
     }
