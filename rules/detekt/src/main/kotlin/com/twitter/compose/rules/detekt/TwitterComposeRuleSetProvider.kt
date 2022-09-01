@@ -23,7 +23,7 @@ class TwitterComposeRuleSetProvider : RuleSetProvider {
             ComposeNamingReturnResultsCheck(config),
             /* ComposeParameterOrderCheck(config), */
             /* ComposeRememberMissingCheck(config), */
-            ComposeViewModelForwardingCheck(config),
+            ComposeViewModelForwardingCheck(config)
             /* ComposeViewModelInjectionCheck(config) */
         )
     )
