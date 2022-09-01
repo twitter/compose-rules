@@ -21,10 +21,10 @@ class TwitterComposeRuleSetProvider : RuleSetProvider {
             ComposeMutableParametersCheck(config),
             ComposeNamingDontReturnResultsCheck(config),
             ComposeNamingReturnResultsCheck(config),
-            /* ComposeParameterOrderCheck(config), */
+            ComposeParameterOrderCheck(config),
             /* ComposeRememberMissingCheck(config), */
-            ComposeViewModelForwardingCheck(config)
-            /* ComposeViewModelInjectionCheck(config) */
+            ComposeViewModelForwardingCheck(config),
+            ComposeViewModelInjectionCheck(config)
         )
     )
 
