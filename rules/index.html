@@ -577,10 +577,10 @@
 - Do not pass <code>State&lt;Foo&gt;</code> or <code>MutableState&lt;Bar&gt;</code> instances down.</p>
 <p>Instead pass down the relevant data to the function, and optional lambdas for callbacks.</p>
 <p>More information: <a href="https://developer.android.com/jetpack/compose/state">State and Jetpack Compose</a></p>
-<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeViewModelForwardingCheck.kt">twitter-compose:vm-forwarding-check</a></p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeViewModelForwarding.kt">twitter-compose:vm-forwarding-check</a></p>
 <h3 id="state-should-be-remembered-in-composables">State should be remembered in composables<a class="headerlink" href="#state-should-be-remembered-in-composables" title="Permanent link">&para;</a></h3>
 <p>Be careful when using <code>mutableStateOf</code> (or any of the other state builders) to make sure that you <code>remember</code> the instance. If you don't <code>remember</code> the state instance, a new state instance will be created when the function is recomposed.</p>
-<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeRememberMissingCheck.kt">twitter-compose:remember-missing-check</a></p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeRememberMissing.kt">twitter-compose:remember-missing-check</a></p>
 <h3 id="use-immutable-annotation-whenever-possible">Use Immutable annotation whenever possible<a class="headerlink" href="#use-immutable-annotation-whenever-possible" title="Permanent link">&para;</a></h3>
 <p>The Compose Compiler tries to infer immutability and stability on value classes, but sometimes it gets it wrong, which then means that your UI will be doing more work than it needs. To force the compiler to see a class as 'immutable' you can apply the <code>@Immutable</code> annotation to the class.</p>
 <p>More info: <a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Immutable">Immutable docs</a> and <a href="https://chris.banes.dev/composable-metrics/">Composable metrics blog post</a></p>
@@ -591,12 +591,12 @@
 <p>This is an anti-pattern though as it breaks the pattern of state flowing down, and events firing up. The mutation of the value is an event which should be modelled within the function API (a lambda callback).</p>
 <p>There are a few reasons for this, but the main one is that it is very easy to use a mutable object which does not trigger recomposition. Without triggering recomposition, your composables will not automatically update to reflect the updated value.</p>
 <p>Passing <code>ArrayList&lt;T&gt;</code>, <code>MutableState&lt;T&gt;</code>, <code>ViewModel</code> are common examples of this (but not limited to those types).</p>
-<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeMutableParametersCheck.kt">twitter-compose:mutable-params-check</a></p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeMutableParameters.kt">twitter-compose:mutable-params-check</a></p>
 <h3 id="do-not-emit-content-and-return-a-result">Do not emit content and return a result<a class="headerlink" href="#do-not-emit-content-and-return-a-result" title="Permanent link">&para;</a></h3>
 <p>Composable functions should either emit layout content, or return a value, but not both.</p>
 <p>If a composable should offer additional control surfaces to its caller, those control surfaces or callbacks should be provided as parameters to the composable function by the caller.</p>
 <p>More info: <a href="https://github.com/androidx/androidx/blob/androidx-main/compose/docs/compose-api-guidelines.md#emit-xor-return-a-value">Compose API guidelines</a></p>
-<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeMultipleContentEmittersCheck.kt">twitter-compose:multiple-emitters-check</a></p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeMultipleContentEmitters.kt">twitter-compose:content-emitter-returning-values-check</a></p>
 <h3 id="do-not-emit-multiple-pieces-of-content">Do not emit multiple pieces of content<a class="headerlink" href="#do-not-emit-multiple-pieces-of-content" title="Permanent link">&para;</a></h3>
 <p>A composable function should emit either 0 or 1 pieces of layout, but no more. A composable function should be cohesive, and not rely on what function it is called from.</p>
 <p>You can see an example of what not to do below. <code>InnerContent()</code> emits a number of layout nodes and assumes that it will be called from a Column:</p>
@@ -631,17 +631,17 @@ Nesting of layouts has a drastically lower cost vs the view system, so developer
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
 This effectively ties the function to be called from a Column, but is still not recommended (although permitted).</p>
-<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeMultipleContentEmittersCheck.kt">twitter-compose:multiple-emitters-check</a></p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeMultipleContentEmitters.kt">twitter-compose:multiple-emitters-check</a></p>
 <h3 id="naming-composable-functions-properly">Naming @Composable functions properly<a class="headerlink" href="#naming-composable-functions-properly" title="Permanent link">&para;</a></h3>
 <p>Composable functions that return <code>Unit</code> should start with an uppercase letter. They are considered declarative entities that can be either present or absent in a composition and therefore follow the naming rules for classes.</p>
 <p>However, Composable functions that return a value should start with a lowercase letter instead. They should follow the standard <a href="https://kotlinlang.org/docs/reference/coding-conventions.html#function-names">Kotlin Coding Conventions</a> for the naming of functions for any function annotated <code>@Composable</code> that returns a value other than <code>Unit</code></p>
 <p>More information: <a href="https://github.com/androidx/androidx/blob/androidx-main/compose/docs/compose-api-guidelines.md#naming-unit-composable-functions-as-entities">Naming Unit @Composable functions as entities</a> and <a href="https://github.com/androidx/androidx/blob/androidx-main/compose/docs/compose-api-guidelines.md#naming-composable-functions-that-return-values">Naming @Composable functions that return values</a></p>
-<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeNamingCheck.kt">twitter-compose:naming-check</a></p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeNaming.kt">twitter-compose:naming-check</a></p>
 <h3 id="ordering-composable-parameters-properly">Ordering @Composable parameters properly<a class="headerlink" href="#ordering-composable-parameters-properly" title="Permanent link">&para;</a></h3>
 <p>When writing Kotlin, it's a good practice to write the parameters for your methods by putting the mandatory parameters first, followed by the optional ones (aka the ones with default values). By doing so, <a href="https://kotlinlang.org/docs/functions.html#default-arguments">we minimize the number times we will need to write the name for arguments explicitly</a>.</p>
 <p>Modifiers occupy the first optional parameter slot to set a consistent expectation for developers that they can always provide a modifier as the final positional parameter to an element call for any given element's common case.</p>
 <p>More information: <a href="https://kotlinlang.org/docs/functions.html#default-arguments">Kotlin default arguments</a>, <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier">Modifier docs</a> and <a href="https://github.com/androidx/androidx/blob/androidx-main/compose/docs/compose-api-guidelines.md#why-8">Elements accept and respect a Modifier parameter</a>.</p>
-<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeParameterOrderCheck.kt">twitter-compose:param-order-check</a></p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeParameterOrder.kt">twitter-compose:param-order-check</a></p>
 <h3 id="make-dependencies-explicit">Make dependencies explicit<a class="headerlink" href="#make-dependencies-explicit" title="Permanent link">&para;</a></h3>
 <p>When designing our composables, we should always try to be explicit about the dependencies they take in. If you acquire a ViewModel or an instance from DI in the body of the composable, you are making this dependency implicit, which has the downsides of making it hard to test and harder to reuse.</p>
 <p>To solve this problem, you should inject these dependencies as default values in the composable function.</p>
@@ -661,13 +661,13 @@ In this composable, the dependencies are implicit. When testing it you would nee
 <span class="w">    </span><span class="c1">// ...</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
-<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeViewModelInjectionCheck.kt">twitter-compose:vm-injection-check</a></p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeViewModelInjection.kt">twitter-compose:vm-injection-check</a></p>
 <h2 id="modifiers">Modifiers<a class="headerlink" href="#modifiers" title="Permanent link">&para;</a></h2>
 <h3 id="when-should-i-expose-modifier-parameters">When should I expose modifier parameters?<a class="headerlink" href="#when-should-i-expose-modifier-parameters" title="Permanent link">&para;</a></h3>
 <p>Modifiers are the beating heart of Compose UI. They encapsulate the idea of composition over inheritance, by allowing developers to attach logic and behavior to layouts.</p>
 <p>They are especially important for your public components, as they allow callers to customize the component to their wishes.</p>
 <p>More info: <a href="https://chris.banes.dev/always-provide-a-modifier/">Always provide a Modifier parameter</a></p>
-<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeModifierMissingCheck.kt">twitter-compose:modifier-missing-check</a></p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeModifierMissing.kt">twitter-compose:modifier-missing-check</a></p>
 <h3 id="dont-re-use-modifiers">Don't re-use modifiers<a class="headerlink" href="#dont-re-use-modifiers" title="Permanent link">&para;</a></h3>
 <p>Modifiers which are passed in are designed so that they should be used by a single layout node in the composable function. If the provided modifier is used by multiple composables at different levels, unwanted behaviour can happen.</p>
 <p>In the following example we've exposed a public modifier parameter, and then passed it to the root Column, but we've also passed it to each of the descendant calls, with some extra modifiers on top:</p>
@@ -690,16 +690,16 @@ This is not recommended. Instead, the provided modifier should only be used on t
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
-<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeModifierReusedCheck.kt">twitter-compose:modifier-reused-check</a></p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeModifierReused.kt">twitter-compose:modifier-reused-check</a></p>
 <h3 id="modifiers-should-have-default-parameters">Modifiers should have default parameters<a class="headerlink" href="#modifiers-should-have-default-parameters" title="Permanent link">&para;</a></h3>
 <p>Composables that accept a Modifier as a parameter to be applied to the whole component represented by the composable function should name the parameter modifier and assign the parameter a default value of <code>Modifier</code>. It should appear as the first optional parameter in the parameter list; after all required parameters (except for trailing lambda parameters) but before any other parameters with default values. Any default modifiers desired by a composable function should come after the modifier parameter's value in the composable function's implementation, keeping Modifier as the default parameter value.</p>
 <p>Mode info: <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier">Modifier documentation</a></p>
-<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeModifierWithoutDefaultCheck.kt">twitter-compose:modifier-without-default-check</a></p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeModifierWithoutDefault.kt">twitter-compose:modifier-without-default-check</a></p>
 <h3 id="avoid-modifier-extension-factory-functions">Avoid Modifier extension factory functions<a class="headerlink" href="#avoid-modifier-extension-factory-functions" title="Permanent link">&para;</a></h3>
 <p>Using <code>@Composable</code> builder functions for modifiers is not recommended, as they cause unnecessary recompositions. To avoid this, you should use <code>Modifier.composed</code> instead, as it limits recomposition to just the modifier instance, rather than the whole function tree.</p>
 <p>Composed modifiers may be created outside of composition, shared across elements, and declared as top-level constants, making them more flexible than modifiers that can only be created via a <code>@Composable</code> function call, and easier to avoid accidentally sharing state across elements.</p>
 <p>More info: <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/package-summary#extension-functions">Modifier extensions</a>, <a href="https://jorgecastillo.dev/composed-modifiers-in-jetpack-compose">Composed modifiers in Jetpack Compose by Jorge Castillo</a> and <a href="https://github.com/androidx/androidx/blob/androidx-main/compose/docs/compose-api-guidelines.md#composed-modifiers">Composed modifiers in API guidelines</a></p>
-<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/ktlint/src/main/kotlin/com/twitter/rules/ktlint/compose/ComposeModifierComposableCheck.kt">twitter-compose:modifier-composable-check</a></p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeModifierComposable.kt">twitter-compose:modifier-composable-check</a></p>
 
 
 
