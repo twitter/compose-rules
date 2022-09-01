@@ -13,7 +13,7 @@ import io.gitlab.arturbosch.detekt.api.Severity
 class ComposeViewModelInjectionCheck(config: Config) :
     TwitterDetektRule(config),
     ComposeKtVisitor by ComposeViewModelInjection() {
-    
+
     override val issue: Issue = Issue(
         id = "vm-injection-check",
         severity = Severity.CodeSmell,
