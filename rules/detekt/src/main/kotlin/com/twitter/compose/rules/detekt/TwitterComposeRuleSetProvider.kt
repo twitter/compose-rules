@@ -13,15 +13,15 @@ class TwitterComposeRuleSetProvider : RuleSetProvider {
         CustomRuleSetId,
         listOf(
             ComposeModifierComposableCheck(config),
-            ComposeModifierMissingCheck(config)
-            /* TODO ComposeModifierReusedCheck(), */
-            /* TODO ComposeModifierWithoutDefaultCheck(), */
-            /* TODO ComposeMultipleContentEmittersCheck(), */
-            /* TODO ComposeMutableParametersCheck(), */
-            /* TODO ComposeNamingCheck(), */
-            /* TODO ComposeParameterOrderCheck(), */
-            /* TODO ComposeRememberMissingCheck(), */
-            /* TODO ComposeViewModelForwardingCheck() */
+            ComposeModifierMissingCheck(config),
+            ComposeModifierReusedCheck(config),
+            ComposeModifierWithoutDefaultCheck(config),
+            /* ComposeMultipleContentEmittersCheck(config), */
+            /* ComposeMutableParametersCheck(config), */
+            /* ComposeNamingCheck(config), */
+            /* ComposeParameterOrderCheck(config), */
+            /* ComposeRememberMissingCheck(config), */
+            /* ComposeViewModelForwardingCheck(config) */
         )
     )
 
