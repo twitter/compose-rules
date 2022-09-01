@@ -21,7 +21,6 @@ class ComposeNaming(private val type: Type = Type.All) : ComposeKtVisitor {
         if (!function.hasBlockBody()) return
         val firstLetter = function.name?.first() ?: return
 
-
         if (function.returnsValue) {
             // If it returns value, the composable should start with a lowercase letter
             if (firstLetter.isUpperCase() && type.checkReturnResults) {
