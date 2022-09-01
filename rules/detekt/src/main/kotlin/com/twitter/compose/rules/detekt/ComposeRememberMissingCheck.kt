@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 package com.twitter.compose.rules.detekt
 
-import com.twitter.compose.rules.ComposeViewModelInjection
+import com.twitter.compose.rules.ComposeRememberMissing
 import com.twitter.rules.core.ComposeKtVisitor
 import com.twitter.rules.core.detekt.TwitterDetektRule
 import io.gitlab.arturbosch.detekt.api.Config
@@ -10,18 +10,17 @@ import io.gitlab.arturbosch.detekt.api.Debt
 import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Severity
 
-class ComposeViewModelInjectionCheck(config: Config) :
+class ComposeRememberMissingCheck(config: Config) :
     TwitterDetektRule(config),
-    ComposeKtVisitor by ComposeViewModelInjection() {
-    
-    override val issue: Issue = Issue(
-        id = "vm-injection-check",
-        severity = Severity.CodeSmell,
-        description = """
-            Implicit dependencies of composables should be made explicit.
+    ComposeKtVisitor by ComposeRememberMissing() {
 
-            Acquiring a ViewModel should be done in composable default parameters, so that it is more testable and flexible.
+    override val issue: Issue = Issue(
+        id = "remember-missing-check",
+        severity = Severity.Defect,
+        description = """
+            Using mutableStateOf/derivedStateOf in a @Composable function without it being inside of a remember function.
+            If you don't remember the state instance, a new state instance will be created when the function is recomposed.
         """.trimIndent(),
-        debt = Debt.TEN_MINS
+        debt = Debt.FIVE_MINS
     )
 }
