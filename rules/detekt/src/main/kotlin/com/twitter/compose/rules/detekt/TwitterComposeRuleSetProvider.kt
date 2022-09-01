@@ -13,7 +13,7 @@ class TwitterComposeRuleSetProvider : RuleSetProvider {
         CustomRuleSetId,
         listOf(
             ComposeModifierComposableCheck(config),
-            ComposeModifierMissingCheck(config),
+            ComposeModifierMissingCheck(config)
             /* TODO ComposeModifierReusedCheck(), */
             /* TODO ComposeModifierWithoutDefaultCheck(), */
             /* TODO ComposeMultipleContentEmittersCheck(), */
