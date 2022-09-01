@@ -1,6 +1,6 @@
 // Copyright 2022 Twitter, Inc.
 // SPDX-License-Identifier: Apache-2.0
-package com.twitter.rules.ktlint.compose
+package com.twitter.compose.rules.ktlint
 
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 
 class ComposeModifierReusedCheckTest {
 
-    private val modifierRuleAssertThat = assertThatRule { ComposeModifierReusedCheck() }
+    private val modifierRuleAssertThat = assertThatRule { com.twitter.compose.rules.ktlint.ComposeModifierReusedCheck() }
 
     @Test
     fun `errors when the modifier parameter of a Composable is used more than once by siblings or parent-children`() {

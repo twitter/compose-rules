@@ -1,6 +1,6 @@
 // Copyright 2022 Twitter, Inc.
 // SPDX-License-Identifier: Apache-2.0
-package com.twitter.rules.ktlint.compose
+package com.twitter.compose.rules.ktlint
 
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 
 class ComposeMutableParametersCheckTest {
 
-    private val mutableParamRuleAssertThat = assertThatRule { ComposeMutableParametersCheck() }
+    private val mutableParamRuleAssertThat = assertThatRule { com.twitter.compose.rules.ktlint.ComposeMutableParametersCheck() }
 
     @Test
     fun `errors when a Composable has a mutable parameter`() {

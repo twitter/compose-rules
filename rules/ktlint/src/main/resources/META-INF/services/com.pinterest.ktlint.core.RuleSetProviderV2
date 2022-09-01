@@ -1,1 +1,1 @@
-com.twitter.rules.ktlint.compose.TwitterComposeRuleSetProvider
+com.twitter.compose.rules.ktlint.TwitterComposeRuleSetProvider

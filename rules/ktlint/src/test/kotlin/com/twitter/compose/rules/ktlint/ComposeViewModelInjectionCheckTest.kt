@@ -1,6 +1,6 @@
 // Copyright 2022 Twitter, Inc.
 // SPDX-License-Identifier: Apache-2.0
-package com.twitter.rules.ktlint.compose
+package com.twitter.compose.rules.ktlint
 
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class ComposeViewModelInjectionCheckTest {
 
-    private val injectionRuleAssertThat = assertThatRule { ComposeViewModelInjectionCheck() }
+    private val injectionRuleAssertThat = assertThatRule { com.twitter.compose.rules.ktlint.ComposeViewModelInjectionCheck() }
 
     @ParameterizedTest
     @ValueSource(strings = ["viewModel", "weaverViewModel"])

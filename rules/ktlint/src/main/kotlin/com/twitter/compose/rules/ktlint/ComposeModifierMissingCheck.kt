@@ -1,6 +1,6 @@
 // Copyright 2022 Twitter, Inc.
 // SPDX-License-Identifier: Apache-2.0
-package com.twitter.rules.ktlint.compose
+package com.twitter.compose.rules.ktlint
 
 import com.twitter.compose.rules.ComposeModifierMissing
 import com.twitter.rules.core.ComposeKtVisitor

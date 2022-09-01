@@ -1,6 +1,6 @@
 // Copyright 2022 Twitter, Inc.
 // SPDX-License-Identifier: Apache-2.0
-package com.twitter.rules.ktlint.compose
+package com.twitter.compose.rules.ktlint
 
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 
 class ComposeModifierWithoutDefaultCheckTest {
 
-    private val modifierRuleAssertThat = assertThatRule { ComposeModifierWithoutDefaultCheck() }
+    private val modifierRuleAssertThat = assertThatRule { com.twitter.compose.rules.ktlint.ComposeModifierWithoutDefaultCheck() }
 
     @Test
     fun `errors when a Composable has modifiers but without default values, and is able to auto fix it`() {
