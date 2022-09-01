@@ -5,8 +5,7 @@ package com.twitter.rules.core.util
 import org.jetbrains.kotlin.com.intellij.psi.PsiElement
 import org.jetbrains.kotlin.com.intellij.psi.PsiNameIdentifierOwner
 import org.jetbrains.kotlin.psi.psiUtil.startOffset
-import java.util.Deque
-import java.util.LinkedList
+import java.util.*
 
 inline fun <reified T : PsiElement> PsiElement.findChildrenByClass(): Sequence<T> =
     sequence {

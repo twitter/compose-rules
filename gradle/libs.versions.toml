@@ -1,12 +1,16 @@
 [versions]
 kotlin = "1.7.10"
 ktlint = "0.47.0"
+detekt = "1.21.0"
 junit = "5.9.0"
 
 [libraries]
 ktlint-core = { module = "com.pinterest.ktlint:ktlint-core", version.ref = "ktlint" }
 ktlint-test = { module = "com.pinterest.ktlint:ktlint-test", version.ref = "ktlint" }
 ktlint-gradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:11.0.0"
+
+detekt-core = { module = "io.gitlab.arturbosch.detekt:detekt-core", version.ref = "detekt" }
+detekt-test = { module = "io.gitlab.arturbosch.detekt:detekt-test", version.ref = "detekt" }
 
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
