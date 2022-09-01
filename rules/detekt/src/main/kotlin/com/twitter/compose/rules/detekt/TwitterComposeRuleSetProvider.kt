@@ -12,11 +12,12 @@ class TwitterComposeRuleSetProvider : RuleSetProvider {
     override fun instance(config: Config): RuleSet = RuleSet(
         CustomRuleSetId,
         listOf(
+            ComposeContentEmitterReturningValuesCheck(config),
             ComposeModifierComposableCheck(config),
             ComposeModifierMissingCheck(config),
             ComposeModifierReusedCheck(config),
             ComposeModifierWithoutDefaultCheck(config),
-            /* ComposeMultipleContentEmittersCheck(config), */
+            ComposeMultipleContentEmittersCheck(config)
             /* ComposeMutableParametersCheck(config), */
             /* ComposeNamingCheck(config), */
             /* ComposeParameterOrderCheck(config), */

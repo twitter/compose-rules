@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class ComposeViewModelInjectionCheckTest {
 
-    private val injectionRuleAssertThat = assertThatRule { com.twitter.compose.rules.ktlint.ComposeViewModelInjectionCheck() }
+    private val injectionRuleAssertThat = assertThatRule { ComposeViewModelInjectionCheck() }
 
     @ParameterizedTest
     @ValueSource(strings = ["viewModel", "weaverViewModel"])

@@ -50,7 +50,7 @@ If a composable should offer additional control surfaces to its caller, those co
 
 More info: [Compose API guidelines](https://github.com/androidx/androidx/blob/androidx-main/compose/docs/compose-api-guidelines.md#emit-xor-return-a-value)
 
-Related rule: [twitter-compose:multiple-emitters-check](https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeMultipleContentEmitters.kt)
+Related rule: [twitter-compose:content-emitter-returning-values-check](https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeMultipleContentEmitters.kt)
 
 ### Do not emit multiple pieces of content
 

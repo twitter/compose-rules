@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 
 class ComposeRememberMissingCheckTest {
 
-    private val rememberRuleAssertThat = assertThatRule { com.twitter.compose.rules.ktlint.ComposeRememberMissingCheck() }
+    private val rememberRuleAssertThat = assertThatRule { ComposeRememberMissingCheck() }
 
     @Test
     fun `passes when a non-remembered mutableStateOf is used outside of a Composable`() {

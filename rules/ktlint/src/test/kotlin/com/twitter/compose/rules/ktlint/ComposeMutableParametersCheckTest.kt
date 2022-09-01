@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 
 class ComposeMutableParametersCheckTest {
 
-    private val mutableParamRuleAssertThat = assertThatRule { com.twitter.compose.rules.ktlint.ComposeMutableParametersCheck() }
+    private val mutableParamRuleAssertThat = assertThatRule { ComposeMutableParametersCheck() }
 
     @Test
     fun `errors when a Composable has a mutable parameter`() {

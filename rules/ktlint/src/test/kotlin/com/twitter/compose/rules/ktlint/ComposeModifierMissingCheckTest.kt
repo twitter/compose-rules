@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 
 class ComposeModifierMissingCheckTest {
 
-    private val modifierRuleAssertThat = assertThatRule { com.twitter.compose.rules.ktlint.ComposeModifierMissingCheck() }
+    private val modifierRuleAssertThat = assertThatRule { ComposeModifierMissingCheck() }
 
     @Test
     fun `errors when a Composable has a layout inside and it doesn't have a modifier`() {

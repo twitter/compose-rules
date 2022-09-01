@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 
 class ComposeModifierWithoutDefaultCheckTest {
 
-    private val modifierRuleAssertThat = assertThatRule { com.twitter.compose.rules.ktlint.ComposeModifierWithoutDefaultCheck() }
+    private val modifierRuleAssertThat = assertThatRule { ComposeModifierWithoutDefaultCheck() }
 
     @Test
     fun `errors when a Composable has modifiers but without default values, and is able to auto fix it`() {

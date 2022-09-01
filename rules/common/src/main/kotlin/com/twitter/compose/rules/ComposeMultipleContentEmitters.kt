@@ -14,7 +14,13 @@ import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtFunction
 
-class ComposeMultipleContentEmitters : ComposeKtVisitor {
+class ComposeMultipleContentEmitters(
+    private val detector: Detector
+) : ComposeKtVisitor {
+
+    enum class Detector {
+        MultipleContentEmitters, ContentEmitterReturningValues
+    }
 
     override fun visitFile(file: KtFile, autoCorrect: Boolean, emitter: Emitter) {
         // CHECK #1 : We want to find the composables first that are at risk of emitting content from multiple sources.
@@ -31,8 +37,10 @@ class ComposeMultipleContentEmitters : ComposeKtVisitor {
 
         // We can start showing errors, for composables that emit more than once (from the list of known composables)
         val directEmissionsReported = composableToEmissionCount.filterValues { it > 1 }.keys
-        directEmissionsReported.forEach { composable ->
-            emitter.report(composable, MultipleContentEmittersDetected)
+        if (detector == Detector.MultipleContentEmitters) {
+            directEmissionsReported.forEach { composable ->
+                emitter.report(composable, MultipleContentEmittersDetected)
+            }
         }
 
         // Now we can give some extra passes through the list of composables, and try to get a more accurate count.
@@ -61,21 +69,25 @@ class ComposeMultipleContentEmitters : ComposeKtVisitor {
             .filterNot { directEmissionsReported.contains(it.key) }
             .keys
 
-        indirectEmissionsReported.forEach { composable ->
-            emitter.report(composable, MultipleContentEmittersDetected)
+        if (detector == Detector.MultipleContentEmitters) {
+            indirectEmissionsReported.forEach { composable ->
+                emitter.report(composable, MultipleContentEmittersDetected)
+            }
         }
 
         // CHECK #2: Composables that emit UI should not return any value
 
         // Data in currentMapping should have all the # of emissions inferred for each composable in this file,
         // so we want to iterate through all of them
-        currentMapping.filterValues { it > 0 }.keys
-            // If the function doesn't have a return type or returns Unit explicitly, it's valid. Otherwise, show error.
-            .filter { it.returnsValue }
-            // In here we will have functions that emit UI and return a type other than Unit, which is no bueno.
-            .forEach { composable ->
-                emitter.report(composable, ContentEmitterReturningValuesToo)
-            }
+        if (detector == Detector.ContentEmitterReturningValues) {
+            currentMapping.filterValues { it > 0 }.keys
+                // If the function doesn't have a return type or returns Unit explicitly, it's valid. Otherwise, show error.
+                .filter { it.returnsValue }
+                // In here we will have functions that emit UI and return a type other than Unit, which is no bueno.
+                .forEach { composable ->
+                    emitter.report(composable, ContentEmitterReturningValuesToo)
+                }
+        }
     }
 
     private val KtFunction.directUiEmitterCount: Int
@@ -114,7 +126,7 @@ class ComposeMultipleContentEmitters : ComposeKtVisitor {
             If a composable should offer additional control surfaces to its caller, those control surfaces or callbacks
             should be provided as parameters to the composable function by the caller.
 
-            See https://twitter.github.io/compose-rules/rules/#do-not-emit-multiple-pieces-of-content for more information.
+            See https://twitter.github.io/compose-rules/rules/#do-not-emit-content-and-return-a-result for more information.
         """.trimIndent()
     }
 }

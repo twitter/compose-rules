@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 
 class ComposeNamingCheckTest {
 
-    private val namingRuleAssertThat = assertThatRule { com.twitter.compose.rules.ktlint.ComposeNamingCheck() }
+    private val namingRuleAssertThat = assertThatRule { ComposeNamingCheck() }
 
     @Test
     fun `passes when a composable that returns values is lowercase`() {

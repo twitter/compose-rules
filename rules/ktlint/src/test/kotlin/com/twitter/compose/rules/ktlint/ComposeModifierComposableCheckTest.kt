@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 
 class ComposeModifierComposableCheckTest {
 
-    private val modifierRuleAssertThat = assertThatRule { com.twitter.compose.rules.ktlint.ComposeModifierComposableCheck() }
+    private val modifierRuleAssertThat = assertThatRule { ComposeModifierComposableCheck() }
 
     @Test
     fun `errors when a composable Modifier extension is detected`() {

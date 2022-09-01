@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 
 class ComposeViewModelForwardingCheckTest {
 
-    private val forwardingRuleAssertThat = assertThatRule { com.twitter.compose.rules.ktlint.ComposeViewModelForwardingCheck() }
+    private val forwardingRuleAssertThat = assertThatRule { ComposeViewModelForwardingCheck() }
 
     @Test
     fun `allows the forwarding of ViewModels in overridden Composable functions`() {

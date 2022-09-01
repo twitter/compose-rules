@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 
 class ComposeParameterOrderCheckTest {
 
-    private val orderingRuleAssertThat = assertThatRule { com.twitter.compose.rules.ktlint.ComposeParameterOrderCheck() }
+    private val orderingRuleAssertThat = assertThatRule { ComposeParameterOrderCheck() }
 
     @Test
     fun `no errors when ordering is correct`() {

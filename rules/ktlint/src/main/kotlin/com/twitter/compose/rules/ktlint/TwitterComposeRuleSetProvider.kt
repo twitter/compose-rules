@@ -20,6 +20,7 @@ class TwitterComposeRuleSetProvider :
     @Suppress("OVERRIDE_DEPRECATION")
     override fun get(): RuleSet = RuleSet(
         CustomRuleSetId,
+        ComposeContentEmitterReturningValuesCheck(),
         ComposeModifierComposableCheck(),
         ComposeModifierMissingCheck(),
         ComposeModifierReusedCheck(),
@@ -35,6 +36,7 @@ class TwitterComposeRuleSetProvider :
 
     // 0.47.0+ ruleset
     override fun getRuleProviders(): Set<RuleProvider> = setOf(
+        RuleProvider { ComposeContentEmitterReturningValuesCheck() },
         RuleProvider { ComposeModifierComposableCheck() },
         RuleProvider { ComposeModifierMissingCheck() },
         RuleProvider { ComposeModifierReusedCheck() },

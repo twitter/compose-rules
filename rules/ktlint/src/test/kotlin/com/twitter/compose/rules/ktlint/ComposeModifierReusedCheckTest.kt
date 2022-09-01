@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 
 class ComposeModifierReusedCheckTest {
 
-    private val modifierRuleAssertThat = assertThatRule { com.twitter.compose.rules.ktlint.ComposeModifierReusedCheck() }
+    private val modifierRuleAssertThat = assertThatRule { ComposeModifierReusedCheck() }
 
     @Test
     fun `errors when the modifier parameter of a Composable is used more than once by siblings or parent-children`() {

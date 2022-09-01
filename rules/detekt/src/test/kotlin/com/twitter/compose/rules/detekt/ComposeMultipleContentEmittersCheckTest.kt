@@ -1,16 +1,18 @@
 // Copyright 2022 Twitter, Inc.
 // SPDX-License-Identifier: Apache-2.0
-package com.twitter.compose.rules.ktlint
+package com.twitter.compose.rules.detekt
 
-import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
-import com.pinterest.ktlint.test.LintViolation
 import com.twitter.compose.rules.ComposeMultipleContentEmitters
+import io.gitlab.arturbosch.detekt.api.Config
+import io.gitlab.arturbosch.detekt.api.SourceLocation
+import io.gitlab.arturbosch.detekt.test.assertThat
+import io.gitlab.arturbosch.detekt.test.lint
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
 class ComposeMultipleContentEmittersCheckTest {
 
-    private val emittersRuleAssertThat = assertThatRule { ComposeMultipleContentEmittersCheck() }
+    private val rule = ComposeMultipleContentEmittersCheck(Config.empty)
 
     @Test
     fun `passes when only one item emits up at the top level`() {
@@ -28,7 +30,8 @@ class ComposeMultipleContentEmittersCheckTest {
                     }
                 }
             """.trimIndent()
-        emittersRuleAssertThat(code).hasNoLintViolations()
+        val errors = rule.lint(code)
+        assertThat(errors).isEmpty()
     }
 
     @Test
@@ -47,7 +50,8 @@ class ComposeMultipleContentEmittersCheckTest {
                     Text("Hola")
                 }
             """.trimIndent()
-        emittersRuleAssertThat(code).hasNoLintViolations()
+        val errors = rule.lint(code)
+        assertThat(errors).isEmpty()
     }
 
     @Test
@@ -66,18 +70,15 @@ class ComposeMultipleContentEmittersCheckTest {
                     Text("Hola")
                 }
             """.trimIndent()
-        emittersRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(
-                line = 2,
-                col = 5,
-                detail = ComposeMultipleContentEmitters.MultipleContentEmittersDetected
-            ),
-            LintViolation(
-                line = 7,
-                col = 5,
-                detail = ComposeMultipleContentEmitters.MultipleContentEmittersDetected
+        val errors = rule.lint(code)
+        assertThat(errors).hasSize(2)
+            .hasSourceLocations(
+                SourceLocation(2, 5),
+                SourceLocation(7, 5)
             )
-        )
+        for (error in errors) {
+            assertThat(error).hasMessage(ComposeMultipleContentEmitters.MultipleContentEmittersDetected)
+        }
     }
 
     @Test
@@ -108,18 +109,15 @@ class ComposeMultipleContentEmittersCheckTest {
                     Something4()
                 }
             """.trimIndent()
-        emittersRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(
-                line = 6,
-                col = 5,
-                detail = ComposeMultipleContentEmitters.MultipleContentEmittersDetected
-            ),
-            LintViolation(
-                line = 19,
-                col = 5,
-                detail = ComposeMultipleContentEmitters.MultipleContentEmittersDetected
+        val errors = rule.lint(code)
+        assertThat(errors).hasSize(2)
+            .hasSourceLocations(
+                SourceLocation(6, 5),
+                SourceLocation(19, 5)
             )
-        )
+        for (error in errors) {
+            assertThat(error).hasMessage(ComposeMultipleContentEmitters.MultipleContentEmittersDetected)
+        }
     }
 
     @Test
@@ -138,12 +136,9 @@ class ComposeMultipleContentEmittersCheckTest {
                     Text("Alo")
                 }
             """.trimIndent()
-        emittersRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(
-                line = 2,
-                col = 5,
-                detail = ComposeMultipleContentEmitters.MultipleContentEmittersDetected
-            )
-        )
+        val errors = rule.lint(code)
+        assertThat(errors).hasSize(1)
+            .hasSourceLocation(2, 5)
+        assertThat(errors.first()).hasMessage(ComposeMultipleContentEmitters.MultipleContentEmittersDetected)
     }
 }
