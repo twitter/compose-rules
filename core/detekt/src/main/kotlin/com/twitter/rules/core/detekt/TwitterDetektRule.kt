@@ -5,12 +5,9 @@ package com.twitter.rules.core.detekt
 import com.twitter.rules.core.ComposeKtVisitor
 import com.twitter.rules.core.Emitter
 import com.twitter.rules.core.util.isComposable
-import io.gitlab.arturbosch.detekt.api.CodeSmell
-import io.gitlab.arturbosch.detekt.api.Config
-import io.gitlab.arturbosch.detekt.api.CorrectableCodeSmell
-import io.gitlab.arturbosch.detekt.api.Entity
-import io.gitlab.arturbosch.detekt.api.Location
-import io.gitlab.arturbosch.detekt.api.Rule
+import com.twitter.rules.core.util.runIf
+import io.gitlab.arturbosch.detekt.api.*
+import org.jetbrains.kotlin.com.intellij.psi.PsiNameIdentifierOwner
 import org.jetbrains.kotlin.psi.KtElement
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.stubs.elements.KtStubElementTypes
@@ -21,17 +18,21 @@ abstract class TwitterDetektRule(
 ) : Rule(config), ComposeKtVisitor {
 
     private val emitter: Emitter = Emitter { element, message, canBeAutoCorrected ->
+        // Grab the named element if there were any, otherwise fall back to the whole PsiElement
+        val finalElement = element.runIf(element is PsiNameIdentifierOwner) {
+            (this as PsiNameIdentifierOwner).nameIdentifier!!
+        }
         val finding = when {
             canBeAutoCorrected -> CorrectableCodeSmell(
                 issue = issue,
-                entity = Entity.from(element, Location.from(element)),
+                entity = Entity.from(finalElement, Location.from(finalElement)),
                 message = message,
                 autoCorrectEnabled = autoCorrect
             )
 
             else -> CodeSmell(
                 issue = issue,
-                entity = Entity.from(element, Location.from(element)),
+                entity = Entity.from(finalElement, Location.from(finalElement)),
                 message = message
             )
         }

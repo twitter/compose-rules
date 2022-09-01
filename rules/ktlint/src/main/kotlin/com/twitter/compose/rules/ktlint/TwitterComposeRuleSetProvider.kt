@@ -11,39 +11,40 @@ import com.pinterest.ktlint.core.RuleSetProviderV2
 
 class TwitterComposeRuleSetProvider :
     RuleSetProviderV2(
-        com.twitter.compose.rules.ktlint.TwitterComposeRuleSetProvider.Companion.CustomRuleSetId,
-        com.twitter.compose.rules.ktlint.TwitterComposeRuleSetProvider.Companion.RuleSetAbout
+        CustomRuleSetId,
+        RuleSetAbout
     ),
     RuleSetProvider {
 
     // Pre-0.47.0 ruleset (will go away in 0.48.0)
     @Suppress("OVERRIDE_DEPRECATION")
     override fun get(): RuleSet = RuleSet(
-        com.twitter.compose.rules.ktlint.TwitterComposeRuleSetProvider.Companion.CustomRuleSetId,
-        com.twitter.compose.rules.ktlint.ComposeModifierComposableCheck(),
-        com.twitter.compose.rules.ktlint.ComposeModifierMissingCheck(),
-        com.twitter.compose.rules.ktlint.ComposeModifierReusedCheck(),
-        com.twitter.compose.rules.ktlint.ComposeModifierWithoutDefaultCheck(),
-        com.twitter.compose.rules.ktlint.ComposeMultipleContentEmittersCheck(),
-        com.twitter.compose.rules.ktlint.ComposeMutableParametersCheck(),
-        com.twitter.compose.rules.ktlint.ComposeNamingCheck(),
-        com.twitter.compose.rules.ktlint.ComposeParameterOrderCheck(),
-        com.twitter.compose.rules.ktlint.ComposeRememberMissingCheck(),
-        com.twitter.compose.rules.ktlint.ComposeViewModelForwardingCheck()
+        CustomRuleSetId,
+        ComposeModifierComposableCheck(),
+        ComposeModifierMissingCheck(),
+        ComposeModifierReusedCheck(),
+        ComposeModifierWithoutDefaultCheck(),
+        ComposeMultipleContentEmittersCheck(),
+        ComposeMutableParametersCheck(),
+        ComposeNamingCheck(),
+        ComposeParameterOrderCheck(),
+        ComposeRememberMissingCheck(),
+        ComposeViewModelForwardingCheck(),
+        ComposeViewModelInjectionCheck()
     )
 
     // 0.47.0+ ruleset
     override fun getRuleProviders(): Set<RuleProvider> = setOf(
-        RuleProvider { com.twitter.compose.rules.ktlint.ComposeModifierComposableCheck() },
-        RuleProvider { com.twitter.compose.rules.ktlint.ComposeModifierMissingCheck() },
-        RuleProvider { com.twitter.compose.rules.ktlint.ComposeModifierReusedCheck() },
-        RuleProvider { com.twitter.compose.rules.ktlint.ComposeModifierWithoutDefaultCheck() },
-        RuleProvider { com.twitter.compose.rules.ktlint.ComposeMultipleContentEmittersCheck() },
-        RuleProvider { com.twitter.compose.rules.ktlint.ComposeMutableParametersCheck() },
-        RuleProvider { com.twitter.compose.rules.ktlint.ComposeNamingCheck() },
-        RuleProvider { com.twitter.compose.rules.ktlint.ComposeParameterOrderCheck() },
-        RuleProvider { com.twitter.compose.rules.ktlint.ComposeRememberMissingCheck() },
-        RuleProvider { com.twitter.compose.rules.ktlint.ComposeViewModelForwardingCheck() }
+        RuleProvider { ComposeModifierComposableCheck() },
+        RuleProvider { ComposeModifierMissingCheck() },
+        RuleProvider { ComposeModifierReusedCheck() },
+        RuleProvider { ComposeModifierWithoutDefaultCheck() },
+        RuleProvider { ComposeMultipleContentEmittersCheck() },
+        RuleProvider { ComposeMutableParametersCheck() },
+        RuleProvider { ComposeNamingCheck() },
+        RuleProvider { ComposeParameterOrderCheck() },
+        RuleProvider { ComposeRememberMissingCheck() },
+        RuleProvider { ComposeViewModelForwardingCheck() }
     )
 
     private companion object {
