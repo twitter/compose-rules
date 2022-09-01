@@ -13,7 +13,9 @@ import io.gitlab.arturbosch.detekt.api.Entity
 import io.gitlab.arturbosch.detekt.api.Location
 import io.gitlab.arturbosch.detekt.api.Rule
 import org.jetbrains.kotlin.com.intellij.psi.PsiNameIdentifierOwner
+import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtElement
+import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.stubs.elements.KtStubElementTypes
 import org.jetbrains.kotlin.utils.addToStdlib.cast
@@ -44,11 +46,19 @@ abstract class TwitterDetektRule(
         report(finding)
     }
 
+    override fun visit(root: KtFile) {
+        super.visit(root)
+        visitFile(root, autoCorrect, emitter)
+    }
+
+    override fun visitClass(klass: KtClass) {
+        super<Rule>.visitClass(klass)
+        visitClass(klass, autoCorrect, emitter)
+    }
+
     override fun visitKtElement(element: KtElement) {
         super.visitKtElement(element)
         when (element.node.elementType) {
-            KtStubElementTypes.FILE -> visitFile(element.cast(), autoCorrect, emitter)
-            KtStubElementTypes.CLASS -> visitClass(element.cast(), autoCorrect, emitter)
             KtStubElementTypes.FUNCTION -> {
                 val function = element.cast<KtFunction>()
                 visitFunction(function, autoCorrect, emitter)

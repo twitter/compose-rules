@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 package com.twitter.compose.rules.detekt
 
-import com.twitter.compose.rules.ComposeMultipleContentEmitters
+import com.twitter.compose.rules.ComposeContentEmitterReturningValues
 import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.SourceLocation
 import io.gitlab.arturbosch.detekt.test.assertThat
@@ -41,7 +41,7 @@ class ComposeContentEmitterReturningValuesCheckTest {
                 SourceLocation(7, 5)
             )
         for (error in errors) {
-            assertThat(error).hasMessage(ComposeMultipleContentEmitters.ContentEmitterReturningValuesToo)
+            assertThat(error).hasMessage(ComposeContentEmitterReturningValues.ContentEmitterReturningValuesToo)
         }
     }
 }

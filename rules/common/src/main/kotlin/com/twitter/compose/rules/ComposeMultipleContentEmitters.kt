@@ -9,18 +9,11 @@ import com.twitter.rules.core.util.emitsContent
 import com.twitter.rules.core.util.findChildrenByClass
 import com.twitter.rules.core.util.hasReceiverType
 import com.twitter.rules.core.util.isComposable
-import com.twitter.rules.core.util.returnsValue
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtFunction
 
-class ComposeMultipleContentEmitters(
-    private val detector: Detector
-) : ComposeKtVisitor {
-
-    enum class Detector {
-        MultipleContentEmitters, ContentEmitterReturningValues
-    }
+class ComposeMultipleContentEmitters : ComposeKtVisitor {
 
     override fun visitFile(file: KtFile, autoCorrect: Boolean, emitter: Emitter) {
         // CHECK #1 : We want to find the composables first that are at risk of emitting content from multiple sources.
@@ -37,10 +30,8 @@ class ComposeMultipleContentEmitters(
 
         // We can start showing errors, for composables that emit more than once (from the list of known composables)
         val directEmissionsReported = composableToEmissionCount.filterValues { it > 1 }.keys
-        if (detector == Detector.MultipleContentEmitters) {
-            directEmissionsReported.forEach { composable ->
-                emitter.report(composable, MultipleContentEmittersDetected)
-            }
+        for (composable in directEmissionsReported) {
+            emitter.report(composable, MultipleContentEmittersDetected)
         }
 
         // Now we can give some extra passes through the list of composables, and try to get a more accurate count.
@@ -64,69 +55,42 @@ class ComposeMultipleContentEmitters(
 
         // Here we have the settled data after all the needed passes, so we want to show errors for them,
         // if they were not caught already by the 1st emission loop
-        val indirectEmissionsReported = currentMapping
-            .filterValues { it > 1 }
+        currentMapping.filterValues { it > 1 }
             .filterNot { directEmissionsReported.contains(it.key) }
             .keys
-
-        if (detector == Detector.MultipleContentEmitters) {
-            indirectEmissionsReported.forEach { composable ->
+            .forEach { composable ->
                 emitter.report(composable, MultipleContentEmittersDetected)
-            }
-        }
-
-        // CHECK #2: Composables that emit UI should not return any value
-
-        // Data in currentMapping should have all the # of emissions inferred for each composable in this file,
-        // so we want to iterate through all of them
-        if (detector == Detector.ContentEmitterReturningValues) {
-            currentMapping.filterValues { it > 0 }.keys
-                // If the function doesn't have a return type or returns Unit explicitly, it's valid. Otherwise, show error.
-                .filter { it.returnsValue }
-                // In here we will have functions that emit UI and return a type other than Unit, which is no bueno.
-                .forEach { composable ->
-                    emitter.report(composable, ContentEmitterReturningValuesToo)
-                }
-        }
-    }
-
-    private val KtFunction.directUiEmitterCount: Int
-        get() = bodyBlockExpression?.let { block ->
-            block.statements
-                .filterIsInstance<KtCallExpression>()
-                .count { it.emitsContent }
-        } ?: 0
-
-    private fun KtFunction.indirectUiEmitterCount(mapping: Map<KtFunction, Int>): Int {
-        val bodyBlock = bodyBlockExpression ?: return 0
-        return bodyBlock.statements
-            .filterIsInstance<KtCallExpression>()
-            .count { callExpression ->
-                // If it's a direct hit on our list, it should count directly
-                if (callExpression.emitsContent) return@count true
-
-                val name = callExpression.calleeExpression?.text ?: return@count false
-                // If the hit is in the provided mapping, it means it is using a composable that we know emits UI,
-                // that we inferred from previous passes
-                val value = mapping.mapKeys { entry -> entry.key.name }.getOrElse(name) { return@count false }
-                value > 0
             }
     }
 
     companion object {
+        internal val KtFunction.directUiEmitterCount: Int
+            get() = bodyBlockExpression?.let { block ->
+                block.statements
+                    .filterIsInstance<KtCallExpression>()
+                    .count { it.emitsContent }
+            } ?: 0
+
+        internal fun KtFunction.indirectUiEmitterCount(mapping: Map<KtFunction, Int>): Int {
+            val bodyBlock = bodyBlockExpression ?: return 0
+            return bodyBlock.statements
+                .filterIsInstance<KtCallExpression>()
+                .count { callExpression ->
+                    // If it's a direct hit on our list, it should count directly
+                    if (callExpression.emitsContent) return@count true
+
+                    val name = callExpression.calleeExpression?.text ?: return@count false
+                    // If the hit is in the provided mapping, it means it is using a composable that we know emits UI,
+                    // that we inferred from previous passes
+                    val value = mapping.mapKeys { entry -> entry.key.name }.getOrElse(name) { return@count false }
+                    value > 0
+                }
+        }
 
         val MultipleContentEmittersDetected = """
             Composable functions should only be emitting content into the composition from one source at their top level.
 
             See https://twitter.github.io/compose-rules/rules/#do-not-emit-multiple-pieces-of-content for more information.
-        """.trimIndent()
-
-        val ContentEmitterReturningValuesToo = """
-            Composable functions should either emit content into the composition or return a value, but not both.
-            If a composable should offer additional control surfaces to its caller, those control surfaces or callbacks
-            should be provided as parameters to the composable function by the caller.
-
-            See https://twitter.github.io/compose-rules/rules/#do-not-emit-content-and-return-a-result for more information.
         """.trimIndent()
     }
 }

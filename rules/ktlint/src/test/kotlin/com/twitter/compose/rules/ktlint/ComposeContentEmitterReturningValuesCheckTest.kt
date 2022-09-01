@@ -4,7 +4,7 @@ package com.twitter.compose.rules.ktlint
 
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
-import com.twitter.compose.rules.ComposeMultipleContentEmitters
+import com.twitter.compose.rules.ComposeContentEmitterReturningValues
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
@@ -36,12 +36,12 @@ class ComposeContentEmitterReturningValuesCheckTest {
             LintViolation(
                 line = 2,
                 col = 5,
-                detail = ComposeMultipleContentEmitters.ContentEmitterReturningValuesToo
+                detail = ComposeContentEmitterReturningValues.ContentEmitterReturningValuesToo
             ),
             LintViolation(
                 line = 7,
                 col = 5,
-                detail = ComposeMultipleContentEmitters.ContentEmitterReturningValuesToo
+                detail = ComposeContentEmitterReturningValues.ContentEmitterReturningValuesToo
             )
         )
     }

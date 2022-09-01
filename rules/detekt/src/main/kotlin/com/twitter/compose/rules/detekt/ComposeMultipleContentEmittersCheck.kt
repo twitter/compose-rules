@@ -3,7 +3,6 @@
 package com.twitter.compose.rules.detekt
 
 import com.twitter.compose.rules.ComposeMultipleContentEmitters
-import com.twitter.compose.rules.ComposeMultipleContentEmitters.Detector.MultipleContentEmitters
 import com.twitter.rules.core.ComposeKtVisitor
 import com.twitter.rules.core.detekt.TwitterDetektRule
 import io.gitlab.arturbosch.detekt.api.Config
@@ -13,7 +12,7 @@ import io.gitlab.arturbosch.detekt.api.Severity
 
 class ComposeMultipleContentEmittersCheck(config: Config) :
     TwitterDetektRule(config),
-    ComposeKtVisitor by ComposeMultipleContentEmitters(MultipleContentEmitters) {
+    ComposeKtVisitor by ComposeMultipleContentEmitters() {
 
     override val issue: Issue = Issue(
         id = "multiple-emitters-check",
