@@ -9,7 +9,7 @@ gradleEnterprise {
     }
 }
 
-rootProject.name = "com.twitter.rules.compose"
+rootProject.name = "com.twitter.compose.rules"
 include ':core:common'
 include ':core:detekt'
 include ':core:ktlint'
