@@ -16,7 +16,7 @@ If using [ktlint-gradle](https://github.com/JLLeitschuh/ktlint-gradle), you can 
 
 ```groovy
 dependencies {
-    ktlintRuleset "com.twitter.rules.compose:ktlint:<VERSION>"
+    ktlintRuleset "com.twitter.compose.rules:ktlint:<VERSION>"
 }
 ```
 
