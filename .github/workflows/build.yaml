@@ -63,13 +63,15 @@ jobs:
           distribution: 'zulu'
           java-version: 17
 
-      - uses: gradle/gradle-build-action@v2
-
-      - name: Deploy to Sonatype
-        run: ./gradlew publish --no-parallel --no-daemon
+      - uses: burrunan/gradle-cache-action@v1
+        name: Deploy to Sonatype
         env:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
           ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.GPG_KEY }}
           ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.GPG_KEY_ID }}
           ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.GPG_KEY_PASSWORD }}
+        with:
+          gradle-dependencies-cache-key: |
+            gradle/libs.versions.toml
+          arguments: publish --no-parallel --no-daemon
