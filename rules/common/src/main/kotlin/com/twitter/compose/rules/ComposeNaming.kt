@@ -8,13 +8,7 @@ import com.twitter.rules.core.report
 import com.twitter.rules.core.util.returnsValue
 import org.jetbrains.kotlin.psi.KtFunction
 
-class ComposeNaming(private val type: Type = Type.All) : ComposeKtVisitor {
-
-    sealed class Type(val checkReturnResults: Boolean, val checkDontReturnResults: Boolean) {
-        object All : Type(checkReturnResults = true, checkDontReturnResults = true)
-        object CheckReturnResults : Type(checkReturnResults = true, checkDontReturnResults = false)
-        object CheckDontReturnResults : Type(checkReturnResults = false, checkDontReturnResults = true)
-    }
+class ComposeNaming : ComposeKtVisitor {
 
     override fun visitComposable(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
         // If it's a block we can't know if there is a return type or not from ktlint
@@ -23,12 +17,12 @@ class ComposeNaming(private val type: Type = Type.All) : ComposeKtVisitor {
 
         if (function.returnsValue) {
             // If it returns value, the composable should start with a lowercase letter
-            if (firstLetter.isUpperCase() && type.checkReturnResults) {
+            if (firstLetter.isUpperCase()) {
                 emitter.report(function, ComposablesThatReturnResultsShouldBeLowercase)
             }
         } else {
             // If it returns Unit or doesn't have a return type, we should start with an uppercase letter
-            if (firstLetter.isLowerCase() && type.checkDontReturnResults) {
+            if (firstLetter.isLowerCase()) {
                 emitter.report(function, ComposablesThatDoNotReturnResultsShouldBeCapitalized)
             }
         }
