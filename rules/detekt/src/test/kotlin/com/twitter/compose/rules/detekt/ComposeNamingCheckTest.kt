@@ -12,8 +12,7 @@ import org.junit.jupiter.api.Test
 
 class ComposeNamingCheckTest {
 
-    private val ruleReturns = ComposeNamingReturnResultsCheck(Config.empty)
-    private val ruleNotReturns = ComposeNamingDontReturnResultsCheck(Config.empty)
+    private val rule = ComposeNamingCheck(Config.empty)
 
     @Test
     fun `passes when a composable that returns values is lowercase`() {
@@ -23,8 +22,7 @@ class ComposeNamingCheckTest {
                 @Composable
                 fun myComposable(): Something { }
             """.trimIndent()
-        assertThat(ruleReturns.lint(code)).isEmpty()
-        assertThat(ruleNotReturns.lint(code)).isEmpty()
+        assertThat(rule.lint(code)).isEmpty()
     }
 
     @Test
@@ -37,8 +35,7 @@ class ComposeNamingCheckTest {
                 @Composable
                 fun MyComposable(): Unit { }
             """.trimIndent()
-        assertThat(ruleReturns.lint(code)).isEmpty()
-        assertThat(ruleNotReturns.lint(code)).isEmpty()
+        assertThat(rule.lint(code)).isEmpty()
     }
 
     @Test
@@ -57,8 +54,7 @@ class ComposeNamingCheckTest {
 
                 val whatever = @Composable { }
             """.trimIndent()
-        assertThat(ruleReturns.lint(code)).isEmpty()
-        assertThat(ruleNotReturns.lint(code)).isEmpty()
+        assertThat(rule.lint(code)).isEmpty()
     }
 
     @Test
@@ -69,7 +65,7 @@ class ComposeNamingCheckTest {
                 @Composable
                 fun MyComposable(): Something { }
             """.trimIndent()
-        val errors = ruleReturns.lint(code)
+        val errors = rule.lint(code)
         assertThat(errors).hasSize(1)
             .hasSourceLocations(
                 SourceLocation(2, 5)
@@ -89,7 +85,7 @@ class ComposeNamingCheckTest {
                 fun myComposable(): Unit { }
             """.trimIndent()
 
-        val errors = ruleNotReturns.lint(code)
+        val errors = rule.lint(code)
         assertThat(errors).hasSize(2)
             .hasSourceLocations(
                 SourceLocation(2, 5),
