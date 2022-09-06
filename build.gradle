@@ -6,12 +6,12 @@ buildscript {
 
     dependencies {
         classpath libs.kotlin.gradlePlugin
+        classpath libs.gradleMavenPublishPlugin
     }
 }
 
 plugins {
     alias(libs.plugins.spotless)
-    alias(libs.plugins.gradle.maven.publish)
 }
 
 allprojects {
