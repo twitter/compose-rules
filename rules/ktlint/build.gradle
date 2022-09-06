@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 plugins {
     id 'org.jetbrains.kotlin.jvm'
-    id 'com.vanniktech.maven.publish'
+    alias(libs.plugins.gradle.maven.publish)
 }
 
 test {

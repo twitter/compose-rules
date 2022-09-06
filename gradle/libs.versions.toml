@@ -16,8 +16,10 @@ kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-compiler = { module = "org.jetbrains.kotlin:kotlin-compiler-embeddable", version.ref = "kotlin" }
 
-gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.21.0"
-
 junit5 = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
 junit5-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit" }
 assertj = "org.assertj:assertj-core:3.23.1"
+
+[plugins]
+gradle-maven-publish = { id = "com.vanniktech.maven.publish", version = "0.21.0" }
+spotless = { id = "com.diffplug.spotless", version = "6.10.0" }
