@@ -271,15 +271,35 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#disabling-a-specific-rule" class="md-nav__link">
+    Disabling a specific rule
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#disabling-a-specific-rule" class="md-nav__link">
+  <a href="#using-the-custom-ruleset-with-detekt" class="md-nav__link">
+    Using the custom ruleset with Detekt
+  </a>
+  
+    <nav class="md-nav" aria-label="Using the custom ruleset with Detekt">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#disabling-a-specific-rule_1" class="md-nav__link">
     Disabling a specific rule
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -359,15 +379,35 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#disabling-a-specific-rule" class="md-nav__link">
+    Disabling a specific rule
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#disabling-a-specific-rule" class="md-nav__link">
+  <a href="#using-the-custom-ruleset-with-detekt" class="md-nav__link">
+    Using the custom ruleset with Detekt
+  </a>
+  
+    <nav class="md-nav" aria-label="Using the custom ruleset with Detekt">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#disabling-a-specific-rule_1" class="md-nav__link">
     Disabling a specific rule
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -405,12 +445,25 @@
 </code></pre></div>
 <h3 id="with-spotless">With spotless<a class="headerlink" href="#with-spotless" title="Permanent link">&para;</a></h3>
 <p>If using <a href="https://github.com/diffplug/spotless">Spotless</a>, there is currently a workaround on how to do that described <a href="https://github.com/diffplug/spotless/issues/1220">in this issue</a>.</p>
-<h2 id="disabling-a-specific-rule">Disabling a specific rule<a class="headerlink" href="#disabling-a-specific-rule" title="Permanent link">&para;</a></h2>
+<h3 id="disabling-a-specific-rule">Disabling a specific rule<a class="headerlink" href="#disabling-a-specific-rule" title="Permanent link">&para;</a></h3>
 <p>To disable a rule you have to follow the <a href="https://github.com/pinterest/ktlint#how-do-i-suppress-an-errors-for-a-lineblockfile">instructions from the ktlint documentation</a>, and use the id of the rule you want to disable with the <code>twitter-compose</code> tag.</p>
 <p>For example, to disable <code>compose-naming-check</code>, the tag you'll need to disable is <code>twitter-compose:compose-naming-check</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="w">    </span><span class="cm">/* ktlint-disable twitter-compose:compose-naming-check */</span><span class="w"></span>
 <span class="w">    </span><span class="p">...</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="n">here</span><span class="w"></span>
 <span class="w">    </span><span class="cm">/* ktlint-enable twitter-compose:compose-naming-check */</span><span class="w"></span>
+</code></pre></div>
+<h2 id="using-the-custom-ruleset-with-detekt">Using the custom ruleset with Detekt<a class="headerlink" href="#using-the-custom-ruleset-with-detekt" title="Permanent link">&para;</a></h2>
+<p>When using the <a href="https://detekt.dev/docs/gettingstarted/gradle">Detekt Gradle Plugin</a>, you can specify the dependency on this set of rules by using <code>detektPlugins</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">dependencies</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">detektPlugins</span><span class="w"> </span><span class="s2">&quot;com.twitter.compose.rules:detekt:&lt;VERSION&gt;&quot;</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="disabling-a-specific-rule_1">Disabling a specific rule<a class="headerlink" href="#disabling-a-specific-rule_1" title="Permanent link">&para;</a></h3>
+<p>To disable a rule you have to follow the <a href="https://detekt.dev/docs/introduction/suppressing-rules">instructions from the Detekt documentation</a>, and use the id of the rule you want to disable.</p>
+<p>For example, to disable <code>compose-naming-check</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Suppress</span><span class="p">(</span><span class="s">&quot;compose-naming-check&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="nd">@Composable</span><span class="w"></span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">myNameIsWrong</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 
 
