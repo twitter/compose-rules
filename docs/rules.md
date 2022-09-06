@@ -129,7 +129,7 @@ Let's see it with an example.
 ```kotlin
 @Composable
 private fun MyComposable() {
-    val viewModel = weaverViewModel<MyViewModel>()
+    val viewModel = viewModel<MyViewModel>()
     // ...
 }
 ```

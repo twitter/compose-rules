@@ -25,7 +25,7 @@ dependencies {
 If using [Spotless](https://github.com/diffplug/spotless), there is currently a workaround on how to do that described [in this issue](https://github.com/diffplug/spotless/issues/1220).
 
 
-## Disabling a specific rule
+### Disabling a specific rule
 
 To disable a rule you have to follow the [instructions from the ktlint documentation](https://github.com/pinterest/ktlint#how-do-i-suppress-an-errors-for-a-lineblockfile), and use the id of the rule you want to disable with the `twitter-compose` tag.
 
@@ -35,4 +35,26 @@ For example, to disable `compose-naming-check`, the tag you'll need to disable i
     /* ktlint-disable twitter-compose:compose-naming-check */
     ... your code here
     /* ktlint-enable twitter-compose:compose-naming-check */
+```
+
+## Using the custom ruleset with Detekt
+
+When using the [Detekt Gradle Plugin](https://detekt.dev/docs/gettingstarted/gradle), you can specify the dependency on this set of rules by using `detektPlugins`.
+
+```groovy
+dependencies {
+    detektPlugins "com.twitter.compose.rules:detekt:<VERSION>"
+}
+```
+
+### Disabling a specific rule
+
+To disable a rule you have to follow the [instructions from the Detekt documentation](https://detekt.dev/docs/introduction/suppressing-rules), and use the id of the rule you want to disable.
+
+For example, to disable `compose-naming-check`:
+
+```kotlin
+@Suppress("compose-naming-check")
+@Composable
+fun myNameIsWrong() { }
 ```
