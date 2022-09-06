@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 plugins {
     id 'org.jetbrains.kotlin.jvm'
-    id 'com.vanniktech.maven.publish'
 }
+apply plugin: "com.vanniktech.maven.publish"
 
 test {
     useJUnitPlatform()
