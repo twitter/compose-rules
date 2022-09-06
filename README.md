@@ -12,11 +12,7 @@ Check out the project website for more information: https://twitter.github.io/co
 
 The comprehensive list of what these rules will check for is in [the rules documentaton](https://github.com/twitter/compose-rules/blob/main/docs/rules.md). It contains both what we check for and why are we doing that, so giving it a good read is encouraged.
 
-## Using the custom ruleset with ktlint
-
-### With ktlint-gradle
-
-If using [ktlint-gradle](https://github.com/JLLeitschuh/ktlint-gradle), you can specify the dependency on this set of rules by using the `ktlintRuleset`.
+## Using with ktlint
 
 ```groovy
 dependencies {
@@ -24,9 +20,21 @@ dependencies {
 }
 ```
 
-### With spotless
+For more information, you can refer to the [Using with ktlint](https://twitter.github.io/compose-rules/#using-the-custom-ruleset-with-ktlint) documentation.
 
-If using [Spotless](https://github.com/diffplug/spotless), there is currently a workaround on how to do that described [in this issue](https://github.com/diffplug/spotless/issues/1220).
+### Using with Spotless
+
+If using [Spotless](https://github.com/diffplug/spotless), you can use these rules via ktlint. There doesn't seem to be official support for this yet, but there is a workaround explained [in this issue](https://github.com/diffplug/spotless/issues/1220).
+
+## Using with Detekt
+
+```groovy
+dependencies {
+    detektPlugins "com.twitter.compose.rules:ktlint:<VERSION>"
+}
+```
+
+For more information, you can refer to the [Using with Detekt](https://twitter.github.io/compose-rules/#using-the-custom-ruleset-with-detekt) documentation.
 
 ## Contributing
 
