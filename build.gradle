@@ -50,3 +50,9 @@ subprojects {
         }
     }
 }
+
+tasks.register("printVersion") {
+    doLast {
+        println(project.property("VERSION_NAME"))
+    }
+}
