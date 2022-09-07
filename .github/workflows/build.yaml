@@ -66,9 +66,19 @@ jobs:
       - uses: gradle/gradle-build-action@v2
 
       - name: Deploy to Sonatype
-        run: ./gradlew clean publish --no-parallel --no-daemon --no-build-cache --no-configuration-cache --stacktrace --info
+        run: ./gradlew clean publish --no-parallel --no-daemon --no-configuration-cache --stacktrace
         env:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
           ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.GPG_KEY }}
           ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.GPG_KEY_PASSWORD }}
+
+      - name: Add artifact version to ENV
+        run: echo "VERSION=$(./gradlew -q printVersion)" >> $GITHUB_ENV
+
+      - name: Publish release
+        run: ./gradlew closeAndReleaseRepository
+        if: success() && !endsWith(env.VERSION, '-SNAPSHOT')
+        env:
+            ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.SONATYPE_USERNAME }}
+            ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.SONATYPE_PASSWORD }}
