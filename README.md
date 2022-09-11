@@ -30,7 +30,7 @@ If using [Spotless](https://github.com/diffplug/spotless), you can use these rul
 
 ```groovy
 dependencies {
-    detektPlugins "com.twitter.compose.rules:ktlint:<VERSION>"
+    detektPlugins "com.twitter.compose.rules:detekt:<VERSION>"
 }
 ```
 
