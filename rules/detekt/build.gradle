@@ -11,8 +11,8 @@ test {
 
 dependencies {
     api project(':rules:common')
+    api libs.detekt.core
 
-    implementation libs.detekt.core
     implementation project(':core-common')
     implementation project(':core-detekt')
 

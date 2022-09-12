@@ -11,8 +11,8 @@ test {
 
 dependencies {
     api project(':rules:common')
+    api libs.ktlint.core
 
-    implementation libs.ktlint.core
     implementation project(':core-common')
     implementation project(':core-ktlint')
 
