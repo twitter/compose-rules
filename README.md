@@ -1,8 +1,7 @@
 # Twitter's Jetpack Compose Rules
 
 
-![build](https://github.com/twitter/compose-rules/actions/workflows/build.yaml/badge.svg)
-[![Latest version](https://img.shields.io/maven-central/v/com.twitter.compose.rules/common)]
+![build](https://github.com/twitter/compose-rules/actions/workflows/build.yaml/badge.svg)[![Latest version](https://img.shields.io/maven-central/v/com.twitter.compose.rules/common)]
 
 A big challenge to face when a big team with a large codebase starts adopting Compose is that not everybody will start at the same page. This happened to us at Twitter.
 
