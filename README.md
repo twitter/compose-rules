@@ -3,17 +3,19 @@
 
 ![build](https://github.com/twitter/compose-rules/actions/workflows/build.yaml/badge.svg) ![Latest version](https://img.shields.io/maven-central/v/com.twitter.compose.rules/common)
 
-A big challenge to face when a big team with a large codebase starts adopting Compose is that not everybody will start at the same page. This happened to us at Twitter.
+It can be challenging for bit teams to start adopting Compose, particularly because not everyone will start at same time or with same patterns. Twitter tried to ease the pain by creating a set of Compose Lint rules.
 
-Compose is 🔝, allows for amazing things, but has a bunch of footguns to be aware of. [See the thread](https://twitter.com/mrmans0n/status/1507390768796909571).
+Compose has lots of superpowers but also has a bunch of footguns to be aware of. [as seen in this Twitter Thread](https://twitter.com/mrmans0n/status/1507390768796909571).
 
-This is where these static checks come in. We want to detect all the potential issues even before they reach the code review state, and foster a healthy Compose adoption.
+This is where our static checks come in. We want to detect as many potential issues as we can, as quickly as we can. In this case we want to fail lint prior to engineers having to review code, similar to other static check libraries we hope this leads to a "don't shoot the messengers" philosphy which will foster healthy Compose adoption.
 
 Check out the project website for more information: https://twitter.github.io/compose-rules
 
 ## Static checks for Compose bundled in this repo
 
-The comprehensive list of what these rules will check for is in [the rules documentaton](https://github.com/twitter/compose-rules/blob/main/docs/rules.md). It contains both what we check for and why are we doing that, so giving it a good read is encouraged.
+You can find the comprehensive list of rules will check for in [the rules documentaton](https://twitter.github.io/compose-rules/rules). It contains both the what and why for each rule, we encourage you to read it prior to adopting our rules.
+
+There are 3 ways you can add compose-rules - using ktlint, detekt or spotless
 
 ## Using with ktlint
 
@@ -41,7 +43,7 @@ For more information, you can refer to the [Using with Detekt](https://twitter.g
 
 ## Contributing
 
-Contributing new rules or fixes is welcome. See the [Contributing](CONTRIBUTING.md) instructions for more information.
+We love sharing and learning from others, contributing new rules or fixes is welcome. See the [Contributing](CONTRIBUTING.md) instructions for more information.
 
 ## License
 
