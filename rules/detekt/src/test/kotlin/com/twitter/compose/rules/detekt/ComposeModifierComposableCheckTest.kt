@@ -7,6 +7,7 @@ import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.test.assertThat
 import io.gitlab.arturbosch.detekt.test.lint
 import org.intellij.lang.annotations.Language
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 class ComposeModifierComposableCheckTest {
@@ -27,5 +28,17 @@ class ComposeModifierComposableCheckTest {
         assertThat(errors).hasTextLocations("something1", "something2")
         assertThat(errors[0]).hasMessage(ComposeModifierComposable.ComposableModifier)
         assertThat(errors[1]).hasMessage(ComposeModifierComposable.ComposableModifier)
+    }
+
+    @Test
+    fun `Do not error on regular @Composable functions`() {
+        @Language("kotlin")
+        val code = """
+            @Composable
+            fun MyComposable(text: String, modifier: Modifier = Modifier) {}
+        """.trimIndent()
+
+        val errors = rule.lint(code)
+        Assertions.assertTrue(errors.isEmpty())
     }
 }

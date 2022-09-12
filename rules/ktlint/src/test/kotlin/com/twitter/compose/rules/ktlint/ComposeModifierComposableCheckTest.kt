@@ -36,4 +36,15 @@ class ComposeModifierComposableCheckTest {
             )
         )
     }
+
+    @Test
+    fun `Do not error on regular @Composable functions`() {
+        @Language("kotlin")
+        val code = """
+            @Composable
+            fun MyComposable(text: String, modifier: Modifier = Modifier) {}
+        """.trimIndent()
+
+        modifierRuleAssertThat(code).hasNoLintViolations()
+    }
 }
