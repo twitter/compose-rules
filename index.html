@@ -292,6 +292,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#enabling-rules" class="md-nav__link">
+    Enabling rules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#disabling-a-specific-rule_1" class="md-nav__link">
     Disabling a specific rule
   </a>
@@ -400,6 +407,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#enabling-rules" class="md-nav__link">
+    Enabling rules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#disabling-a-specific-rule_1" class="md-nav__link">
     Disabling a specific rule
   </a>
@@ -444,6 +458,7 @@
 <span class="w">    </span><span class="n">ktlintRuleset</span><span class="w"> </span><span class="s2">&quot;com.twitter.compose.rules:ktlint:&lt;VERSION&gt;&quot;</span><span class="w"></span>
 <span class="o">}</span><span class="w"></span>
 </code></pre></div>
+<p>NOTE: Currently <a href="https://github.com/JLLeitschuh/ktlint-gradle/pull/595">there seems to be an issue supporting ktlint over 0.46.0</a>.</p>
 <h3 id="with-spotless">With spotless<a class="headerlink" href="#with-spotless" title="Permanent link">&para;</a></h3>
 <p>If using <a href="https://github.com/diffplug/spotless">Spotless</a>, there is currently a workaround on how to do that described <a href="https://github.com/diffplug/spotless/issues/1220">in this issue</a>.</p>
 <h3 id="disabling-a-specific-rule">Disabling a specific rule<a class="headerlink" href="#disabling-a-specific-rule" title="Permanent link">&para;</a></h3>
@@ -459,10 +474,38 @@
 <span class="w">    </span><span class="n">detektPlugins</span><span class="w"> </span><span class="s2">&quot;com.twitter.compose.rules:detekt:&lt;VERSION&gt;&quot;</span><span class="w"></span>
 <span class="o">}</span><span class="w"></span>
 </code></pre></div>
+<h3 id="enabling-rules">Enabling rules<a class="headerlink" href="#enabling-rules" title="Permanent link">&para;</a></h3>
+<p>For the rules to be picked up, you will need to enable them in your <code>detekt.yml</code> file.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">TwitterCompose</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ContentEmitterReturningValues</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ModifierComposable</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ModifierMissing</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ModifierReused</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ModifierWithoutDefault</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">MultipleEmitters</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">MutableParams</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ComposableNaming</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ComposableParamOrder</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">RememberMissing</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ViewModelForwarding</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ViewModelInjection</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+</code></pre></div>
 <h3 id="disabling-a-specific-rule_1">Disabling a specific rule<a class="headerlink" href="#disabling-a-specific-rule_1" title="Permanent link">&para;</a></h3>
 <p>To disable a rule you have to follow the <a href="https://detekt.dev/docs/introduction/suppressing-rules">instructions from the Detekt documentation</a>, and use the id of the rule you want to disable.</p>
-<p>For example, to disable <code>compose-naming-check</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@Suppress</span><span class="p">(</span><span class="s">&quot;compose-naming-check&quot;</span><span class="p">)</span><span class="w"></span>
+<p>For example, to disable <code>ComposableNaming</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Suppress</span><span class="p">(</span><span class="s">&quot;ComposableNaming&quot;</span><span class="p">)</span><span class="w"></span>
 <span class="nd">@Composable</span><span class="w"></span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">myNameIsWrong</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
