@@ -14,7 +14,7 @@ class ComposeModifierComposableCheck(config: Config) :
     TwitterDetektRule(config),
     ComposeKtVisitor by ComposeModifierComposable() {
     override val issue: Issue = Issue(
-        id = "modifier-composable-check",
+        id = "ModifierComposable",
         severity = Severity.Performance,
         description = ComposeModifierComposable.ComposableModifier,
         debt = Debt.TEN_MINS

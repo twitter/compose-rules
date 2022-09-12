@@ -14,7 +14,7 @@ class ComposeParameterOrderCheck(config: Config) :
     TwitterDetektRule(config),
     ComposeKtVisitor by ComposeParameterOrder() {
     override val issue: Issue = Issue(
-        id = "param-order-check",
+        id = "ComposableParamOrder",
         severity = Severity.CodeSmell,
         description = "Parameters in a composable function should be ordered following this pattern: " +
             "params without defaults, modifiers, params with defaults and optionally, " +

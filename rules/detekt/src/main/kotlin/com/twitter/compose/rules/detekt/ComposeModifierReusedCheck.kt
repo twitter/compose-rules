@@ -14,7 +14,7 @@ class ComposeModifierReusedCheck(config: Config) :
     TwitterDetektRule(config),
     ComposeKtVisitor by ComposeModifierReused() {
     override val issue: Issue = Issue(
-        id = "modifier-reused-check",
+        id = "ModifierReused",
         severity = Severity.Defect,
         description = ComposeModifierReused.ModifierShouldBeUsedOnceOnly,
         debt = Debt.TWENTY_MINS

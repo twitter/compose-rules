@@ -14,7 +14,7 @@ class ComposeMutableParametersCheck(config: Config) :
     TwitterDetektRule(config),
     ComposeKtVisitor by ComposeMutableParameters() {
     override val issue: Issue = Issue(
-        id = "mutable-params-check",
+        id = "MutableParams",
         severity = Severity.Defect,
         description = ComposeMutableParameters.MutableParameterInCompose,
         debt = Debt.TWENTY_MINS
