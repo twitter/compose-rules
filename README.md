@@ -3,7 +3,7 @@
 
 ![build](https://github.com/twitter/compose-rules/actions/workflows/build.yaml/badge.svg) ![Latest version](https://img.shields.io/maven-central/v/com.twitter.compose.rules/common)
 
-It can be challenging for big teams to start adopting Compose, particularly because not everyone will start at same time or with same patterns. Twitter tried to ease the pain by creating a set of Compose Lint rules.
+It can be challenging for big teams to start adopting Compose, particularly because not everyone will start at same time or with the same patterns. Twitter tried to ease the pain by creating a set of Compose Lint rules.
 
 Compose has lots of superpowers but also has a bunch of footguns to be aware of. [as seen in this Twitter Thread](https://twitter.com/mrmans0n/status/1507390768796909571).
 
