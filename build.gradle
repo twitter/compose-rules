@@ -19,6 +19,8 @@ allprojects {
         google()
         mavenCentral()
     }
+    group = GROUP
+    version = VERSION_NAME
 }
 
 subprojects {
