@@ -49,7 +49,6 @@ subprojects {
             freeCompilerArgs += "-Xjvm-default=all"
         }
     }
-    group = GROUP
     version = VERSION_NAME
 }
 
