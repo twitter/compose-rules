@@ -11,9 +11,9 @@ gradleEnterprise {
 }
 
 rootProject.name = "com.twitter.compose.rules"
-include ':core:common'
-include ':core:detekt'
-include ':core:ktlint'
+include ':core-common'
+include ':core-detekt'
+include ':core-ktlint'
 include ':rules:common'
 include ':rules:detekt'
 include ':rules:ktlint'

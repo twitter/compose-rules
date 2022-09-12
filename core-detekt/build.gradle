@@ -4,6 +4,6 @@ plugins {
     id 'org.jetbrains.kotlin.jvm'
 }
 dependencies {
-    api libs.ktlint.core
-    implementation project(':core:common')
+    api libs.detekt.core
+    implementation project(':core-common')
 }

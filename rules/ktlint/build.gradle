@@ -13,8 +13,8 @@ dependencies {
     api project(':rules:common')
 
     implementation libs.ktlint.core
-    implementation project(':core:common')
-    implementation project(':core:ktlint')
+    implementation project(':core-common')
+    implementation project(':core-ktlint')
 
     testImplementation libs.ktlint.test
     testImplementation libs.junit5

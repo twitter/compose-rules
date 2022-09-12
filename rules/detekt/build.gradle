@@ -13,8 +13,8 @@ dependencies {
     api project(':rules:common')
 
     implementation libs.detekt.core
-    implementation project(':core:common')
-    implementation project(':core:detekt')
+    implementation project(':core-common')
+    implementation project(':core-detekt')
 
     testImplementation libs.detekt.test
     testImplementation libs.junit5
