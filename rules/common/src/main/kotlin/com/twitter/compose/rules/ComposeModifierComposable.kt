@@ -11,7 +11,7 @@ class ComposeModifierComposable : ComposeKtVisitor {
 
     override fun visitComposable(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
         val receiverTypeReference = function.receiverTypeReference
-        if (receiverTypeReference != null && receiverTypeReference.text != "Modifier") return
+        if (receiverTypeReference == null || receiverTypeReference.text != "Modifier") return
 
         emitter.report(function, ComposableModifier)
     }
