@@ -1,5 +1,9 @@
 # Twitter's Jetpack Compose Rules
 
+
+![build](https://github.com/twitter/compose-rules/workflows/build/badge.svg)
+[![Latest version](https://img.shields.io/maven-central/v/com.twitter.compose.rules/common)]
+
 A big challenge to face when a big team with a large codebase starts adopting Compose is that not everybody will start at the same page. This happened to us at Twitter.
 
 Compose is 🔝, allows for amazing things, but has a bunch of footguns to be aware of. [See the thread](https://twitter.com/mrmans0n/status/1507390768796909571).
