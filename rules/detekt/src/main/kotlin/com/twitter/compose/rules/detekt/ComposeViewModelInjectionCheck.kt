@@ -15,7 +15,7 @@ class ComposeViewModelInjectionCheck(config: Config) :
     ComposeKtVisitor by ComposeViewModelInjection() {
 
     override val issue: Issue = Issue(
-        id = "vm-injection-check",
+        id = "ViewModelInjection",
         severity = Severity.CodeSmell,
         description = """
             Implicit dependencies of composables should be made explicit.

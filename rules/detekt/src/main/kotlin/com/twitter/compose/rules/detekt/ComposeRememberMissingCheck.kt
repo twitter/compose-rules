@@ -15,7 +15,7 @@ class ComposeRememberMissingCheck(config: Config) :
     ComposeKtVisitor by ComposeRememberMissing() {
 
     override val issue: Issue = Issue(
-        id = "remember-missing-check",
+        id = "RememberMissing",
         severity = Severity.Defect,
         description = """
             Using mutableStateOf/derivedStateOf in a @Composable function without it being inside of a remember function.

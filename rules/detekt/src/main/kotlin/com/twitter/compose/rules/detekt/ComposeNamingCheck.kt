@@ -14,7 +14,7 @@ class ComposeNamingCheck(config: Config) :
     TwitterDetektRule(config),
     ComposeKtVisitor by ComposeNaming() {
     override val issue: Issue = Issue(
-        id = "naming-check",
+        id = "ComposableNaming",
         severity = Severity.CodeSmell,
         description = """
         Composable functions that return Unit should start with an uppercase letter. They are considered declarative entities that can be either present or absent in a composition and therefore follow the naming rules for classes.

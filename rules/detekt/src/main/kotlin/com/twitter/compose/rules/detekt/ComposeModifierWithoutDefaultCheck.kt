@@ -17,7 +17,7 @@ class ComposeModifierWithoutDefaultCheck(config: Config) :
     override val autoCorrect: Boolean = true
 
     override val issue: Issue = Issue(
-        id = "modifier-without-default-check",
+        id = "ModifierWithoutDefault",
         severity = Severity.CodeSmell,
         description = ComposeModifierWithoutDefault.MissingModifierDefaultParam,
         debt = Debt.FIVE_MINS

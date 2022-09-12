@@ -15,7 +15,7 @@ class ComposeContentEmitterReturningValuesCheck(config: Config) :
     ComposeKtVisitor by ComposeContentEmitterReturningValues() {
 
     override val issue: Issue = Issue(
-        id = "content-emitter-returning-values-check",
+        id = "ContentEmitterReturningValues",
         severity = Severity.Defect,
         description = ComposeContentEmitterReturningValues.ContentEmitterReturningValuesToo,
         debt = Debt.TWENTY_MINS

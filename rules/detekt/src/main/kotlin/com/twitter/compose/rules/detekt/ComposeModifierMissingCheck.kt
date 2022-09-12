@@ -14,7 +14,7 @@ class ComposeModifierMissingCheck(config: Config) :
     TwitterDetektRule(config),
     ComposeKtVisitor by ComposeModifierMissing() {
     override val issue: Issue = Issue(
-        id = "modifier-missing-check",
+        id = "ModifierMissing",
         severity = Severity.Defect,
         description = ComposeModifierMissing.MissingModifierContentComposable,
         debt = Debt.TEN_MINS

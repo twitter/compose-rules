@@ -15,7 +15,7 @@ class ComposeMultipleContentEmittersCheck(config: Config) :
     ComposeKtVisitor by ComposeMultipleContentEmitters() {
 
     override val issue: Issue = Issue(
-        id = "multiple-emitters-check",
+        id = "MultipleEmitters",
         severity = Severity.Defect,
         description = ComposeMultipleContentEmitters.MultipleContentEmittersDetected,
         debt = Debt.TWENTY_MINS

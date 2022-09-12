@@ -20,6 +20,8 @@ dependencies {
 }
 ```
 
+NOTE: Currently [there seems to be an issue supporting ktlint over 0.46.0](https://github.com/JLLeitschuh/ktlint-gradle/pull/595).
+
 ### With spotless
 
 If using [Spotless](https://github.com/diffplug/spotless), there is currently a workaround on how to do that described [in this issue](https://github.com/diffplug/spotless/issues/1220).
@@ -47,14 +49,46 @@ dependencies {
 }
 ```
 
+### Enabling rules
+
+For the rules to be picked up, you will need to enable them in your `detekt.yml` file.
+
+```yaml
+TwitterCompose:
+  ContentEmitterReturningValues:
+    active: true
+  ModifierComposable:
+    active: true
+  ModifierMissing:
+    active: true
+  ModifierReused:
+    active: true
+  ModifierWithoutDefault:
+    active: true
+  MultipleEmitters:
+    active: true
+  MutableParams:
+    active: true
+  ComposableNaming:
+    active: true
+  ComposableParamOrder:
+    active: true
+  RememberMissing:
+    active: true
+  ViewModelForwarding:
+    active: true
+  ViewModelInjection:
+    active: true
+```
+
 ### Disabling a specific rule
 
 To disable a rule you have to follow the [instructions from the Detekt documentation](https://detekt.dev/docs/introduction/suppressing-rules), and use the id of the rule you want to disable.
 
-For example, to disable `compose-naming-check`:
+For example, to disable `ComposableNaming`:
 
 ```kotlin
-@Suppress("compose-naming-check")
+@Suppress("ComposableNaming")
 @Composable
 fun myNameIsWrong() { }
 ```

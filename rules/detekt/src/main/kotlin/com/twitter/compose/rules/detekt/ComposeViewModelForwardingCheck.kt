@@ -14,7 +14,7 @@ class ComposeViewModelForwardingCheck(config: Config) :
     TwitterDetektRule(config),
     ComposeKtVisitor by ComposeViewModelForwarding() {
     override val issue: Issue = Issue(
-        id = "vm-forwarding-check",
+        id = "ViewModelForwarding",
         severity = Severity.CodeSmell,
         description = ComposeViewModelForwarding.AvoidViewModelForwarding,
         debt = Debt.TWENTY_MINS
