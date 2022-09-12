@@ -19,8 +19,6 @@ allprojects {
         google()
         mavenCentral()
     }
-    group = GROUP
-    version = VERSION_NAME
 }
 
 subprojects {
@@ -51,6 +49,8 @@ subprojects {
             freeCompilerArgs += "-Xjvm-default=all"
         }
     }
+    group = GROUP
+    version = VERSION_NAME
 }
 
 tasks.register("printVersion") {
