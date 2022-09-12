@@ -31,7 +31,7 @@ class ComposeModifierComposableCheckTest {
     }
 
     @Test
-    internal fun `do not error on a regular composable`() {
+    fun `do not error on a regular composable`() {
         @Language("kotlin")
         val code = """
             @Composable
@@ -39,6 +39,6 @@ class ComposeModifierComposableCheckTest {
         """.trimIndent()
 
         val errors = rule.lint(code)
-        Assertions.assertTrue(errors.isEmpty())
+        assertThat(errors).isEmpty()
     }
 }
