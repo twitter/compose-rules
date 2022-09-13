@@ -29,6 +29,8 @@ class ComposeViewModelForwarding : ComposeKtVisitor {
         // a capital letter (so, most likely, composables).
         bodyBlock.findDirectChildrenByClass<KtCallExpression>()
             .filter { callExpression -> callExpression.calleeExpression?.text?.first()?.isUpperCase() ?: false }
+            // Avoid LaunchedEffect/DisposableEffect/etc that can use the VM as a key
+            .filter { callExpression -> callExpression.calleeExpression?.text?.endsWith("Effect") == false }
             .flatMap { callExpression ->
                 // Get VALUE_ARGUMENT that has a REFERENCE_EXPRESSION. This would map to `viewModel` in this example:
                 // MyComposable(viewModel, ...)
@@ -43,7 +45,6 @@ class ComposeViewModelForwarding : ComposeKtVisitor {
     }
 
     companion object {
-
         val AvoidViewModelForwarding = """
             Forwarding a ViewModel through multiple @Composable functions should be avoided. Consider using
             state hoisting.

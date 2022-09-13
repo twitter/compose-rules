@@ -74,4 +74,20 @@ class ComposeViewModelForwardingCheckTest {
             )
         )
     }
+
+    @Test
+    fun `allows the forwarding of ViewModels that are used as keys`() {
+        @Language("kotlin")
+        val code =
+            """
+            @Composable
+            fun Content() {
+                val viewModel = weaverViewModel<MyVM>()
+                key(viewModel) { }
+                val x = remember(viewModel) { "ABC" }
+                LaunchedEffect(viewModel) { }
+            }
+            """.trimIndent()
+        forwardingRuleAssertThat(code).hasNoLintViolations()
+    }
 }
