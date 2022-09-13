@@ -27,6 +27,18 @@ dependencies {
 
 For more information, you can refer to the [Using with ktlint](https://twitter.github.io/compose-rules/#using-the-custom-ruleset-with-ktlint) documentation.
 
+## Using with kotlinter
+
+```groovy
+buildscript {
+    ...
+    dependencies {
+        classpath "com.twitter.compose.rules:ktlint:<version>"
+    }
+    ...
+}
+```
+
 ### Using with Spotless
 
 If using [Spotless](https://github.com/diffplug/spotless), you can use these rules via ktlint. There doesn't seem to be official support for this yet, but there is a workaround explained [in this issue](https://github.com/diffplug/spotless/issues/1220).
