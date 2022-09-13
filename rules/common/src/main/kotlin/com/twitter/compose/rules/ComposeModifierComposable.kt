@@ -5,13 +5,13 @@ package com.twitter.compose.rules
 import com.twitter.rules.core.ComposeKtVisitor
 import com.twitter.rules.core.Emitter
 import com.twitter.rules.core.report
+import com.twitter.rules.core.util.isModifierReceiver
 import org.jetbrains.kotlin.psi.KtFunction
 
 class ComposeModifierComposable : ComposeKtVisitor {
 
     override fun visitComposable(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
-        val receiverTypeReference = function.receiverTypeReference
-        if (receiverTypeReference == null || receiverTypeReference.text != "Modifier") return
+        if (!function.isModifierReceiver) return
 
         emitter.report(function, ComposableModifier)
     }

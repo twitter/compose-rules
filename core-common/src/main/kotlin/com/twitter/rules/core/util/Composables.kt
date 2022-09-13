@@ -3,6 +3,7 @@
 package com.twitter.rules.core.util
 
 import org.jetbrains.kotlin.psi.KtCallExpression
+import org.jetbrains.kotlin.psi.KtCallableDeclaration
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.KtParameter
 
@@ -123,6 +124,17 @@ val ComposableEmittersListRegex by lazy {
         )
     )
 }
+
+val ModifierNames = setOf(
+    "Modifier",
+    "GlanceModifier"
+)
+
+val KtCallableDeclaration.isModifier: Boolean
+    get() = ModifierNames.contains(typeReference?.text)
+
+val KtCallableDeclaration.isModifierReceiver: Boolean
+    get() = ModifierNames.contains(receiverTypeReference?.text)
 
 val KtFunction.modifierParameter: KtParameter?
     get() {
