@@ -29,6 +29,7 @@ class TwitterComposeRuleSetProvider :
         ComposeMutableParametersCheck(),
         ComposeNamingCheck(),
         ComposeParameterOrderCheck(),
+        ComposePreviewPublicCheck(),
         ComposeRememberMissingCheck(),
         ComposeViewModelForwardingCheck(),
         ComposeViewModelInjectionCheck()
@@ -45,6 +46,7 @@ class TwitterComposeRuleSetProvider :
         RuleProvider { ComposeMutableParametersCheck() },
         RuleProvider { ComposeNamingCheck() },
         RuleProvider { ComposeParameterOrderCheck() },
+        RuleProvider { ComposePreviewPublicCheck() },
         RuleProvider { ComposeRememberMissingCheck() },
         RuleProvider { ComposeViewModelForwardingCheck() }
     )
