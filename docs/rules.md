@@ -149,6 +149,12 @@ private fun MyComposable(
 
 Related rule: [twitter-compose:vm-injection-check](https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeViewModelInjection.kt)
 
+### Preview composables should not be public
+
+When a composable function exists solely because it's a `@Preview`, it doesn't need to have public visibility because it won't be used in actual UI. To prevent folks from using it unknowingly, we should restrict its visibility to `private`.
+
+Related rule: [twitter-compose:preview-public-check](https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposePreviewPublic.kt)
+
 ## Modifiers
 
 ### When should I expose modifier parameters?
