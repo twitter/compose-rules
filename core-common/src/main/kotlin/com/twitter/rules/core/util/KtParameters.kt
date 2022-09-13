@@ -30,6 +30,3 @@ private val KnownMutableCommonTypes by lazy {
         "MutableState<.*>\\??"
     ).map { Regex(it) }
 }
-
-val KtParameter.isModifier: Boolean
-    get() = typeReference?.text == "Modifier"
