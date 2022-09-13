@@ -8,6 +8,7 @@ import com.twitter.rules.core.report
 import com.twitter.rules.core.util.definedInInterface
 import com.twitter.rules.core.util.emitsContent
 import com.twitter.rules.core.util.isOverride
+import com.twitter.rules.core.util.isPreview
 import com.twitter.rules.core.util.modifierParameter
 import com.twitter.rules.core.util.returnsValue
 import org.jetbrains.kotlin.psi.KtFunction
@@ -19,8 +20,15 @@ class ComposeModifierMissing : ComposeKtVisitor {
         // We want to find all composable functions that:
         //  - are public
         //  - emit content
-        //  - are not overriden or part of an interface
-        if (!function.isPublic || function.returnsValue || function.isOverride || function.definedInInterface) {
+        //  - are not overridden or part of an interface
+        //  - are not a @Preview composable
+        if (
+            !function.isPublic ||
+            function.returnsValue ||
+            function.isOverride ||
+            function.definedInInterface ||
+            function.isPreview
+        ) {
             return
         }
 

@@ -184,4 +184,34 @@ class ComposeModifierMissingCheckTest {
             """.trimIndent()
         modifierRuleAssertThat(code).hasNoLintViolations()
     }
+
+    @Test
+    fun `Composables with @Preview are ignored`() {
+        @Language("kotlin")
+        val code =
+            """
+                @Preview
+                @Composable
+                fun Something() {
+                    Row {
+                    }
+                }
+                @Preview
+                @Composable
+                fun Something() {
+                    Column(modifier = Modifier.fillMaxSize()) {
+                    }
+                }
+                @Preview
+                @Composable
+                fun Something(): Unit {
+                    SomethingElse {
+                        Box(modifier = Modifier.fillMaxSize()) {
+                        }
+                    }
+                }
+            """.trimIndent()
+
+        modifierRuleAssertThat(code).hasNoLintViolations()
+    }
 }
