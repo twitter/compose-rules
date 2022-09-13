@@ -103,7 +103,7 @@ class ComposeViewModelInjection : ComposeKtVisitor {
 
     companion object {
 
-        val KnownViewModelFactories by lazy { setOf("viewModel", "weaverViewModel") }
+        val KnownViewModelFactories by lazy { setOf("viewModel", "weaverViewModel", "hiltViewModel") }
 
         fun errorMessage(factoryName: String) = """
             Implicit dependencies of composables should be made explicit.
