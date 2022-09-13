@@ -73,6 +73,8 @@ TwitterCompose:
     active: true
   ComposableParamOrder:
     active: true
+  PreviewPublic:
+    active: true
   RememberMissing:
     active: true
   ViewModelForwarding:
