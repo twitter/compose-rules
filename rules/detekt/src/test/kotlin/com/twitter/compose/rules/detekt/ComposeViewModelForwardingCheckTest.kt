@@ -74,4 +74,21 @@ class ComposeViewModelForwardingCheckTest {
         assertThat(errors).hasSize(1).hasSourceLocation(3, 5)
         assertThat(errors.first()).hasMessage(ComposeViewModelForwarding.AvoidViewModelForwarding)
     }
+
+    @Test
+    fun `allows the forwarding of ViewModels that are used as keys`() {
+        @Language("kotlin")
+        val code =
+            """
+            @Composable
+            fun Content() {
+                val viewModel = weaverViewModel<MyVM>()
+                key(viewModel) { }
+                val x = remember(viewModel) { "ABC" }
+                LaunchedEffect(viewModel) { }
+            }
+            """.trimIndent()
+        val errors = rule.lint(code)
+        assertThat(errors).isEmpty()
+    }
 }
