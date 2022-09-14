@@ -56,4 +56,18 @@ class ComposePreviewPublicCheckTest {
             assertThat(error).hasMessage(ComposePreviewPublic.ComposablesPreviewShouldNotBePublic)
         }
     }
+
+    @Test
+    fun `passes when a private preview composable uses preview params`() {
+        @Language("kotlin")
+        val code =
+            """
+            @Preview
+            @Composable
+            private fun MyComposable(@PreviewParameter(User::class) user: User) {
+            }
+            """.trimIndent()
+        val errors = rule.lint(code)
+        assertThat(errors).isEmpty()
+    }
 }
