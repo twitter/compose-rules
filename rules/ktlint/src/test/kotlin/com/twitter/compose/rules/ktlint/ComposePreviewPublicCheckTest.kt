@@ -83,5 +83,4 @@ class ComposePreviewPublicCheckTest {
             """.trimIndent()
         ruleAssertThat(code).hasNoLintViolations()
     }
-    
 }
