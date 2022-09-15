@@ -30,6 +30,6 @@ private val KnownMutableCommonTypes by lazy {
         "MutableState<.*>\\??",
         // Flow
         "MutableStateFlow<.*>\\??",
-        "MutableSharedFlow<.*>\\??",
+        "MutableSharedFlow<.*>\\??"
     ).map { Regex(it) }
 }
