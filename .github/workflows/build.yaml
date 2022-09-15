@@ -66,6 +66,7 @@ jobs:
       - uses: gradle/gradle-build-action@v2
 
       - name: Deploy to Sonatype
+        if: ${{ github.repository == 'twitter/compose-rules' }}
         run: ./gradlew clean publish --no-parallel --no-daemon --no-configuration-cache --stacktrace
         env:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
