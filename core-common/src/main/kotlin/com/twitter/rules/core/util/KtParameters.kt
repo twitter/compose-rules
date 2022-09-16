@@ -7,29 +7,35 @@ import org.jetbrains.kotlin.psi.KtParameter
 val KtParameter.isTypeMutable: Boolean
     get() = typeReference?.text?.matchesAnyOf(KnownMutableCommonTypes) == true
 
-private val KnownMutableCommonTypes by lazy {
-    listOf(
-        // Set
-        "MutableSet<.*>\\??",
-        "ArraySet<.*>\\??",
-        "HashSet<.*>\\??",
-        // List
-        "MutableList<.*>\\??",
-        "ArrayList<.*>\\??",
-        // Array
-        "SparseArray<.*>\\??",
-        "SparseArrayCompat<.*>\\??",
-        "LongSparseArray<.*>\\??",
-        "SparseBooleanArray\\??",
-        "SparseIntArray\\??",
-        // Map
-        "MutableMap<.*>\\??",
-        "HashMap<.*>\\??",
-        "Hashtable<.*>\\??",
-        // Compose
-        "MutableState<.*>\\??",
-        // Flow
-        "MutableStateFlow<.*>\\??",
-        "MutableSharedFlow<.*>\\??"
-    ).map { Regex(it) }
-}
+private val KnownMutableCommonTypes = sequenceOf(
+    // Set
+    "MutableSet<.*>\\??",
+    "ArraySet<.*>\\??",
+    "HashSet<.*>\\??",
+    // List
+    "MutableList<.*>\\??",
+    "ArrayList<.*>\\??",
+    // Array
+    "SparseArray<.*>\\??",
+    "SparseArrayCompat<.*>\\??",
+    "LongSparseArray<.*>\\??",
+    "SparseBooleanArray\\??",
+    "SparseIntArray\\??",
+    // Map
+    "MutableMap<.*>\\??",
+    "HashMap<.*>\\??",
+    "Hashtable<.*>\\??",
+    // Compose
+    "MutableState<.*>\\??",
+    "SnapshotStateList<.*>\\??",
+    // Flow
+    "MutableStateFlow<.*>\\??",
+    "MutableSharedFlow<.*>\\??",
+    // RxJava & RxRelay
+    "PublishSubject<.*>\\??",
+    "BehaviorSubject<.*>\\??",
+    "ReplaySubject<.*>\\??",
+    "PublishRelay<.*>\\??",
+    "BehaviorRelay<.*>\\??",
+    "ReplayRelay<.*>\\??"
+).map { Regex(it) }
