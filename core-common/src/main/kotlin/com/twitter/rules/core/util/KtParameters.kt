@@ -37,5 +37,5 @@ private val KnownMutableCommonTypes = sequenceOf(
     "ReplaySubject<.*>\\??",
     "PublishRelay<.*>\\??",
     "BehaviorRelay<.*>\\??",
-    "ReplayRelay<.*>\\??",
+    "ReplayRelay<.*>\\??"
 ).map { Regex(it) }
