@@ -683,6 +683,9 @@ In this composable, the dependencies are implicit. When testing it you would nee
 <h3 id="preview-composables-should-not-be-public">Preview composables should not be public<a class="headerlink" href="#preview-composables-should-not-be-public" title="Permanent link">&para;</a></h3>
 <p>When a composable function exists solely because it's a <code>@Preview</code>, it doesn't need to have public visibility because it won't be used in actual UI. To prevent folks from using it unknowingly, we should restrict its visibility to <code>private</code>.</p>
 <p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposePreviewPublic.kt">twitter-compose:preview-public-check</a></p>
+<p><strong>NOTE</strong>:
+If you are using Detekt, this may conflict with Detekt's <a href="https://detekt.dev/docs/rules/style/#unusedprivatemember">UnusedPrivateMember rule</a>.
+Be sure to set Detekt's <a href="https://detekt.dev/docs/introduction/compose/#unusedprivatemember">ignoreAnnotated configuration</a> to ['Preview'] for compatibility with this rule.</p>
 <h2 id="modifiers">Modifiers<a class="headerlink" href="#modifiers" title="Permanent link">&para;</a></h2>
 <h3 id="when-should-i-expose-modifier-parameters">When should I expose modifier parameters?<a class="headerlink" href="#when-should-i-expose-modifier-parameters" title="Permanent link">&para;</a></h3>
 <p>Modifiers are the beating heart of Compose UI. They encapsulate the idea of composition over inheritance, by allowing developers to attach logic and behavior to layouts.</p>
@@ -714,7 +717,7 @@ This is not recommended. Instead, the provided modifier should only be used on t
 <p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeModifierReused.kt">twitter-compose:modifier-reused-check</a></p>
 <h3 id="modifiers-should-have-default-parameters">Modifiers should have default parameters<a class="headerlink" href="#modifiers-should-have-default-parameters" title="Permanent link">&para;</a></h3>
 <p>Composables that accept a Modifier as a parameter to be applied to the whole component represented by the composable function should name the parameter modifier and assign the parameter a default value of <code>Modifier</code>. It should appear as the first optional parameter in the parameter list; after all required parameters (except for trailing lambda parameters) but before any other parameters with default values. Any default modifiers desired by a composable function should come after the modifier parameter's value in the composable function's implementation, keeping Modifier as the default parameter value.</p>
-<p>Mode info: <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier">Modifier documentation</a></p>
+<p>More info: <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier">Modifier documentation</a></p>
 <p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeModifierWithoutDefault.kt">twitter-compose:modifier-without-default-check</a></p>
 <h3 id="avoid-modifier-extension-factory-functions">Avoid Modifier extension factory functions<a class="headerlink" href="#avoid-modifier-extension-factory-functions" title="Permanent link">&para;</a></h3>
 <p>Using <code>@Composable</code> builder functions for modifiers is not recommended, as they cause unnecessary recompositions. To avoid this, you should use <code>Modifier.composed</code> instead, as it limits recomposition to just the modifier instance, rather than the whole function tree.</p>
