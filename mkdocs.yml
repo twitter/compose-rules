@@ -13,8 +13,8 @@ repo_url: 'https://github.com/twitter/compose-rules'
 # Navigation
 nav:
     - 'Overview': index.md
-    - 'Ktlint': ktlint.md
-    - 'Detekt': detekt.md
+    - 'Using with ktlint': ktlint.md
+    - 'Using with Detekt': detekt.md
     - 'Ruleset': rules.md
 
 # Configuration
