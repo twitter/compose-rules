@@ -19,23 +19,11 @@ There are 2 ways you can add these static checks to your build - using ktlint or
 
 ## Using with ktlint
 
-```groovy
-dependencies {
-    ktlintRuleset "com.twitter.compose.rules:ktlint:<VERSION>"
-}
-```
-
-For more information, you can refer to the [Using with ktlint](https://twitter.github.io/compose-rules/#using-the-custom-ruleset-with-ktlint) documentation.
+You can refer to the [Using with ktlint](https://twitter.github.io/compose-rules/ktlint) documentation.
 
 ## Using with Detekt
 
-```groovy
-dependencies {
-    detektPlugins "com.twitter.compose.rules:detekt:<VERSION>"
-}
-```
-
-For more information, you can refer to the [Using with Detekt](https://twitter.github.io/compose-rules/#using-the-custom-ruleset-with-detekt) documentation.
+You can refer to the [Using with Detekt](https://twitter.github.io/compose-rules/detekt) documentation.
 
 ## Contributing
 
