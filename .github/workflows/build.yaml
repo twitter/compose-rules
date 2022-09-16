@@ -115,7 +115,10 @@ jobs:
 
           - name: Build the fat jars for CLI usage
             if: success()
-            run: ./gradlew :rules:ktlint:shadowJar :rules:detekt:shadowJar
+            run: ./gradlew clean :rules:ktlint:shadowJar :rules:detekt:shadowJar --rerun-tasks
+
+          - name: List all jars (debugging)
+            run: find . -name \*.jar
 
           - name: Upload ktlint binaries to release
             if: success()
