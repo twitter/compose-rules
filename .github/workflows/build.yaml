@@ -125,7 +125,7 @@ jobs:
             uses: svenstaro/upload-release-action@v2
             with:
                 repo_token: ${{ secrets.GITHUB_TOKEN }}
-                file: rules/ktlint/build/libs/*.jar
+                file: ./rules/ktlint/build/libs/*.jar
                 asset_name: twitter-compose-rules-ktlint
                 tag: latest
                 prerelease: true
@@ -136,7 +136,7 @@ jobs:
             uses: svenstaro/upload-release-action@v2
             with:
                 repo_token: ${{ secrets.GITHUB_TOKEN }}
-                file: rules/detekt/build/libs/*.jar
+                file: ./rules/detekt/build/libs/*.jar
                 asset_name: twitter-compose-rules-detekt
                 tag: latest
                 prerelease: true
