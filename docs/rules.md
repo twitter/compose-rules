@@ -155,6 +155,10 @@ When a composable function exists solely because it's a `@Preview`, it doesn't n
 
 Related rule: [twitter-compose:preview-public-check](https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposePreviewPublic.kt)
 
+**NOTE**:
+If you are using Detekt, this may conflict with Detekt's [UnusedPrivateMember rule](https://detekt.dev/docs/rules/style/#unusedprivatemember).
+Be sure to set Detekt's [ignoreAnnotated configuration](https://detekt.dev/docs/introduction/compose/#unusedprivatemember) to ['Preview'] for compatibility with this rule.
+
 ## Modifiers
 
 ### When should I expose modifier parameters?
@@ -202,7 +206,7 @@ Related rule: [twitter-compose:modifier-reused-check](https://github.com/twitter
 
 Composables that accept a Modifier as a parameter to be applied to the whole component represented by the composable function should name the parameter modifier and assign the parameter a default value of `Modifier`. It should appear as the first optional parameter in the parameter list; after all required parameters (except for trailing lambda parameters) but before any other parameters with default values. Any default modifiers desired by a composable function should come after the modifier parameter's value in the composable function's implementation, keeping Modifier as the default parameter value.
 
-Mode info: [Modifier documentation](https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier)
+More info: [Modifier documentation](https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier)
 
 Related rule: [twitter-compose:modifier-without-default-check](https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeModifierWithoutDefault.kt)
 
