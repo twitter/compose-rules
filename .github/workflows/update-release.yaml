@@ -17,10 +17,6 @@ jobs:
       steps:
           - uses: actions/checkout@v3
 
-          - name: Get latest tag
-            id: latesttag
-            uses: WyriHaximus/github-action-get-previous-tag@v1
-
           - name: Copy CI gradle.properties
             run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
 
@@ -45,7 +41,7 @@ jobs:
             with:
                 repo_token: ${{ secrets.GITHUB_TOKEN }}
                 file: rules/ktlint/build/libs/ktlint-${{ env.VERSION }}-all.jar
-                tag: ${{ steps.latesttag.outputs.tag }}
+                tag: v${{ env.VERSION }}
                 overwrite: true
 
           - name: Upload detekt binaries to release
@@ -54,5 +50,5 @@ jobs:
             with:
                 repo_token: ${{ secrets.GITHUB_TOKEN }}
                 file: rules/detekt/build/libs/detekt-${{ env.VERSION }}-all.jar
-                tag: ${{ steps.latesttag.outputs.tag }}
+                tag: v${{ env.VERSION }}
                 overwrite: true
