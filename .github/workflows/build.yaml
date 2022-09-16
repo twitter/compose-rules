@@ -110,8 +110,11 @@ jobs:
             env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+          - name: Add artifact version to ENV
+            run: echo "VERSION=$(./gradlew -q printVersion)" >> $GITHUB_ENV
+
           - name: Build the fat jars for CLI usage
-            if: success() && !endsWith(env.VERSION, '-SNAPSHOT')
+            if: success()
             run: ./gradlew :rules:ktlint:shadowJar :rules:detekt:shadowJar
 
           - name: Upload ktlint binaries to release
@@ -119,7 +122,7 @@ jobs:
             uses: svenstaro/upload-release-action@v2
             with:
                 repo_token: ${{ secrets.GITHUB_TOKEN }}
-                file: rules/ktlint/build/libs/ktlint-*
+                file: rules/ktlint/build/libs/*.jar
                 asset_name: twitter-compose-rules-ktlint
                 tag: latest
                 prerelease: true
@@ -130,7 +133,7 @@ jobs:
             uses: svenstaro/upload-release-action@v2
             with:
                 repo_token: ${{ secrets.GITHUB_TOKEN }}
-                file: rules/detekt/build/libs/detekt-*
+                file: rules/detekt/build/libs/*.jar
                 asset_name: twitter-compose-rules-detekt
                 tag: latest
                 prerelease: true
