@@ -12,21 +12,21 @@
         <meta name="author" content="Twitter">
       
       
-        <link rel="canonical" href="https://twitter.github.io/compose-rules/">
+        <link rel="canonical" href="https://twitter.github.io/compose-rules/ktlint/">
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.5.1">
     
     
       
-        <title>Twitter Jetpack Compose Rules</title>
+        <title>Ktlint - Twitter Jetpack Compose Rules</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2e8b5541.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.2e8b5541.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.cbb835fc.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
         
           
           
@@ -47,7 +47,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#why" class="md-skip">
+        <a href="#using-with-kotlinter" class="md-skip">
           Skip to content
         </a>
       
@@ -86,7 +86,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Twitter Jetpack Compose Rules" class="md-header__button md-logo" aria-label="Twitter Jetpack Compose Rules" data-md-component="logo">
+    <a href=".." title="Twitter Jetpack Compose Rules" class="md-header__button md-logo" aria-label="Twitter Jetpack Compose Rules" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23Z"/></svg>
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              Ktlint
             
           </span>
         </div>
@@ -184,7 +184,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Twitter Jetpack Compose Rules" class="md-nav__button md-logo" aria-label="Twitter Jetpack Compose Rules" data-md-component="logo">
+    <a href=".." title="Twitter Jetpack Compose Rules" class="md-nav__button md-logo" aria-label="Twitter Jetpack Compose Rules" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23Z"/></svg>
@@ -213,6 +213,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -223,12 +238,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Overview
+          Ktlint
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="." class="md-nav__link md-nav__link--active">
-        Overview
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Ktlint
       </a>
       
         
@@ -245,22 +260,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#why" class="md-nav__link">
-    Why
+  <a href="#using-with-kotlinter" class="md-nav__link">
+    Using with Kotlinter
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#using-with-ktlint" class="md-nav__link">
-    Using with ktlint
+  <a href="#using-with-ktlint-gradle" class="md-nav__link">
+    Using with ktlint-gradle
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#using-with-detekt" class="md-nav__link">
-    Using with Detekt
+  <a href="#using-with-spotless" class="md-nav__link">
+    Using with spotless
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-with-ktlint-cli-or-the-ktlint-unofficial-intellij-plugin" class="md-nav__link">
+    Using with ktlint CLI or the ktlint (unofficial) IntelliJ plugin
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disabling-a-specific-rule" class="md-nav__link">
+    Disabling a specific rule
   </a>
   
 </li>
@@ -281,22 +310,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ktlint/" class="md-nav__link">
-        Ktlint
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="detekt/" class="md-nav__link">
+      <a href="../detekt/" class="md-nav__link">
         Detekt
       </a>
     </li>
@@ -311,7 +325,7 @@
   
   
     <li class="md-nav__item">
-      <a href="rules/" class="md-nav__link">
+      <a href="../rules/" class="md-nav__link">
         Ruleset
       </a>
     </li>
@@ -343,22 +357,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#why" class="md-nav__link">
-    Why
+  <a href="#using-with-kotlinter" class="md-nav__link">
+    Using with Kotlinter
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#using-with-ktlint" class="md-nav__link">
-    Using with ktlint
+  <a href="#using-with-ktlint-gradle" class="md-nav__link">
+    Using with ktlint-gradle
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#using-with-detekt" class="md-nav__link">
-    Using with Detekt
+  <a href="#using-with-spotless" class="md-nav__link">
+    Using with spotless
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-with-ktlint-cli-or-the-ktlint-unofficial-intellij-plugin" class="md-nav__link">
+    Using with ktlint CLI or the ktlint (unofficial) IntelliJ plugin
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disabling-a-specific-rule" class="md-nav__link">
+    Disabling a specific rule
   </a>
   
 </li>
@@ -377,23 +405,48 @@
                 
                   
 
-  <a href="https://github.com/twitter/compose-rules/tree/main/docs/index.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/twitter/compose-rules/tree/main/docs/ktlint.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-  <h1>Overview</h1>
+  <h1>Ktlint</h1>
 
-<p>Twitter Compose Rules is a set of custom ktlint rules to ensure that your composables don't fall into common pitfalls, that might be easy to miss in code reviews.</p>
-<h2 id="why">Why<a class="headerlink" href="#why" title="Permanent link">&para;</a></h2>
-<p>It can be challenging for big teams to start adopting Compose, particularly because not everyone will start at same time or with the same patterns. Twitter tried to ease the pain by creating a set of Compose static checks.</p>
-<p>Compose has lots of superpowers but also has a bunch of footguns to be aware of <a href="https://twitter.com/mrmans0n/status/1507390768796909571">as seen in this Twitter Thread</a>.</p>
-<p>This is where our static checks come in. We want to detect as many potential issues as we can, as quickly as we can. In this case we want an error to show prior to engineers having to review code. Similar to other static check libraries we hope this leads to a "don't shoot the messengers" philosphy which will foster healthy Compose adoption.</p>
-<h2 id="using-with-ktlint">Using with ktlint<a class="headerlink" href="#using-with-ktlint" title="Permanent link">&para;</a></h2>
-<p>You can refer to the <a href="https://twitter.github.io/compose-rules/ktlint">Using with ktlint</a> documentation.</p>
-<h2 id="using-with-detekt">Using with Detekt<a class="headerlink" href="#using-with-detekt" title="Permanent link">&para;</a></h2>
-<p>You can refer to the <a href="https://twitter.github.io/compose-rules/detekt">Using with Detekt</a> documentation.</p>
+<h2 id="using-with-kotlinter">Using with Kotlinter<a class="headerlink" href="#using-with-kotlinter" title="Permanent link">&para;</a></h2>
+<p>If using <a href="https://github.com/jeremymailen/kotlinter-gradle">kotlinter</a>, you can specify the dependency on this set of rules <a href="https://github.com/jeremymailen/kotlinter-gradle#custom-rules">by using the <code>buildscript</code> classpath</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">buildscript</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">dependencies</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">classpath</span><span class="w"> </span><span class="s2">&quot;com.twitter.compose.rules:ktlint:&lt;version&gt;&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="o">}</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
+</code></pre></div>
+<h2 id="using-with-ktlint-gradle">Using with ktlint-gradle<a class="headerlink" href="#using-with-ktlint-gradle" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><strong>Warning</strong>: This plugin doesn't currently support ktlint versions over 0.46.0, <a href="https://github.com/JLLeitschuh/ktlint-gradle/pull/595">they are working to support it right now</a>.</p>
+</blockquote>
+<p>If using <a href="https://github.com/JLLeitschuh/ktlint-gradle">ktlint-gradle</a>, you can specify the dependency on this set of rules by using the <code>ktlintRuleset</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">dependencies</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">ktlintRuleset</span><span class="w"> </span><span class="s2">&quot;com.twitter.compose.rules:ktlint:&lt;VERSION&gt;&quot;</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
+</code></pre></div>
+<h2 id="using-with-spotless">Using with spotless<a class="headerlink" href="#using-with-spotless" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><strong>Warning</strong>: If using <a href="https://github.com/diffplug/spotless">Spotless</a>, there is <a href="https://github.com/diffplug/spotless/issues/1220">no current way of enabling a custom ruleset like ours</a>. You would need to use any of the alternatives listed here (like Kotlinter) to just run these rules.</p>
+</blockquote>
+<h2 id="using-with-ktlint-cli-or-the-ktlint-unofficial-intellij-plugin">Using with ktlint CLI or the ktlint (unofficial) IntelliJ plugin<a class="headerlink" href="#using-with-ktlint-cli-or-the-ktlint-unofficial-intellij-plugin" title="Permanent link">&para;</a></h2>
+<p>The <a href="https://github.com/twitter/compose-rules/releases">releases</a> page contains an <a href="https://stackoverflow.com/questions/11947037/what-is-an-uber-jar">uber jar</a> for each version release that can be used for these purposes.</p>
+<p>To use with <a href="https://ktlint.github.io/#getting-started">ktlint CLI</a>:
+<div class="highlight"><pre><span></span><code>ktlint -R ktlint-&lt;VERSION&gt;-all.jar
+</code></pre></div></p>
+<p>You can use this same jar in the <a href="https://plugins.jetbrains.com/plugin/15057-ktlint-unofficial-">ktlint (unofficial) IntelliJ plugin</a> if the rules are compiled against the same ktlint version used for that release. You can configure the custom ruleset in the preferences page of the plugin.</p>
+<h2 id="disabling-a-specific-rule">Disabling a specific rule<a class="headerlink" href="#disabling-a-specific-rule" title="Permanent link">&para;</a></h2>
+<p>To disable a rule you have to follow the <a href="https://github.com/pinterest/ktlint#how-do-i-suppress-an-errors-for-a-lineblockfile">instructions from the ktlint documentation</a>, and use the id of the rule you want to disable with the <code>twitter-compose</code> tag.</p>
+<p>For example, to disable <code>compose-naming-check</code>, the tag you'll need to disable is <code>twitter-compose:compose-naming-check</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="cm">/* ktlint-disable twitter-compose:compose-naming-check */</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="n">here</span><span class="w"></span>
+<span class="w">    </span><span class="cm">/* ktlint-enable twitter-compose:compose-naming-check */</span><span class="w"></span>
+</code></pre></div>
 
 
 
@@ -413,15 +466,30 @@
     
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
+        
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Overview
+            </div>
+          </div>
+        </a>
+      
       
         
-        <a href="ktlint/" class="md-footer__link md-footer__link--next" aria-label="Next: Ktlint" rel="next">
+        <a href="../detekt/" class="md-footer__link md-footer__link--next" aria-label="Next: Detekt" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Ktlint
+              Detekt
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -452,10 +520,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.d691e9de.min.js"></script>
+      <script src="../assets/javascripts/bundle.d691e9de.min.js"></script>
       
     
   </body>

@@ -6,6 +6,16 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://twitter.github.io/compose-rules/detekt/</loc>
+         <lastmod>2022-09-16</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://twitter.github.io/compose-rules/ktlint/</loc>
+         <lastmod>2022-09-16</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://twitter.github.io/compose-rules/rules/</loc>
          <lastmod>2022-09-16</lastmod>
          <changefreq>daily</changefreq>
