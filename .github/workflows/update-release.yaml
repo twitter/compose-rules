@@ -31,7 +31,7 @@ jobs:
 
           - name: Build the fat jars for CLI usage
             if: success() && !endsWith(env.VERSION, '-SNAPSHOT')
-            run: ./gradlew clean :rules:ktlint:shadowJar :rules:detekt:shadowJar --rerun-tasks
+            run: ./gradlew clean :rules:ktlint:shadowJar :rules:detekt:shadowJar -PuberJar --rerun-tasks
 
           - name: Upload ktlint binaries to release
             if: success() && !endsWith(env.VERSION, '-SNAPSHOT')
