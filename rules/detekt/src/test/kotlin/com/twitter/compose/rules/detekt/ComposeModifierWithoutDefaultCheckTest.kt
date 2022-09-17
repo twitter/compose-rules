@@ -27,7 +27,7 @@ class ComposeModifierWithoutDefaultCheckTest {
         val errors = rule.lint(composableCode)
         assertThat(errors).hasSourceLocations(
             SourceLocation(2, 15),
-            SourceLocation(4, 57)
+            SourceLocation(4, 46)
         )
         assertThat(errors[0]).hasMessage(ComposeModifierWithoutDefault.MissingModifierDefaultParam)
         assertThat(errors[1]).hasMessage(ComposeModifierWithoutDefault.MissingModifierDefaultParam)
