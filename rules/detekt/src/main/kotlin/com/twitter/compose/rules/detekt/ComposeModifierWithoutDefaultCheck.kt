@@ -14,8 +14,6 @@ class ComposeModifierWithoutDefaultCheck(config: Config) :
     TwitterDetektRule(config),
     ComposeKtVisitor by ComposeModifierWithoutDefault() {
 
-    override val autoCorrect: Boolean = true
-
     override val issue: Issue = Issue(
         id = "ModifierWithoutDefault",
         severity = Severity.CodeSmell,
