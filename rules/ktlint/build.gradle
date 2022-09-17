@@ -4,11 +4,18 @@ plugins {
     id 'org.jetbrains.kotlin.jvm'
     alias(libs.plugins.shadowJar)
 }
-
 apply plugin: "com.vanniktech.maven.publish"
 
 test {
     useJUnitPlatform()
+}
+
+// if publishing and it's not the uber jar, we want to remove the shadowRuntimeElements variant
+if (!project.hasProperty("uberJar")) {
+    AdhocComponentWithVariants javaComponent = (AdhocComponentWithVariants) project.components.findByName("java")
+    javaComponent.withVariantsFromConfiguration(configurations["shadowRuntimeElements"]) {
+        skip()
+    }
 }
 
 dependencies {
