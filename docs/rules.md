@@ -52,6 +52,8 @@ More info: [Compose API guidelines](https://github.com/androidx/androidx/blob/an
 
 Related rule: [twitter-compose:content-emitter-returning-values-check](https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeMultipleContentEmitters.kt)
 
+> **Note**: To add your custom composables so they are used in this rule (things like your design system composables), you can add `composeEmitters` to this rule config in Detekt, or `compose_emitters` to your .editorconfig in ktlint.
+
 ### Do not emit multiple pieces of content
 
 A composable function should emit either 0 or 1 pieces of layout, but no more. A composable function should be cohesive, and not rely on what function it is called from.
@@ -97,6 +99,8 @@ private fun ColumnScope.InnerContent() {
 This effectively ties the function to be called from a Column, but is still not recommended (although permitted).
 
 Related rule: [twitter-compose:multiple-emitters-check](https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeMultipleContentEmitters.kt)
+
+> **Note**: To add your custom composables so they are used in this rule (things like your design system composables), you can add `composeEmitters` to this rule config in Detekt, or `compose_emitters` to your .editorconfig in ktlint.
 
 ### Naming @Composable functions properly
 

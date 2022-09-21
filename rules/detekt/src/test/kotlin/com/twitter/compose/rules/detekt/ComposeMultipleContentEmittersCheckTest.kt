@@ -3,8 +3,8 @@
 package com.twitter.compose.rules.detekt
 
 import com.twitter.compose.rules.ComposeMultipleContentEmitters
-import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.SourceLocation
+import io.gitlab.arturbosch.detekt.test.TestConfig
 import io.gitlab.arturbosch.detekt.test.assertThat
 import io.gitlab.arturbosch.detekt.test.lint
 import org.intellij.lang.annotations.Language
@@ -12,7 +12,10 @@ import org.junit.jupiter.api.Test
 
 class ComposeMultipleContentEmittersCheckTest {
 
-    private val rule = ComposeMultipleContentEmittersCheck(Config.empty)
+    private val testConfig = TestConfig(
+        "contentEmitters" to listOf("Potato", "Banana")
+    )
+    private val rule = ComposeMultipleContentEmittersCheck(testConfig)
 
     @Test
     fun `passes when only one item emits up at the top level`() {
@@ -97,11 +100,11 @@ class ComposeMultipleContentEmittersCheckTest {
                 }
                 @Composable
                 fun Something3() {
-                    Text("Hi")
+                    Potato()
                 }
                 @Composable
                 fun Something4() {
-                    Text("Alo")
+                    Banana()
                 }
                 @Composable
                 fun Something5() {

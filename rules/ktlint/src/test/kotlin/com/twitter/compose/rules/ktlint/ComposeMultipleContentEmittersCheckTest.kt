@@ -5,6 +5,7 @@ package com.twitter.compose.rules.ktlint
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import com.twitter.compose.rules.ComposeMultipleContentEmitters
+import com.twitter.rules.core.ktlint.contentEmittersProperty
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
@@ -100,7 +101,7 @@ class ComposeMultipleContentEmittersCheckTest {
                 }
                 @Composable
                 fun Something4() {
-                    Text("Alo")
+                    Banana()
                 }
                 @Composable
                 fun Something5() {
@@ -108,18 +109,22 @@ class ComposeMultipleContentEmittersCheckTest {
                     Something4()
                 }
             """.trimIndent()
-        emittersRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(
-                line = 6,
-                col = 5,
-                detail = ComposeMultipleContentEmitters.MultipleContentEmittersDetected
-            ),
-            LintViolation(
-                line = 19,
-                col = 5,
-                detail = ComposeMultipleContentEmitters.MultipleContentEmittersDetected
+        emittersRuleAssertThat(code)
+            .withEditorConfigOverride(
+                contentEmittersProperty to "Potato,Banana"
             )
-        )
+            .hasLintViolationsWithoutAutoCorrect(
+                LintViolation(
+                    line = 6,
+                    col = 5,
+                    detail = ComposeMultipleContentEmitters.MultipleContentEmittersDetected
+                ),
+                LintViolation(
+                    line = 19,
+                    col = 5,
+                    detail = ComposeMultipleContentEmitters.MultipleContentEmittersDetected
+                )
+            )
     }
 
     @Test

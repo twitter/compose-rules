@@ -37,6 +37,17 @@ ktlint -R ktlint-twitter-compose-<VERSION>-all.jar
 
 You can use this same jar in the [ktlint (unofficial) IntelliJ plugin](https://plugins.jetbrains.com/plugin/15057-ktlint-unofficial-) if the rules are compiled against the same ktlint version used for that release. You can configure the custom ruleset in the preferences page of the plugin.
 
+## Configuring rules
+
+### Providing custom content emitters
+
+There are some rules (`twitter-compose:content-emitter-returning-values-check` and `twitter-compose:multiple-emitters-check`) that use predefined list of known composables that emit content. But you can add your own too! In your `.editorconfig` file, you'll need to add a `content_emitters` property followed by a list of composable names separated by commas. You would typically want the composables that are part of your custom design system to be in this list.
+
+```editorconfig
+[*.{kt,kts}]
+content_emitters = MyComposable,MyOtherComposable
+```
+
 ## Disabling a specific rule
 
 To disable a rule you have to follow the [instructions from the ktlint documentation](https://github.com/pinterest/ktlint#how-do-i-suppress-an-errors-for-a-lineblockfile), and use the id of the rule you want to disable with the `twitter-compose` tag.
