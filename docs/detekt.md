@@ -11,7 +11,7 @@ dependencies {
 The [releases](https://github.com/twitter/compose-rules/releases) page contains an [uber jar](https://stackoverflow.com/questions/11947037/what-is-an-uber-jar) for each version release that can be used to run with the [CLI version of detekt](https://detekt.dev/docs/gettingstarted/cli).
 
 ```shell
-detekt -p detekt-<VERSION>-all.jar -c your/config/detekt.yml
+detekt -p detekt-twitter-compose-<VERSION>-all.jar -c your/config/detekt.yml
 ```
 
 ### Enabling rules

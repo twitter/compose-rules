@@ -32,7 +32,7 @@ The [releases](https://github.com/twitter/compose-rules/releases) page contains 
 
 To use with [ktlint CLI](https://ktlint.github.io/#getting-started):
 ```shell
-ktlint -R ktlint-<VERSION>-all.jar
+ktlint -R ktlint-twitter-compose-<VERSION>-all.jar
 ```
 
 You can use this same jar in the [ktlint (unofficial) IntelliJ plugin](https://plugins.jetbrains.com/plugin/15057-ktlint-unofficial-) if the rules are compiled against the same ktlint version used for that release. You can configure the custom ruleset in the preferences page of the plugin.
