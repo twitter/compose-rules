@@ -10,7 +10,7 @@ test {
 }
 
 dependencies {
-    implementation project(':core-common')
+    api project(':core-common')
 
     testImplementation libs.junit5
     testImplementation libs.junit5.params
