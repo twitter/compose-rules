@@ -40,6 +40,7 @@ jobs:
                 repo_token: ${{ secrets.GITHUB_TOKEN }}
                 file: rules/ktlint/build/libs/ktlint-${{ env.VERSION }}-all.jar
                 tag: v${{ env.VERSION }}
+                asset_name: ktlint-twitter-compose-${{ env.VERSION }}-all.jar
                 overwrite: true
 
           - name: Upload detekt binaries to release
@@ -49,4 +50,5 @@ jobs:
                 repo_token: ${{ secrets.GITHUB_TOKEN }}
                 file: rules/detekt/build/libs/detekt-${{ env.VERSION }}-all.jar
                 tag: v${{ env.VERSION }}
+                asset_name: detekt-twitter-compose-${{ env.VERSION }}-all.jar                
                 overwrite: true
