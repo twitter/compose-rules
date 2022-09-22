@@ -288,6 +288,26 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#configuring-rules" class="md-nav__link">
+    Configuring rules
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#providing-custom-content-emitters" class="md-nav__link">
+    Providing custom content emitters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#disabling-a-specific-rule" class="md-nav__link">
     Disabling a specific rule
   </a>
@@ -385,6 +405,26 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#configuring-rules" class="md-nav__link">
+    Configuring rules
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#providing-custom-content-emitters" class="md-nav__link">
+    Providing custom content emitters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#disabling-a-specific-rule" class="md-nav__link">
     Disabling a specific rule
   </a>
@@ -440,6 +480,12 @@
 <div class="highlight"><pre><span></span><code>ktlint -R ktlint-twitter-compose-&lt;VERSION&gt;-all.jar
 </code></pre></div></p>
 <p>You can use this same jar in the <a href="https://plugins.jetbrains.com/plugin/15057-ktlint-unofficial-">ktlint (unofficial) IntelliJ plugin</a> if the rules are compiled against the same ktlint version used for that release. You can configure the custom ruleset in the preferences page of the plugin.</p>
+<h2 id="configuring-rules">Configuring rules<a class="headerlink" href="#configuring-rules" title="Permanent link">&para;</a></h2>
+<h3 id="providing-custom-content-emitters">Providing custom content emitters<a class="headerlink" href="#providing-custom-content-emitters" title="Permanent link">&para;</a></h3>
+<p>There are some rules (<code>twitter-compose:content-emitter-returning-values-check</code> and <code>twitter-compose:multiple-emitters-check</code>) that use predefined list of known composables that emit content. But you can add your own too! In your <code>.editorconfig</code> file, you'll need to add a <code>content_emitters</code> property followed by a list of composable names separated by commas. You would typically want the composables that are part of your custom design system to be in this list.</p>
+<div class="highlight"><pre><span></span><code>[*.{kt,kts}]
+content_emitters = MyComposable,MyOtherComposable
+</code></pre></div>
 <h2 id="disabling-a-specific-rule">Disabling a specific rule<a class="headerlink" href="#disabling-a-specific-rule" title="Permanent link">&para;</a></h2>
 <p>To disable a rule you have to follow the <a href="https://github.com/pinterest/ktlint#how-do-i-suppress-an-errors-for-a-lineblockfile">instructions from the ktlint documentation</a>, and use the id of the rule you want to disable with the <code>twitter-compose</code> tag.</p>
 <p>For example, to disable <code>compose-naming-check</code>, the tag you'll need to disable is <code>twitter-compose:compose-naming-check</code>.</p>

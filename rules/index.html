@@ -645,6 +645,9 @@
 <p>If a composable should offer additional control surfaces to its caller, those control surfaces or callbacks should be provided as parameters to the composable function by the caller.</p>
 <p>More info: <a href="https://github.com/androidx/androidx/blob/androidx-main/compose/docs/compose-api-guidelines.md#emit-xor-return-a-value">Compose API guidelines</a></p>
 <p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeMultipleContentEmitters.kt">twitter-compose:content-emitter-returning-values-check</a></p>
+<blockquote>
+<p><strong>Note</strong>: To add your custom composables so they are used in this rule (things like your design system composables), you can add <code>composeEmitters</code> to this rule config in Detekt, or <code>compose_emitters</code> to your .editorconfig in ktlint.</p>
+</blockquote>
 <h3 id="do-not-emit-multiple-pieces-of-content">Do not emit multiple pieces of content<a class="headerlink" href="#do-not-emit-multiple-pieces-of-content" title="Permanent link">&para;</a></h3>
 <p>A composable function should emit either 0 or 1 pieces of layout, but no more. A composable function should be cohesive, and not rely on what function it is called from.</p>
 <p>You can see an example of what not to do below. <code>InnerContent()</code> emits a number of layout nodes and assumes that it will be called from a Column:</p>
@@ -680,6 +683,9 @@ Nesting of layouts has a drastically lower cost vs the view system, so developer
 </code></pre></div>
 This effectively ties the function to be called from a Column, but is still not recommended (although permitted).</p>
 <p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeMultipleContentEmitters.kt">twitter-compose:multiple-emitters-check</a></p>
+<blockquote>
+<p><strong>Note</strong>: To add your custom composables so they are used in this rule (things like your design system composables), you can add <code>composeEmitters</code> to this rule config in Detekt, or <code>compose_emitters</code> to your .editorconfig in ktlint.</p>
+</blockquote>
 <h3 id="naming-composable-functions-properly">Naming @Composable functions properly<a class="headerlink" href="#naming-composable-functions-properly" title="Permanent link">&para;</a></h3>
 <p>Composable functions that return <code>Unit</code> should start with an uppercase letter. They are considered declarative entities that can be either present or absent in a composition and therefore follow the naming rules for classes.</p>
 <p>However, Composable functions that return a value should start with a lowercase letter instead. They should follow the standard <a href="https://kotlinlang.org/docs/reference/coding-conventions.html#function-names">Kotlin Coding Conventions</a> for the naming of functions for any function annotated <code>@Composable</code> that returns a value other than <code>Unit</code></p>
