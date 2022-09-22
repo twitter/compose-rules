@@ -93,26 +93,7 @@ private val ComposableEmittersList by lazy {
         "TopAppBarSurface",
         "VerticalPager",
         "VerticalPagerIndicator",
-        "WebView",
-        // Twitter Components
-        "AnnouncementOverlay",
-        "AttentionHorizonInlineCallout",
-        "DefaultHorizonInlineCallout",
-        "ErrorHorizonInlineCallout",
-        "Facepile",
-        "HorizonButton",
-        "HorizonIcon",
-        "HorizonInlineCallout",
-        "HorizonInlineCalloutCtaText",
-        "HorizonInlineCalloutIcon",
-        "HorizonInlineFeedback",
-        "HorizontalUserAttribution",
-        "HorizonTextInput",
-        "InfoItem",
-        "RichText",
-        "SuccessHorizonInlineCallout",
-        "TwitterFresco",
-        "UserImage"
+        "WebView"
     )
 }
 

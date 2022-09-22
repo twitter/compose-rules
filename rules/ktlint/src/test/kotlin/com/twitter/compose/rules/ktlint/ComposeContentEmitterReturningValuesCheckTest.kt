@@ -30,7 +30,7 @@ class ComposeContentEmitterReturningValuesCheckTest {
                 }
                 @Composable
                 fun Something3() { // This one is fine but calling it should make Something2 fail
-                    HorizonIcon(icon = HorizonIcon.Arrow)
+                    Potato(icon = HorizonIcon.Arrow)
                 }
                 @Composable
                 fun Something4(): String { // This one is using a composable defined in the config
