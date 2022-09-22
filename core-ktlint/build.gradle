@@ -4,7 +4,16 @@ plugins {
     id 'org.jetbrains.kotlin.jvm'
 }
 apply plugin: "com.vanniktech.maven.publish"
+
+test {
+    useJUnitPlatform()
+}
+
 dependencies {
     api libs.ktlint.core
     implementation project(':core-common')
+
+    testImplementation libs.ktlint.test
+    testImplementation libs.junit5
+    testImplementation libs.assertj
 }

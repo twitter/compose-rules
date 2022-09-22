@@ -3,8 +3,8 @@
 package com.twitter.compose.rules.detekt
 
 import com.twitter.compose.rules.ComposeContentEmitterReturningValues
-import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.SourceLocation
+import io.gitlab.arturbosch.detekt.test.TestConfig
 import io.gitlab.arturbosch.detekt.test.assertThat
 import io.gitlab.arturbosch.detekt.test.lint
 import org.intellij.lang.annotations.Language
@@ -12,7 +12,10 @@ import org.junit.jupiter.api.Test
 
 class ComposeContentEmitterReturningValuesCheckTest {
 
-    private val rule = ComposeContentEmitterReturningValuesCheck(Config.empty)
+    private val testConfig = TestConfig(
+        "contentEmitters" to listOf("Potato", "Banana")
+    )
+    private val rule = ComposeContentEmitterReturningValuesCheck(testConfig)
 
     @Test
     fun `error out when detecting a content emitting composable that returns something other than unit`() {
@@ -33,12 +36,17 @@ class ComposeContentEmitterReturningValuesCheckTest {
                 fun Something3() { // This one is fine but calling it should make Something2 fail
                     HorizonIcon(icon = HorizonIcon.Arrow)
                 }
+                @Composable
+                fun Something4(): String { // This one is using a composable defined in the config
+                    Banana()
+                }
             """.trimIndent()
         val errors = rule.lint(code)
-        assertThat(errors).hasSize(2)
+        assertThat(errors)
             .hasSourceLocations(
                 SourceLocation(2, 5),
-                SourceLocation(7, 5)
+                SourceLocation(7, 5),
+                SourceLocation(16, 5)
             )
         for (error in errors) {
             assertThat(error).hasMessage(ComposeContentEmitterReturningValues.ContentEmitterReturningValuesToo)

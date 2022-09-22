@@ -22,6 +22,8 @@ For the rules to be picked up, you will need to enable them in your `detekt.yml`
 TwitterCompose:
   ContentEmitterReturningValues:
     active: true
+    # You can optionally add your own composables here
+    # contentEmitters: MyComposable,MyOtherComposable
   ModifierComposable:
     active: true
   ModifierMissing:
@@ -32,6 +34,8 @@ TwitterCompose:
     active: true
   MultipleEmitters:
     active: true
+      # You can optionally add your own composables here
+      # contentEmitters: MyComposable,MyOtherComposable
   MutableParams:
     active: true
   ComposableNaming:

@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 package com.twitter.rules.core.util
 
+import com.twitter.rules.core.ComposeKtConfig.Companion.config
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtCallableDeclaration
 import org.jetbrains.kotlin.psi.KtFunction
@@ -13,8 +14,10 @@ val KtFunction.emitsContent: Boolean
 val KtCallExpression.emitsContent: Boolean
     get() {
         val methodName = calleeExpression?.text ?: return false
+        val providedContentEmitters = config().getSet("contentEmitters", emptySet())
         return ComposableEmittersList.contains(methodName) ||
             ComposableEmittersListRegex.matches(methodName) ||
+            providedContentEmitters.contains(methodName) ||
             containsComposablesWithModifiers
     }
 

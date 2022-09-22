@@ -2,6 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 package com.twitter.rules.core.detekt
 
+import com.twitter.rules.core.ComposeKtConfig
+import com.twitter.rules.core.ComposeKtConfig.Companion.attach
 import com.twitter.rules.core.ComposeKtVisitor
 import com.twitter.rules.core.Emitter
 import com.twitter.rules.core.util.isComposable
@@ -23,6 +25,8 @@ import org.jetbrains.kotlin.utils.addToStdlib.cast
 abstract class TwitterDetektRule(
     config: Config = Config.empty
 ) : Rule(config), ComposeKtVisitor {
+
+    private val config: ComposeKtConfig = DetektComposeKtConfig(config)
 
     private val emitter: Emitter = Emitter { element, message, canBeAutoCorrected ->
         // Grab the named element if there were any, otherwise fall back to the whole PsiElement
@@ -48,6 +52,7 @@ abstract class TwitterDetektRule(
 
     override fun visit(root: KtFile) {
         super.visit(root)
+        root.attach(config)
         visitFile(root, autoCorrect, emitter)
     }
 

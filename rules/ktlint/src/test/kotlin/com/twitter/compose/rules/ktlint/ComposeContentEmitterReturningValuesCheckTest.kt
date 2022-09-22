@@ -5,6 +5,7 @@ package com.twitter.compose.rules.ktlint
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import com.twitter.compose.rules.ComposeContentEmitterReturningValues
+import com.twitter.rules.core.ktlint.contentEmittersProperty
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
@@ -31,18 +32,31 @@ class ComposeContentEmitterReturningValuesCheckTest {
                 fun Something3() { // This one is fine but calling it should make Something2 fail
                     HorizonIcon(icon = HorizonIcon.Arrow)
                 }
+                @Composable
+                fun Something4(): String { // This one is using a composable defined in the config
+                    Banana()
+                }
             """.trimIndent()
-        emittersRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(
-                line = 2,
-                col = 5,
-                detail = ComposeContentEmitterReturningValues.ContentEmitterReturningValuesToo
-            ),
-            LintViolation(
-                line = 7,
-                col = 5,
-                detail = ComposeContentEmitterReturningValues.ContentEmitterReturningValuesToo
+        emittersRuleAssertThat(code)
+            .withEditorConfigOverride(
+                contentEmittersProperty to "Potato,Banana"
             )
-        )
+            .hasLintViolationsWithoutAutoCorrect(
+                LintViolation(
+                    line = 2,
+                    col = 5,
+                    detail = ComposeContentEmitterReturningValues.ContentEmitterReturningValuesToo
+                ),
+                LintViolation(
+                    line = 7,
+                    col = 5,
+                    detail = ComposeContentEmitterReturningValues.ContentEmitterReturningValuesToo
+                ),
+                LintViolation(
+                    line = 16,
+                    col = 5,
+                    detail = ComposeContentEmitterReturningValues.ContentEmitterReturningValuesToo
+                )
+            )
     }
 }

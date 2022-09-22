@@ -3,6 +3,9 @@
 package com.twitter.rules.core.ktlint
 
 import com.pinterest.ktlint.core.Rule
+import com.pinterest.ktlint.core.api.EditorConfigProperties
+import com.twitter.rules.core.ComposeKtConfig
+import com.twitter.rules.core.ComposeKtConfig.Companion.attach
 import com.twitter.rules.core.ComposeKtVisitor
 import com.twitter.rules.core.Emitter
 import com.twitter.rules.core.util.isComposable
@@ -16,16 +19,29 @@ import org.jetbrains.kotlin.utils.addToStdlib.cast
 
 abstract class TwitterKtlintRule(id: String) : Rule(id), ComposeKtVisitor {
 
+    private lateinit var properties: EditorConfigProperties
+
+    override fun beforeFirstNode(editorConfigProperties: EditorConfigProperties) {
+        properties = editorConfigProperties
+    }
+
+    private val config: ComposeKtConfig by lazy { KtlintComposeKtConfig(properties) }
+
     final override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit
     ) {
+        val psi = node.psi
         when (node.elementType) {
-            KtStubElementTypes.FILE -> visitFile(node.psi.cast(), autoCorrect, emit.toEmitter())
-            KtStubElementTypes.CLASS -> visitClass(node.psi.cast(), autoCorrect, emit.toEmitter())
+            KtStubElementTypes.FILE -> {
+                psi.attach(config)
+                visitFile(psi.cast(), autoCorrect, emit.toEmitter())
+            }
+
+            KtStubElementTypes.CLASS -> visitClass(psi.cast(), autoCorrect, emit.toEmitter())
             KtStubElementTypes.FUNCTION -> {
-                val function = node.psi.cast<KtFunction>()
+                val function = psi.cast<KtFunction>()
                 val emitter = emit.toEmitter()
                 visitFunction(function, autoCorrect, emitter)
                 if (function.isComposable) {
