@@ -53,6 +53,8 @@ private val ComposableEmittersList by lazy {
         "Checkbox",
         "CircularProgressIndicator",
         "Divider",
+        "DropdownMenu",
+        "DropdownMenuItem",
         "ExposedDropdownMenuBox",
         "ExtendedFloatingActionButton",
         "FloatingActionButton",
