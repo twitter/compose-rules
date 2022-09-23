@@ -46,6 +46,19 @@ class ComposeModifierWithoutDefaultCheckTest {
     }
 
     @Test
+    fun `passes when a Composable inside of an interface has modifiers but without default values`() {
+        @Language("kotlin")
+        val composableCode = """
+                interface Bleh {
+                    @Composable
+                    fun Something(modifier: Modifier)
+                }
+        """.trimIndent()
+
+        modifierRuleAssertThat(composableCode).hasNoLintViolations()
+    }
+
+    @Test
     fun `passes when a Composable has modifiers with defaults`() {
         @Language("kotlin")
         val code =

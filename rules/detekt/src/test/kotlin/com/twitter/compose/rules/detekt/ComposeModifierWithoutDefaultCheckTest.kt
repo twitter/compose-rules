@@ -15,7 +15,7 @@ class ComposeModifierWithoutDefaultCheckTest {
     private val rule = ComposeModifierWithoutDefaultCheck(Config.empty)
 
     @Test
-    fun `errors when a Composable has modifiers but without default values, and is able to auto fix it`() {
+    fun `errors when a Composable has modifiers but without default values`() {
         @Language("kotlin")
         val composableCode = """
                 @Composable
@@ -31,6 +31,20 @@ class ComposeModifierWithoutDefaultCheckTest {
         )
         assertThat(errors[0]).hasMessage(ComposeModifierWithoutDefault.MissingModifierDefaultParam)
         assertThat(errors[1]).hasMessage(ComposeModifierWithoutDefault.MissingModifierDefaultParam)
+    }
+
+    @Test
+    fun `passes when a Composable inside of an interface has modifiers but without default values`() {
+        @Language("kotlin")
+        val composableCode = """
+                interface Bleh {
+                    @Composable
+                    fun Something(modifier: Modifier)
+                }
+        """.trimIndent()
+
+        val errors = rule.lint(composableCode)
+        assertThat(errors).isEmpty()
     }
 
     @Test
