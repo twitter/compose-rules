@@ -5,6 +5,7 @@ package com.twitter.compose.rules
 import com.twitter.rules.core.ComposeKtVisitor
 import com.twitter.rules.core.Emitter
 import com.twitter.rules.core.report
+import com.twitter.rules.core.util.hasReceiverType
 import com.twitter.rules.core.util.returnsValue
 import org.jetbrains.kotlin.psi.KtFunction
 
@@ -22,7 +23,8 @@ class ComposeNaming : ComposeKtVisitor {
             }
         } else {
             // If it returns Unit or doesn't have a return type, we should start with an uppercase letter
-            if (firstLetter.isLowerCase()) {
+            // If the composable has a receiver, we can ignore this.
+            if (firstLetter.isLowerCase() && !function.hasReceiverType) {
                 emitter.report(function, ComposablesThatDoNotReturnResultsShouldBeCapitalized)
             }
         }
