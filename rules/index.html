@@ -371,6 +371,26 @@
     Make dependencies explicit
   </a>
   
+    <nav class="md-nav" aria-label="Make dependencies explicit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#viewmodels" class="md-nav__link">
+    ViewModels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compositionlocals" class="md-nav__link">
+    CompositionLocals
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -540,6 +560,26 @@
     Make dependencies explicit
   </a>
   
+    <nav class="md-nav" aria-label="Make dependencies explicit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#viewmodels" class="md-nav__link">
+    ViewModels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compositionlocals" class="md-nav__link">
+    CompositionLocals
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -697,6 +737,7 @@ This effectively ties the function to be called from a Column, but is still not 
 <p>More information: <a href="https://kotlinlang.org/docs/functions.html#default-arguments">Kotlin default arguments</a>, <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier">Modifier docs</a> and <a href="https://github.com/androidx/androidx/blob/androidx-main/compose/docs/compose-api-guidelines.md#why-8">Elements accept and respect a Modifier parameter</a>.</p>
 <p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeParameterOrder.kt">twitter-compose:param-order-check</a></p>
 <h3 id="make-dependencies-explicit">Make dependencies explicit<a class="headerlink" href="#make-dependencies-explicit" title="Permanent link">&para;</a></h3>
+<h4 id="viewmodels">ViewModels<a class="headerlink" href="#viewmodels" title="Permanent link">&para;</a></h4>
 <p>When designing our composables, we should always try to be explicit about the dependencies they take in. If you acquire a ViewModel or an instance from DI in the body of the composable, you are making this dependency implicit, which has the downsides of making it hard to test and harder to reuse.</p>
 <p>To solve this problem, you should inject these dependencies as default values in the composable function.</p>
 <p>Let's see it with an example.</p>
@@ -716,6 +757,13 @@ In this composable, the dependencies are implicit. When testing it you would nee
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeViewModelInjection.kt">twitter-compose:vm-injection-check</a></p>
+<h4 id="compositionlocals"><code>CompositionLocal</code>s<a class="headerlink" href="#compositionlocals" title="Permanent link">&para;</a></h4>
+<p><code>CompositionLocal</code> makes a composable's behavior harder to reason about. As they create implicit dependencies, callers of composables that use them need to make sure that a value for every CompositionLocal is satisfied.</p>
+<p>Although uncommon, there are <a href="https://developer.android.com/jetpack/compose/compositionlocal#deciding">legit usecases</a> for them, so this rule provides an allowlist so that you can add your <code>CompositionLocal</code> names to it so that they are not flagged by the rule.</p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/CompositionLocalAllowlist.kt">twitter-compose:compositionlocal-allowlist</a></p>
+<blockquote>
+<p><strong>Note</strong>: To add your custom <code>CompositionLocal</code> to your allowlist, you can add <code>allowedCompositionLocals</code> to this rule config in Detekt, or <code>allowed_composition_locals</code> to your .editorconfig in ktlint.</p>
+</blockquote>
 <h3 id="preview-composables-should-not-be-public">Preview composables should not be public<a class="headerlink" href="#preview-composables-should-not-be-public" title="Permanent link">&para;</a></h3>
 <p>When a composable function exists solely because it's a <code>@Preview</code>, it doesn't need to have public visibility because it won't be used in actual UI. To prevent folks from using it unknowingly, we should restrict its visibility to <code>private</code>.</p>
 <p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposePreviewPublic.kt">twitter-compose:preview-public-check</a></p>
