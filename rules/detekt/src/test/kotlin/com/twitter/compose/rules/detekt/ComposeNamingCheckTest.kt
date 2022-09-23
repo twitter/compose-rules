@@ -95,4 +95,20 @@ class ComposeNamingCheckTest {
             assertThat(error).hasMessage(ComposeNaming.ComposablesThatDoNotReturnResultsShouldBeCapitalized)
         }
     }
+
+    @Test
+    fun `passes when a composable returns nothing or Unit and is lowercase but has a receiver`() {
+        @Language("kotlin")
+        val code =
+            """
+                @Composable
+                fun Potato.myComposable() { }
+
+                @Composable
+                fun Banana.myComposable(): Unit { }
+            """.trimIndent()
+
+        val errors = rule.lint(code)
+        assertThat(errors).isEmpty()
+    }
 }

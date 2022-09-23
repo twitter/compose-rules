@@ -96,4 +96,19 @@ class ComposeNamingCheckTest {
             )
         )
     }
+
+    @Test
+    fun `passes when a composable returns nothing or Unit and is lowercase but has a receiver`() {
+        @Language("kotlin")
+        val code =
+            """
+                @Composable
+                fun Potato.myComposable() { }
+
+                @Composable
+                fun Banana.myComposable(): Unit { }
+            """.trimIndent()
+
+        namingRuleAssertThat(code).hasNoLintViolations()
+    }
 }
