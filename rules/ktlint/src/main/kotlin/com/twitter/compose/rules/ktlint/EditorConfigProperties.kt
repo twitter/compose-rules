@@ -22,3 +22,21 @@ val contentEmittersProperty: UsesEditorConfigProperties.EditorConfigProperty<Str
             }
         }
     )
+
+val compositionLocalAllowlistProperty: UsesEditorConfigProperties.EditorConfigProperty<String> =
+    UsesEditorConfigProperties.EditorConfigProperty(
+        type = PropertyType.LowerCasingPropertyType(
+            "allowed_composition_locals",
+            "A comma separated list of allowed CompositionLocals",
+            PropertyType.PropertyValueParser.IDENTITY_VALUE_PARSER,
+            emptySet()
+        ),
+        defaultValue = "",
+        propertyMapper = { property, _ ->
+            when {
+                property?.isUnset == true -> ""
+                property?.getValueAs<String>() != null -> property.getValueAs<String>()
+                else -> property?.getValueAs()
+            }
+        }
+    )
