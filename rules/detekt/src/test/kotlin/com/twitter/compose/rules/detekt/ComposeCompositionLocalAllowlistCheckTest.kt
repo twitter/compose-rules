@@ -45,8 +45,8 @@ class ComposeCompositionLocalAllowlistCheckTest {
         @Language("kotlin")
         val code =
             """
-                val LocalBanana = staticCompositionLocalOf<String> { "Apple" }
-                val LocalPotato = compositionLocalOf { "Prune" }
+                val LocalBanana = staticCompositionLocalOf<String> { "Banana" }
+                val LocalPotato = compositionLocalOf { "Potato" }
             """.trimIndent()
         val errors = rule.lint(code)
         assertThat(errors).isEmpty()

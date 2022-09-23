@@ -53,8 +53,8 @@ class ComposeCompositionLocalAllowlistCheckTest {
         @Language("kotlin")
         val code =
             """
-                val LocalBanana = staticCompositionLocalOf<String> { "Apple" }
-                val LocalPotato = compositionLocalOf { "Prune" }
+                val LocalBanana = staticCompositionLocalOf<String> { "Banana" }
+                val LocalPotato = compositionLocalOf { "Potato" }
             """.trimIndent()
         allowlistRuleAssertThat(code)
             .withEditorConfigOverride(
