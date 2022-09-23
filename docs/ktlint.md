@@ -48,6 +48,15 @@ There are some rules (`twitter-compose:content-emitter-returning-values-check` a
 content_emitters = MyComposable,MyOtherComposable
 ```
 
+### Providing a list of allowed `CompositionLocal`s
+
+For `compositionlocal-allowlist` rule you can define a list of `CompositionLocal`s that are allowed in your codebase.
+
+```editorconfig
+[*.{kt,kts}]
+allowed_composition_locals = LocalSomething,LocalSomethingElse
+```
+
 ## Disabling a specific rule
 
 To disable a rule you have to follow the [instructions from the ktlint documentation](https://github.com/pinterest/ktlint#how-do-i-suppress-an-errors-for-a-lineblockfile), and use the id of the rule you want to disable with the `twitter-compose` tag.

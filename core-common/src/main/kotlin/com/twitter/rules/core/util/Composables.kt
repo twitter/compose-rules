@@ -7,6 +7,8 @@ import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtCallableDeclaration
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.KtParameter
+import org.jetbrains.kotlin.psi.KtProperty
+import org.jetbrains.kotlin.psi.psiUtil.referenceExpression
 
 val KtFunction.emitsContent: Boolean
     get() = if (isComposable) findChildrenByClass<KtCallExpression>().any { it.emitsContent } else false
@@ -111,10 +113,12 @@ val ComposableEmittersListRegex by lazy {
     )
 }
 
-val ModifierNames = setOf(
-    "Modifier",
-    "GlanceModifier"
-)
+val ModifierNames by lazy(LazyThreadSafetyMode.NONE) {
+    setOf(
+        "Modifier",
+        "GlanceModifier"
+    )
+}
 
 val KtCallableDeclaration.isModifier: Boolean
     get() = ModifierNames.contains(typeReference?.text)
@@ -127,3 +131,18 @@ val KtFunction.modifierParameter: KtParameter?
         val modifiers = valueParameters.filter { it.isModifier }
         return modifiers.firstOrNull { it.name == "modifier" } ?: modifiers.firstOrNull()
     }
+
+val KtProperty.declaresCompositionLocal: Boolean
+    get() = !isVar &&
+        hasInitializer() &&
+        initializer is KtCallExpression &&
+        CompositionLocalReferenceExpressions.contains(
+            (initializer as KtCallExpression).referenceExpression()?.text
+        )
+
+private val CompositionLocalReferenceExpressions by lazy(LazyThreadSafetyMode.NONE) {
+    setOf(
+        "staticCompositionLocalOf",
+        "compositionLocalOf"
+    )
+}

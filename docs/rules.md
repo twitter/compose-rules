@@ -124,6 +124,8 @@ Related rule: [twitter-compose:param-order-check](https://github.com/twitter/com
 
 ### Make dependencies explicit
 
+#### ViewModels
+
 When designing our composables, we should always try to be explicit about the dependencies they take in. If you acquire a ViewModel or an instance from DI in the body of the composable, you are making this dependency implicit, which has the downsides of making it hard to test and harder to reuse.
 
 To solve this problem, you should inject these dependencies as default values in the composable function.
@@ -152,6 +154,16 @@ private fun MyComposable(
 ```
 
 Related rule: [twitter-compose:vm-injection-check](https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeViewModelInjection.kt)
+
+#### `CompositionLocal`s
+
+`CompositionLocal` makes a composable's behavior harder to reason about. As they create implicit dependencies, callers of composables that use them need to make sure that a value for every CompositionLocal is satisfied.
+
+Although uncommon, there are [legit usecases](https://developer.android.com/jetpack/compose/compositionlocal#deciding) for them, so this rule provides an allowlist so that you can add your `CompositionLocal` names to it so that they are not flagged by the rule.
+
+Related rule: [twitter-compose:compositionlocal-allowlist](https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/CompositionLocalAllowlist.kt)
+
+> **Note**: To add your custom `CompositionLocal` to your allowlist, you can add `allowedCompositionLocals` to this rule config in Detekt, or `allowed_composition_locals` to your .editorconfig in ktlint.
 
 ### Preview composables should not be public
 
