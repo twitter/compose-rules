@@ -24,6 +24,8 @@ TwitterCompose:
     active: true
     # You can optionally define a list of CompositionLocals that are allowed here
     # allowedCompositionLocals: LocalSomething,LocalSomethingElse
+  CompositionLocalNaming:
+      active: true
   ContentEmitterReturningValues:
     active: true
     # You can optionally add your own composables here

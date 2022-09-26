@@ -15,7 +15,7 @@ class ComposeCompositionLocalNamingCheck(config: Config) :
     ComposeKtVisitor by ComposeCompositionLocalNaming() {
 
     override val issue: Issue = Issue(
-        id = "ComposeCompositionLocalNaming",
+        id = "CompositionLocalNaming",
         severity = Severity.CodeSmell,
         description = ComposeCompositionLocalNaming.CompositionLocalNeedsLocalPrefix,
         debt = Debt.FIVE_MINS
