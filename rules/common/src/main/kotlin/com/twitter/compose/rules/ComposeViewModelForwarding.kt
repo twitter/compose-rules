@@ -7,6 +7,7 @@ import com.twitter.rules.core.Emitter
 import com.twitter.rules.core.util.definedInInterface
 import com.twitter.rules.core.util.findDirectChildrenByClass
 import com.twitter.rules.core.util.isOverride
+import com.twitter.rules.core.util.isRestartableEffect
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.KtReferenceExpression
@@ -30,7 +31,7 @@ class ComposeViewModelForwarding : ComposeKtVisitor {
         bodyBlock.findDirectChildrenByClass<KtCallExpression>()
             .filter { callExpression -> callExpression.calleeExpression?.text?.first()?.isUpperCase() ?: false }
             // Avoid LaunchedEffect/DisposableEffect/etc that can use the VM as a key
-            .filter { callExpression -> callExpression.calleeExpression?.text?.endsWith("Effect") == false }
+            .filter { callExpression -> callExpression.isRestartableEffect }
             .flatMap { callExpression ->
                 // Get VALUE_ARGUMENT that has a REFERENCE_EXPRESSION. This would map to `viewModel` in this example:
                 // MyComposable(viewModel, ...)
