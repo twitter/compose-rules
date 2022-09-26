@@ -31,7 +31,7 @@ class ComposeViewModelForwarding : ComposeKtVisitor {
         bodyBlock.findDirectChildrenByClass<KtCallExpression>()
             .filter { callExpression -> callExpression.calleeExpression?.text?.first()?.isUpperCase() ?: false }
             // Avoid LaunchedEffect/DisposableEffect/etc that can use the VM as a key
-            .filter { callExpression -> callExpression.isRestartableEffect }
+            .filterNot { callExpression -> callExpression.isRestartableEffect }
             .flatMap { callExpression ->
                 // Get VALUE_ARGUMENT that has a REFERENCE_EXPRESSION. This would map to `viewModel` in this example:
                 // MyComposable(viewModel, ...)
