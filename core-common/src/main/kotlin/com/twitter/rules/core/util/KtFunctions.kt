@@ -26,5 +26,11 @@ val KtFunction.isInternal: Boolean
 val KtFunction.isOverride: Boolean
     get() = hasModifier(KtTokens.OVERRIDE_KEYWORD)
 
+val KtFunction.isActual: Boolean
+    get() = hasModifier(KtTokens.ACTUAL_KEYWORD)
+
+val KtFunction.isExpect: Boolean
+    get() = hasModifier(KtTokens.EXPECT_KEYWORD)
+
 val KtFunction.definedInInterface: Boolean
     get() = ((parent as? KtClassBody)?.parent as? KtClass)?.isInterface() ?: false
