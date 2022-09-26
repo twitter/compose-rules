@@ -118,9 +118,9 @@ class ComposeModifierReused : ComposeKtVisitor {
     companion object {
         val ModifierShouldBeUsedOnceOnly = """
             Modifiers should only be used once and by the root level layout of a Composable. This is true even if
-            appended to or with other modifiers e.g. 'modifier.fillMaxWith()'.
+            appended to or with other modifiers e.g. 'modifier.fillMaxWidth()'.
 
-            Use Modifier (with a capital 'M') to construct a new Modifier that you can pass to other Composables.
+            Use Modifier (with a capital 'M') to construct a new Modifier that you can pass to other composables.
 
             See https://twitter.github.io/compose-rules/rules/#dont-re-use-modifiers for more information.
         """.trimIndent()
