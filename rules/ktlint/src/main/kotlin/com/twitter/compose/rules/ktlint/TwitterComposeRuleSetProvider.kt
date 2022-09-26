@@ -20,6 +20,8 @@ class TwitterComposeRuleSetProvider :
     @Suppress("OVERRIDE_DEPRECATION")
     override fun get(): RuleSet = RuleSet(
         CustomRuleSetId,
+        ComposeCompositionLocalAllowlistCheck(),
+        ComposeCompositionLocalNamingCheck(),
         ComposeContentEmitterReturningValuesCheck(),
         ComposeModifierComposableCheck(),
         ComposeModifierMissingCheck(),
@@ -37,6 +39,8 @@ class TwitterComposeRuleSetProvider :
 
     // 0.47.0+ ruleset
     override fun getRuleProviders(): Set<RuleProvider> = setOf(
+        RuleProvider { ComposeCompositionLocalAllowlistCheck() },
+        RuleProvider { ComposeCompositionLocalNamingCheck() },
         RuleProvider { ComposeContentEmitterReturningValuesCheck() },
         RuleProvider { ComposeModifierComposableCheck() },
         RuleProvider { ComposeModifierMissingCheck() },
@@ -48,7 +52,8 @@ class TwitterComposeRuleSetProvider :
         RuleProvider { ComposeParameterOrderCheck() },
         RuleProvider { ComposePreviewPublicCheck() },
         RuleProvider { ComposeRememberMissingCheck() },
-        RuleProvider { ComposeViewModelForwardingCheck() }
+        RuleProvider { ComposeViewModelForwardingCheck() },
+        RuleProvider { ComposeViewModelInjectionCheck() }
     )
 
     private companion object {

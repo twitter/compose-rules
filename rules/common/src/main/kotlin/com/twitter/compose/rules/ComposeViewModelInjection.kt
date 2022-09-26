@@ -110,7 +110,7 @@ class ComposeViewModelInjection : ComposeKtVisitor {
 
             Usages of $factoryName to acquire a ViewModel should be done in composable default parameters, so that it is more testable and flexible.
 
-            See https://twitter.github.io/compose-rules/rules/#make-dependencies-explicit for more information.
+            See https://twitter.github.io/compose-rules/rules/#viewmodels for more information.
         """.trimIndent()
     }
 }

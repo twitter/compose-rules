@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 package com.twitter.compose.rules
 
-import com.twitter.rules.core.ComposeKtConfig.Companion.config
 import com.twitter.rules.core.ComposeKtVisitor
 import com.twitter.rules.core.Emitter
 import com.twitter.rules.core.report
@@ -11,7 +10,7 @@ import com.twitter.rules.core.util.findChildrenByClass
 import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtProperty
 
-class ComposeCompositionLocalAllowlist : ComposeKtVisitor {
+class ComposeCompositionLocalNaming : ComposeKtVisitor {
 
     override fun visitFile(file: KtFile, autoCorrect: Boolean, emitter: Emitter) {
         val compositionLocals = file.findChildrenByClass<KtProperty>()
@@ -19,19 +18,18 @@ class ComposeCompositionLocalAllowlist : ComposeKtVisitor {
 
         if (compositionLocals.none()) return
 
-        val allowed = file.config().getSet("allowedCompositionLocals", emptySet())
-        val notAllowed = compositionLocals.filterNot { allowed.contains(it.nameIdentifier?.text) }
+        val notAllowed = compositionLocals.filterNot { it.nameIdentifier?.text?.startsWith("Local") == true }
 
         for (compositionLocal in notAllowed) {
-            emitter.report(compositionLocal, CompositionLocalNotInAllowlist)
+            emitter.report(compositionLocal, CompositionLocalNeedsLocalPrefix)
         }
     }
 
     companion object {
-        val CompositionLocalNotInAllowlist = """
-            CompositionLocals are implicit dependencies and creating new ones should be avoided.
+        val CompositionLocalNeedsLocalPrefix = """
+            CompositionLocals should be named using the `Local` prefix as an adjective, followed by a descriptive noun.
 
-            See https://twitter.github.io/compose-rules/rules/#compositionlocals for more information.
+            See https://twitter.github.io/compose-rules/rules/#naming-compositionlocals-properly for more information.
         """.trimIndent()
     }
 }
