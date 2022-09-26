@@ -12,6 +12,8 @@ class TwitterComposeRuleSetProvider : RuleSetProvider {
     override fun instance(config: Config): RuleSet = RuleSet(
         CustomRuleSetId,
         listOf(
+            ComposeCompositionLocalAllowlistCheck(config),
+            ComposeCompositionLocalNamingCheck(config),
             ComposeContentEmitterReturningValuesCheck(config),
             ComposeModifierComposableCheck(config),
             ComposeModifierMissingCheck(config),
