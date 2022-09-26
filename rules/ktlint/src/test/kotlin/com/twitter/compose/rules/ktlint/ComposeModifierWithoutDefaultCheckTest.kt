@@ -53,6 +53,8 @@ class ComposeModifierWithoutDefaultCheckTest {
                     @Composable
                     fun Something(modifier: Modifier)
                 }
+                @Composable
+                actual fun Something(modifier: Modifier) {}
         """.trimIndent()
 
         modifierRuleAssertThat(composableCode).hasNoLintViolations()
