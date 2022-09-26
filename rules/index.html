@@ -353,6 +353,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#naming-compositionlocals-properly" class="md-nav__link">
+    Naming CompositionLocals properly
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#naming-composable-functions-properly" class="md-nav__link">
     Naming @Composable functions properly
   </a>
@@ -542,6 +549,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#naming-compositionlocals-properly" class="md-nav__link">
+    Naming CompositionLocals properly
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#naming-composable-functions-properly" class="md-nav__link">
     Naming @Composable functions properly
   </a>
@@ -726,6 +740,10 @@ This effectively ties the function to be called from a Column, but is still not 
 <blockquote>
 <p><strong>Note</strong>: To add your custom composables so they are used in this rule (things like your design system composables), you can add <code>composeEmitters</code> to this rule config in Detekt, or <code>compose_emitters</code> to your .editorconfig in ktlint.</p>
 </blockquote>
+<h3 id="naming-compositionlocals-properly">Naming CompositionLocals properly<a class="headerlink" href="#naming-compositionlocals-properly" title="Permanent link">&para;</a></h3>
+<p><code>CompositionLocal</code>s should be named by using the adjective <code>Local</code> as prefix, followed by a descriptive noun that describes the value they hold. This makes it easier to know when a value comes from a <code>CompositionLocal</code>. Given that these are implicit dependencies, we should make them obvious.</p>
+<p>More information: <a href="https://android.googlesource.com/platform/frameworks/support/+/androidx-main/compose/docs/compose-api-guidelines.md#naming-compositionlocals">Naming CompositionLocals</a></p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeCompositionLocalNaming.kt">twitter-compose:compositionlocal-naming</a></p>
 <h3 id="naming-composable-functions-properly">Naming @Composable functions properly<a class="headerlink" href="#naming-composable-functions-properly" title="Permanent link">&para;</a></h3>
 <p>Composable functions that return <code>Unit</code> should start with an uppercase letter. They are considered declarative entities that can be either present or absent in a composition and therefore follow the naming rules for classes.</p>
 <p>However, Composable functions that return a value should start with a lowercase letter instead. They should follow the standard <a href="https://kotlinlang.org/docs/reference/coding-conventions.html#function-names">Kotlin Coding Conventions</a> for the naming of functions for any function annotated <code>@Composable</code> that returns a value other than <code>Unit</code></p>
