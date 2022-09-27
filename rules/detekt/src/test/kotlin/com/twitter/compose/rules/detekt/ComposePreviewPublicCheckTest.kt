@@ -58,6 +58,24 @@ class ComposePreviewPublicCheckTest {
     }
 
     @Test
+    fun `passes when a non-public preview composable uses preview params`() {
+        @Language("kotlin")
+        val code =
+            """
+            @Preview
+            @Composable
+            private fun MyComposable(@PreviewParameter(User::class) user: User) {
+            }
+            @Preview
+            @Composable
+            internal fun MyComposable(@PreviewParameter(User::class) user: User) {
+            }
+            """.trimIndent()
+        val errors = rule.lint(code)
+        assertThat(errors).isEmpty()
+    }
+
+    @Test
     fun `passes when a private preview composable uses preview params`() {
         @Language("kotlin")
         val code =
