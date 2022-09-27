@@ -674,9 +674,11 @@
 <h2 id="state">State<a class="headerlink" href="#state" title="Permanent link">&para;</a></h2>
 <h3 id="hoist-all-the-things">Hoist all the things<a class="headerlink" href="#hoist-all-the-things" title="Permanent link">&para;</a></h3>
 <p>Compose is built upon the idea of a <a href="https://developer.android.com/jetpack/compose/state#state-hoisting">unidirectional data flow</a>, which can be summarised as: data/state flows down, and events fire up. To implement that, Compose advocates for the pattern of <a href="https://developer.android.com/jetpack/compose/state#state-hoisting">hoisting state</a> upwards, enabling the majority of your composable functions to be stateless. This has many benefits, including far easier testing.</p>
-<p>In practice, there are a few common things to look out for:
-- Do not pass ViewModels (or objects from DI) down.
-- Do not pass <code>State&lt;Foo&gt;</code> or <code>MutableState&lt;Bar&gt;</code> instances down.</p>
+<p>In practice, there are a few common things to look out for:</p>
+<ul>
+<li>Do not pass ViewModels (or objects from DI) down.</li>
+<li>Do not pass <code>State&lt;Foo&gt;</code> or <code>MutableState&lt;Bar&gt;</code> instances down.</li>
+</ul>
 <p>Instead pass down the relevant data to the function, and optional lambdas for callbacks.</p>
 <p>More information: <a href="https://developer.android.com/jetpack/compose/state">State and Jetpack Compose</a></p>
 <p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeViewModelForwarding.kt">twitter-compose:vm-forwarding-check</a></p>
