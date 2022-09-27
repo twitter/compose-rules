@@ -5,6 +5,7 @@
 Compose is built upon the idea of a [unidirectional data flow](https://developer.android.com/jetpack/compose/state#state-hoisting), which can be summarised as: data/state flows down, and events fire up. To implement that, Compose advocates for the pattern of [hoisting state](https://developer.android.com/jetpack/compose/state#state-hoisting) upwards, enabling the majority of your composable functions to be stateless. This has many benefits, including far easier testing.
 
 In practice, there are a few common things to look out for:
+
 - Do not pass ViewModels (or objects from DI) down.
 - Do not pass `State<Foo>` or `MutableState<Bar>` instances down.
 
