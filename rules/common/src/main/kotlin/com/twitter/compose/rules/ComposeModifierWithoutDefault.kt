@@ -7,6 +7,7 @@ import com.twitter.rules.core.Emitter
 import com.twitter.rules.core.util.definedInInterface
 import com.twitter.rules.core.util.isActual
 import com.twitter.rules.core.util.isModifier
+import com.twitter.rules.core.util.isOverride
 import com.twitter.rules.core.util.lastChildLeafOrSelf
 import org.jetbrains.kotlin.com.intellij.psi.impl.source.tree.LeafPsiElement
 import org.jetbrains.kotlin.psi.KtFunction
@@ -14,7 +15,7 @@ import org.jetbrains.kotlin.psi.KtFunction
 class ComposeModifierWithoutDefault : ComposeKtVisitor {
 
     override fun visitComposable(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
-        if (function.definedInInterface || function.isActual) return
+        if (function.definedInInterface || function.isActual || function.isOverride) return
 
         // Look for modifier params in the composable signature, and if any without a default value is found, error out.
         function.valueParameters.filter { it.isModifier }
