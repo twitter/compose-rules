@@ -14,7 +14,7 @@ class ComposeViewModelInjectionCheckTest {
     private val injectionRuleAssertThat = assertThatRule { ComposeViewModelInjectionCheck() }
 
     @ParameterizedTest
-    @ValueSource(strings = ["viewModel", "weaverViewModel", "hiltViewModel"])
+    @ValueSource(strings = ["viewModel", "weaverViewModel", "hiltViewModel", "injectedViewModel", "mavericksViewModel"])
     fun `passes when a weaverViewModel is used as a default param`(viewModel: String) {
         @Language("kotlin")
         val code =
@@ -30,7 +30,7 @@ class ComposeViewModelInjectionCheckTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["viewModel", "weaverViewModel", "hiltViewModel"])
+    @ValueSource(strings = ["viewModel", "weaverViewModel", "hiltViewModel", "injectedViewModel", "mavericksViewModel"])
     fun `overridden functions are ignored`(viewModel: String) {
         @Language("kotlin")
         val code =
@@ -44,7 +44,7 @@ class ComposeViewModelInjectionCheckTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["viewModel", "weaverViewModel", "hiltViewModel"])
+    @ValueSource(strings = ["viewModel", "weaverViewModel", "hiltViewModel", "injectedViewModel", "mavericksViewModel"])
     fun `errors when a weaverViewModel is used at the beginning of a Composable`(viewModel: String) {
         @Language("kotlin")
         val code =
@@ -82,7 +82,7 @@ class ComposeViewModelInjectionCheckTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["viewModel", "weaverViewModel", "hiltViewModel"])
+    @ValueSource(strings = ["viewModel", "weaverViewModel", "hiltViewModel", "injectedViewModel", "mavericksViewModel"])
     fun `errors when a weaverViewModel is used in different branches`(viewModel: String) {
         @Language("kotlin")
         val code =
@@ -111,7 +111,7 @@ class ComposeViewModelInjectionCheckTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["viewModel", "weaverViewModel", "hiltViewModel"])
+    @ValueSource(strings = ["viewModel", "weaverViewModel", "hiltViewModel", "injectedViewModel", "mavericksViewModel"])
     fun `fix no args composable function adds the code inside the parentheses`(viewModel: String) {
         @Language("kotlin")
         val badCode = """
@@ -139,7 +139,7 @@ class ComposeViewModelInjectionCheckTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["viewModel", "weaverViewModel", "hiltViewModel"])
+    @ValueSource(strings = ["viewModel", "weaverViewModel", "hiltViewModel", "injectedViewModel", "mavericksViewModel"])
     fun `fix normal args composable function adds the new code at the end`(viewModel: String) {
         @Language("kotlin")
         val badCode = """
@@ -166,7 +166,7 @@ class ComposeViewModelInjectionCheckTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["viewModel", "weaverViewModel", "hiltViewModel"])
+    @ValueSource(strings = ["viewModel", "weaverViewModel", "hiltViewModel", "injectedViewModel", "mavericksViewModel"])
     fun `fix trailing lambda args composable function adds the new code before the trailing lambda`(viewModel: String) {
         @Language("kotlin")
         val badCode = """

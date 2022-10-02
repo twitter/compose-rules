@@ -16,7 +16,7 @@ class ComposeViewModelInjectionCheckTest {
     private val rule = ComposeViewModelInjectionCheck(Config.empty)
 
     @ParameterizedTest
-    @ValueSource(strings = ["viewModel", "weaverViewModel", "hiltViewModel"])
+    @ValueSource(strings = ["viewModel", "weaverViewModel", "hiltViewModel", "injectedViewModel", "mavericksViewModel"])
     fun `passes when a weaverViewModel is used as a default param`(viewModel: String) {
         @Language("kotlin")
         val code =
@@ -33,7 +33,7 @@ class ComposeViewModelInjectionCheckTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["viewModel", "weaverViewModel", "hiltViewModel"])
+    @ValueSource(strings = ["viewModel", "weaverViewModel", "hiltViewModel", "injectedViewModel", "mavericksViewModel"])
     fun `overridden functions are ignored`(viewModel: String) {
         @Language("kotlin")
         val code =
@@ -48,7 +48,7 @@ class ComposeViewModelInjectionCheckTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["viewModel", "weaverViewModel", "hiltViewModel"])
+    @ValueSource(strings = ["viewModel", "weaverViewModel", "hiltViewModel", "injectedViewModel", "mavericksViewModel"])
     fun `errors when a weaverViewModel is used at the beginning of a Composable`(viewModel: String) {
         @Language("kotlin")
         val code =
@@ -79,7 +79,7 @@ class ComposeViewModelInjectionCheckTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["viewModel", "weaverViewModel", "hiltViewModel"])
+    @ValueSource(strings = ["viewModel", "weaverViewModel", "hiltViewModel", "injectedViewModel", "mavericksViewModel"])
     fun `errors when a weaverViewModel is used in different branches`(viewModel: String) {
         @Language("kotlin")
         val code =

@@ -108,7 +108,8 @@ class ComposeViewModelInjection : ComposeKtVisitor {
                 "viewModel", // AAC VM
                 "weaverViewModel", // Weaver
                 "hiltViewModel", // Hilt
-                "injectedViewModel" // Whetstone
+                "injectedViewModel", // Whetstone
+                "mavericksViewModel" // Mavericks
             )
         }
 
