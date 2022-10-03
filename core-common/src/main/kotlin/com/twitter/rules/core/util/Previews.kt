@@ -15,5 +15,5 @@ val KtAnnotated.isPreviewParameter: Boolean
     get() = annotationEntries.any { it.calleeExpression?.text == "PreviewParameter" }
 
 val PreviewNameRegex by lazy {
-    Regex(".*Preview(s)*$")
+    Regex(".*Preview[s]*$")
 }
