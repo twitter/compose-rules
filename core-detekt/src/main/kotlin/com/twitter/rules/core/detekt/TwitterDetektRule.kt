@@ -26,7 +26,7 @@ abstract class TwitterDetektRule(
     config: Config = Config.empty
 ) : Rule(config), ComposeKtVisitor {
 
-    private val config: ComposeKtConfig = DetektComposeKtConfig(config)
+    private val config: ComposeKtConfig by lazy { DetektComposeKtConfig(this) }
 
     private val emitter: Emitter = Emitter { element, message, canBeAutoCorrected ->
         // Grab the named element if there were any, otherwise fall back to the whole PsiElement
