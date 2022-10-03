@@ -34,6 +34,9 @@ class ComposePreviewPublicCheckTest {
             @Preview
             @Composable
             fun MyComposable() { }
+            @CombinedPreviews
+            @Composable
+            fun MyComposable() { }
             """.trimIndent()
         val errors = rule.lint(code)
         assertThat(errors).isEmpty()
@@ -48,10 +51,16 @@ class ComposePreviewPublicCheckTest {
             @Composable
             fun MyComposable(@PreviewParameter(User::class) user: User) {
             }
+            @CombinedPreviews
+            @Composable
+            fun MyComposable(@PreviewParameter(User::class) user: User) {
+            }
             """.trimIndent()
         val errors = rule.lint(code)
-        assertThat(errors).hasSize(1)
-            .hasSourceLocations(SourceLocation(3, 5))
+        assertThat(errors).hasSourceLocations(
+            SourceLocation(3, 5),
+            SourceLocation(7, 5)
+        )
         for (error in errors) {
             assertThat(error).hasMessage(ComposePreviewPublic.ComposablesPreviewShouldNotBePublic)
         }
@@ -66,7 +75,7 @@ class ComposePreviewPublicCheckTest {
             @Composable
             private fun MyComposable(@PreviewParameter(User::class) user: User) {
             }
-            @Preview
+            @CombinedPreviews
             @Composable
             internal fun MyComposable(@PreviewParameter(User::class) user: User) {
             }
@@ -81,6 +90,10 @@ class ComposePreviewPublicCheckTest {
         val code =
             """
             @Preview
+            @Composable
+            private fun MyComposable(@PreviewParameter(User::class) user: User) {
+            }
+            @CombinedPreviews
             @Composable
             private fun MyComposable(@PreviewParameter(User::class) user: User) {
             }

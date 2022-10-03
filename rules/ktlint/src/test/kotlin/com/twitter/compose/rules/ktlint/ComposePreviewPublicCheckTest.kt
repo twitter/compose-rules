@@ -3,6 +3,7 @@
 package com.twitter.compose.rules.ktlint
 
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
+import com.pinterest.ktlint.test.LintViolation
 import com.twitter.compose.rules.ComposePreviewPublic
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
@@ -30,6 +31,9 @@ class ComposePreviewPublicCheckTest {
             @Preview
             @Composable
             fun MyComposable() { }
+            @CombinedPreviews
+            @Composable
+            fun MyComposable() { }
             """.trimIndent()
         ruleAssertThat(code).hasNoLintViolations()
     }
@@ -43,11 +47,22 @@ class ComposePreviewPublicCheckTest {
             @Composable
             fun MyComposable(@PreviewParameter(User::class) user: User) {
             }
+            @CombinedPreviews
+            @Composable
+            fun MyComposable(@PreviewParameter(User::class) user: User) {
+            }
             """.trimIndent()
-        ruleAssertThat(code).hasLintViolation(
-            line = 3,
-            col = 5,
-            detail = ComposePreviewPublic.ComposablesPreviewShouldNotBePublic
+        ruleAssertThat(code).hasLintViolations(
+            LintViolation(
+                line = 3,
+                col = 5,
+                detail = ComposePreviewPublic.ComposablesPreviewShouldNotBePublic
+            ),
+            LintViolation(
+                line = 7,
+                col = 5,
+                detail = ComposePreviewPublic.ComposablesPreviewShouldNotBePublic
+            )
         )
     }
 
@@ -60,7 +75,7 @@ class ComposePreviewPublicCheckTest {
             @Composable
             private fun MyComposable(@PreviewParameter(User::class) user: User) {
             }
-            @Preview
+            @CombinedPreviews
             @Composable
             internal fun MyComposable(@PreviewParameter(User::class) user: User) {
             }
@@ -76,11 +91,19 @@ class ComposePreviewPublicCheckTest {
             @Composable
             fun MyComposable(@PreviewParameter(User::class) user: User) {
             }
+            @CombinedPreviews
+            @Composable
+            fun MyComposable(@PreviewParameter(User::class) user: User) {
+            }
         """.trimIndent()
 
         @Language("kotlin")
         val expectedCode = """
             @Preview
+            @Composable
+            private fun MyComposable(@PreviewParameter(User::class) user: User) {
+            }
+            @CombinedPreviews
             @Composable
             private fun MyComposable(@PreviewParameter(User::class) user: User) {
             }
@@ -94,6 +117,10 @@ class ComposePreviewPublicCheckTest {
         val code =
             """
             @Preview
+            @Composable
+            private fun MyComposable(@PreviewParameter(User::class) user: User) {
+            }
+            @CombinedPreviews
             @Composable
             private fun MyComposable(@PreviewParameter(User::class) user: User) {
             }
