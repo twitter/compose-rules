@@ -20,6 +20,7 @@ gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.22.0"
 junit5 = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
 junit5-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit" }
 assertj = "org.assertj:assertj-core:3.23.1"
+reflections = "org.reflections:reflections:0.10.2"
 
 [plugins]
 spotless = { id = "com.diffplug.spotless", version = "6.11.0" }

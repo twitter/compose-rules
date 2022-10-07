@@ -2,9 +2,32 @@
 // SPDX-License-Identifier: Apache-2.0
 package com.twitter.compose.rules.ktlint
 
-import com.pinterest.ktlint.test.RuleSetProviderTest
+import com.twitter.rules.core.ktlint.TwitterKtlintRule
+import org.assertj.core.api.AssertionsForInterfaceTypes.assertThat
+import org.junit.jupiter.api.Test
+import org.reflections.Reflections
 
-class TwitterComposeRuleSetProviderTest : RuleSetProviderTest(
-    rulesetClass = TwitterComposeRuleSetProvider::class.java,
-    packageName = "com.twitter.rules.ktlint.compose"
-)
+class TwitterComposeRuleSetProviderTest {
+
+    private val ruleSetProvider = TwitterComposeRuleSetProvider()
+    private val ruleClassesInPackage = Reflections(ruleSetProvider.javaClass.packageName)
+        .getSubTypesOf(TwitterKtlintRule::class.java)
+
+    @Test
+    fun `ensure all rules in the package are represented in the old ruleset`() {
+        @Suppress("DEPRECATION")
+        val ruleSet = ruleSetProvider.get()
+        val ruleClassesInRuleSet = ruleSet.rules.filterIsInstance<TwitterKtlintRule>().map { it::class.java }.toSet()
+        assertThat(ruleClassesInRuleSet).containsExactlyInAnyOrderElementsOf(ruleClassesInPackage)
+    }
+
+    @Test
+    fun `ensure all rules in the package are represented in the new ruleset`() {
+        val ruleSet = ruleSetProvider.getRuleProviders()
+        val ruleClassesInRuleSet = ruleSet.map { it.createNewRuleInstance() }
+            .filterIsInstance<TwitterKtlintRule>()
+            .map { it::class.java }
+            .toSet()
+        assertThat(ruleClassesInRuleSet).containsExactlyInAnyOrderElementsOf(ruleClassesInPackage)
+    }
+}
