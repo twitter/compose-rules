@@ -498,12 +498,12 @@
 <h3 id="providing-custom-content-emitters">Providing custom content emitters<a class="headerlink" href="#providing-custom-content-emitters" title="Permanent link">&para;</a></h3>
 <p>There are some rules (<code>twitter-compose:content-emitter-returning-values-check</code> and <code>twitter-compose:multiple-emitters-check</code>) that use predefined list of known composables that emit content. But you can add your own too! In your <code>.editorconfig</code> file, you'll need to add a <code>content_emitters</code> property followed by a list of composable names separated by commas. You would typically want the composables that are part of your custom design system to be in this list.</p>
 <div class="highlight"><pre><span></span><code>[*.{kt,kts}]
-content_emitters = MyComposable,MyOtherComposable
+twitter_compose_content_emitters = MyComposable,MyOtherComposable
 </code></pre></div>
 <h3 id="providing-a-list-of-allowed-compositionlocals">Providing a list of allowed <code>CompositionLocal</code>s<a class="headerlink" href="#providing-a-list-of-allowed-compositionlocals" title="Permanent link">&para;</a></h3>
 <p>For <code>compositionlocal-allowlist</code> rule you can define a list of <code>CompositionLocal</code>s that are allowed in your codebase.</p>
 <div class="highlight"><pre><span></span><code>[*.{kt,kts}]
-allowed_composition_locals = LocalSomething,LocalSomethingElse
+twitter_compose_allowed_composition_locals = LocalSomething,LocalSomethingElse
 </code></pre></div>
 <h2 id="disabling-a-specific-rule">Disabling a specific rule<a class="headerlink" href="#disabling-a-specific-rule" title="Permanent link">&para;</a></h2>
 <p>To disable a rule you have to follow the <a href="https://github.com/pinterest/ktlint#how-do-i-suppress-an-errors-for-a-lineblockfile">instructions from the ktlint documentation</a>, and use the id of the rule you want to disable with the <code>twitter-compose</code> tag.</p>
