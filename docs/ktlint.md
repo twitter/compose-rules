@@ -45,7 +45,7 @@ There are some rules (`twitter-compose:content-emitter-returning-values-check` a
 
 ```editorconfig
 [*.{kt,kts}]
-content_emitters = MyComposable,MyOtherComposable
+twitter_compose_content_emitters = MyComposable,MyOtherComposable
 ```
 
 ### Providing a list of allowed `CompositionLocal`s
@@ -54,7 +54,7 @@ For `compositionlocal-allowlist` rule you can define a list of `CompositionLocal
 
 ```editorconfig
 [*.{kt,kts}]
-allowed_composition_locals = LocalSomething,LocalSomethingElse
+twitter_compose_allowed_composition_locals = LocalSomething,LocalSomethingElse
 ```
 
 ## Disabling a specific rule
