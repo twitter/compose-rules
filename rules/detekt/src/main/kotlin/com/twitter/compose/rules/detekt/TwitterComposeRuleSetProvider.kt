@@ -26,6 +26,7 @@ class TwitterComposeRuleSetProvider : RuleSetProvider {
             ComposePreviewNamingCheck(config),
             ComposePreviewPublicCheck(config),
             ComposeRememberMissingCheck(config),
+            ComposeUnstableCollectionsCheck(config),
             ComposeViewModelForwardingCheck(config),
             ComposeViewModelInjectionCheck(config)
         )
