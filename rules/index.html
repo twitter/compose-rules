@@ -318,6 +318,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#avoid-using-unstable-collections" class="md-nav__link">
+    Avoid using unstable collections
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -521,6 +528,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#avoid-using-unstable-collections" class="md-nav__link">
+    Avoid using unstable collections
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -703,6 +717,26 @@
 <p>The Compose Compiler tries to infer immutability and stability on value classes, but sometimes it gets it wrong, which then means that your UI will be doing more work than it needs. To force the compiler to see a class as 'immutable' you can apply the <code>@Immutable</code> annotation to the class.</p>
 <p>More info: <a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Immutable">Immutable docs</a> and <a href="https://chris.banes.dev/composable-metrics/">Composable metrics blog post</a></p>
 <p>Related rule: TBD</p>
+<h3 id="avoid-using-unstable-collections">Avoid using unstable collections<a class="headerlink" href="#avoid-using-unstable-collections" title="Permanent link">&para;</a></h3>
+<p>Collections are defined as interfaces (e.g. <code>List&lt;T&gt;</code>, <code>Map&lt;T&gt;</code>, <code>Set&lt;T&gt;</code>) in Kotlin, which can't guarantee that they are actually immutable. For example, you could write:</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">list</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mutableListOf</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+<p>The variable is constant, its declared type is not mutable but its implementation is still mutable. The Compose compiler cannot be sure of the immutability of this class as it just sees the declared type and as such declares it as unstable.</p>
+<p>To force the compiler to see a collection as truly 'immutable' you have a couple of options.</p>
+<p>You can use <a href="https://github.com/Kotlin/kotlinx.collections.immutable">Kotlinx Immutable Collections</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">list</span><span class="p">:</span><span class="w"> </span><span class="n">ImmutableList</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">persistentListOf</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+<p>Alternatively, you can wrap your collection in an annotated stable class to mark it as immutable for the Compose compiler.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nd">@Immutable</span><span class="w"></span>
+<span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">StringList</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">items</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ...</span><span class="w"></span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">list</span><span class="p">:</span><span class="w"> </span><span class="n">StringList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StringList</span><span class="p">(</span><span class="n">yourList</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+<blockquote>
+<p><strong>Note</strong>: It is preferred to use Kotlinx Immutable Collections for this. As you can see, the wrapped case only includes the immutability promise with the annotation, but the underlying List is still mutable.</p>
+</blockquote>
+<p>More info: <a href="https://medium.com/androiddevelopers/jetpack-compose-stability-explained-79c10db270c8">Jetpack Compose Stability Explained</a>, <a href="https://github.com/Kotlin/kotlinx.collections.immutable">Kotlinx Immutable Collections</a></p>
+<p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeUnstableCollections.kt">twitter-compose:unstable-collections</a></p>
 <h2 id="composables">Composables<a class="headerlink" href="#composables" title="Permanent link">&para;</a></h2>
 <h3 id="do-not-use-inherently-mutable-types-as-parameters">Do not use inherently mutable types as parameters<a class="headerlink" href="#do-not-use-inherently-mutable-types-as-parameters" title="Permanent link">&para;</a></h3>
 <p>This practice follows on from the 'Hoist all the things' item above, where we said that state flows down. It might be tempting to pass mutable state down to a function to mutate the value.</p>
