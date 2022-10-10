@@ -54,6 +54,8 @@ TwitterCompose:
     active: true
   RememberMissing:
     active: true
+  UnstableCollections:
+    active: true
   ViewModelForwarding:
     active: true
   ViewModelInjection:

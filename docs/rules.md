@@ -29,6 +29,38 @@ More info: [Immutable docs](https://developer.android.com/reference/kotlin/andro
 
 Related rule: TBD
 
+### Avoid using unstable collections
+
+Collections are defined as interfaces (e.g. `List<T>`, `Map<T>`, `Set<T>`) in Kotlin, which can't guarantee that they are actually immutable. For example, you could write:
+
+```kotlin
+    val list: List<String> = mutableListOf<String>()
+```
+
+The variable is constant, its declared type is not mutable but its implementation is still mutable. The Compose compiler cannot be sure of the immutability of this class as it just sees the declared type and as such declares it as unstable.
+
+To force the compiler to see a collection as truly 'immutable' you have a couple of options.
+
+You can use [Kotlinx Immutable Collections](https://github.com/Kotlin/kotlinx.collections.immutable):
+
+```kotlin
+    val list: ImmutableList<String> = persistentListOf<String>()
+```
+
+Alternatively, you can wrap your collection in an annotated stable class to mark it as immutable for the Compose compiler.
+
+```kotlin
+    @Immutable
+    data class StringList(val items: List<String>)
+    // ...
+    val list: StringList = StringList(yourList)
+```
+> **Note**: It is preferred to use Kotlinx Immutable Collections for this. As you can see, the wrapped case only includes the immutability promise with the annotation, but the underlying List is still mutable.
+
+More info:  [Jetpack Compose Stability Explained](https://medium.com/androiddevelopers/jetpack-compose-stability-explained-79c10db270c8), [Kotlinx Immutable Collections](https://github.com/Kotlin/kotlinx.collections.immutable)
+
+Related rule: [twitter-compose:unstable-collections](https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeUnstableCollections.kt)
+
 ## Composables
 
 ### Do not use inherently mutable types as parameters

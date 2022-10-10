@@ -2,12 +2,12 @@
 // SPDX-License-Identifier: Apache-2.0
 package com.twitter.rules.core.util
 
-import org.jetbrains.kotlin.psi.KtParameter
+import org.jetbrains.kotlin.psi.KtCallableDeclaration
 
-val KtParameter.isTypeMutable: Boolean
-    get() = typeReference?.text?.matchesAnyOf(KnownMutableCommonTypes) == true
+val KtCallableDeclaration.isTypeMutable: Boolean
+    get() = typeReference?.text?.matchesAnyOf(KnownMutableCommonTypesRegex) == true
 
-private val KnownMutableCommonTypes = sequenceOf(
+val KnownMutableCommonTypesRegex = sequenceOf(
     // Set
     "MutableSet<.*>\\??",
     "ArraySet<.*>\\??",
@@ -38,4 +38,13 @@ private val KnownMutableCommonTypes = sequenceOf(
     "PublishRelay<.*>\\??",
     "BehaviorRelay<.*>\\??",
     "ReplayRelay<.*>\\??"
+).map { Regex(it) }
+
+val KtCallableDeclaration.isTypeUnstableCollection: Boolean
+    get() = typeReference?.text?.matchesAnyOf(KnownUnstableCollectionTypesRegex) == true
+
+val KnownUnstableCollectionTypesRegex = sequenceOf(
+    "Set<.*>\\??",
+    "List<.*>\\??",
+    "Map<.*>\\??"
 ).map { Regex(it) }
