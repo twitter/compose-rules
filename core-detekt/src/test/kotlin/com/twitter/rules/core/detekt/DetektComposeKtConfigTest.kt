@@ -62,6 +62,7 @@ class DetektComposeKtConfigTest {
         assertThat(config.getList("myList2", emptyList())).containsExactly("a", "b", "c", "a")
         assertThat(config.getSet("mySet", emptySet())).containsExactly("a", "b", "c")
         assertThat(config.getSet("mySet2", emptySet())).containsExactly("a", "b", "c")
+        assertThat(config.getBoolean("myBool", false)).isTrue()
 
         mapping["myInt"] = 100
         mapping["myString"] = "XYZ"
@@ -69,6 +70,7 @@ class DetektComposeKtConfigTest {
         mapping["myList2"] = "z,y"
         mapping["mySet"] = "a"
         mapping["mySet2"] = "a, b"
+        mapping["myBool"] = false
 
         assertThat(config.getInt("myInt", 0)).isEqualTo(10)
         assertThat(config.getString("myString", null)).isEqualTo("abcd")
@@ -76,5 +78,6 @@ class DetektComposeKtConfigTest {
         assertThat(config.getList("myList2", emptyList())).containsExactly("a", "b", "c", "a")
         assertThat(config.getSet("mySet", emptySet())).containsExactly("a", "b", "c")
         assertThat(config.getSet("mySet2", emptySet())).containsExactly("a", "b", "c")
+        assertThat(config.getBoolean("myBool", false)).isTrue()
     }
 }

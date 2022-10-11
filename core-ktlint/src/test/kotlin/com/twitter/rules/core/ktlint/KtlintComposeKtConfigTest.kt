@@ -62,6 +62,7 @@ class KtlintComposeKtConfigTest {
         assertThat(config.getList("myList2", emptyList())).containsExactly("a", "b", "c", "a")
         assertThat(config.getSet("mySet", emptySet())).containsExactly("a", "b", "c")
         assertThat(config.getSet("mySet2", emptySet())).containsExactly("a", "b", "c")
+        assertThat(config.getBoolean("myBool", false)).isTrue()
 
         mapping["my_int"] = "100".prop
         mapping["my_string"] = "XYZ".prop
@@ -69,6 +70,7 @@ class KtlintComposeKtConfigTest {
         mapping["my_list2"] = "z,y".prop
         mapping["my_set"] = "a".prop
         mapping["my_set2"] = "a, b".prop
+        mapping["my_bool"] = "false".prop
 
         assertThat(config.getInt("myInt", 0)).isEqualTo(10)
         assertThat(config.getString("myString", null)).isEqualTo("abcd")
@@ -76,6 +78,7 @@ class KtlintComposeKtConfigTest {
         assertThat(config.getList("myList2", emptyList())).containsExactly("a", "b", "c", "a")
         assertThat(config.getSet("mySet", emptySet())).containsExactly("a", "b", "c")
         assertThat(config.getSet("mySet2", emptySet())).containsExactly("a", "b", "c")
+        assertThat(config.getBoolean("myBool", false)).isTrue()
     }
 
     private val String.prop: Property
