@@ -15,6 +15,7 @@ class KtlintComposeKtConfigTest {
         put("twitter_compose_my_list2", "a , b , c,a".prop)
         put("twitter_compose_my_set", "a,b,c,a,b,c".prop)
         put("twitter_compose_my_set2", "  a, b,c ,a  , b  ,  c ".prop)
+        put("twitter_compose_my_bool", "true".prop)
     }
 
     private val properties: EditorConfigProperties = mapping
@@ -48,6 +49,12 @@ class KtlintComposeKtConfigTest {
     }
 
     @Test
+    fun `returns boolean from properties, and default values when unset`() {
+        assertThat(config.getBoolean("myBool", false)).isTrue()
+        assertThat(config.getBoolean("myOtherBool", false)).isFalse()
+    }
+
+    @Test
     fun `results are memoized`() {
         assertThat(config.getInt("myInt", 0)).isEqualTo(10)
         assertThat(config.getString("myString", null)).isEqualTo("abcd")
@@ -55,6 +62,7 @@ class KtlintComposeKtConfigTest {
         assertThat(config.getList("myList2", emptyList())).containsExactly("a", "b", "c", "a")
         assertThat(config.getSet("mySet", emptySet())).containsExactly("a", "b", "c")
         assertThat(config.getSet("mySet2", emptySet())).containsExactly("a", "b", "c")
+        assertThat(config.getBoolean("myBool", false)).isTrue()
 
         mapping["my_int"] = "100".prop
         mapping["my_string"] = "XYZ".prop
@@ -62,6 +70,7 @@ class KtlintComposeKtConfigTest {
         mapping["my_list2"] = "z,y".prop
         mapping["my_set"] = "a".prop
         mapping["my_set2"] = "a, b".prop
+        mapping["my_bool"] = "false".prop
 
         assertThat(config.getInt("myInt", 0)).isEqualTo(10)
         assertThat(config.getString("myString", null)).isEqualTo("abcd")
@@ -69,6 +78,7 @@ class KtlintComposeKtConfigTest {
         assertThat(config.getList("myList2", emptyList())).containsExactly("a", "b", "c", "a")
         assertThat(config.getSet("mySet", emptySet())).containsExactly("a", "b", "c")
         assertThat(config.getSet("mySet2", emptySet())).containsExactly("a", "b", "c")
+        assertThat(config.getBoolean("myBool", false)).isTrue()
     }
 
     private val String.prop: Property

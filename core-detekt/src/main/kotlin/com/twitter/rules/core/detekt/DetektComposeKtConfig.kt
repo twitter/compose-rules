@@ -36,4 +36,7 @@ internal class DetektComposeKtConfig(
 
     override fun getSet(key: String, default: Set<String>): Set<String> =
         valueOrPut(key) { getList(key, default.toList()).toSet() } ?: default
+
+    override fun getBoolean(key: String, default: Boolean): Boolean =
+        valueOrPut(key) { config.valueOrDefault(key, default) } ?: default
 }

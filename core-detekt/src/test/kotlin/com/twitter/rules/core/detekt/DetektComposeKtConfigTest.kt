@@ -15,7 +15,9 @@ class DetektComposeKtConfigTest {
         put("myList2", "a , b , c,a")
         put("mySet", "a,b,c,a,b,c")
         put("mySet2", "  a, b,c ,a  , b  ,  c ")
+        put("myBool", true)
     }
+
     private val detektConfig = TestConfig(mapping)
     private val config = DetektComposeKtConfig(detektConfig)
 
@@ -47,6 +49,12 @@ class DetektComposeKtConfigTest {
     }
 
     @Test
+    fun `returns booleans from Config, and default values when unset`() {
+        assertThat(config.getBoolean("myBool", false)).isTrue()
+        assertThat(config.getBoolean("myOtherBool", false)).isFalse()
+    }
+
+    @Test
     fun `results are memoized`() {
         assertThat(config.getInt("myInt", 0)).isEqualTo(10)
         assertThat(config.getString("myString", null)).isEqualTo("abcd")
@@ -54,6 +62,7 @@ class DetektComposeKtConfigTest {
         assertThat(config.getList("myList2", emptyList())).containsExactly("a", "b", "c", "a")
         assertThat(config.getSet("mySet", emptySet())).containsExactly("a", "b", "c")
         assertThat(config.getSet("mySet2", emptySet())).containsExactly("a", "b", "c")
+        assertThat(config.getBoolean("myBool", false)).isTrue()
 
         mapping["myInt"] = 100
         mapping["myString"] = "XYZ"
@@ -61,6 +70,7 @@ class DetektComposeKtConfigTest {
         mapping["myList2"] = "z,y"
         mapping["mySet"] = "a"
         mapping["mySet2"] = "a, b"
+        mapping["myBool"] = false
 
         assertThat(config.getInt("myInt", 0)).isEqualTo(10)
         assertThat(config.getString("myString", null)).isEqualTo("abcd")
@@ -68,5 +78,6 @@ class DetektComposeKtConfigTest {
         assertThat(config.getList("myList2", emptyList())).containsExactly("a", "b", "c", "a")
         assertThat(config.getSet("mySet", emptySet())).containsExactly("a", "b", "c")
         assertThat(config.getSet("mySet2", emptySet())).containsExactly("a", "b", "c")
+        assertThat(config.getBoolean("myBool", false)).isTrue()
     }
 }
