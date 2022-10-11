@@ -309,6 +309,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#make-it-so-that-all-preview-composables-must-be-not-public-no-exceptions" class="md-nav__link">
+    Make it so that all @Preview composables must be not public, no exceptions
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -433,6 +440,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#make-it-so-that-all-preview-composables-must-be-not-public-no-exceptions" class="md-nav__link">
+    Make it so that all @Preview composables must be not public, no exceptions
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -504,6 +518,11 @@ twitter_compose_content_emitters = MyComposable,MyOtherComposable
 <p>For <code>compositionlocal-allowlist</code> rule you can define a list of <code>CompositionLocal</code>s that are allowed in your codebase.</p>
 <div class="highlight"><pre><span></span><code>[*.{kt,kts}]
 twitter_compose_allowed_composition_locals = LocalSomething,LocalSomethingElse
+</code></pre></div>
+<h3 id="make-it-so-that-all-preview-composables-must-be-not-public-no-exceptions">Make it so that all @Preview composables must be not public, no exceptions<a class="headerlink" href="#make-it-so-that-all-preview-composables-must-be-not-public-no-exceptions" title="Permanent link">&para;</a></h3>
+<p>In <code>preview-public-check</code>, only previews with a <code>@PreviewParameter</code> are required to be non-public by default. However, if you want to make it so ALL <code>@Preview</code> composables are non-public, you can add this to your <code>.editorconfig</code> file:</p>
+<div class="highlight"><pre><span></span><code>[*.{kt,kts}]
+twitter_compose_preview_public_only_if_params = false
 </code></pre></div>
 <h2 id="disabling-a-specific-rule">Disabling a specific rule<a class="headerlink" href="#disabling-a-specific-rule" title="Permanent link">&para;</a></h2>
 <p>To disable a rule you have to follow the <a href="https://github.com/pinterest/ktlint#how-do-i-suppress-an-errors-for-a-lineblockfile">instructions from the ktlint documentation</a>, and use the id of the rule you want to disable with the <code>twitter-compose</code> tag.</p>
