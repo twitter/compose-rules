@@ -57,6 +57,15 @@ For `compositionlocal-allowlist` rule you can define a list of `CompositionLocal
 twitter_compose_allowed_composition_locals = LocalSomething,LocalSomethingElse
 ```
 
+### Make it so that all @Preview composables must be not public, no exceptions
+
+In `preview-public-check`, only previews with a `@PreviewParameter` are required to be non-public by default. However, if you want to make it so ALL `@Preview` composables are non-public, you can add this to your `.editorconfig` file:
+
+```editorconfig
+[*.{kt,kts}]
+twitter_compose_preview_public_only_if_params = false
+```
+
 ## Disabling a specific rule
 
 To disable a rule you have to follow the [instructions from the ktlint documentation](https://github.com/pinterest/ktlint#how-do-i-suppress-an-errors-for-a-lineblockfile), and use the id of the rule you want to disable with the `twitter-compose` tag.

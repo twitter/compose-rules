@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 package com.twitter.compose.rules
 
+import com.twitter.rules.core.ComposeKtConfig.Companion.config
 import com.twitter.rules.core.ComposeKtVisitor
 import com.twitter.rules.core.Emitter
 import com.twitter.rules.core.util.isPreview
@@ -17,8 +18,12 @@ class ComposePreviewPublic : ComposeKtVisitor {
         if (!function.isPreview) return
         // We only care about public methods
         if (!function.isPublic) return
+
         // If the method is public, none of it's params should be tagged as preview
-        if (function.valueParameters.none { it.isPreviewParameter }) return
+        // This is configurable by the `previewPublicOnlyIfParams` config value
+        if (function.config().getBoolean("previewPublicOnlyIfParams", true)) {
+            if (function.valueParameters.none { it.isPreviewParameter }) return
+        }
 
         // If we got here, it's a public method in a @Preview composable with a @PreviewParameter parameter
         emitter.report(function, ComposablesPreviewShouldNotBePublic, true)

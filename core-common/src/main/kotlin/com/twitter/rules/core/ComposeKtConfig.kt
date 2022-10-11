@@ -27,8 +27,11 @@ interface ComposeKtConfig {
 
         fun ASTNode.config(): ComposeKtConfig = psi.config()
 
+        private val PsiElement.hasConfigAttached: Boolean
+            get() = containingFile.getUserData(Key) != null
+
         fun PsiElement.attach(config: ComposeKtConfig) {
-            containingFile.putUserData(Key, config)
+            if (!hasConfigAttached) containingFile.putUserData(Key, config)
         }
     }
 }

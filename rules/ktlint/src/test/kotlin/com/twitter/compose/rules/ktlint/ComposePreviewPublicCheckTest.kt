@@ -5,6 +5,7 @@ package com.twitter.compose.rules.ktlint
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import com.twitter.compose.rules.ComposePreviewPublic
+import com.twitter.rules.core.ktlint.previewPublicOnlyIfParams
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
@@ -64,6 +65,34 @@ class ComposePreviewPublicCheckTest {
                 detail = ComposePreviewPublic.ComposablesPreviewShouldNotBePublic
             )
         )
+    }
+
+    @Test
+    fun `errors when a public preview composable is used when previewPublicOnlyIfParams is false`() {
+        @Language("kotlin")
+        val code =
+            """
+            @Preview
+            @Composable
+            fun MyComposable() { }
+            @CombinedPreviews
+            @Composable
+            fun MyComposable() { }
+            """.trimIndent()
+        ruleAssertThat(code)
+            .withEditorConfigOverride(previewPublicOnlyIfParams to false)
+            .hasLintViolations(
+                LintViolation(
+                    line = 3,
+                    col = 5,
+                    detail = ComposePreviewPublic.ComposablesPreviewShouldNotBePublic
+                ),
+                LintViolation(
+                    line = 6,
+                    col = 5,
+                    detail = ComposePreviewPublic.ComposablesPreviewShouldNotBePublic
+                )
+            )
     }
 
     @Test

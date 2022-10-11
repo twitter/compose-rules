@@ -37,7 +37,7 @@ internal class KtlintComposeKtConfig(
         getValueAsOrPut(key) { getList(key, default.toList()).toSet() } ?: default
 
     override fun getBoolean(key: String, default: Boolean): Boolean =
-        getValueAsOrPut(key) { properties[ktlintKey(key)]?.getValueAs<String>()?.toBooleanStrictOrNull() } ?: default
+        getValueAsOrPut(key) { properties[ktlintKey(key)]?.getValueAs<Boolean>() } ?: default
 
     private fun ktlintKey(key: String): String = "twitter_compose_${key.toSnakeCase()}"
 }
