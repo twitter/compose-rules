@@ -15,6 +15,7 @@ class KtlintComposeKtConfigTest {
         put("twitter_compose_my_list2", "a , b , c,a".prop)
         put("twitter_compose_my_set", "a,b,c,a,b,c".prop)
         put("twitter_compose_my_set2", "  a, b,c ,a  , b  ,  c ".prop)
+        put("twitter_compose_my_bool", "true".prop)
     }
 
     private val properties: EditorConfigProperties = mapping
@@ -45,6 +46,12 @@ class KtlintComposeKtConfigTest {
         assertThat(config.getSet("mySet", emptySet())).containsExactly("a", "b", "c")
         assertThat(config.getSet("mySet2", emptySet())).containsExactly("a", "b", "c")
         assertThat(config.getSet("myOtherSet", setOf("a"))).containsExactly("a")
+    }
+
+    @Test
+    fun `returns boolean from properties, and default values when unset`() {
+        assertThat(config.getBoolean("myBool", false)).isTrue()
+        assertThat(config.getBoolean("myOtherBool", false)).isFalse()
     }
 
     @Test

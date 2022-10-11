@@ -15,7 +15,9 @@ class DetektComposeKtConfigTest {
         put("myList2", "a , b , c,a")
         put("mySet", "a,b,c,a,b,c")
         put("mySet2", "  a, b,c ,a  , b  ,  c ")
+        put("myBool", true)
     }
+
     private val detektConfig = TestConfig(mapping)
     private val config = DetektComposeKtConfig(detektConfig)
 
@@ -44,6 +46,12 @@ class DetektComposeKtConfigTest {
         assertThat(config.getSet("mySet", emptySet())).containsExactly("a", "b", "c")
         assertThat(config.getSet("mySet2", emptySet())).containsExactly("a", "b", "c")
         assertThat(config.getSet("myOtherSet", setOf("a"))).containsExactly("a")
+    }
+
+    @Test
+    fun `returns booleans from Config, and default values when unset`() {
+        assertThat(config.getBoolean("myBool", false)).isTrue()
+        assertThat(config.getBoolean("myOtherBool", false)).isFalse()
     }
 
     @Test

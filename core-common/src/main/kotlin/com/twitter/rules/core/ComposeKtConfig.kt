@@ -11,6 +11,7 @@ interface ComposeKtConfig {
     fun getString(key: String, default: String?): String?
     fun getList(key: String, default: List<String>): List<String>
     fun getSet(key: String, default: Set<String>): Set<String>
+    fun getBoolean(key: String, default: Boolean): Boolean
 
     companion object {
         private val Key: Key<ComposeKtConfig> = Key("twitter_compose_rules_config")
@@ -19,6 +20,7 @@ interface ComposeKtConfig {
             override fun getString(key: String, default: String?): String? = default
             override fun getList(key: String, default: List<String>): List<String> = default
             override fun getSet(key: String, default: Set<String>) = default
+            override fun getBoolean(key: String, default: Boolean) = default
         }
 
         fun PsiElement.config(): ComposeKtConfig = containingFile.getUserData(Key) ?: ReturnDefaults
