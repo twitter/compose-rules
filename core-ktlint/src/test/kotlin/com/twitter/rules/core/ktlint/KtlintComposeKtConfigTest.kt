@@ -5,6 +5,9 @@ package com.twitter.rules.core.ktlint
 import com.pinterest.ktlint.core.api.EditorConfigProperties
 import org.assertj.core.api.AssertionsForInterfaceTypes.assertThat
 import org.ec4j.core.model.Property
+import org.ec4j.core.model.PropertyType
+import org.ec4j.core.model.PropertyType.LowerCasingPropertyType
+import org.ec4j.core.model.PropertyType.PropertyValueParser.BOOLEAN_VALUE_PARSER
 import org.junit.jupiter.api.Test
 
 class KtlintComposeKtConfigTest {
@@ -15,7 +18,7 @@ class KtlintComposeKtConfigTest {
         put("twitter_compose_my_list2", "a , b , c,a".prop)
         put("twitter_compose_my_set", "a,b,c,a,b,c".prop)
         put("twitter_compose_my_set2", "  a, b,c ,a  , b  ,  c ".prop)
-        put("twitter_compose_my_bool", "true".prop)
+        put("twitter_compose_my_bool", true.prop)
     }
 
     private val properties: EditorConfigProperties = mapping
@@ -70,7 +73,7 @@ class KtlintComposeKtConfigTest {
         mapping["my_list2"] = "z,y".prop
         mapping["my_set"] = "a".prop
         mapping["my_set2"] = "a, b".prop
-        mapping["my_bool"] = "false".prop
+        mapping["my_bool"] = false.prop
 
         assertThat(config.getInt("myInt", 0)).isEqualTo(10)
         assertThat(config.getString("myString", null)).isEqualTo("abcd")
@@ -83,4 +86,15 @@ class KtlintComposeKtConfigTest {
 
     private val String.prop: Property
         get() = Property.builder().value(this).build()
+
+    private val Boolean.prop: Property
+        get() = Property.builder()
+            .type(LowerCasingPropertyType("", "", BOOLEAN_VALUE_PARSER, "true", "false"))
+            .value(
+                when (this) {
+                    true -> PropertyType.PropertyValue.valid("true", true)
+                    false -> PropertyType.PropertyValue.valid("false", false)
+                }
+            )
+            .build()
 }

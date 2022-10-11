@@ -5,6 +5,7 @@ package com.twitter.compose.rules.detekt
 import com.twitter.compose.rules.ComposePreviewPublic
 import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.SourceLocation
+import io.gitlab.arturbosch.detekt.test.TestConfig
 import io.gitlab.arturbosch.detekt.test.assertThat
 import io.gitlab.arturbosch.detekt.test.lint
 import org.intellij.lang.annotations.Language
@@ -40,6 +41,31 @@ class ComposePreviewPublicCheckTest {
             """.trimIndent()
         val errors = rule.lint(code)
         assertThat(errors).isEmpty()
+    }
+
+    @Test
+    fun `errors when a public preview composable is used when previewPublicOnlyIfParams is false`() {
+        val config = TestConfig("previewPublicOnlyIfParams" to false)
+        val ruleWithParams = ComposePreviewPublicCheck(config)
+
+        @Language("kotlin")
+        val code =
+            """
+            @Preview
+            @Composable
+            fun MyComposable() { }
+            @CombinedPreviews
+            @Composable
+            fun MyComposable() { }
+            """.trimIndent()
+        val errors = ruleWithParams.lint(code)
+        assertThat(errors).hasSourceLocations(
+            SourceLocation(3, 5),
+            SourceLocation(6, 5)
+        )
+        for (error in errors) {
+            assertThat(error).hasMessage(ComposePreviewPublic.ComposablesPreviewShouldNotBePublic)
+        }
     }
 
     @Test

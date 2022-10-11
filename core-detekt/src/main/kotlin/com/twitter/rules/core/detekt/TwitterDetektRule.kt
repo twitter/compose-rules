@@ -58,11 +58,13 @@ abstract class TwitterDetektRule(
 
     override fun visitClass(klass: KtClass) {
         super<Rule>.visitClass(klass)
+        klass.attach(config)
         visitClass(klass, autoCorrect, emitter)
     }
 
     override fun visitKtElement(element: KtElement) {
         super.visitKtElement(element)
+        element.attach(config)
         when (element.node.elementType) {
             KtStubElementTypes.FUNCTION -> {
                 val function = element.cast<KtFunction>()
