@@ -6,6 +6,7 @@ import com.twitter.rules.core.ComposeKtVisitor
 import com.twitter.rules.core.Emitter
 import com.twitter.rules.core.util.definedInInterface
 import com.twitter.rules.core.util.findDirectChildrenByClass
+import com.twitter.rules.core.util.isActual
 import com.twitter.rules.core.util.isOverride
 import com.twitter.rules.core.util.isRestartableEffect
 import org.jetbrains.kotlin.psi.KtCallExpression
@@ -15,7 +16,7 @@ import org.jetbrains.kotlin.psi.KtReferenceExpression
 class ComposeViewModelForwarding : ComposeKtVisitor {
 
     override fun visitComposable(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
-        if (function.isOverride || function.definedInInterface) return
+        if (function.isOverride || function.definedInInterface || function.isActual) return
         val bodyBlock = function.bodyBlockExpression ?: return
 
         // We get here a list of variable names that tentatively contain ViewModels
@@ -24,7 +25,9 @@ class ComposeViewModelForwarding : ComposeKtVisitor {
             // We can't do much better than this. We could look for viewModel() / weaverViewModel() but that
             // would give us way less (and less useful) hits.
             parameter.typeReference?.text?.endsWith("ViewModel") ?: false
-        }.mapNotNull { it.name }
+        }
+            .mapNotNull { it.name }
+            .toSet()
 
         // We want now to see if these parameter names are used in any other calls to functions that start with
         // a capital letter (so, most likely, composables).
@@ -47,8 +50,7 @@ class ComposeViewModelForwarding : ComposeKtVisitor {
 
     companion object {
         val AvoidViewModelForwarding = """
-            Forwarding a ViewModel through multiple @Composable functions should be avoided. Consider using
-            state hoisting.
+            Forwarding a ViewModel through multiple @Composable functions should be avoided. Consider using state hoisting.
 
             See https://twitter.github.io/compose-rules/rules/#hoist-all-the-things for more information.
         """.trimIndent()
