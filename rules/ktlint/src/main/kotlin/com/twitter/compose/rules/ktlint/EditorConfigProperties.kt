@@ -54,3 +54,21 @@ val previewPublicOnlyIfParams: UsesEditorConfigProperties.EditorConfigProperty<B
         ),
         defaultValue = true
     )
+
+val allowedComposeNamingNames: UsesEditorConfigProperties.EditorConfigProperty<String> =
+    UsesEditorConfigProperties.EditorConfigProperty(
+        type = PropertyType.LowerCasingPropertyType(
+            "twitter_compose_allowed_composable_function_names",
+            "A comma separated list of regexes of allowed composable fuinction names",
+            PropertyType.PropertyValueParser.IDENTITY_VALUE_PARSER,
+            emptySet()
+        ),
+        defaultValue = "",
+        propertyMapper = { property, _ ->
+            when {
+                property?.isUnset == true -> ""
+                property?.getValueAs<String>() != null -> property.getValueAs<String>()
+                else -> property?.getValueAs()
+            }
+        }
+    )

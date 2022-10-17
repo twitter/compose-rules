@@ -5,6 +5,7 @@ package com.twitter.compose.rules.ktlint
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import com.twitter.compose.rules.ComposeNaming
+import com.twitter.rules.core.ktlint.allowedComposeNamingNames
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
@@ -21,6 +22,21 @@ class ComposeNamingCheckTest {
                 fun myComposable(): Something { }
             """.trimIndent()
         namingRuleAssertThat(code).hasNoLintViolations()
+    }
+
+    @Test
+    fun `passes when a composable that returns values is uppercase but allowed`() {
+        @Language("kotlin")
+        val code =
+            """
+                @Composable
+                fun ProfilePresenter(): Something { }
+            """.trimIndent()
+        namingRuleAssertThat(code)
+            .withEditorConfigOverride(
+                allowedComposeNamingNames to ".*Presenter"
+            )
+            .hasNoLintViolations()
     }
 
     @Test
