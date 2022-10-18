@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://twitter.github.io/compose-rules/rules/">
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.6">
     
     
       
@@ -839,9 +839,10 @@ In this composable, the dependencies are implicit. When testing it you would nee
 <h3 id="preview-composables-should-not-be-public">Preview composables should not be public<a class="headerlink" href="#preview-composables-should-not-be-public" title="Permanent link">&para;</a></h3>
 <p>When a composable function exists solely because it's a <code>@Preview</code>, it doesn't need to have public visibility because it won't be used in actual UI. To prevent folks from using it unknowingly, we should restrict its visibility to <code>private</code>.</p>
 <p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposePreviewPublic.kt">twitter-compose:preview-public-check</a></p>
-<p><strong>NOTE</strong>:
-If you are using Detekt, this may conflict with Detekt's <a href="https://detekt.dev/docs/rules/style/#unusedprivatemember">UnusedPrivateMember rule</a>.
+<blockquote>
+<p><strong>Note</strong>: If you are using Detekt, this may conflict with Detekt's <a href="https://detekt.dev/docs/rules/style/#unusedprivatemember">UnusedPrivateMember rule</a>.
 Be sure to set Detekt's <a href="https://detekt.dev/docs/introduction/compose/#unusedprivatemember">ignoreAnnotated configuration</a> to ['Preview'] for compatibility with this rule.</p>
+</blockquote>
 <h2 id="modifiers">Modifiers<a class="headerlink" href="#modifiers" title="Permanent link">&para;</a></h2>
 <h3 id="when-should-i-expose-modifier-parameters">When should I expose modifier parameters?<a class="headerlink" href="#when-should-i-expose-modifier-parameters" title="Permanent link">&para;</a></h3>
 <p>Modifiers are the beating heart of Compose UI. They encapsulate the idea of composition over inheritance, by allowing developers to attach logic and behavior to layouts.</p>
