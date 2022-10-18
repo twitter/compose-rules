@@ -24,7 +24,7 @@ class ComposeNaming : ComposeKtVisitor {
                 // If it's allowed, we don't report it
                 val isAllowed = function.config().getSet("allowedNames", emptySet())
                     .any {
-                        it.toRegex().matches(function.name ?: "")
+                        it.toRegex().matches(functionName)
                     }
                 if (isAllowed) return
                 emitter.report(function, ComposablesThatReturnResultsShouldBeLowercase)
