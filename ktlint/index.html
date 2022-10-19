@@ -316,6 +316,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#allowing-matching-function-names" class="md-nav__link">
+    Allowing matching function names
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -447,6 +454,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#allowing-matching-function-names" class="md-nav__link">
+    Allowing matching function names
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -523,6 +537,11 @@ twitter_compose_allowed_composition_locals = LocalSomething,LocalSomethingElse
 <p>In <code>preview-public-check</code>, only previews with a <code>@PreviewParameter</code> are required to be non-public by default. However, if you want to make it so ALL <code>@Preview</code> composables are non-public, you can add this to your <code>.editorconfig</code> file:</p>
 <div class="highlight"><pre><span></span><code>[*.{kt,kts}]
 twitter_compose_preview_public_only_if_params = false
+</code></pre></div>
+<h3 id="allowing-matching-function-names">Allowing matching function names<a class="headerlink" href="#allowing-matching-function-names" title="Permanent link">&para;</a></h3>
+<p>The <code>twitter-compose:naming-check</code> rule requires all composables that return a value to be lowercased. If you want to allow certain patterns though, you can configure a comma-separated list of matching regexes in your <code>.editorconfig</code> file:</p>
+<div class="highlight"><pre><span></span><code>[*.{kt,kts}]
+twitter_compose_allowed_composable_function_names = .*Presenter,.*SomethingElse
 </code></pre></div>
 <h2 id="disabling-a-specific-rule">Disabling a specific rule<a class="headerlink" href="#disabling-a-specific-rule" title="Permanent link">&para;</a></h2>
 <p>To disable a rule you have to follow the <a href="https://github.com/pinterest/ktlint#how-do-i-suppress-an-errors-for-a-lineblockfile">instructions from the ktlint documentation</a>, and use the id of the rule you want to disable with the <code>twitter-compose</code> tag.</p>
