@@ -232,7 +232,7 @@ Modifiers are the beating heart of Compose UI. They encapsulate the idea of comp
 
 They are especially important for your public components, as they allow callers to customize the component to their wishes.
 
-More info: [Always provide a Modifier parameter](https://chris.banes.dev/always-provide-a-modifier/)
+More info: [Always provide a Modifier parameter](https://chris.banes.dev/posts/always-provide-a-modifier/)
 
 Related rule: [twitter-compose:modifier-missing-check](https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeModifierMissing.kt)
 
