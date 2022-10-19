@@ -3,8 +3,8 @@
 package com.twitter.compose.rules.detekt
 
 import com.twitter.compose.rules.ComposeNaming
-import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.SourceLocation
+import io.gitlab.arturbosch.detekt.test.TestConfig
 import io.gitlab.arturbosch.detekt.test.assertThat
 import io.gitlab.arturbosch.detekt.test.lint
 import org.intellij.lang.annotations.Language
@@ -12,7 +12,10 @@ import org.junit.jupiter.api.Test
 
 class ComposeNamingCheckTest {
 
-    private val rule = ComposeNamingCheck(Config.empty)
+    private val testConfig = TestConfig(
+        "allowedComposableFunctionNames" to listOf(".*Presenter")
+    )
+    private val rule = ComposeNamingCheck(testConfig)
 
     @Test
     fun `passes when a composable that returns values is lowercase`() {
@@ -21,6 +24,17 @@ class ComposeNamingCheckTest {
             """
                 @Composable
                 fun myComposable(): Something { }
+            """.trimIndent()
+        assertThat(rule.lint(code)).isEmpty()
+    }
+
+    @Test
+    fun `passes when a composable that returns values is uppercase but allowed`() {
+        @Language("kotlin")
+        val code =
+            """
+                @Composable
+                fun ProfilePresenter(): Something { }
             """.trimIndent()
         assertThat(rule.lint(code)).isEmpty()
     }

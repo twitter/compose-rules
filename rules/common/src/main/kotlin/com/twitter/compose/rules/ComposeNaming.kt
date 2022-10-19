@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 package com.twitter.compose.rules
 
+import com.twitter.rules.core.ComposeKtConfig.Companion.config
 import com.twitter.rules.core.ComposeKtVisitor
 import com.twitter.rules.core.Emitter
 import com.twitter.rules.core.report
@@ -14,11 +15,18 @@ class ComposeNaming : ComposeKtVisitor {
     override fun visitComposable(function: KtFunction, autoCorrect: Boolean, emitter: Emitter) {
         // If it's a block we can't know if there is a return type or not from ktlint
         if (!function.hasBlockBody()) return
-        val firstLetter = function.name?.first() ?: return
+        val functionName = function.name?.takeUnless(String::isEmpty) ?: return
+        val firstLetter = functionName.first()
 
         if (function.returnsValue) {
             // If it returns value, the composable should start with a lowercase letter
             if (firstLetter.isUpperCase()) {
+                // If it's allowed, we don't report it
+                val isAllowed = function.config().getSet("allowedComposableFunctionNames", emptySet())
+                    .any {
+                        it.toRegex().matches(functionName)
+                    }
+                if (isAllowed) return
                 emitter.report(function, ComposablesThatReturnResultsShouldBeLowercase)
             }
         } else {

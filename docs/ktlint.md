@@ -66,6 +66,15 @@ In `preview-public-check`, only previews with a `@PreviewParameter` are required
 twitter_compose_preview_public_only_if_params = false
 ```
 
+### Allowing matching function names
+
+The `twitter-compose:naming-check` rule requires all composables that return a value to be lowercased. If you want to allow certain patterns though, you can configure a comma-separated list of matching regexes in your `.editorconfig` file:
+
+```editorconfig
+[*.{kt,kts}]
+twitter_compose_allowed_composable_function_names = .*Presenter,.*SomethingElse
+```
+
 ## Disabling a specific rule
 
 To disable a rule you have to follow the [instructions from the ktlint documentation](https://github.com/pinterest/ktlint#how-do-i-suppress-an-errors-for-a-lineblockfile), and use the id of the rule you want to disable with the `twitter-compose` tag.
