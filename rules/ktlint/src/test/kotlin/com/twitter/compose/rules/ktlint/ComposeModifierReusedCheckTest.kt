@@ -45,6 +45,19 @@ class ComposeModifierReusedCheckTest {
                         SomethingElse(myMod)
                     }
                 }
+                @Composable
+                fun FoundThisOneInTheWild(modifier: Modifier = Modifier) {
+                    Box(
+                        modifier = modifier
+                            .size(AvatarSize.Default.size)
+                            .clip(CircleShape)
+                            .then(colorModifier)
+                    ) {
+                        Box(
+                            modifier = modifier.padding(spacesBorderWidth)
+                        )
+                    }
+                }
             """.trimIndent()
 
         modifierRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
@@ -90,6 +103,16 @@ class ComposeModifierReusedCheckTest {
             ),
             LintViolation(
                 line = 26,
+                col = 9,
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
+            ),
+            LintViolation(
+                line = 31,
+                col = 5,
+                detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
+            ),
+            LintViolation(
+                line = 37,
                 col = 9,
                 detail = ComposeModifierReused.ModifierShouldBeUsedOnceOnly
             )

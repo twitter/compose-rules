@@ -11,6 +11,7 @@ import org.jetbrains.kotlin.com.intellij.psi.PsiElement
 import org.jetbrains.kotlin.psi.KtBlockExpression
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtDotQualifiedExpression
+import org.jetbrains.kotlin.psi.KtExpression
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.psi.KtReferenceExpression
@@ -75,11 +76,22 @@ class ComposeModifierReused : ComposeKtVisitor {
                 }
                 // if it's MyComposable(modifier.fillMaxWidth()) or similar
                 is KtDotQualifiedExpression -> {
-                    modifierNames.contains(expression.receiverExpression.text)
+                    // On cases of multiple nested KtDotQualifiedExpressions (e.g. multiple chained methods)
+                    // we need to iterate until we find the start of the chain
+                    modifierNames.contains(expression.rootExpression.text)
                 }
 
                 else -> false
             }
+        }
+
+    private val KtDotQualifiedExpression.rootExpression: KtExpression
+        get() {
+            var current: KtExpression = receiverExpression
+            while (current is KtDotQualifiedExpression) {
+                current = current.receiverExpression
+            }
+            return current
         }
 
     private fun KtBlockExpression.obtainAllModifierNames(initialName: String): List<String> {
@@ -117,8 +129,7 @@ class ComposeModifierReused : ComposeKtVisitor {
 
     companion object {
         val ModifierShouldBeUsedOnceOnly = """
-            Modifiers should only be used once and by the root level layout of a Composable. This is true even if
-            appended to or with other modifiers e.g. 'modifier.fillMaxWidth()'.
+            Modifiers should only be used once and by the root level layout of a Composable. This is true even if appended to or with other modifiers e.g. 'modifier.fillMaxWidth()'.
 
             Use Modifier (with a capital 'M') to construct a new Modifier that you can pass to other composables.
 
