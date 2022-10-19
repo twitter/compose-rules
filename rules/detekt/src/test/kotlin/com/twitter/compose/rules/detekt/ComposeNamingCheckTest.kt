@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test
 class ComposeNamingCheckTest {
 
     private val testConfig = TestConfig(
-        "allowedNames" to listOf(".*Presenter")
+        "allowedComposableFunctionNames" to listOf(".*Presenter")
     )
     private val rule = ComposeNamingCheck(testConfig)
 

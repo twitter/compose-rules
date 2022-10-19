@@ -59,7 +59,7 @@ val allowedComposeNamingNames: UsesEditorConfigProperties.EditorConfigProperty<S
     UsesEditorConfigProperties.EditorConfigProperty(
         type = PropertyType.LowerCasingPropertyType(
             "twitter_compose_allowed_composable_function_names",
-            "A comma separated list of regexes of allowed composable fuinction names",
+            "A comma separated list of regexes of allowed composable function names",
             PropertyType.PropertyValueParser.IDENTITY_VALUE_PARSER,
             emptySet()
         ),

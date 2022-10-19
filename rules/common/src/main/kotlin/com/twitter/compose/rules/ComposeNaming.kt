@@ -22,7 +22,7 @@ class ComposeNaming : ComposeKtVisitor {
             // If it returns value, the composable should start with a lowercase letter
             if (firstLetter.isUpperCase()) {
                 // If it's allowed, we don't report it
-                val isAllowed = function.config().getSet("allowedNames", emptySet())
+                val isAllowed = function.config().getSet("allowedComposableFunctionNames", emptySet())
                     .any {
                         it.toRegex().matches(functionName)
                     }
