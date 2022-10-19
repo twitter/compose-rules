@@ -46,6 +46,8 @@ TwitterCompose:
     active: true
   ComposableNaming:
     active: true
+    # You can optionally disable the checks in this rule for regex matches against the composable name (e.g. molecule presenters)
+    # allowedComposableFunctionNames: .*Presenter,.*MoleculePresenter
   ComposableParamOrder:
     active: true
   PreviewNaming:
