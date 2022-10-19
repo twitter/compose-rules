@@ -47,10 +47,23 @@ class ComposeModifierReusedCheckTest {
                         SomethingElse(myMod)
                     }
                 }
+                @Composable
+                fun FoundThisOneInTheWild(modifier: Modifier = Modifier) {
+                    Box(
+                        modifier = modifier
+                            .size(AvatarSize.Default.size)
+                            .clip(CircleShape)
+                            .then(colorModifier)
+                    ) {
+                        Box(
+                            modifier = modifier.padding(spacesBorderWidth)
+                        )
+                    }
+                }
             """.trimIndent()
 
         val errors = rule.lint(code)
-        assertThat(errors).hasSize(9)
+        assertThat(errors)
             .hasSourceLocations(
                 SourceLocation(3, 5),
                 SourceLocation(4, 9),
@@ -60,7 +73,9 @@ class ComposeModifierReusedCheckTest {
                 SourceLocation(19, 5),
                 SourceLocation(20, 5),
                 SourceLocation(25, 9),
-                SourceLocation(26, 9)
+                SourceLocation(26, 9),
+                SourceLocation(31, 5),
+                SourceLocation(37, 9)
             )
         for (error in errors) {
             assertThat(error).hasMessage(ComposeModifierReused.ModifierShouldBeUsedOnceOnly)
