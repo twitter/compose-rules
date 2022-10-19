@@ -847,7 +847,7 @@ Be sure to set Detekt's <a href="https://detekt.dev/docs/introduction/compose/#u
 <h3 id="when-should-i-expose-modifier-parameters">When should I expose modifier parameters?<a class="headerlink" href="#when-should-i-expose-modifier-parameters" title="Permanent link">&para;</a></h3>
 <p>Modifiers are the beating heart of Compose UI. They encapsulate the idea of composition over inheritance, by allowing developers to attach logic and behavior to layouts.</p>
 <p>They are especially important for your public components, as they allow callers to customize the component to their wishes.</p>
-<p>More info: <a href="https://chris.banes.dev/always-provide-a-modifier/">Always provide a Modifier parameter</a></p>
+<p>More info: <a href="https://chris.banes.dev/posts/always-provide-a-modifier/">Always provide a Modifier parameter</a></p>
 <p>Related rule: <a href="https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeModifierMissing.kt">twitter-compose:modifier-missing-check</a></p>
 <h3 id="dont-re-use-modifiers">Don't re-use modifiers<a class="headerlink" href="#dont-re-use-modifiers" title="Permanent link">&para;</a></h3>
 <p>Modifiers which are passed in are designed so that they should be used by a single layout node in the composable function. If the provided modifier is used by multiple composables at different levels, unwanted behaviour can happen.</p>
