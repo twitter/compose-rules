@@ -3,6 +3,7 @@
 package com.twitter.rules.core.util
 
 import com.twitter.rules.core.ComposeKtConfig.Companion.config
+import org.jetbrains.kotlin.com.intellij.psi.PsiElement
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtCallableDeclaration
 import org.jetbrains.kotlin.psi.KtFunction
@@ -11,7 +12,27 @@ import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.psi.psiUtil.referenceExpression
 
 val KtFunction.emitsContent: Boolean
-    get() = if (isComposable) findChildrenByClass<KtCallExpression>().any { it.emitsContent } else false
+    get() {
+        return if (isComposable) {
+            sequence {
+                suspend fun SequenceScope<KtCallExpression>.scan(current: PsiElement) {
+                    if (current is KtCallExpression) {
+                        if (current.emitExplicitlyNoContent) {
+                            return
+                        }
+                        yield(current)
+                    }
+                    current.children.forEach { scan(it) }
+                }
+                scan(this@emitsContent)
+            }.any { it.emitsContent }
+        } else {
+            false
+        }
+    }
+
+private val KtCallExpression.emitExplicitlyNoContent: Boolean
+    get() = calleeExpression?.text in ComposableNonEmittersList
 
 val KtCallExpression.emitsContent: Boolean
     get() {
@@ -27,6 +48,15 @@ private val KtCallExpression.containsComposablesWithModifiers: Boolean
     get() = valueArguments
         .filter { it.isNamed() }
         .any { it.getArgumentName()?.text == "modifier" }
+
+/**
+ * This is a denylist with common composables that emit content in their own window. Feel free to add more elements
+ * if you stumble upon them in code reviews that should have triggered an error from this rule.
+ */
+private val ComposableNonEmittersList = setOf(
+    "AlertDialog",
+    "ModalBottomSheetLayout"
+)
 
 /**
  * This is an allowlist with common composables that emit content. Feel free to add more elements if you stumble

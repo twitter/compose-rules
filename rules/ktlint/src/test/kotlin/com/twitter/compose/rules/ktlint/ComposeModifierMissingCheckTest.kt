@@ -214,4 +214,48 @@ class ComposeModifierMissingCheckTest {
 
         modifierRuleAssertThat(code).hasNoLintViolations()
     }
+
+    @Test
+    fun `Non content emitting root composables are ignored`() {
+        @Language("kotlin")
+        val code =
+            """
+                @Composable
+                fun MyDialog() {
+                  AlertDialog(
+                    onDismissRequest = { /*TODO*/ },
+                    buttons = { Text(text = "Button") },
+                    text = { Text(text = "Body") },
+                  )
+                }
+            """.trimIndent()
+
+        modifierRuleAssertThat(code).hasNoLintViolations()
+    }
+
+    @Test
+    fun `Non content emitter with content emitter not ignored`() {
+        @Language("kotlin")
+        val code =
+            """
+                @Composable
+                fun MyDialog() {
+                  Text(text = "Unicorn")
+
+                  AlertDialog(
+                    onDismissRequest = { /*TODO*/ },
+                    buttons = { Text(text = "Button") },
+                    text = { Text(text = "Body") },
+                  )
+                }
+            """.trimIndent()
+
+        modifierRuleAssertThat(code).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(
+                line = 2,
+                col = 5,
+                detail = ComposeModifierMissing.MissingModifierContentComposable
+            )
+        )
+    }
 }
