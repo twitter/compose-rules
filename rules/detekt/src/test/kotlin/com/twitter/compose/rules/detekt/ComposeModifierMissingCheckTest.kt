@@ -202,7 +202,7 @@ class ComposeModifierMissingCheckTest {
     }
 
     @Test
-    fun `Non content emitting root composables are ignored`() {
+    fun `non content emitting root composables are ignored`() {
         @Language("kotlin")
         val code =
             """
@@ -221,7 +221,7 @@ class ComposeModifierMissingCheckTest {
     }
 
     @Test
-    fun `Non content emitter with content emitter not ignored`() {
+    fun `non content emitter with content emitter not ignored`() {
         @Language("kotlin")
         val code =
             """
