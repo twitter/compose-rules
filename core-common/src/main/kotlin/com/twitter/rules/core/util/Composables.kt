@@ -15,16 +15,25 @@ val KtFunction.emitsContent: Boolean
     get() {
         return if (isComposable) {
             sequence {
-                suspend fun SequenceScope<KtCallExpression>.scan(current: PsiElement) {
-                    if (current is KtCallExpression) {
-                        if (current.emitExplicitlyNoContent) {
-                            return
+                tailrec suspend fun SequenceScope<KtCallExpression>.scan(elements: List<PsiElement>) {
+                    if (elements.isEmpty()) return
+                    val toProcess = elements
+                        .mapNotNull { current ->
+                            if (current is KtCallExpression) {
+                                if (current.emitExplicitlyNoContent) {
+                                    null
+                                } else {
+                                    yield(current)
+                                    current
+                                }
+                            } else {
+                                current
+                            }
                         }
-                        yield(current)
-                    }
-                    current.children.forEach { scan(it) }
+                        .flatMap { it.children.toList() }
+                    return scan(toProcess)
                 }
-                scan(this@emitsContent)
+                scan(listOf(this@emitsContent))
             }.any { it.emitsContent }
         } else {
             false
