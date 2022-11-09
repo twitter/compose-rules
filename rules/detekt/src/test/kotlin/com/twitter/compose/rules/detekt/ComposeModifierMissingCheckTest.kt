@@ -200,4 +200,45 @@ class ComposeModifierMissingCheckTest {
         val errors = rule.lint(code)
         assertThat(errors).isEmpty()
     }
+
+    @Test
+    fun `non content emitting root composables are ignored`() {
+        @Language("kotlin")
+        val code =
+            """
+                @Composable
+                fun MyDialog() {
+                  AlertDialog(
+                    onDismissRequest = { /*TODO*/ },
+                    buttons = { Text(text = "Button") },
+                    text = { Text(text = "Body") },
+                  )
+                }
+            """.trimIndent()
+
+        val errors = rule.lint(code)
+        assertThat(errors).isEmpty()
+    }
+
+    @Test
+    fun `non content emitter with content emitter not ignored`() {
+        @Language("kotlin")
+        val code =
+            """
+                @Composable
+                fun MyDialog() {
+                  Text(text = "Unicorn")
+
+                  AlertDialog(
+                    onDismissRequest = { /*TODO*/ },
+                    buttons = { Text(text = "Button") },
+                    text = { Text(text = "Body") },
+                  )
+                }
+            """.trimIndent()
+
+        val errors = rule.lint(code)
+        assertThat(errors).hasTextLocations("MyDialog")
+        assertThat(errors[0]).hasMessage(ComposeModifierMissing.MissingModifierContentComposable)
+    }
 }
