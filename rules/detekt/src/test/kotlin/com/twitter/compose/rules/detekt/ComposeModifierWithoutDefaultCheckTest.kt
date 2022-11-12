@@ -54,6 +54,20 @@ class ComposeModifierWithoutDefaultCheckTest {
     }
 
     @Test
+    fun `passes when a Composable is an abstract function but without default values`() {
+        @Language("kotlin")
+        val composableCode = """
+                abstract class Bleh {
+                    @Composable
+                    abstract fun Something(modifier: Modifier)
+                }
+        """.trimIndent()
+
+        val errors = rule.lint(composableCode)
+        assertThat(errors).isEmpty()
+    }
+
+    @Test
     fun `passes when a Composable has modifiers with defaults`() {
         @Language("kotlin")
         val code =
