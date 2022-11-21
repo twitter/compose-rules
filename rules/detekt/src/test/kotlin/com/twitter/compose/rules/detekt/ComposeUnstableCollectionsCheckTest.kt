@@ -28,7 +28,7 @@ class ComposeUnstableCollectionsCheckTest {
             """.trimIndent()
         val errors = rule.lint(code)
         assertThat(errors)
-            .hasSourceLocations(
+            .hasStartSourceLocations(
                 SourceLocation(2, 18),
                 SourceLocation(4, 18),
                 SourceLocation(6, 18)

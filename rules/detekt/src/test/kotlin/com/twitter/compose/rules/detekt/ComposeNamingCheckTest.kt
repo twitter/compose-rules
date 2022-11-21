@@ -81,7 +81,7 @@ class ComposeNamingCheckTest {
             """.trimIndent()
         val errors = rule.lint(code)
         assertThat(errors).hasSize(1)
-            .hasSourceLocations(
+            .hasStartSourceLocations(
                 SourceLocation(2, 5)
             )
         assertThat(errors.first()).hasMessage(ComposeNaming.ComposablesThatReturnResultsShouldBeLowercase)
@@ -101,7 +101,7 @@ class ComposeNamingCheckTest {
 
         val errors = rule.lint(code)
         assertThat(errors).hasSize(2)
-            .hasSourceLocations(
+            .hasStartSourceLocations(
                 SourceLocation(2, 5),
                 SourceLocation(5, 5)
             )

@@ -43,7 +43,7 @@ class ComposeContentEmitterReturningValuesCheckTest {
             """.trimIndent()
         val errors = rule.lint(code)
         assertThat(errors)
-            .hasSourceLocations(
+            .hasStartSourceLocations(
                 SourceLocation(2, 5),
                 SourceLocation(7, 5),
                 SourceLocation(16, 5)

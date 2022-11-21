@@ -68,7 +68,7 @@ class ComposeViewModelInjectionCheckTest {
             """.trimIndent()
         val errors = rule.lint(code)
         assertThat(errors).hasSize(3)
-            .hasSourceLocations(
+            .hasStartSourceLocations(
                 SourceLocation(3, 9),
                 SourceLocation(7, 9),
                 SourceLocation(11, 9)
@@ -95,7 +95,7 @@ class ComposeViewModelInjectionCheckTest {
             """.trimIndent()
         val errors = rule.lint(code)
         assertThat(errors).hasSize(2)
-            .hasSourceLocations(
+            .hasStartSourceLocations(
                 SourceLocation(4, 13),
                 SourceLocation(6, 13)
             )

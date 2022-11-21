@@ -53,7 +53,7 @@ class ComposeParameterOrderCheckTest {
         """.trimIndent()
         val errors = rule.lint(code)
         assertThat(errors).hasSize(5)
-            .hasSourceLocations(
+            .hasStartSourceLocations(
                 SourceLocation(2, 5),
                 SourceLocation(5, 5),
                 SourceLocation(8, 5),

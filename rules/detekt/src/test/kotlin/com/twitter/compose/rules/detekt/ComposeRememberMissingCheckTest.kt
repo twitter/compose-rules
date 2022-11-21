@@ -40,7 +40,7 @@ class ComposeRememberMissingCheckTest {
             """.trimIndent()
         val errors = rule.lint(code)
         assertThat(errors).hasSize(2)
-            .hasSourceLocations(
+            .hasStartSourceLocations(
                 SourceLocation(3, 21),
                 SourceLocation(6, 45)
             )
@@ -109,7 +109,7 @@ class ComposeRememberMissingCheckTest {
             """.trimIndent()
         val errors = rule.lint(code)
         assertThat(errors).hasSize(2)
-            .hasSourceLocations(
+            .hasStartSourceLocations(
                 SourceLocation(3, 21),
                 SourceLocation(6, 45)
             )

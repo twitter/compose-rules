@@ -61,7 +61,7 @@ class ComposePreviewNamingCheckTest {
             annotation class WithBananaPreviews
             """.trimIndent()
         val errors = rule.lint(code)
-        assertThat(errors).hasSourceLocations(
+        assertThat(errors).hasStartSourceLocations(
             SourceLocation(2, 18),
             SourceLocation(4, 18),
             SourceLocation(6, 18)
@@ -84,7 +84,7 @@ class ComposePreviewNamingCheckTest {
             annotation class BananaPreview
             """.trimIndent()
         val errors = rule.lint(code)
-        assertThat(errors).hasSourceLocations(
+        assertThat(errors).hasStartSourceLocations(
             SourceLocation(3, 18),
             SourceLocation(6, 18)
         )

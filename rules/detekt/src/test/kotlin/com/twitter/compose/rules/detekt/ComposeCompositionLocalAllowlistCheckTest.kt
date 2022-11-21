@@ -29,7 +29,7 @@ class ComposeCompositionLocalAllowlistCheckTest {
             """.trimIndent()
         val errors = rule.lint(code)
         assertThat(errors)
-            .hasSourceLocations(
+            .hasStartSourceLocations(
                 SourceLocation(1, 13),
                 SourceLocation(2, 14),
                 SourceLocation(3, 5),

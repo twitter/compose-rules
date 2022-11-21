@@ -64,7 +64,7 @@ class ComposeModifierReusedCheckTest {
 
         val errors = rule.lint(code)
         assertThat(errors)
-            .hasSourceLocations(
+            .hasStartSourceLocations(
                 SourceLocation(3, 5),
                 SourceLocation(4, 9),
                 SourceLocation(9, 5),
@@ -110,7 +110,7 @@ class ComposeModifierReusedCheckTest {
             """.trimIndent()
         val errors = rule.lint(code)
         assertThat(errors).hasSize(6)
-            .hasSourceLocations(
+            .hasStartSourceLocations(
                 SourceLocation(3, 5),
                 SourceLocation(4, 9),
                 SourceLocation(9, 5),
@@ -154,7 +154,7 @@ class ComposeModifierReusedCheckTest {
             """.trimIndent()
         val errors = rule.lint(code)
         assertThat(errors).hasSize(7)
-            .hasSourceLocations(
+            .hasStartSourceLocations(
                 SourceLocation(6, 5),
                 SourceLocation(8, 9),
                 SourceLocation(9, 9),

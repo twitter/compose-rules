@@ -59,7 +59,7 @@ class ComposePreviewPublicCheckTest {
             fun MyComposable() { }
             """.trimIndent()
         val errors = ruleWithParams.lint(code)
-        assertThat(errors).hasSourceLocations(
+        assertThat(errors).hasStartSourceLocations(
             SourceLocation(3, 5),
             SourceLocation(6, 5)
         )
@@ -83,7 +83,7 @@ class ComposePreviewPublicCheckTest {
             }
             """.trimIndent()
         val errors = rule.lint(code)
-        assertThat(errors).hasSourceLocations(
+        assertThat(errors).hasStartSourceLocations(
             SourceLocation(3, 5),
             SourceLocation(7, 5)
         )
