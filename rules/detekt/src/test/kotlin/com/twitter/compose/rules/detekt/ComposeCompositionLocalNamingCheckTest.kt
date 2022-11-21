@@ -24,7 +24,7 @@ class ComposeCompositionLocalNamingCheckTest {
             """.trimIndent()
         val errors = rule.lint(code)
         assertThat(errors)
-            .hasSourceLocations(
+            .hasStartSourceLocations(
                 SourceLocation(1, 5),
                 SourceLocation(2, 5)
             )

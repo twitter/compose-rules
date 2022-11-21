@@ -25,7 +25,7 @@ class ComposeModifierWithoutDefaultCheckTest {
         """.trimIndent()
 
         val errors = rule.lint(composableCode)
-        assertThat(errors).hasSourceLocations(
+        assertThat(errors).hasStartSourceLocations(
             SourceLocation(2, 15),
             SourceLocation(4, 46)
         )

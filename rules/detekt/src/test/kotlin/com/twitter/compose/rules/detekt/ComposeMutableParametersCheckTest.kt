@@ -30,7 +30,7 @@ class ComposeMutableParametersCheckTest {
             """.trimIndent()
         val errors = rule.lint(code)
         assertThat(errors).hasSize(4)
-            .hasSourceLocations(
+            .hasStartSourceLocations(
                 SourceLocation(2, 15),
                 SourceLocation(4, 15),
                 SourceLocation(6, 15),

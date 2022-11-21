@@ -75,7 +75,7 @@ class ComposeMultipleContentEmittersCheckTest {
             """.trimIndent()
         val errors = rule.lint(code)
         assertThat(errors).hasSize(2)
-            .hasSourceLocations(
+            .hasStartSourceLocations(
                 SourceLocation(2, 5),
                 SourceLocation(7, 5)
             )
@@ -114,7 +114,7 @@ class ComposeMultipleContentEmittersCheckTest {
             """.trimIndent()
         val errors = rule.lint(code)
         assertThat(errors).hasSize(2)
-            .hasSourceLocations(
+            .hasStartSourceLocations(
                 SourceLocation(6, 5),
                 SourceLocation(19, 5)
             )
@@ -141,7 +141,7 @@ class ComposeMultipleContentEmittersCheckTest {
             """.trimIndent()
         val errors = rule.lint(code)
         assertThat(errors).hasSize(1)
-            .hasSourceLocation(2, 5)
+            .hasStartSourceLocation(2, 5)
         assertThat(errors.first()).hasMessage(ComposeMultipleContentEmitters.MultipleContentEmittersDetected)
     }
 }

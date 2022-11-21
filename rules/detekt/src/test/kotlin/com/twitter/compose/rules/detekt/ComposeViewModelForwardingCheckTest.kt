@@ -71,7 +71,7 @@ class ComposeViewModelForwardingCheckTest {
             }
             """.trimIndent()
         val errors = rule.lint(code)
-        assertThat(errors).hasSize(1).hasSourceLocation(3, 5)
+        assertThat(errors).hasSize(1).hasStartSourceLocation(3, 5)
         assertThat(errors.first()).hasMessage(ComposeViewModelForwarding.AvoidViewModelForwarding)
     }
 
