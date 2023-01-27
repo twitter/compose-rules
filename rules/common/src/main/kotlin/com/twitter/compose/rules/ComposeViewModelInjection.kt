@@ -109,7 +109,7 @@ class ComposeViewModelInjection : ComposeKtVisitor {
                 "weaverViewModel", // Weaver
                 "hiltViewModel", // Hilt
                 "injectedViewModel", // Whetstone
-                "mavericksViewModel" // Mavericks
+                "mavericksViewModel", // Mavericks
             )
         }
 

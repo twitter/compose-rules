@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test
 class ComposeMultipleContentEmittersCheckTest {
 
     private val testConfig = TestConfig(
-        "contentEmitters" to listOf("Potato", "Banana")
+        "contentEmitters" to listOf("Potato", "Banana"),
     )
     private val rule = ComposeMultipleContentEmittersCheck(testConfig)
 
@@ -77,7 +77,7 @@ class ComposeMultipleContentEmittersCheckTest {
         assertThat(errors).hasSize(2)
             .hasStartSourceLocations(
                 SourceLocation(2, 5),
-                SourceLocation(7, 5)
+                SourceLocation(7, 5),
             )
         for (error in errors) {
             assertThat(error).hasMessage(ComposeMultipleContentEmitters.MultipleContentEmittersDetected)
@@ -116,7 +116,7 @@ class ComposeMultipleContentEmittersCheckTest {
         assertThat(errors).hasSize(2)
             .hasStartSourceLocations(
                 SourceLocation(6, 5),
-                SourceLocation(19, 5)
+                SourceLocation(19, 5),
             )
         for (error in errors) {
             assertThat(error).hasMessage(ComposeMultipleContentEmitters.MultipleContentEmittersDetected)

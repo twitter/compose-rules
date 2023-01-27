@@ -18,7 +18,7 @@ class ComposeUnstableCollections : ComposeKtVisitor {
             val message = createErrorMessage(
                 type = type,
                 rawType = type.replace(DiamondRegex, ""),
-                variable = variableName
+                variable = variableName,
             )
             emitter.report(param.typeReference ?: param, message)
         }

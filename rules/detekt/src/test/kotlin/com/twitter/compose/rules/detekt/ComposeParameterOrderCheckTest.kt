@@ -58,7 +58,7 @@ class ComposeParameterOrderCheckTest {
                 SourceLocation(5, 5),
                 SourceLocation(8, 5),
                 SourceLocation(11, 5),
-                SourceLocation(14, 5)
+                SourceLocation(14, 5),
             )
     }
 }

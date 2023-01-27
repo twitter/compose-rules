@@ -55,41 +55,45 @@ class ComposeParameterOrderCheckTest {
                 col = 5,
                 detail = ComposeParameterOrder.createErrorMessage(
                     currentOrder = "modifier: Modifier = Modifier, other: String, other2: String",
-                    properOrder = "other: String, other2: String, modifier: Modifier = Modifier"
-                )
+                    properOrder = "other: String, other2: String, modifier: Modifier = Modifier",
+                ),
             ),
             LintViolation(
                 line = 5,
                 col = 5,
                 detail = ComposeParameterOrder.createErrorMessage(
                     currentOrder = "text: String = \"deffo\", modifier: Modifier = Modifier",
-                    properOrder = "modifier: Modifier = Modifier, text: String = \"deffo\""
-                )
+                    properOrder = "modifier: Modifier = Modifier, text: String = \"deffo\"",
+                ),
             ),
             LintViolation(
                 line = 8,
                 col = 5,
                 detail = ComposeParameterOrder.createErrorMessage(
-                    currentOrder = "modifier: Modifier = Modifier, text: String = \"123\", modifier2: Modifier = Modifier",
-                    properOrder = "modifier: Modifier = Modifier, modifier2: Modifier = Modifier, text: String = \"123\""
-                )
+                    currentOrder =
+                    "modifier: Modifier = Modifier, text: String = \"123\", modifier2: Modifier = Modifier",
+                    properOrder =
+                    "modifier: Modifier = Modifier, modifier2: Modifier = Modifier, text: String = \"123\"",
+                ),
             ),
             LintViolation(
                 line = 11,
                 col = 5,
                 detail = ComposeParameterOrder.createErrorMessage(
                     currentOrder = "text: String = \"123\", modifier: Modifier = Modifier, lambda: () -> Unit",
-                    properOrder = "modifier: Modifier = Modifier, text: String = \"123\", lambda: () -> Unit"
-                )
+                    properOrder = "modifier: Modifier = Modifier, text: String = \"123\", lambda: () -> Unit",
+                ),
             ),
             LintViolation(
                 line = 14,
                 col = 5,
                 detail = ComposeParameterOrder.createErrorMessage(
-                    currentOrder = "text1: String, m2: Modifier = Modifier, modifier: Modifier = Modifier, trailing: () -> Unit",
-                    properOrder = "text1: String, modifier: Modifier = Modifier, m2: Modifier = Modifier, trailing: () -> Unit"
-                )
-            )
+                    currentOrder =
+                    "text1: String, m2: Modifier = Modifier, modifier: Modifier = Modifier, trailing: () -> Unit",
+                    properOrder =
+                    "text1: String, modifier: Modifier = Modifier, m2: Modifier = Modifier, trailing: () -> Unit",
+                ),
+            ),
         )
     }
 }

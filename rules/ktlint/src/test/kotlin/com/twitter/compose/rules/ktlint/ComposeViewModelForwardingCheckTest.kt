@@ -70,8 +70,8 @@ class ComposeViewModelForwardingCheckTest {
             LintViolation(
                 line = 3,
                 col = 5,
-                detail = ComposeViewModelForwarding.AvoidViewModelForwarding
-            )
+                detail = ComposeViewModelForwarding.AvoidViewModelForwarding,
+            ),
         )
     }
 

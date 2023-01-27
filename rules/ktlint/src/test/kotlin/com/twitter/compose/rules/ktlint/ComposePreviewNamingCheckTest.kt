@@ -60,18 +60,18 @@ class ComposePreviewNamingCheckTest {
             LintViolation(
                 line = 2,
                 col = 18,
-                detail = ComposePreviewNaming.createMessage(1, "Preview")
+                detail = ComposePreviewNaming.createMessage(1, "Preview"),
             ),
             LintViolation(
                 line = 4,
                 col = 18,
-                detail = ComposePreviewNaming.createMessage(1, "Preview")
+                detail = ComposePreviewNaming.createMessage(1, "Preview"),
             ),
             LintViolation(
                 line = 6,
                 col = 18,
-                detail = ComposePreviewNaming.createMessage(1, "Preview")
-            )
+                detail = ComposePreviewNaming.createMessage(1, "Preview"),
+            ),
         )
     }
 
@@ -91,13 +91,13 @@ class ComposePreviewNamingCheckTest {
             LintViolation(
                 line = 3,
                 col = 18,
-                detail = ComposePreviewNaming.createMessage(2, "Previews")
+                detail = ComposePreviewNaming.createMessage(2, "Previews"),
             ),
             LintViolation(
                 line = 6,
                 col = 18,
-                detail = ComposePreviewNaming.createMessage(2, "Previews")
-            )
+                detail = ComposePreviewNaming.createMessage(2, "Previews"),
+            ),
         )
     }
 }

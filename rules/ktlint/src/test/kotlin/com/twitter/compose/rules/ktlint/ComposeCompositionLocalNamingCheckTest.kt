@@ -25,13 +25,13 @@ class ComposeCompositionLocalNamingCheckTest {
                 LintViolation(
                     line = 1,
                     col = 5,
-                    detail = ComposeCompositionLocalNaming.CompositionLocalNeedsLocalPrefix
+                    detail = ComposeCompositionLocalNaming.CompositionLocalNeedsLocalPrefix,
                 ),
                 LintViolation(
                     line = 2,
                     col = 5,
-                    detail = ComposeCompositionLocalNaming.CompositionLocalNeedsLocalPrefix
-                )
+                    detail = ComposeCompositionLocalNaming.CompositionLocalNeedsLocalPrefix,
+                ),
             )
     }
 

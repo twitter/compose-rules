@@ -21,6 +21,6 @@ class ComposeNamingCheck(config: Config) :
 
         However, Composable functions that return a value should start with a lowercase letter instead. They should follow the standard Kotlin Coding Conventions for the naming of functions for any function annotated @Composable that returns a value other than Unit
         """.trimIndent(),
-        debt = Debt.TEN_MINS
+        debt = Debt.TEN_MINS,
     )
 }

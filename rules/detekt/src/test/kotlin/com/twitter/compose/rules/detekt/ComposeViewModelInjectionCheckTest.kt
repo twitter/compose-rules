@@ -71,7 +71,7 @@ class ComposeViewModelInjectionCheckTest {
             .hasStartSourceLocations(
                 SourceLocation(3, 9),
                 SourceLocation(7, 9),
-                SourceLocation(11, 9)
+                SourceLocation(11, 9),
             )
         for (error in errors) {
             assertThat(error).hasMessage(ComposeViewModelInjection.errorMessage(viewModel))
@@ -97,7 +97,7 @@ class ComposeViewModelInjectionCheckTest {
         assertThat(errors).hasSize(2)
             .hasStartSourceLocations(
                 SourceLocation(4, 13),
-                SourceLocation(6, 13)
+                SourceLocation(6, 13),
             )
         for (error in errors) {
             assertThat(error).hasMessage(ComposeViewModelInjection.errorMessage(viewModel))

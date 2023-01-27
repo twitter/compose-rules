@@ -17,6 +17,6 @@ class ComposeModifierReusedCheck(config: Config) :
         id = "ModifierReused",
         severity = Severity.Defect,
         description = ComposeModifierReused.ModifierShouldBeUsedOnceOnly,
-        debt = Debt.TWENTY_MINS
+        debt = Debt.TWENTY_MINS,
     )
 }

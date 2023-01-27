@@ -94,7 +94,7 @@ class KtlintComposeKtConfigTest {
                 when (this) {
                     true -> PropertyType.PropertyValue.valid("true", true)
                     false -> PropertyType.PropertyValue.valid("false", false)
-                }
+                },
             )
             .build()
 }

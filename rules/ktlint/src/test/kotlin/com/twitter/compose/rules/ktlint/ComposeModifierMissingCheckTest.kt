@@ -46,18 +46,18 @@ class ComposeModifierMissingCheckTest {
             LintViolation(
                 line = 2,
                 col = 5,
-                detail = ComposeModifierMissing.MissingModifierContentComposable
+                detail = ComposeModifierMissing.MissingModifierContentComposable,
             ),
             LintViolation(
                 line = 7,
                 col = 5,
-                detail = ComposeModifierMissing.MissingModifierContentComposable
+                detail = ComposeModifierMissing.MissingModifierContentComposable,
             ),
             LintViolation(
                 line = 12,
                 col = 5,
-                detail = ComposeModifierMissing.MissingModifierContentComposable
-            )
+                detail = ComposeModifierMissing.MissingModifierContentComposable,
+            ),
         )
     }
 
@@ -84,13 +84,13 @@ class ComposeModifierMissingCheckTest {
             LintViolation(
                 line = 2,
                 col = 5,
-                detail = ComposeModifierMissing.MissingModifierContentComposable
+                detail = ComposeModifierMissing.MissingModifierContentComposable,
             ),
             LintViolation(
                 line = 7,
                 col = 5,
-                detail = ComposeModifierMissing.MissingModifierContentComposable
-            )
+                detail = ComposeModifierMissing.MissingModifierContentComposable,
+            ),
         )
     }
 
@@ -254,8 +254,8 @@ class ComposeModifierMissingCheckTest {
             LintViolation(
                 line = 2,
                 col = 5,
-                detail = ComposeModifierMissing.MissingModifierContentComposable
-            )
+                detail = ComposeModifierMissing.MissingModifierContentComposable,
+            ),
         )
     }
 }

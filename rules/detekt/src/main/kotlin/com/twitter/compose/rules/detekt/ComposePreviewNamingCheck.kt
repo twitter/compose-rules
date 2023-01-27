@@ -18,6 +18,6 @@ class ComposePreviewNamingCheck(config: Config) :
         id = "PreviewNaming",
         severity = Severity.CodeSmell,
         description = "Multipreview annotations should end with the `Previews` suffix",
-        debt = Debt.FIVE_MINS
+        debt = Debt.FIVE_MINS,
     )
 }

@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test
 class ComposeContentEmitterReturningValuesCheckTest {
 
     private val testConfig = TestConfig(
-        "contentEmitters" to listOf("Potato", "Banana")
+        "contentEmitters" to listOf("Potato", "Banana"),
     )
     private val rule = ComposeContentEmitterReturningValuesCheck(testConfig)
 
@@ -46,7 +46,7 @@ class ComposeContentEmitterReturningValuesCheckTest {
             .hasStartSourceLocations(
                 SourceLocation(2, 5),
                 SourceLocation(7, 5),
-                SourceLocation(16, 5)
+                SourceLocation(16, 5),
             )
         for (error in errors) {
             assertThat(error).hasMessage(ComposeContentEmitterReturningValues.ContentEmitterReturningValuesToo)

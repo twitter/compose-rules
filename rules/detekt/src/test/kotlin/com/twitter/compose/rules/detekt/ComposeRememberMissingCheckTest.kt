@@ -42,7 +42,7 @@ class ComposeRememberMissingCheckTest {
         assertThat(errors).hasSize(2)
             .hasStartSourceLocations(
                 SourceLocation(3, 21),
-                SourceLocation(6, 45)
+                SourceLocation(6, 45),
             )
         for (error in errors) {
             assertThat(error).hasMessage(ComposeRememberMissing.MutableStateOfNotRemembered)
@@ -111,7 +111,7 @@ class ComposeRememberMissingCheckTest {
         assertThat(errors).hasSize(2)
             .hasStartSourceLocations(
                 SourceLocation(3, 21),
-                SourceLocation(6, 45)
+                SourceLocation(6, 45),
             )
         for (error in errors) {
             assertThat(error).hasMessage(ComposeRememberMissing.DerivedStateOfNotRemembered)

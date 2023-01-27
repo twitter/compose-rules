@@ -28,8 +28,8 @@ class TwitterComposeRuleSetProvider : RuleSetProvider {
             ComposeRememberMissingCheck(config),
             ComposeUnstableCollectionsCheck(config),
             ComposeViewModelForwardingCheck(config),
-            ComposeViewModelInjectionCheck(config)
-        )
+            ComposeViewModelInjectionCheck(config),
+        ),
     )
 
     private companion object {

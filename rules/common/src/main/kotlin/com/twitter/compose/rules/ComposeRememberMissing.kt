@@ -41,7 +41,7 @@ class ComposeRememberMissing : ComposeKtVisitor {
     companion object {
         private val MethodsThatNeedRemembering = setOf(
             "derivedStateOf",
-            "mutableStateOf"
+            "mutableStateOf",
         )
         val DerivedStateOfNotRemembered = errorMessage("derivedStateOf")
         val MutableStateOfNotRemembered = errorMessage("mutableStateOf")

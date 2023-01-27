@@ -34,7 +34,7 @@ class ComposeMutableParametersCheckTest {
                 SourceLocation(2, 15),
                 SourceLocation(4, 15),
                 SourceLocation(6, 15),
-                SourceLocation(8, 15)
+                SourceLocation(8, 15),
             )
         for (error in errors) {
             assertThat(error).hasMessage(ComposeMutableParameters.MutableParameterInCompose)

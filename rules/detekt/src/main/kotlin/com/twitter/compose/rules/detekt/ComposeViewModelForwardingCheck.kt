@@ -17,6 +17,6 @@ class ComposeViewModelForwardingCheck(config: Config) :
         id = "ViewModelForwarding",
         severity = Severity.CodeSmell,
         description = ComposeViewModelForwarding.AvoidViewModelForwarding,
-        debt = Debt.TWENTY_MINS
+        debt = Debt.TWENTY_MINS,
     )
 }

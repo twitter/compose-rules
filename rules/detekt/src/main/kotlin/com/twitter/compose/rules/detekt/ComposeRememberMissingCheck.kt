@@ -21,6 +21,6 @@ class ComposeRememberMissingCheck(config: Config) :
             Using mutableStateOf/derivedStateOf in a @Composable function without it being inside of a remember function.
             If you don't remember the state instance, a new state instance will be created when the function is recomposed.
         """.trimIndent(),
-        debt = Debt.FIVE_MINS
+        debt = Debt.FIVE_MINS,
     )
 }

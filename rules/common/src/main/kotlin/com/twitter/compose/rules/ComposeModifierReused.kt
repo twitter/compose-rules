@@ -49,7 +49,7 @@ class ComposeModifierReused : ComposeKtVisitor {
                         addAll(
                             current.siblings()
                                 .filterIsInstance<KtCallExpression>()
-                                .filter { it.isUsingModifiers(modifierNames) }
+                                .filter { it.isUsingModifiers(modifierNames) },
                         )
                         current = current.parent
                     }

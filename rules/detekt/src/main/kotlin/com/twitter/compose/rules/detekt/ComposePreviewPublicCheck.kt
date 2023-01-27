@@ -18,6 +18,6 @@ class ComposePreviewPublicCheck(config: Config) :
         id = "PreviewPublic",
         severity = Severity.CodeSmell,
         description = ComposePreviewPublic.ComposablesPreviewShouldNotBePublic,
-        debt = Debt.FIVE_MINS
+        debt = Debt.FIVE_MINS,
     )
 }

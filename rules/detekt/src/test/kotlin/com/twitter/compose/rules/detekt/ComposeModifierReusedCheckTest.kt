@@ -75,7 +75,7 @@ class ComposeModifierReusedCheckTest {
                 SourceLocation(25, 9),
                 SourceLocation(26, 9),
                 SourceLocation(31, 5),
-                SourceLocation(37, 9)
+                SourceLocation(37, 9),
             )
         for (error in errors) {
             assertThat(error).hasMessage(ComposeModifierReused.ModifierShouldBeUsedOnceOnly)
@@ -116,7 +116,7 @@ class ComposeModifierReusedCheckTest {
                 SourceLocation(9, 5),
                 SourceLocation(11, 9),
                 SourceLocation(17, 5),
-                SourceLocation(18, 9)
+                SourceLocation(18, 9),
             )
         for (error in errors) {
             assertThat(error).hasMessage(ComposeModifierReused.ModifierShouldBeUsedOnceOnly)
@@ -161,7 +161,7 @@ class ComposeModifierReusedCheckTest {
                 SourceLocation(12, 5),
                 SourceLocation(16, 5),
                 SourceLocation(20, 9),
-                SourceLocation(21, 9)
+                SourceLocation(21, 9),
             )
         for (error in errors) {
             assertThat(error).hasMessage(ComposeModifierReused.ModifierShouldBeUsedOnceOnly)

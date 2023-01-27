@@ -37,7 +37,7 @@ val KnownMutableCommonTypesRegex = sequenceOf(
     "ReplaySubject<.*>\\??",
     "PublishRelay<.*>\\??",
     "BehaviorRelay<.*>\\??",
-    "ReplayRelay<.*>\\??"
+    "ReplayRelay<.*>\\??",
 ).map { Regex(it) }
 
 val KtCallableDeclaration.isTypeUnstableCollection: Boolean
@@ -46,5 +46,5 @@ val KtCallableDeclaration.isTypeUnstableCollection: Boolean
 val KnownUnstableCollectionTypesRegex = sequenceOf(
     "Set<.*>\\??",
     "List<.*>\\??",
-    "Map<.*>\\??"
+    "Map<.*>\\??",
 ).map { Regex(it) }

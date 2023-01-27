@@ -27,13 +27,13 @@ class ComposeModifierWithoutDefaultCheckTest {
                 LintViolation(
                     line = 2,
                     col = 15,
-                    detail = ComposeModifierWithoutDefault.MissingModifierDefaultParam
+                    detail = ComposeModifierWithoutDefault.MissingModifierDefaultParam,
                 ),
                 LintViolation(
                     line = 4,
                     col = 46,
-                    detail = ComposeModifierWithoutDefault.MissingModifierDefaultParam
-                )
+                    detail = ComposeModifierWithoutDefault.MissingModifierDefaultParam,
+                ),
             )
             .isFormattedAs(
                 """
@@ -41,7 +41,7 @@ class ComposeModifierWithoutDefaultCheckTest {
                 fun Something(modifier: Modifier = Modifier) { }
                 @Composable
                 fun Something(modifier: Modifier = Modifier, modifier2: Modifier = Modifier) { }
-                """.trimIndent()
+                """.trimIndent(),
             )
     }
 

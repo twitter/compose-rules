@@ -13,7 +13,7 @@ import com.twitter.rules.core.util.toSnakeCase
  * Results will be memoized as well, as config shouldn't be changing during the lifetime of a rule.
  */
 internal class KtlintComposeKtConfig(
-    private val properties: EditorConfigProperties
+    private val properties: EditorConfigProperties,
 ) : ComposeKtConfig {
     private val cache = mutableMapOf<String, Any?>()
 

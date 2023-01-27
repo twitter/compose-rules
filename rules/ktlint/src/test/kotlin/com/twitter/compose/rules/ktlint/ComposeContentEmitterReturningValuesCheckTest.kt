@@ -5,7 +5,6 @@ package com.twitter.compose.rules.ktlint
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import com.twitter.compose.rules.ComposeContentEmitterReturningValues
-import com.twitter.rules.core.ktlint.contentEmittersProperty
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
@@ -39,24 +38,24 @@ class ComposeContentEmitterReturningValuesCheckTest {
             """.trimIndent()
         emittersRuleAssertThat(code)
             .withEditorConfigOverride(
-                contentEmittersProperty to "Potato,Banana"
+                contentEmittersProperty to "Potato,Banana",
             )
             .hasLintViolationsWithoutAutoCorrect(
                 LintViolation(
                     line = 2,
                     col = 5,
-                    detail = ComposeContentEmitterReturningValues.ContentEmitterReturningValuesToo
+                    detail = ComposeContentEmitterReturningValues.ContentEmitterReturningValuesToo,
                 ),
                 LintViolation(
                     line = 7,
                     col = 5,
-                    detail = ComposeContentEmitterReturningValues.ContentEmitterReturningValuesToo
+                    detail = ComposeContentEmitterReturningValues.ContentEmitterReturningValuesToo,
                 ),
                 LintViolation(
                     line = 16,
                     col = 5,
-                    detail = ComposeContentEmitterReturningValues.ContentEmitterReturningValuesToo
-                )
+                    detail = ComposeContentEmitterReturningValues.ContentEmitterReturningValuesToo,
+                ),
             )
     }
 }

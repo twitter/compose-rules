@@ -14,15 +14,7 @@ class TwitterComposeRuleSetProviderTest {
         .getSubTypesOf(TwitterKtlintRule::class.java)
 
     @Test
-    fun `ensure all rules in the package are represented in the old ruleset`() {
-        @Suppress("DEPRECATION")
-        val ruleSet = ruleSetProvider.get()
-        val ruleClassesInRuleSet = ruleSet.rules.filterIsInstance<TwitterKtlintRule>().map { it::class.java }.toSet()
-        assertThat(ruleClassesInRuleSet).containsExactlyInAnyOrderElementsOf(ruleClassesInPackage)
-    }
-
-    @Test
-    fun `ensure all rules in the package are represented in the new ruleset`() {
+    fun `ensure all rules in the package are represented in the ruleset`() {
         val ruleSet = ruleSetProvider.getRuleProviders()
         val ruleClassesInRuleSet = ruleSet.map { it.createNewRuleInstance() }
             .filterIsInstance<TwitterKtlintRule>()

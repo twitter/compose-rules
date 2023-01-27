@@ -5,7 +5,6 @@ package com.twitter.compose.rules.ktlint
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import com.twitter.compose.rules.ComposeCompositionLocalAllowlist
-import com.twitter.rules.core.ktlint.compositionLocalAllowlistProperty
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
@@ -28,23 +27,23 @@ class ComposeCompositionLocalAllowlistCheckTest {
                 LintViolation(
                     line = 1,
                     col = 13,
-                    detail = ComposeCompositionLocalAllowlist.CompositionLocalNotInAllowlist
+                    detail = ComposeCompositionLocalAllowlist.CompositionLocalNotInAllowlist,
                 ),
                 LintViolation(
                     line = 2,
                     col = 14,
-                    detail = ComposeCompositionLocalAllowlist.CompositionLocalNotInAllowlist
+                    detail = ComposeCompositionLocalAllowlist.CompositionLocalNotInAllowlist,
                 ),
                 LintViolation(
                     line = 3,
                     col = 5,
-                    detail = ComposeCompositionLocalAllowlist.CompositionLocalNotInAllowlist
+                    detail = ComposeCompositionLocalAllowlist.CompositionLocalNotInAllowlist,
                 ),
                 LintViolation(
                     line = 4,
                     col = 13,
-                    detail = ComposeCompositionLocalAllowlist.CompositionLocalNotInAllowlist
-                )
+                    detail = ComposeCompositionLocalAllowlist.CompositionLocalNotInAllowlist,
+                ),
             )
     }
 
@@ -58,7 +57,7 @@ class ComposeCompositionLocalAllowlistCheckTest {
             """.trimIndent()
         allowlistRuleAssertThat(code)
             .withEditorConfigOverride(
-                compositionLocalAllowlistProperty to "LocalPotato,LocalBanana"
+                compositionLocalAllowlistProperty to "LocalPotato,LocalBanana",
             )
             .hasNoLintViolations()
     }

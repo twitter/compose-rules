@@ -61,7 +61,7 @@ class ComposePreviewPublicCheckTest {
         val errors = ruleWithParams.lint(code)
         assertThat(errors).hasStartSourceLocations(
             SourceLocation(3, 5),
-            SourceLocation(6, 5)
+            SourceLocation(6, 5),
         )
         for (error in errors) {
             assertThat(error).hasMessage(ComposePreviewPublic.ComposablesPreviewShouldNotBePublic)
@@ -85,7 +85,7 @@ class ComposePreviewPublicCheckTest {
         val errors = rule.lint(code)
         assertThat(errors).hasStartSourceLocations(
             SourceLocation(3, 5),
-            SourceLocation(7, 5)
+            SourceLocation(7, 5),
         )
         for (error in errors) {
             assertThat(error).hasMessage(ComposePreviewPublic.ComposablesPreviewShouldNotBePublic)
