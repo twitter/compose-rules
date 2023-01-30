@@ -211,7 +211,7 @@ Related rule: [twitter-compose:vm-injection-check](https://github.com/twitter/co
 
 Although uncommon, there are [legit usecases](https://developer.android.com/jetpack/compose/compositionlocal#deciding) for them, so this rule provides an allowlist so that you can add your `CompositionLocal` names to it so that they are not flagged by the rule.
 
-Related rule: [twitter-compose:compositionlocal-allowlist](https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/CompositionLocalAllowlist.kt)
+Related rule: [twitter-compose:compositionlocal-allowlist](https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeCompositionLocalAllowlist.kt)
 
 > **Note**: To add your custom `CompositionLocal` to your allowlist, you can add `allowedCompositionLocals` to this rule config in Detekt, or `allowed_composition_locals` to your .editorconfig in ktlint.
 
