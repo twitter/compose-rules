@@ -31,7 +31,7 @@ class ComposeUnstableCollectionsCheckTest {
             .hasStartSourceLocations(
                 SourceLocation(2, 18),
                 SourceLocation(4, 18),
-                SourceLocation(6, 18)
+                SourceLocation(6, 18),
             )
         assertThat(errors[0]).hasMessage(createErrorMessage("List<String>", "List", "a"))
         assertThat(errors[1]).hasMessage(createErrorMessage("Set<String>", "Set", "a"))

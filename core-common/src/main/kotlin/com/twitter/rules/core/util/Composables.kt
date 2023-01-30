@@ -64,7 +64,7 @@ private val KtCallExpression.containsComposablesWithModifiers: Boolean
  */
 private val ComposableNonEmittersList = setOf(
     "AlertDialog",
-    "ModalBottomSheetLayout"
+    "ModalBottomSheetLayout",
 )
 
 /**
@@ -136,26 +136,26 @@ private val ComposableEmittersList by lazy {
         "TopAppBarSurface",
         "VerticalPager",
         "VerticalPagerIndicator",
-        "WebView"
+        "WebView",
     )
 }
 
 val ComposableEmittersListRegex by lazy {
     Regex(
         listOf(
-            "Spacer\\d*" // Spacer() + SpacerNUM()
+            "Spacer\\d*", // Spacer() + SpacerNUM()
         ).joinToString(
             separator = "|",
             prefix = "(",
-            postfix = ")"
-        )
+            postfix = ")",
+        ),
     )
 }
 
 val ModifierNames by lazy(LazyThreadSafetyMode.NONE) {
     setOf(
         "Modifier",
-        "GlanceModifier"
+        "GlanceModifier",
     )
 }
 
@@ -176,13 +176,13 @@ val KtProperty.declaresCompositionLocal: Boolean
         hasInitializer() &&
         initializer is KtCallExpression &&
         CompositionLocalReferenceExpressions.contains(
-            (initializer as KtCallExpression).referenceExpression()?.text
+            (initializer as KtCallExpression).referenceExpression()?.text,
         )
 
 private val CompositionLocalReferenceExpressions by lazy(LazyThreadSafetyMode.NONE) {
     setOf(
         "staticCompositionLocalOf",
-        "compositionLocalOf"
+        "compositionLocalOf",
     )
 }
 
@@ -194,6 +194,6 @@ private val RestartableEffects by lazy(LazyThreadSafetyMode.NONE) {
     setOf(
         "LaunchedEffect",
         "produceState",
-        "DisposableEffect"
+        "DisposableEffect",
     )
 }

@@ -18,6 +18,6 @@ class ComposeContentEmitterReturningValuesCheck(config: Config) :
         id = "ContentEmitterReturningValues",
         severity = Severity.Defect,
         description = ComposeContentEmitterReturningValues.ContentEmitterReturningValuesToo,
-        debt = Debt.TWENTY_MINS
+        debt = Debt.TWENTY_MINS,
     )
 }

@@ -23,7 +23,7 @@ import org.jetbrains.kotlin.psi.stubs.elements.KtStubElementTypes
 import org.jetbrains.kotlin.utils.addToStdlib.cast
 
 abstract class TwitterDetektRule(
-    config: Config = Config.empty
+    config: Config = Config.empty,
 ) : Rule(config), ComposeKtVisitor {
 
     private val config: ComposeKtConfig by lazy { DetektComposeKtConfig(this) }
@@ -38,13 +38,13 @@ abstract class TwitterDetektRule(
                 issue = issue,
                 entity = Entity.from(finalElement, Location.from(finalElement)),
                 message = message,
-                autoCorrectEnabled = autoCorrect
+                autoCorrectEnabled = autoCorrect,
             )
 
             else -> CodeSmell(
                 issue = issue,
                 entity = Entity.from(finalElement, Location.from(finalElement)),
-                message = message
+                message = message,
             )
         }
         report(finding)

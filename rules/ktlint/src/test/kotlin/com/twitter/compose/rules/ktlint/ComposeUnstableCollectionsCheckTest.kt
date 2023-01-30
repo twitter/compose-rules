@@ -28,18 +28,18 @@ class ComposeUnstableCollectionsCheckTest {
             LintViolation(
                 line = 2,
                 col = 18,
-                detail = createErrorMessage("List<String>", "List", "a")
+                detail = createErrorMessage("List<String>", "List", "a"),
             ),
             LintViolation(
                 line = 4,
                 col = 18,
-                detail = createErrorMessage("Set<String>", "Set", "a")
+                detail = createErrorMessage("Set<String>", "Set", "a"),
             ),
             LintViolation(
                 line = 6,
                 col = 18,
-                detail = createErrorMessage("Map<String, Int>", "Map", "a")
-            )
+                detail = createErrorMessage("Map<String, Int>", "Map", "a"),
+            ),
         )
     }
 

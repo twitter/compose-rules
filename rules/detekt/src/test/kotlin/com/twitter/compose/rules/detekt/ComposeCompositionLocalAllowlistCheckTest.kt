@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test
 class ComposeCompositionLocalAllowlistCheckTest {
 
     private val testConfig = TestConfig(
-        "allowedCompositionLocals" to listOf("LocalBanana", "LocalPotato")
+        "allowedCompositionLocals" to listOf("LocalBanana", "LocalPotato"),
     )
     private val rule = ComposeCompositionLocalAllowlistCheck(testConfig)
 
@@ -33,7 +33,7 @@ class ComposeCompositionLocalAllowlistCheckTest {
                 SourceLocation(1, 13),
                 SourceLocation(2, 14),
                 SourceLocation(3, 5),
-                SourceLocation(4, 13)
+                SourceLocation(4, 13),
             )
         for (error in errors) {
             assertThat(error).hasMessage(ComposeCompositionLocalAllowlist.CompositionLocalNotInAllowlist)

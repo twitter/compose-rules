@@ -19,6 +19,6 @@ class ComposeParameterOrderCheck(config: Config) :
         description = "Parameters in a composable function should be ordered following this pattern: " +
             "params without defaults, modifiers, params with defaults and optionally, " +
             "a trailing function that might not have a default param.",
-        debt = Debt.TEN_MINS
+        debt = Debt.TEN_MINS,
     )
 }

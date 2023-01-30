@@ -18,6 +18,6 @@ class ComposeCompositionLocalAllowlistCheck(config: Config) :
         id = "CompositionLocalAllowlist",
         severity = Severity.CodeSmell,
         description = ComposeCompositionLocalAllowlist.CompositionLocalNotInAllowlist,
-        debt = Debt.FIVE_MINS
+        debt = Debt.FIVE_MINS,
     )
 }

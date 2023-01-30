@@ -26,7 +26,7 @@ class ComposeCompositionLocalNamingCheckTest {
         assertThat(errors)
             .hasStartSourceLocations(
                 SourceLocation(1, 5),
-                SourceLocation(2, 5)
+                SourceLocation(2, 5),
             )
         for (error in errors) {
             assertThat(error).hasMessage(ComposeCompositionLocalNaming.CompositionLocalNeedsLocalPrefix)

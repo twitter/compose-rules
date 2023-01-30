@@ -17,6 +17,6 @@ class ComposeModifierMissingCheck(config: Config) :
         id = "ModifierMissing",
         severity = Severity.Defect,
         description = ComposeModifierMissing.MissingModifierContentComposable,
-        debt = Debt.TEN_MINS
+        debt = Debt.TEN_MINS,
     )
 }

@@ -27,13 +27,13 @@ class ComposeModifierComposableCheckTest {
             LintViolation(
                 line = 2,
                 col = 14,
-                detail = ComposeModifierComposable.ComposableModifier
+                detail = ComposeModifierComposable.ComposableModifier,
             ),
             LintViolation(
                 line = 4,
                 col = 14,
-                detail = ComposeModifierComposable.ComposableModifier
-            )
+                detail = ComposeModifierComposable.ComposableModifier,
+            ),
         )
     }
 

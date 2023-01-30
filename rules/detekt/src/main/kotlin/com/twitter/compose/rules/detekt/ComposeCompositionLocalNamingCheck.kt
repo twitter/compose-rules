@@ -18,6 +18,6 @@ class ComposeCompositionLocalNamingCheck(config: Config) :
         id = "CompositionLocalNaming",
         severity = Severity.CodeSmell,
         description = ComposeCompositionLocalNaming.CompositionLocalNeedsLocalPrefix,
-        debt = Debt.FIVE_MINS
+        debt = Debt.FIVE_MINS,
     )
 }

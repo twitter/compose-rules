@@ -17,6 +17,6 @@ class ComposeMutableParametersCheck(config: Config) :
         id = "MutableParams",
         severity = Severity.Defect,
         description = ComposeMutableParameters.MutableParameterInCompose,
-        debt = Debt.TWENTY_MINS
+        debt = Debt.TWENTY_MINS,
     )
 }

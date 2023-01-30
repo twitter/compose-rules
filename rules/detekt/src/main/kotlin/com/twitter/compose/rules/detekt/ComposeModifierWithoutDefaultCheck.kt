@@ -18,6 +18,6 @@ class ComposeModifierWithoutDefaultCheck(config: Config) :
         id = "ModifierWithoutDefault",
         severity = Severity.CodeSmell,
         description = ComposeModifierWithoutDefault.MissingModifierDefaultParam,
-        debt = Debt.FIVE_MINS
+        debt = Debt.FIVE_MINS,
     )
 }

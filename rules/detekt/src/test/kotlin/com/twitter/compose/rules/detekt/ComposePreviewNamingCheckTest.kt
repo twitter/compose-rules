@@ -64,7 +64,7 @@ class ComposePreviewNamingCheckTest {
         assertThat(errors).hasStartSourceLocations(
             SourceLocation(2, 18),
             SourceLocation(4, 18),
-            SourceLocation(6, 18)
+            SourceLocation(6, 18),
         )
         for (error in errors) {
             assertThat(error).hasMessage(ComposePreviewNaming.createMessage(1, "Preview"))
@@ -86,7 +86,7 @@ class ComposePreviewNamingCheckTest {
         val errors = rule.lint(code)
         assertThat(errors).hasStartSourceLocations(
             SourceLocation(3, 18),
-            SourceLocation(6, 18)
+            SourceLocation(6, 18),
         )
         for (error in errors) {
             assertThat(error).hasMessage(ComposePreviewNaming.createMessage(2, "Previews"))

@@ -11,7 +11,7 @@ import io.gitlab.arturbosch.detekt.api.internal.valueOrDefaultCommaSeparated
  * during the lifetime of a rule.
  */
 internal class DetektComposeKtConfig(
-    private val config: Config
+    private val config: Config,
 ) : ComposeKtConfig {
     private val cache = mutableMapOf<String, Any?>()
 

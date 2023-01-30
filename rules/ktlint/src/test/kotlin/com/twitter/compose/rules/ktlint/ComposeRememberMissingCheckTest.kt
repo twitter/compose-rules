@@ -39,13 +39,13 @@ class ComposeRememberMissingCheckTest {
             LintViolation(
                 line = 3,
                 col = 21,
-                detail = ComposeRememberMissing.MutableStateOfNotRemembered
+                detail = ComposeRememberMissing.MutableStateOfNotRemembered,
             ),
             LintViolation(
                 line = 6,
                 col = 45,
-                detail = ComposeRememberMissing.MutableStateOfNotRemembered
-            )
+                detail = ComposeRememberMissing.MutableStateOfNotRemembered,
+            ),
         )
     }
 
@@ -108,13 +108,13 @@ class ComposeRememberMissingCheckTest {
             LintViolation(
                 line = 3,
                 col = 21,
-                detail = ComposeRememberMissing.DerivedStateOfNotRemembered
+                detail = ComposeRememberMissing.DerivedStateOfNotRemembered,
             ),
             LintViolation(
                 line = 6,
                 col = 45,
-                detail = ComposeRememberMissing.DerivedStateOfNotRemembered
-            )
+                detail = ComposeRememberMissing.DerivedStateOfNotRemembered,
+            ),
         )
     }
 

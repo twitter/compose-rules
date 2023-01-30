@@ -18,6 +18,6 @@ class ComposeMultipleContentEmittersCheck(config: Config) :
         id = "MultipleEmitters",
         severity = Severity.Defect,
         description = ComposeMultipleContentEmitters.MultipleContentEmittersDetected,
-        debt = Debt.TWENTY_MINS
+        debt = Debt.TWENTY_MINS,
     )
 }

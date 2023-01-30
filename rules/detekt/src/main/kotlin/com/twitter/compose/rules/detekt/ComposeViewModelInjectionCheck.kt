@@ -22,6 +22,6 @@ class ComposeViewModelInjectionCheck(config: Config) :
 
             Acquiring a ViewModel should be done in composable default parameters, so that it is more testable and flexible.
         """.trimIndent(),
-        debt = Debt.TEN_MINS
+        debt = Debt.TEN_MINS,
     )
 }

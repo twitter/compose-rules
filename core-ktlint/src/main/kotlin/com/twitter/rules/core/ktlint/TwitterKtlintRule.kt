@@ -27,10 +27,11 @@ abstract class TwitterKtlintRule(id: String) : Rule(id), ComposeKtVisitor {
 
     private val config: ComposeKtConfig by lazy { KtlintComposeKtConfig(properties) }
 
+    @Suppress("DEPRECATION")
     final override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
-        emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit
+        emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
         val psi = node.psi
         when (node.elementType) {

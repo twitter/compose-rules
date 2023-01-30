@@ -22,6 +22,6 @@ class ComposeUnstableCollectionsCheck(config: Config) :
 
             See https://twitter.github.io/compose-rules/rules/#avoid-using-unstable-collections for more information.
         """.trimIndent(),
-        debt = Debt.TWENTY_MINS
+        debt = Debt.TWENTY_MINS,
     )
 }

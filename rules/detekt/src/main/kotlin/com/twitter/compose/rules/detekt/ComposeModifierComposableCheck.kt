@@ -17,6 +17,6 @@ class ComposeModifierComposableCheck(config: Config) :
         id = "ModifierComposable",
         severity = Severity.Performance,
         description = ComposeModifierComposable.ComposableModifier,
-        debt = Debt.TEN_MINS
+        debt = Debt.TEN_MINS,
     )
 }

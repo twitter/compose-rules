@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test
 class ComposeNamingCheckTest {
 
     private val testConfig = TestConfig(
-        "allowedComposableFunctionNames" to listOf(".*Presenter")
+        "allowedComposableFunctionNames" to listOf(".*Presenter"),
     )
     private val rule = ComposeNamingCheck(testConfig)
 
@@ -82,7 +82,7 @@ class ComposeNamingCheckTest {
         val errors = rule.lint(code)
         assertThat(errors).hasSize(1)
             .hasStartSourceLocations(
-                SourceLocation(2, 5)
+                SourceLocation(2, 5),
             )
         assertThat(errors.first()).hasMessage(ComposeNaming.ComposablesThatReturnResultsShouldBeLowercase)
     }
@@ -103,7 +103,7 @@ class ComposeNamingCheckTest {
         assertThat(errors).hasSize(2)
             .hasStartSourceLocations(
                 SourceLocation(2, 5),
-                SourceLocation(5, 5)
+                SourceLocation(5, 5),
             )
         for (error in errors) {
             assertThat(error).hasMessage(ComposeNaming.ComposablesThatDoNotReturnResultsShouldBeCapitalized)

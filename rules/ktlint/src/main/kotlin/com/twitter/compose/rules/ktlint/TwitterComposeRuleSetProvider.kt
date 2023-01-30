@@ -5,41 +5,13 @@
 package com.twitter.compose.rules.ktlint
 
 import com.pinterest.ktlint.core.RuleProvider
-import com.pinterest.ktlint.core.RuleSet
-import com.pinterest.ktlint.core.RuleSetProvider
 import com.pinterest.ktlint.core.RuleSetProviderV2
 
-class TwitterComposeRuleSetProvider :
-    RuleSetProviderV2(
-        CustomRuleSetId,
-        RuleSetAbout
-    ),
-    RuleSetProvider {
+class TwitterComposeRuleSetProvider : RuleSetProviderV2(
+    CustomRuleSetId,
+    RuleSetAbout,
+) {
 
-    // Pre-0.47.0 ruleset (will go away in 0.48.0)
-    @Suppress("OVERRIDE_DEPRECATION")
-    override fun get(): RuleSet = RuleSet(
-        CustomRuleSetId,
-        ComposeCompositionLocalAllowlistCheck(),
-        ComposeCompositionLocalNamingCheck(),
-        ComposeContentEmitterReturningValuesCheck(),
-        ComposeModifierComposableCheck(),
-        ComposeModifierMissingCheck(),
-        ComposeModifierReusedCheck(),
-        ComposeModifierWithoutDefaultCheck(),
-        ComposeMultipleContentEmittersCheck(),
-        ComposeMutableParametersCheck(),
-        ComposeNamingCheck(),
-        ComposeParameterOrderCheck(),
-        ComposePreviewNamingCheck(),
-        ComposePreviewPublicCheck(),
-        ComposeRememberMissingCheck(),
-        ComposeUnstableCollectionsCheck(),
-        ComposeViewModelForwardingCheck(),
-        ComposeViewModelInjectionCheck()
-    )
-
-    // 0.47.0+ ruleset
     override fun getRuleProviders(): Set<RuleProvider> = setOf(
         RuleProvider { ComposeCompositionLocalAllowlistCheck() },
         RuleProvider { ComposeCompositionLocalNamingCheck() },
@@ -57,7 +29,7 @@ class TwitterComposeRuleSetProvider :
         RuleProvider { ComposeRememberMissingCheck() },
         RuleProvider { ComposeUnstableCollectionsCheck() },
         RuleProvider { ComposeViewModelForwardingCheck() },
-        RuleProvider { ComposeViewModelInjectionCheck() }
+        RuleProvider { ComposeViewModelInjectionCheck() },
     )
 
     private companion object {
@@ -66,7 +38,7 @@ class TwitterComposeRuleSetProvider :
             description = "Static checks to aid with a healthy adoption of Jetpack Compose",
             license = "Apache License, Version 2.0",
             repositoryUrl = "https://github.com/twitter/compose-rules/",
-            issueTrackerUrl = "https://github.com/twitter/compose-rules/issues"
+            issueTrackerUrl = "https://github.com/twitter/compose-rules/issues",
         )
         const val CustomRuleSetId = "twitter-compose"
     }
