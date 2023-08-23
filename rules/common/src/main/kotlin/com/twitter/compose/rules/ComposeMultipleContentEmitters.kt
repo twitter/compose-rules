@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 package com.twitter.compose.rules
 
+import com.twitter.rules.core.ComposeKtConfig.Companion.config
 import com.twitter.rules.core.ComposeKtVisitor
 import com.twitter.rules.core.Emitter
 import com.twitter.rules.core.report
@@ -16,6 +17,7 @@ import org.jetbrains.kotlin.psi.KtFunction
 class ComposeMultipleContentEmitters : ComposeKtVisitor {
 
     override fun visitFile(file: KtFile, autoCorrect: Boolean, emitter: Emitter) {
+        val excluded = file.config().getSet("exclude", emptySet())
         // CHECK #1 : We want to find the composables first that are at risk of emitting content from multiple sources.
         val composables = file.findChildrenByClass<KtFunction>()
             .filter { it.isComposable }
@@ -24,6 +26,7 @@ class ComposeMultipleContentEmitters : ComposeKtVisitor {
             .filter { it.hasBlockBody() }
             // We want only methods with a body
             .filterNot { it.hasReceiverType }
+            .filterNot { excluded.contains(it.name) }
 
         // Now we want to get the count of direct emitters in them: the composables we know for a fact that output UI
         val composableToEmissionCount = composables.associateWith { it.directUiEmitterCount }
