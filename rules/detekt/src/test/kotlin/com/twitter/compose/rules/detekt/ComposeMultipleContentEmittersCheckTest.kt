@@ -14,6 +14,7 @@ class ComposeMultipleContentEmittersCheckTest {
 
     private val testConfig = TestConfig(
         "contentEmitters" to listOf("Potato", "Banana"),
+        "exclude" to listOf("ExcludedComposable"),
     )
     private val rule = ComposeMultipleContentEmittersCheck(testConfig)
 
@@ -142,6 +143,33 @@ class ComposeMultipleContentEmittersCheckTest {
         val errors = rule.lint(code)
         assertThat(errors).hasSize(1)
             .hasStartSourceLocation(2, 5)
+        assertThat(errors.first()).hasMessage(ComposeMultipleContentEmitters.MultipleContentEmittersDetected)
+    }
+
+    @Test
+    fun `make_sure_that_excluded_composables_are_not_checked`() {
+        @Language("kotlin")
+        val code =
+            """
+                @Composable
+                fun ExcludedComposable() {
+                    Text("Hi")
+                    Text("Hola")
+                    Something2()
+                }
+                @Composable
+                fun Something2() {
+                    Text("Alo")
+                    Text("Hola")
+                }
+                @Composable
+                fun Something3() {
+                    Text("Alo")
+                }
+            """.trimIndent()
+        val errors = rule.lint(code)
+        assertThat(errors).hasSize(1)
+            .hasStartSourceLocation(8, 5)
         assertThat(errors.first()).hasMessage(ComposeMultipleContentEmitters.MultipleContentEmittersDetected)
     }
 }

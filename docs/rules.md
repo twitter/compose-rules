@@ -133,7 +133,7 @@ This effectively ties the function to be called from a Column, but is still not 
 
 Related rule: [twitter-compose:multiple-emitters-check](https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposeMultipleContentEmitters.kt)
 
-> **Note**: To add your custom composables so they are used in this rule (things like your design system composables), you can add `composeEmitters` to this rule config in Detekt, or `compose_emitters` to your .editorconfig in ktlint.
+> **Note**: To add your custom composables so they are used in this rule (things like your design system composables), you can add `composeEmitters` to this rule config in Detekt, or `compose_emitters` to your .editorconfig in ktlint. To exclude your composables from the rule add them to the `exclude` field in your Detekt config.
 
 ### Naming CompositionLocals properly
 

@@ -42,6 +42,7 @@ TwitterCompose:
     active: true
       # You can optionally add your own composables here
       # contentEmitters: MyComposable,MyOtherComposable
+      # exclude: MyComposable,MyOtherComposable
   MutableParams:
     active: true
   ComposableNaming:
