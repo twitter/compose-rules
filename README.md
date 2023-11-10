@@ -1,3 +1,6 @@
+# ⚠️ This repository will be archived shortly ⚠️
+## We recommend migrating to: https://github.com/mrmans0n/compose-rules
+
 # Twitter's Jetpack Compose Rules
 
 
