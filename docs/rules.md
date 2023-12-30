@@ -147,7 +147,7 @@ Related rule: [twitter-compose:compositionlocal-naming](https://github.com/twitt
 
 Multipreview annotations should be named by using `Previews` as suffix (or `Preview` if just one). These annotations have to be explicitly named to make sure that they are clearly identifiable as a `@Preview` alternative on its usages.
 
-More information: [Multipreview annotations](https://developer.android.com/jetpack/compose/tooling#preview-multipreview)
+More information: [Multipreview annotations](https://developer.android.com/jetpack/compose/tooling/previews#preview-multiple)
 
 Related rule: [twitter-compose:preview-naming](https://github.com/twitter/compose-rules/blob/main/rules/common/src/main/kotlin/com/twitter/compose/rules/ComposePreviewNaming.kt)
 
